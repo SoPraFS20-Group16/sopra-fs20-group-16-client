@@ -1,0 +1,17 @@
+@startuml
+
+package "Client " {
+[Client] - HTTP
+}
+
+package "Server " {
+HTTP - [Server]
+[Server] - query
+}
+
+database "Database "{
+query - [Data]
+}
+
+
+@enduml
