@@ -1,0 +1,18 @@
+@startuml
+(*)  --> "game menu"
+If "Create or join a match?" then
+--> [Create] "match creation page"
+--> "name the match and set players"
+--> "wait in the match lobby for the game to begin"
+-->(*)
+else
+--> [Join] "show list of available matches"
+If "Is there an open match?"
+--> [Yes] "click on a match to join it"
+--> "wait in the match lobby for the game to begin"
+else
+--> [No] "click on back button"
+--> "game menu"
+Endif
+Endif
+@enduml
