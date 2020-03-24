@@ -1,17 +1,18 @@
 @startuml
 
-package "Client " {
-[Client] - HTTP
+skinparam componentStyle uml2
+
+[Client] - RESTinterface
+RESTinterface - [Server]
+
+[Server] - DatabaseAccess
+DatabaseAccess - [CRUD\nDatabase]
+
+package "External APIs"{
+    [Quote API] - Server
+    [Map API] - Server
 }
 
-package "Server " {
-HTTP - [Server]
-[Server] - query
-}
-
-database "Database "{
-query - [Data]
-}
 
 
 @enduml
