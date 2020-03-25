@@ -1,0 +1,9 @@
+@startuml
+
+(*)  --> "game starts, board is shown"
+--> [dice are rolled\nfor every player] "player with highest score sets his first village
+and road, the others follow as per the rules"
+--> [every pair of starting\nvillages and roads are set] "that same player begins the game"
+--> [continues to game loop] (*)
+
+@enduml

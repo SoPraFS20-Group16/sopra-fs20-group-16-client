@@ -1,25 +1,25 @@
 @startuml
 (*)  --> "display login page"
 If "Is the user registered?" then
---> [Yes] "user clicks on SIGN IN button"
---> "login page is shown"
---> "user inserts credentials"
+    --> [Yes] "user clicks on SIGN IN button"
+    --> "login page is shown"
+    --> "user inserts credentials"
 
-If "Are credentials\n correct?"
---> [Yes] "login to game menu"
--->(*)
-else
---> [No] "display error message"
---> "login page is shown"
-else
---> [Don't have\nan account] "click on REGISTER HERE button"
---> "registration page is shown"
-Endif
+    If "Are credentials\n correct?"
+        --> [Yes] "login to game menu"
+        -->(*)
+        else
+        --> [No] "display error message"
+        --> "login page is shown"
+        else
+        --> [Don't have\nan account] "click on REGISTER HERE button"
+        --> "registration page is shown"
+    Endif
 
-else
---> [No] "user clicks on SIGN UP button"
---> "registration page is shown"
---> "user inputs desired credentials\n and clicks on SIGN UP button"
---> "display login page"
+    else
+    --> [No] "user clicks on SIGN UP button"
+    --> "registration page is shown"
+    --> "user inputs desired credentials\n and clicks on SIGN UP button"
+    --> "display login page"
 Endif
 @enduml

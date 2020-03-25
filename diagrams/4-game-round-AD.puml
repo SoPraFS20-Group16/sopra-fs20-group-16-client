@@ -1,0 +1,62 @@
+@startuml
+
+(*)  -> [Rob begins\nhis turn] "dice are rolled"
+if dice score? then
+    -left-> [{2...12} \ 7] "resources of the tiles\nwith that score are
+                        distributed to the\nplayers nearby" as diceAll
+    else
+    -right-> [7] "every player with more than 7 cards
+            returns 4 cards, thief is moved
+            and Rob can steal one card from
+            someone near the thief" as dice7
+endif
+
+diceAll --> "An action popup\nis shown to Rob" as action
+dice7 --> action
+action --> [Rob can\nact now] "Rob chooses an action"
+
+if action? then
+    --> build\nsomething
+    if "what to build?"
+        --> [village] Rob sets his\nnew village
+        --> action
+        else
+        --> [road] Rob sets his\nnew road
+        --> action
+        else
+        --> [city] Rob sets his\nnew city
+        --> action
+    endif
+
+    else
+    --> trade
+    if "with whom?"
+        --> [with bank] Rob trades freely\n(4:1, 3:1 or 2:1)
+/'        if "has port?"
+            --> [no] "4:1 trading"
+            --> action
+            else
+            --> [normal\nport] "3:1 trading"
+            --> action
+            else
+            --> [specific\nport] "2:1 trading"
+            --> action
+        endif'/
+        --> action
+
+        else
+        ..> [<i>(opt) with\n<i>players] "<i>(opt) player asks others
+                                   <i>if they want to trade"
+        ..> action
+    endif
+
+    else
+    --> buy development\ncard
+    --> action
+    else
+    --> use development card
+    --> action
+    else
+    -right-> "pass turn"
+    --> [turn is passed\nto next player] (*)
+@enduml
