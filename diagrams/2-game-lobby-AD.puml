@@ -1,0 +1,31 @@
+@startuml
+(*)  --> "game menu is shown"
+If "Create or join a match?" then
+    -left-> [Create] "set game preferences and\nclick on START GAME"
+    --> "game lobby is shown\nwith API player map"
+
+    if "" then
+        -->"wait in the game lobby\nfor the game to begin"
+        --> (*)
+        else
+        -->"force start the game\n(with bots)"
+        --> (*)
+        else
+        --> "logout and exit"
+        --> (*)
+    endif
+
+    else
+    --> [Join] "click on a game from the\nlist of available lobbies"
+endif
+
+If "Is there an open lobby?" then
+    --> [Yes] "click on a desired lobby"
+    --> [info about the lobby\nis shown in a pop-up] "click on\nJOIN GAME"
+    --> "game lobby is shown\nwith API player map"
+    else
+    --> [No] "set game preferences and\nclick on START GAME"
+endif
+
+
+@enduml
