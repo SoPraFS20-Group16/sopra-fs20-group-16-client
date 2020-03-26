@@ -6,9 +6,10 @@ if dice score? then
                         distributed to the\nplayers nearby" as diceAll
     else
     -right-> [7] "every player with more than 7 cards
-            returns 4 cards, thief is moved
-            and Rob can steal one card from
-            someone near the thief" as dice7
+            returns half of their cards, thief is
+            moved and Rob can steal one card
+            from someone near the thief" as dice7
+
 endif
 
 diceAll --> "An action popup\nis shown to Rob" as action
@@ -45,7 +46,7 @@ if action? then
         --> action
 
         else
-        ..> [<i>(opt) with\n<i>players] "<i>(opt) player asks others
+        ..> [<i>(opt) with\n<i>players] "<i>(opt) Rob asks others
                                    <i>if they want to trade"
         ..> action
     endif
