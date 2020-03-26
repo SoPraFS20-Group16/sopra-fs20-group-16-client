@@ -2,17 +2,20 @@
 
 skinparam componentStyle uml2
 
-[Client] - RESTinterface
-RESTinterface - [Server]
+[User] -down- UI
+UI - [Client]
+[Client] - REST
+REST - [Server]
 
-[Server] - DatabaseAccess
-DatabaseAccess - [CRUD\nDatabase]
+[Server] -down- DatabaseAccess
 
-package "External APIs"{
-    [Quote API] - Server
-    [Map API] - Server
+database "Database" {
+DatabaseAccess -down- [CRUD\nDatabase]
 }
 
-
+package "External APIs"{
+    [Quote API] -- Server
+    [Map API] -- Server
+}
 
 @enduml

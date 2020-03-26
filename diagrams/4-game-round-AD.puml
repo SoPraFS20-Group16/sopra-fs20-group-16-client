@@ -1,19 +1,30 @@
 @startuml
 
-(*)  -> [Rob begins\nhis turn] "dice are rolled"
+(*)  -> [<b>Rob begins\n<b>his turn] "dice are rolled"
 if dice score? then
     -left-> [{2...12} \ 7] "resources of the tiles\nwith that score are
                         distributed to the\nplayers nearby" as diceAll
     else
-    -right-> [7] "every player with more than 7 cards
-            returns half of their cards, thief is
-            moved and Rob can steal one card
-            from someone near the thief" as dice7
+
+    -right-> [7] players count their\nresource cards
+    -right-> if "if cards are..."
+        --> [>7] return half of the\ncards to the bank\n (rounded down)
+        --> "Rob moves\nthe thief on a\nnew tile" as moveThief
+        else
+        --> [<=7] do nothing
+        --> moveThief
+    endif
+
+    -right-> if are there villages\non the new tile?
+        --> [yes] Rob can steal a card\nfrom one of the\nvillages' owner
+        --> action
+        else
+        --> [no] action
+
 
 endif
 
 diceAll --> "An action popup\nis shown to Rob" as action
-dice7 --> action
 action --> [Rob can\nact now] "Rob chooses an action"
 
 if action? then
