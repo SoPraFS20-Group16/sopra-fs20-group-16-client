@@ -32,7 +32,7 @@ const Form = styled.div`
 
 const InputField = styled.input`
   &::placeholder {
-    color: rgba(255, 255, 255, 1.0);
+    color: black;
   }
   height: 35px;
   padding-left: 15px;
@@ -40,12 +40,12 @@ const InputField = styled.input`
   border: none;
   border-radius: 20px;
   margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  background: lightgreen;
   color: white;
 `;
 
 const Label = styled.label`
-  color: white;
+  color: black;
   margin-bottom: 10px;
   text-transform: uppercase;
 `;
