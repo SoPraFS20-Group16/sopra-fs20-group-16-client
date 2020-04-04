@@ -8,7 +8,7 @@ import { ReactLogo } from "./ReactLogo";
  * Using styled-components, you can have styling conditions using the following syntax: ${props => ...}
  * https://www.styled-components.com/
  */
-const Container = styled.div`
+export const Container = styled.div`
   height: ${props => props.height}px;
   background: ${props => props.background};
   display: flex;
@@ -16,7 +16,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   font-weight: bold;
   color: white;
   text-align: center;
