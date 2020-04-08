@@ -19,15 +19,15 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
-  height: 375px;
+  width: 70%;
+  height: 450px;
   font-size: 16px;
   font-weight: 300;
   padding-left: 37px;
   padding-right: 37px;
   text-align:center;
   border-radius: 5px;
-  background: linear-gradient(rgb(27, 124, 186), rgb(2, 46, 101));
+  background: linear-gradient(#108048, #08341E);
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
@@ -46,15 +46,15 @@ const InputField = styled.input`
 `;
 
 const Label = styled.label`
-  color: black;
+  color: white;
   margin-bottom: 10px;
-  text-transform: uppercase;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  
+  margin-bottom: 20px;
 `;
 
 /**
@@ -91,16 +91,16 @@ class Login extends React.Component {
         username: this.state.username,
         password: this.state.password
       });
-      const response = await api.post('/users', requestBody);
 
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
+      await api.put('/login', requestBody);
+
 
       // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
+      localStorage.setItem('token', requestBody);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       this.props.history.push(`/game`);
+
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }

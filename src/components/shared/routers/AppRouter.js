@@ -53,10 +53,6 @@ class AppRouter extends React.Component {
         </Switch>
       </BrowserRouter>
 
-
-
-
-
     );
   }
 }
