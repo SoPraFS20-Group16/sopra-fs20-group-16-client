@@ -14,6 +14,7 @@ const FormContainer = styled.div`
   align-items: center;
   min-height: 300px;
   justify-content: center;
+  background-color: rgb(122,230,162);
 `;
 
 const Form = styled.div`
@@ -27,7 +28,7 @@ const Form = styled.div`
   padding-left: 37px;
   padding-right: 37px;
   border-radius: 5px;
-  background: linear-gradient(rgb(27, 124, 186), rgb(2, 46, 101));
+  background-color: rgb(122,230,162);
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
@@ -61,6 +62,8 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  background-color: rgb(122,230,162);
+
 `;
 
 const CatanTitle = styled.div`
@@ -110,8 +113,6 @@ class StartPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: null,
-      password: null
     };
   }
 
@@ -139,9 +140,22 @@ class StartPage extends React.Component {
   render() {
     return (
       <BaseContainer>
-        <FormContainer>
-            <CatanTitle/>
-        </FormContainer>
+          <ButtonContainer>
+            <Button
+              width='30%'
+              onClick={() => {
+                this.props.history.push(`/login`);
+              }}>
+              Sign In
+            </Button>
+            <Button
+              width='30%'
+              onClick={() => {
+                this.props.history.push(`/register`);
+              }}>
+              Register
+            </Button>
+          </ButtonContainer>
       </BaseContainer>
     );
   }

@@ -32,8 +32,7 @@ export const Title = styled.h1`
 const Header = props => {
   return (
     <Container height={props.height}>
-      <Title>SoPra FS20 rocks with React!</Title>
-      <ReactLogo width={60} height={60} />
+      <Title>Welcome to Toucan!</Title>
     </Container>
   );
 };

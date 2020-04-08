@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
-  background: #0e3d61;
+  background-color: rgb(102,210,142);
 }
 
 input,
@@ -18,6 +18,7 @@ button {
   line-height: inherit;
   font-size: inherit;
   outline: none;
+  background-color: rgb(30,210,100);
 }
 
 *:focus {
