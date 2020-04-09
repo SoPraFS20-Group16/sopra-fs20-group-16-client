@@ -67,8 +67,8 @@ const ButtonContainer = styled.div`
 const CatanTitle = styled.div`
 /* The Settlers of Toucan */
 
-position: absolute;
-width: 1368px;
+position: center;
+width: 700px;
 height: 265px;
 left: 53px;
 top: 308px;
@@ -77,6 +77,7 @@ top: 308px;
 font-style: serif;
 font-weight: 1000;
 font-size: 100px;
+font-border: 2px black;
 line-height: 100px;
 /* or 67% */
 
@@ -85,11 +86,10 @@ align-items: center;
 text-align: center;
 letter-spacing: 0.2px;
 
-color: #A50000;
+color: gold;
 
 mix-blend-mode: normal;
-border: 6px solid #FFFFFF;
-text-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 `
 
 /**

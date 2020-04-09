@@ -12,7 +12,7 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "EB Garamond", serif;
-  background-image: url("full_frame_background.jpg");
+  background-image: url("views/graphics/CatanBG.png");
 }
 
 input,
