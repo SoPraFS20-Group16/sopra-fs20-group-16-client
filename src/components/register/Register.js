@@ -8,7 +8,7 @@ import { Button } from '../../views/design/Button';
 
 
 const FormContainer = styled.div`
-  margin-top: 2em;
+  margin-top: 7em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@ const Form = styled.div`
   padding-right: 37px;
   text-align:center;
   border-radius: 5px;
-  background: linear-gradient(#108048, #08341E);
+  background-image: url("full_frame_background.jpg")
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
@@ -47,7 +47,7 @@ const InputField = styled.input`
 `;
 
 const Label = styled.label`
-  color: white;
+  color: black;
   margin-bottom: 10px;
 `;
 
@@ -98,14 +98,14 @@ class Register extends React.Component{
             <BaseContainer>
                 <FormContainer>
                     <Form>
-                        <Label>Username</Label>
+                        <Label><b>Username</b></Label>
                         <InputField
                             placeholder="Enter here..."
                             onChange={e =>{
                                 this.handleInputChange('username', e.target.value);
                             }}
                         />
-                        <Label>Password</Label>
+                        <Label><b>Password</b></Label>
                         <InputField type="password"
                             placeholder="Enter here..."
                             onChange={e =>{

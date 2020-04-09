@@ -3,11 +3,16 @@
 /**
 This file contains the general and shared style of your application.
  */
-body {
+body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   font-family: "Open Sans", sans-serif;
-  background-color: #14B665;
+  background-image: url("full_frame_background.jpg");
 }
 
 input,
