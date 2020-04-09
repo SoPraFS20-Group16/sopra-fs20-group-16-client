@@ -28,7 +28,6 @@ const Form = styled.div`
   padding-left: 37px;
   padding-right: 37px;
   border-radius: 5px;
-  background-color: rgb(122,230,162);
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
@@ -62,7 +61,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  background-color: rgb(122,230,162);
 
 `;
 
@@ -75,10 +73,10 @@ height: 265px;
 left: 53px;
 top: 308px;
 
-font-family: Goudy Bookletter 1911;
-font-style: normal;
-font-weight: normal;
-font-size: 150px;
+/* font-family: Goudy Bookletter 1911; */
+font-style: serif;
+font-weight: 1000;
+font-size: 100px;
 line-height: 100px;
 /* or 67% */
 
@@ -140,22 +138,27 @@ class StartPage extends React.Component {
   render() {
     return (
       <BaseContainer>
-          <ButtonContainer>
-            <Button
-              width='30%'
-              onClick={() => {
-                this.props.history.push(`/login`);
-              }}>
-              Sign In
-            </Button>
-            <Button
-              width='30%'
-              onClick={() => {
-                this.props.history.push(`/register`);
-              }}>
-              Register
-            </Button>
-          </ButtonContainer>
+        <CatanTitle>
+          The Settlers Of Toucan
+        </CatanTitle>
+        <ButtonContainer>
+          <Button
+            width='30%'
+            onClick={() => {
+              this.props.history.push(`/login`);
+            }}>
+            Sign In
+          </Button>
+        </ButtonContainer>
+        <ButtonContainer>
+          <Button
+            width='30%'
+            onClick={() => {
+              this.props.history.push(`/register`);
+            }}>
+            Register
+          </Button>
+        </ButtonContainer>
       </BaseContainer>
     );
   }

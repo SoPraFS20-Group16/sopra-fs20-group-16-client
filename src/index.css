@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond:wght@800&display=swap");
 
 /**
 This file contains the general and shared style of your application.
@@ -11,7 +11,7 @@ body, html {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: "Open Sans", sans-serif;
+  font-family: "EB Garamond", serif;
   background-image: url("full_frame_background.jpg");
 }
 
