@@ -12,7 +12,7 @@ export const Button = styled.button`
   color: black;
   width: ${props => props.width || null};
   height: 35px;
-  border: none;
+  border: 1px solid black;;
   border-radius: 20px;
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   opacity: ${props => (props.disabled ? 0.4 : 1)};

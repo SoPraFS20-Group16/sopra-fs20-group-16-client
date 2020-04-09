@@ -39,7 +39,7 @@ const InputField = styled.input`
   height: 35px;
   padding-left: 15px;
   margin-left: -4px;
-  border: none;
+  border: 1px solid black;
   border-radius: 20px;
   margin-bottom: 20px;
   background: lightgreen;
@@ -54,9 +54,14 @@ const Label = styled.label`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  
+ 
   margin-bottom: 20px;
 `;
+
+
+
+
+
 
 
 class Register extends React.Component{
@@ -68,6 +73,11 @@ class Register extends React.Component{
         };
     }
 
+    async isNotEmptyOrSpaces(str){
+        return str == null || str.match(/^ *$/) !== null;
+
+    }
+
     async register(){
         try{
             const requestBody = JSON.stringify({
@@ -75,9 +85,11 @@ class Register extends React.Component{
                 password: this.state.password,
             })
 
+            if(this.isNotEmptyOrSpaces(requestBody)){
+                this.props.history.push('/login');
+                await api.post('/users', requestBody);
+            }
 
-            this.props.history.push('/login');
-            await api.post('/users', requestBody);
 
         } catch (error) {
             alert("Something went wrong during the registration!")

@@ -39,11 +39,11 @@ const InputField = styled.input`
   height: 35px;
   padding-left: 15px;
   margin-left: -4px;
-  border: none;
+  border: 1px solid black;
   border-radius: 20px;
   margin-bottom: 20px;
   background: lightgreen;
-  color: white;
+  color: black;
 `;
 
 const Label = styled.label`
@@ -59,6 +59,24 @@ const ButtonContainer = styled.div`
   justify-content: center;
   
   margin-bottom: 20px;
+`;
+
+
+export const Button2 = styled.button`
+  &:hover {
+    transform: translateY(-2px);
+  }
+  padding: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: center;
+  color: black;
+  width:200px;
+  height: 35px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  background: transparent;
 `;
 
 /**
@@ -164,21 +182,20 @@ class Login extends React.Component {
 
             <Label> <p> </p>
               <p> No account?</p>
-              <p><b>Register here</b></p>
 
             </Label>
 
             <ButtonContainer>
-              <Button
+              <Button2
 
                   width="20%"
                   onClick={() => {
                     this.props.history.push(`/register`);
                   }}
               >
-                Register!
+                Register here!
 
-              </Button>
+              </Button2>
             </ButtonContainer>
           </Form>
         </FormContainer>
