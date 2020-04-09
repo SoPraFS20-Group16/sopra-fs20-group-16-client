@@ -9,13 +9,13 @@ export const Button = styled.button`
   text-transform: uppercase;
   font-size: 20px;
   text-align: center;
-  color: rgba(255, 255, 255, 1);
+  color: black;
   width: ${props => props.width || null};
-  height: 40px;
-  border: none;
+  height: 35px;
+  border: 1px solid black;;
   border-radius: 20px;
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   opacity: ${props => (props.disabled ? 0.4 : 1)};
-  background: rgb(69,161,109);
+  background: lightgreen;
   transition: all 0.3s ease;
 `;

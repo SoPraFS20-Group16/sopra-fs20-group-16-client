@@ -6,6 +6,7 @@ import User from '../shared/models/User';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
 
+
 const FormContainer = styled.div`
   margin-top: 2em;
   display: flex;
@@ -19,41 +20,63 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
-  height: 375px;
+  width: 70%;
+  height: 450px;
   font-size: 16px;
   font-weight: 300;
   padding-left: 37px;
   padding-right: 37px;
+  text-align:center;
   border-radius: 5px;
-  background: linear-gradient(rgb(27, 124, 186), rgb(2, 46, 101));
+  background-image: url("full_frame_background.jpg")
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
 const InputField = styled.input`
   &::placeholder {
-    color: rgba(255, 255, 255, 1.0);
+    color: black;
   }
   height: 35px;
   padding-left: 15px;
   margin-left: -4px;
-  border: none;
+  border: 1px solid black;
   border-radius: 20px;
   margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: lightgreen;
+  color: black;
 `;
 
 const Label = styled.label`
-  color: white;
+  color: black;
   margin-bottom: 10px;
-  text-transform: uppercase;
+  font-size: 20px;
 `;
+
+
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  
+  margin-bottom: 20px;
+`;
+
+
+export const Button2 = styled.button`
+  &:hover {
+    transform: translateY(-2px);
+  }
+  padding: 6px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: center;
+  color: black;
+  width:200px;
+  height: 35px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  background: transparent;
 `;
 
 /**
@@ -75,8 +98,8 @@ class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: null,
-      username: null
+      username: null,
+      password: null
     };
   }
   /**
@@ -88,18 +111,18 @@ class Login extends React.Component {
     try {
       const requestBody = JSON.stringify({
         username: this.state.username,
-        name: this.state.name
+        password: this.state.password
       });
-      const response = await api.post('/users', requestBody);
 
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
+      await api.put('/login', requestBody);
+
 
       // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
+      localStorage.setItem('token', requestBody);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       this.props.history.push(`/game`);
+
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
@@ -130,23 +153,23 @@ class Login extends React.Component {
       <BaseContainer>
         <FormContainer>
           <Form>
-            <Label>Username</Label>
+            <Label><b>Username</b></Label>
             <InputField
               placeholder="Enter here.."
               onChange={e => {
                 this.handleInputChange('username', e.target.value);
               }}
             />
-            <Label>Name</Label>
-            <InputField
+            <Label><b>Password</b></Label>
+            <InputField type="password"
               placeholder="Enter here.."
               onChange={e => {
-                this.handleInputChange('name', e.target.value);
+                this.handleInputChange('password', e.target.value);
               }}
             />
             <ButtonContainer>
               <Button
-                disabled={!this.state.username || !this.state.name}
+                disabled={!this.state.username || !this.state.password}
                 width="50%"
                 onClick={() => {
                   this.login();
@@ -154,6 +177,25 @@ class Login extends React.Component {
               >
                 Login
               </Button>
+            </ButtonContainer>
+
+
+            <Label> <p> </p>
+              <p> No account?</p>
+
+            </Label>
+
+            <ButtonContainer>
+              <Button2
+
+                  width="20%"
+                  onClick={() => {
+                    this.props.history.push(`/register`);
+                  }}
+              >
+                Register here!
+
+              </Button2>
             </ButtonContainer>
           </Form>
         </FormContainer>

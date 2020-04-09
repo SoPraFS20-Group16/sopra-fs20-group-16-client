@@ -8,7 +8,7 @@ import { Button } from '../../views/design/Button';
 import { withRouter } from 'react-router-dom';
 
 const Container = styled(BaseContainer)`
-  color: white;
+  color: black;
   text-align: center;
 `;
 

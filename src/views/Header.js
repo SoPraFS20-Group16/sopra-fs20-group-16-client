@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactLogo } from "./ReactLogo";
+import Image from "../full_frame_background.jpg"
 
 /**
  * Using styled-components you can visual HTML primitives and use props with it!
@@ -8,7 +9,7 @@ import { ReactLogo } from "./ReactLogo";
  * Using styled-components, you can have styling conditions using the following syntax: ${props => ...}
  * https://www.styled-components.com/
  */
-export const Container = styled.div`
+const Container = styled.div`
   height: ${props => props.height}px;
   background: ${props => props.background};
   display: flex;
@@ -16,7 +17,7 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.h1`
+const Title = styled.h1`
   font-weight: bold;
   color: white;
   text-align: center;
@@ -32,7 +33,7 @@ export const Title = styled.h1`
 const Header = props => {
   return (
     <Container height={props.height}>
-      <Title>Welcome to Toucan!</Title>
+      <Title>Welcome to\nThe Settlers of Toucan!</Title>
     </Container>
   );
 };
