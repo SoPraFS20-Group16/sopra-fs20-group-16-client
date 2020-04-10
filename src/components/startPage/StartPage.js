@@ -14,7 +14,6 @@ const FormContainer = styled.div`
   align-items: center;
   min-height: 300px;
   justify-content: center;
-  background-color: rgb(122,230,162);
 `;
 
 const Form = styled.div`
@@ -138,9 +137,11 @@ class StartPage extends React.Component {
   render() {
     return (
       <BaseContainer>
-        <CatanTitle>
-          The Settlers Of Toucan
-        </CatanTitle>
+        <FormContainer>
+          <CatanTitle>
+            The Settlers Of Toucan
+          </CatanTitle>
+        </FormContainer>
         <ButtonContainer>
           <Button
             width='30%'

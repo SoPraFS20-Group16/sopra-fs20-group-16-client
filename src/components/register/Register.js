@@ -42,7 +42,7 @@ const InputField = styled.input`
   border: 1px solid black;
   border-radius: 20px;
   margin-bottom: 20px;
-  background: lightgreen;
+  background: gold;
   color: black;
 `;
 
