@@ -8,6 +8,7 @@ import {StartPageGuard} from "../routeProtectors/StartPageGuard";
 import StartPage from "../../startPage/StartPage";
 import {RegisterGuard} from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
+import Board from "../../game/Board";
 
 /**
  * Main router of your application.
@@ -58,6 +59,15 @@ class AppRouter extends React.Component {
                         <Register />
                     </RegisterGuard>
                 )}
+            />
+            <Route
+              path="/board"
+              exact
+              render={() => (
+                <GameGuard>
+                  <GameRouter base={"/board"} />
+                </GameGuard>
+              )}
             />
             <Route path="/" exact render={() => <Redirect to={"/game"} />} />
           </div>
