@@ -1,0 +1,55 @@
+.hexagon {
+    width: 100px;
+    height: 55px;
+    position: relative;
+}
+
+.hexagon,
+.hexagon:before,
+.hexagon:after {
+    background: blue;
+}
+
+.hexagon:before,
+.hexagon:after {
+    content: "";
+    position: absolute;
+    left: 22px;
+    width: 57px;
+    height: 57px;
+    transform: rotate(145deg) skew(22.5deg);
+}
+
+.hexagon:before {
+    top: -29px;
+}
+
+.hexagon:after {
+    top: 27px;
+}
+
+
+.hexagon:focus{
+    outline: none;
+}
+
+
+
+
+.hexagon-row:after{
+    clear: both;
+    content:"";
+    grid-column: -1;
+
+}
+
+
+.game{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display:flex;
+    flex-direction: row;
+
+}

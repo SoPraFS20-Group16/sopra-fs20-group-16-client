@@ -7,6 +7,10 @@ import Login from "../../login/Login";
 import {RegisterGuard} from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
 
+import {BoardGuard} from "../routeProtectors/BoardGuard";
+import Board from "../../board/Board";
+import Hexagon from "../../board/Hexagon";
+
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -48,7 +52,30 @@ class AppRouter extends React.Component {
                       </RegisterGuard>
                   )}
               />
+
+              <Route
+                  path="/board"
+                  exact
+                  render={() => (
+                      <BoardGuard>
+                          <Board />
+                      </BoardGuard>
+                  )}
+              />
+
+              <Route
+                  path="/board"
+                  exact
+                  render={() => (
+                      <BoardGuard>
+                          <Hexagon />
+                      </BoardGuard>
+                  )}
+              />
+
+
             <Route path="/" exact render={() => <Redirect to={"/game"} />} />
+
           </div>
         </Switch>
       </BrowserRouter>
