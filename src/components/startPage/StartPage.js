@@ -20,63 +20,76 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 70%;
-  height: 450px;
+  width: 60%;
+  height: 375px;
   font-size: 16px;
   font-weight: 300;
   padding-left: 37px;
   padding-right: 37px;
-  text-align:center;
   border-radius: 5px;
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
 const InputField = styled.input`
   &::placeholder {
-    color: black;
+    color: rgba(255, 255, 255, 1.0);
   }
   height: 35px;
   padding-left: 15px;
   margin-left: -4px;
-  border: 1px solid black;
+  border: none;
   border-radius: 20px;
   margin-bottom: 20px;
-  background: gold;
-  color: black;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
 `;
 
 const Label = styled.label`
-  color: black;
+  color: white;
   margin-bottom: 10px;
-  font-size: 20px;
+  text-transform: uppercase;
 `;
 
-
+const Label2 = styled.label`
+  color: white;
+  margin-bottom: 10px;
+  text-transform: titlecase;
+`;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  
-  margin-bottom: 20px;
+  margin-top: 20px;
+
 `;
 
+const CatanTitle = styled.div`
+/* The Settlers of Toucan */
 
-export const Button2 = styled.button`
-  &:hover {
-    transform: translateY(-2px);
-  }
-  padding: 6px;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 13px;
-  text-align: center;
-  color: black;
-  width:200px;
-  height: 35px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  background: transparent;
-`;
+position: center;
+width: 700px;
+height: 265px;
+left: 53px;
+top: 308px;
+
+/* font-family: Goudy Bookletter 1911; */
+font-style: serif;
+font-weight: 1000;
+font-size: 100px;
+font-border: 2px black;
+line-height: 100px;
+/* or 67% */
+
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: 0.2px;
+
+color: gold;
+
+mix-blend-mode: normal;
+text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+`
 
 /**
  * Classes in React allow you to have an internal state within the class and to have the React life-cycle for your component.
@@ -87,45 +100,19 @@ export const Button2 = styled.button`
  * https://reactjs.org/docs/react-component.html
  * @Class
  */
-class Login extends React.Component {
+class StartPage extends React.Component {
   /**
    * If you don’t initialize the state and you don’t bind methods, you don’t need to implement a constructor for your React component.
    * The constructor for a React component is called before it is mounted (rendered).
    * In this case the initial state is defined in the constructor. The state is a JS object containing two fields: name and username
    * These fields are then handled in the onChange() methods in the resp. InputFields
    */
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      username: null,
-      password: null
     };
   }
-  /**
-   * HTTP POST request is sent to the backend.
-   * If the request is successful, a new user is returned to the front-end
-   * and its token is stored in the localStorage.
-   */
-  async login() {
-    try {
-      const requestBody = JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-      });
 
-      await api.put('/login', requestBody);
-
-
-      // Store the token into the local storage.
-      localStorage.setItem('token', requestBody);
-
-      // Login successfully worked --> navigate to the route /game in the GameRouter
-      this.props.history.push(`/game`);
-
-    } catch (error) {
-      alert(`Something went wrong during the login: \n${handleError(error)}`);
-    }
-  }
 
   /**
    *  Every time the user enters something in the input field, the state gets updated.
@@ -151,53 +138,28 @@ class Login extends React.Component {
     return (
       <BaseContainer>
         <FormContainer>
-          <Form>
-            <Label><b>Username</b></Label>
-            <InputField
-              placeholder="Enter here.."
-              onChange={e => {
-                this.handleInputChange('username', e.target.value);
-              }}
-            />
-            <Label><b>Password</b></Label>
-            <InputField type="password"
-              placeholder="Enter here.."
-              onChange={e => {
-                this.handleInputChange('password', e.target.value);
-              }}
-            />
-            <ButtonContainer>
-              <Button
-                disabled={!this.state.username || !this.state.password}
-                width="50%"
-                onClick={() => {
-                  this.login();
-                }}
-              >
-                Login
-              </Button>
-            </ButtonContainer>
-
-
-            <Label> <p> </p>
-              <p> No account?</p>
-
-            </Label>
-
-            <ButtonContainer>
-              <Button2
-
-                  width="20%"
-                  onClick={() => {
-                    this.props.history.push(`/register`);
-                  }}
-              >
-                Register here!
-
-              </Button2>
-            </ButtonContainer>
-          </Form>
+          <CatanTitle>
+            The Settlers Of Toucan
+          </CatanTitle>
         </FormContainer>
+        <ButtonContainer>
+          <Button
+            width='30%'
+            onClick={() => {
+              this.props.history.push(`/login`);
+            }}>
+            Sign In
+          </Button>
+        </ButtonContainer>
+        <ButtonContainer>
+          <Button
+            width='30%'
+            onClick={() => {
+              this.props.history.push(`/register`);
+            }}>
+            Register
+          </Button>
+        </ButtonContainer>
       </BaseContainer>
     );
   }
@@ -207,4 +169,4 @@ class Login extends React.Component {
  * You can get access to the history object's properties via the withRouter.
  * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
  */
-export default withRouter(Login);
+export default withRouter(StartPage);

@@ -4,6 +4,8 @@ import { GameGuard } from "../routeProtectors/GameGuard";
 import GameRouter from "./GameRouter";
 import { LoginGuard } from "../routeProtectors/LoginGuard";
 import Login from "../../login/Login";
+import {StartPageGuard} from "../routeProtectors/StartPageGuard";
+import StartPage from "../../startPage/StartPage";
 import {RegisterGuard} from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
 
@@ -26,6 +28,15 @@ class AppRouter extends React.Component {
       <BrowserRouter>
         <Switch>
           <div>
+            <Route
+              path="/startPage"
+              exact
+              render={() => (
+                <StartPageGuard>
+                  <StartPage />
+                </StartPageGuard>
+              )}
+            />
             <Route
               path="/game"
               render={() => (
@@ -79,7 +90,6 @@ class AppRouter extends React.Component {
           </div>
         </Switch>
       </BrowserRouter>
-
     );
   }
 }

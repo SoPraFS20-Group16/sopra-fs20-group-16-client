@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactLogo } from "./ReactLogo";
-import Image from "../full_frame_background.jpg"
 
 /**
  * Using styled-components you can visual HTML primitives and use props with it!
@@ -19,7 +17,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-weight: bold;
-  color: white;
+  color: black;
   text-align: center;
 `;
 /**
@@ -30,14 +28,14 @@ const Title = styled.h1`
  * https://reactjs.org/docs/components-and-props.html
  * @FunctionalComponent
  */
-const Header = props => {
-  return (
-    <Container height={props.height}>
-      <Title>Settlers of Toucan</Title>
-      <ReactLogo width={150} height={100} />
 
+const Header = props => {
+  return null
+/*  return (
+    <Container height={props.height}>
+      <Title>Welcome to The Settlers of Toucan!</Title>
     </Container>
-  );
+  );*/
 };
 
 /**
