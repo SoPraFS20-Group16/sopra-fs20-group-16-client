@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Redirect, Route } from "react-router-dom";
 import Game from "../../game/Game";
+import Dashboard from "../../Dashboard/Dashboard";
 
 const Container = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ class GameRouter extends React.Component {
         <Route
           exact
           path={`${this.props.base}/dashboard`}
-          render={() => <Game />}
+          render={() => <Dashboard />}
         />
 
         <Route
