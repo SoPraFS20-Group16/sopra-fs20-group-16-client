@@ -28,7 +28,6 @@ const Form = styled.div`
   padding-right: 37px;
   text-align:center;
   border-radius: 5px;
-  background-image: url("full_frame_background.jpg")
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
