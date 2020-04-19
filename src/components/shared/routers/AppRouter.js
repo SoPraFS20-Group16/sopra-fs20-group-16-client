@@ -9,7 +9,7 @@ import StartPage from "../../startPage/StartPage";
 import { RegisterGuard } from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
 // import Profile from "../../profile/Profile";
-import Dashboard from "../../dashboard/Dashboard";
+import Dashboard from "../../Dashboard/Dashboard";
 import Profile from "../../Profile/Profile";
 
 /**
