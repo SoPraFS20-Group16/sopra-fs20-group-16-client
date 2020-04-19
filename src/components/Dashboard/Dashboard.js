@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import AvatarCircle from "../AvatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
-import GameCard from "../GameCard/GameCard";
+import GameCard from "./GameCard";
 import { Link } from "react-router-dom";
 
 const defaultFormState = {
@@ -199,7 +199,9 @@ export default class Dashboard extends Component {
                 Start Game
               </Button>
             </Col>
-            <Col md={6}>{this.renderGameCards()}</Col>
+            <Col md={6}>
+              arinzarunza
+            </Col>
           </Row>
         </Form>
       </>
