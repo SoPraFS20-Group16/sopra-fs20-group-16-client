@@ -5,12 +5,14 @@ import {
   Form,
   FormControl,
   InputGroup,
-  Button,
+  Button
 } from "react-bootstrap";
-
-import AvatarCircle from "../AvatarCircle/AvatarCircle";
-import avatarUrl from "../../assets/images/avatar.jpg";
-import GameCard from "../GameCard/GameCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import AvatarCircle from "../avatarCircle/AvatarCircle";
+import avatarUrl from "../../views/graphics/avatar.jpg";
+import GameCard from "../gamecard/GameCard";
+import { Link } from "react-router-dom";
 
 const defaultFormState = {
   title: "",
@@ -18,14 +20,14 @@ const defaultFormState = {
   bots: "",
   boardSize: "",
   otherOptions: "",
-  createdBy: "Generic User",
+  createdBy: "Generic User"
 };
 
 export default class Dashboard extends Component {
   state = {
     ...defaultFormState,
 
-    games: [],
+    games: []
   };
 
   renderGameCards = () => {
@@ -33,28 +35,28 @@ export default class Dashboard extends Component {
   };
 
   handleStartGame = () => {};
-  handlePlayersChange = (e) => {
+  handlePlayersChange = e => {
     const { value } = e.target;
     this.setState({
-      players: parseInt(value),
+      players: parseInt(value)
     });
   };
-  handleBotsChange = (e) => {
+  handleBotsChange = e => {
     const { value } = e.target;
     this.setState({
-      bots: parseInt(value),
+      bots: parseInt(value)
     });
   };
-  handleBoardSizeChange = (e) => {
+  handleBoardSizeChange = e => {
     const { value } = e.target;
     this.setState({
-      boardSize: parseInt(value),
+      boardSize: parseInt(value)
     });
   };
-  handleOtherOptionsChange = (e) => {
+  handleOtherOptionsChange = e => {
     const { value } = e.target;
     this.setState({
-      otherOptions: value,
+      otherOptions: value
     });
   };
 
@@ -69,29 +71,41 @@ export default class Dashboard extends Component {
       bots,
       boardSize,
       createdBy,
-      otherOptions,
+      otherOptions
     };
     this.setState({
       ...defaultFormState,
-      games: this.state.games.concat(newGame),
+      games: this.state.games.concat(newGame)
     });
   };
   render() {
     return (
       <>
-        <AvatarCircle avatarUrl={avatarUrl} size={100} className="my-3" />
+        <div style={{ margin: "40px" }}>
+          <Link to="/profile">
+            <AvatarCircle avatarUrl={avatarUrl} size={100} className="my-3" />
+          </Link>
+        </div>
 
         <Form
-          onSubmit={(e) => {
+          onSubmit={e => {
             e.preventDefault();
             this.handleStartGame();
           }}
         >
           <Row>
-            <Col md={{ span: 5, offset: 1 }}>
+            <Col md={{ span: 5, offset: 1 }} style={{ padding: "35px" }}>
               <Form.Group>
-                <Form.Label>Number of Players</Form.Label>
+                <Form.Label
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600"
+                  }}
+                >
+                  Number of Players
+                </Form.Label>
                 <Form.Control
+                  style={{ cursor: "pointer" }}
                   as="select"
                   value={this.state.players}
                   onChange={this.handlePlayersChange}
@@ -107,11 +121,44 @@ export default class Dashboard extends Component {
                 </Form.Control>
               </Form.Group>
               <Form.Group>
-                <Form.Label>Number of Bots</Form.Label>
+                <Form.Label
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600"
+                  }}
+                >
+                  Number of Bots
+                </Form.Label>
                 <Form.Control
                   as="select"
                   value={this.state.bots}
                   onChange={this.handleBotsChange}
+                  required
+                  style={{ cursor: "pointer" }}
+                >
+                  <option disabled value="">
+                    Choose Option
+                  </option>
+                  <option>0</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </Form.Control>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600"
+                  }}
+                >
+                  Board Size
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  value={this.state.boardSize}
+                  onChange={this.handleBoardSizeChange}
+                  style={{ cursor: "pointer" }}
                   required
                 >
                   <option disabled value="">
@@ -124,28 +171,19 @@ export default class Dashboard extends Component {
                 </Form.Control>
               </Form.Group>
               <Form.Group>
-                <Form.Label>Board Size</Form.Label>
-                <Form.Control
-                  as="select"
-                  value={this.state.boardSize}
-                  onChange={this.handleBoardSizeChange}
-                  required
+                <Form.Label
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "600"
+                  }}
                 >
-                  <option disabled value="">
-                    Choose Option
-                  </option>
-                  <option>21</option>
-                  <option>27</option>
-                  <option>33</option>
-                  <option>39</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Other Options</Form.Label>
+                  Other Options
+                </Form.Label>
                 <Form.Control
                   as="select"
                   value={this.state.otherOptions}
                   onChange={this.handleOtherOptionsChange}
+                  style={{ cursor: "pointer" }}
                   required
                 >
                   <option disabled value="">

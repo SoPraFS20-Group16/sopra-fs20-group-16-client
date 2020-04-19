@@ -1,11 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { BaseContainer } from '../../helpers/layout';
-import { api, handleError } from '../../helpers/api';
-import User from '../shared/models/User';
-import { withRouter } from 'react-router-dom';
-import { Button } from '../../views/design/Button';
-
+import React from "react";
+import styled from "styled-components";
+import { BaseContainer } from "../../helpers/layout";
+import { api, handleError } from "../../helpers/api";
+import User from "../shared/models/User";
+import { withRouter } from "react-router-dom";
+import { Button } from "../../views/design/Button";
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -28,6 +27,7 @@ const Form = styled.div`
   padding-right: 37px;
   text-align:center;
   border-radius: 5px;
+  background-image: url("full_frame_background.jpg")
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
@@ -51,15 +51,12 @@ const Label = styled.label`
   font-size: 20px;
 `;
 
-
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  
+
   margin-bottom: 20px;
 `;
-
 
 export const Button2 = styled.button`
   &:hover {
@@ -71,7 +68,7 @@ export const Button2 = styled.button`
   font-size: 13px;
   text-align: center;
   color: black;
-  width:200px;
+  width: 200px;
   height: 35px;
   border-radius: 20px;
   transition: all 0.3s ease;
@@ -113,15 +110,13 @@ class Login extends React.Component {
         password: this.state.password
       });
 
-      await api.put('/login', requestBody);
-
+      await api.put("/login", requestBody);
 
       // Store the token into the local storage.
-      localStorage.setItem('token', requestBody);
+      localStorage.setItem("token", requestBody);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
-      this.props.history.push(`/game`);
-
+      this.props.history.push(`/dashboard`);
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
@@ -152,18 +147,23 @@ class Login extends React.Component {
       <BaseContainer>
         <FormContainer>
           <Form>
-            <Label><b>Username</b></Label>
+            <Label>
+              <b>Username</b>
+            </Label>
             <InputField
               placeholder="Enter here.."
               onChange={e => {
-                this.handleInputChange('username', e.target.value);
+                this.handleInputChange("username", e.target.value);
               }}
             />
-            <Label><b>Password</b></Label>
-            <InputField type="password"
+            <Label>
+              <b>Password</b>
+            </Label>
+            <InputField
+              type="password"
               placeholder="Enter here.."
               onChange={e => {
-                this.handleInputChange('password', e.target.value);
+                this.handleInputChange("password", e.target.value);
               }}
             />
             <ButtonContainer>
@@ -178,22 +178,20 @@ class Login extends React.Component {
               </Button>
             </ButtonContainer>
 
-
-            <Label> <p> </p>
+            <Label>
+              {" "}
+              <p> </p>
               <p> No account?</p>
-
             </Label>
 
             <ButtonContainer>
               <Button2
-
-                  width="20%"
-                  onClick={() => {
-                    this.props.history.push(`/register`);
-                  }}
+                width="20%"
+                onClick={() => {
+                  this.props.history.push(`/register`);
+                }}
               >
                 Register here!
-
               </Button2>
             </ButtonContainer>
           </Form>

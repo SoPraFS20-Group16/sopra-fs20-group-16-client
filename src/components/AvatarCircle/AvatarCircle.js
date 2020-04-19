@@ -8,7 +8,7 @@ export default function AvatarCircle(props) {
       style={{
         backgroundImage: `url(${props.avatarUrl})`,
         width: props.size,
-        height: props.size,
+        height: props.size
       }}
     ></div>
   );
