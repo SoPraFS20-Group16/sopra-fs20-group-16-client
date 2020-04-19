@@ -13,6 +13,7 @@ import AvatarCircle from "../AvatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
 import GameCard from "./GameCard";
 import { Link } from "react-router-dom";
+import GamesList from "./GamesList";
 
 const defaultFormState = {
   title: "",
@@ -200,7 +201,7 @@ export default class Dashboard extends Component {
               </Button>
             </Col>
             <Col md={6}>
-              arinzarunza
+              <GamesList/>
             </Col>
           </Row>
         </Form>
