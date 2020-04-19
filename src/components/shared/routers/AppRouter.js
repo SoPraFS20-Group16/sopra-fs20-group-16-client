@@ -52,13 +52,13 @@ class AppRouter extends React.Component {
               )}
             />
             <Route
-              path="/register"
-              exact
-              render={() => (
-                <RegisterGuard>
-                  <Register />
-                </RegisterGuard>
-              )}
+                path="/register"
+                exact
+                render={() => (
+                    <RegisterGuard>
+                        <Register />
+                    </RegisterGuard>
+                )}
             />
             <Route
               path="/board"
