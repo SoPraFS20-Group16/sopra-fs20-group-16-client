@@ -10,7 +10,7 @@ import { RegisterGuard } from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
 // import Profile from "../../profile/Profile";
 import Dashboard from "../../dashboard/Dashboard";
-import NewProfile from "../../newprofile/NewProfile";
+import Profile from "../../Profile/Profile";
 
 /**
  * Main router of your application.
@@ -56,7 +56,7 @@ class AppRouter extends React.Component {
               path="/profile"
               render={() => (
                 <GameGuard>
-                  <NewProfile />
+                  <Profile />
                 </GameGuard>
               )}
             />
