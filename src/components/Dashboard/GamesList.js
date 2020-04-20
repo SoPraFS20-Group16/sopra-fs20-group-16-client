@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GameCard from "./GameCard";
 import {api, handleError} from "../../helpers/api";
+import GameStruct from "../shared/models/GameStruct";
 
 export default class GamesList extends React.Component {
 
@@ -17,12 +18,20 @@ export default class GamesList extends React.Component {
    */
   async getGames() {
     try {
-      // Get token from localStorage
-      const token = localStorage.getItem('token')
 
-      // Ask the server the games by passing the token and return if successful
-      this.state.games = await api.get("/games", token);
+      // Get the token from the localStorage
+      const tokenStr = localStorage.getItem('token');
 
+      // Ask the server the games by passing the token in the header
+      const response = await api.get("/games", {headers:{Token:tokenStr}});
+
+/*      // Convert response
+      const responseObj = JSON.parse(response.data);*/
+
+      // Set the games into the state
+
+      this.state.games = response.data;
+      console.log('games returned: ' + this.state.games);
 
     } catch (error) {
       alert(`Something went wrong while fetching the existing matches.\n${handleError(error)}`);
@@ -32,10 +41,11 @@ export default class GamesList extends React.Component {
   // Decide whether to map games if present, or return a message
   displayGames() {
 
-    this.getGames(); //TODO check why the server returns an error
+    this.getGames()
 
     if (this.state.games !== null) {
-      return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
+      //return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
+      return console.log(this.state.games);
     }
 
     else {
