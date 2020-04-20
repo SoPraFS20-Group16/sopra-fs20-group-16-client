@@ -3,6 +3,7 @@ import Header from "./views/Header";
 import AppRouter from "./components/shared/routers/AppRouter";
 import {ReactLogo} from "./views/ReactLogo";
 import Game from "./components/game/Game";
+import { Row } from 'react-bootstrap';
 
 
 

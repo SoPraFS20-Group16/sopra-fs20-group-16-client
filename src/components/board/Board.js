@@ -2,6 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Hexagon from "./Hexagon";
 
+import {Row, Col, Container} from 'react-bootstrap';
+
+
 class Board extends React.Component {
     constructor(props) {
         super(props);
@@ -21,47 +24,51 @@ class Board extends React.Component {
 
     render() {
         return (
-           <div>
+           <Container>
 
-               <div className="hexagon-row">
-                   {this.renderHexagon(2,0)}
-                   {this.renderHexagon(4,0)}
-                   {this.renderHexagon(6,0)}
-               </div>
+               <Row >
+                   <Col md="4">.col-md-6-sdfsssg
+                       <Hexagon />
+                       <Hexagon/>
+                       <Hexagon/>
 
-               <div className="hexagon-row1">
-                   {this.renderHexagon(1,1)}
-                   {this.renderHexagon(3,1)}
-                   {this.renderHexagon(5,1)}
-                   {this.renderHexagon(7,1)}
+                   </Col>
+               </Row>
 
 
-               </div>
-               <div className="hexagon-row">
-                   {this.renderHexagon(0,2)}
-                   {this.renderHexagon(2,2)}
-                   {this.renderHexagon(4,2)}
-                   {this.renderHexagon(6,2)}
-                   {this.renderHexagon(8,2)}
+               <Row>
+                   <Col md="4">.col-md-
+                       <Hexagon />
+                       <Hexagon/>
+                       <Hexagon/>
+                       <Hexagon/>
+                   </Col>
+
+               </Row>
+               <Row>
+                   <Hexagon />
+                   <Hexagon/>
+                   <Hexagon/>
+                   <Hexagon/>
+                   <Hexagon/>
 
 
-               </div>
-               <div className="hexagon-row">
+               </Row>
+               <Row className="col1 col-lg-4 col-md-6 item col-xs-12">
 
-                   {this.renderHexagon(1,3)}
-                   {this.renderHexagon(3,3)}
-                   {this.renderHexagon(5,3)}
-                   {this.renderHexagon(7,3)}
+                   <Hexagon />
+                   <Hexagon/>
+                   <Hexagon/>
+                   <Hexagon/>
 
-               </div>
-               <div className="hexagon-row">
+               </Row>
+               <Row md="4">.col-md-nnnn4
+                   <Hexagon />
+                   <Hexagon/>
+                   <Hexagon/>
 
-                   {this.renderHexagon(2,4)}
-                   {this.renderHexagon(4,4)}
-                   {this.renderHexagon(6,4)}
-
-               </div>
-           </div>
+               </Row>
+           </Container>
 
         );
     }

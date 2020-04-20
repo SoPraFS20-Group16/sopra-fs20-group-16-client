@@ -1,32 +1,39 @@
 .hexagon {
-    width: 100px;
-    height: 55px;
     position: relative;
-}
-
-.hexagon,
-.hexagon:before,
-.hexagon:after {
-    background: blue;
+    width: 100px;
+    height: 57.74px;
+    background-color: #64C7CC;
+    margin: 15.87px 0;
+    border-left: solid 5px #333333;
+    border-right: solid 5px #333333;
 }
 
 .hexagon:before,
 .hexagon:after {
     content: "";
     position: absolute;
-    left: 22px;
-    width: 57px;
-    height: 57px;
-    transform: rotate(145deg) skew(22.5deg);
+    z-index: 1;
+    width: 70.71px;
+    height: 70.71px;
+    -webkit-transform: scaleY(0.5774) rotate(-45deg);
+    -ms-transform: scaleY(0.5774) rotate(-45deg);
+    transform: scaleY(0.5774) rotate(-45deg);
+    background-color: inherit;
+    left: 9.6447px;
 }
 
 .hexagon:before {
-    top: -29px;
+    top: -35.3553px;
+    border-top: solid 7.0711px #333333;
+    border-right: solid 7.0711px #333333;
 }
 
 .hexagon:after {
-    top: 27px;
+    bottom: -35.3553px;
+    border-bottom: solid 7.0711px #333333;
+    border-left: solid 7.0711px #333333;
 }
+
 
 
 .hexagon:focus{
@@ -39,7 +46,7 @@
 .hexagon-row:after{
     clear: both;
     content:"";
-    grid-column: -1;
+
 
 }
 

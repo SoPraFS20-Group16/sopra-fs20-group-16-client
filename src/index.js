@@ -5,6 +5,7 @@ import "./App.css"
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 
+
 /**
  * This is the entry point of your React application where the root element is in the public/index.html.
  * We call this a “root” DOM node because everything inside it will be managed by React DOM.
