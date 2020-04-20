@@ -113,7 +113,7 @@ class Login extends React.Component {
 
       const response = await api.put("/login", requestBody);
 
-      const token = new Token(response.data)
+      const token = new Token(response.data);
 
       // Store the token into the local storage.
       localStorage.setItem("token", token.token);
