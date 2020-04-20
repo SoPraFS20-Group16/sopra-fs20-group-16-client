@@ -11,7 +11,7 @@ import Register from "../../register/Register";
 
 import {BoardGuard} from "../routeProtectors/BoardGuard";
 import Board from "../../board/Board";
-import Hexagon from "../../board/Hexagon";
+import Hexagon from "../../board/Hexagon"
 
 /**
  * Main router of your application.

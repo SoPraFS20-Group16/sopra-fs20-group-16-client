@@ -9,14 +9,8 @@ class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hexagons: Array(10).fill(null).map(row => new Array(5).fill(null))
+
         };
-    }
-
-    renderHexagon(i,j){
-        return <Hexagon value={this.state.hexagons[i][j]}
-        />
-
     }
 
 
@@ -27,7 +21,7 @@ class Board extends React.Component {
            <Container>
 
                <Row >
-                   <Col md="4">.col-md-6-sdfsssg
+                   <Col className="col1 col-lg-4 col-md-6 item col-xs-12">
                        <Hexagon />
                        <Hexagon/>
                        <Hexagon/>
@@ -37,7 +31,7 @@ class Board extends React.Component {
 
 
                <Row>
-                   <Col md="4">.col-md-
+                   <Col className="col1 col-lg-4 col-md-6 item col-xs-12">
                        <Hexagon />
                        <Hexagon/>
                        <Hexagon/>
@@ -45,27 +39,33 @@ class Board extends React.Component {
                    </Col>
 
                </Row>
+
                <Row>
+                   <Col className="col1 col-lg-4 col-md-6 item col-xs-12">
                    <Hexagon />
                    <Hexagon/>
                    <Hexagon/>
                    <Hexagon/>
                    <Hexagon/>
-
+                   </Col>
 
                </Row>
-               <Row className="col1 col-lg-4 col-md-6 item col-xs-12">
+               <Row>
+                   <Col className="col1 col-lg-4 col-md-6 item col-xs-12">
 
                    <Hexagon />
                    <Hexagon/>
                    <Hexagon/>
                    <Hexagon/>
+                   </Col>
 
                </Row>
-               <Row md="4">.col-md-nnnn4
+               <Row>
+                  <Col className="col1 col-lg-4 col-md-6 item col-xs-12">
                    <Hexagon />
                    <Hexagon/>
                    <Hexagon/>
+                  </Col>
 
                </Row>
            </Container>

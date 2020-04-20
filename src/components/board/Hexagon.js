@@ -1,13 +1,20 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
-export default function Hexagon(props) {
-    return(
-        <button className="hexagon">
-            {props.value}
-        </button>
+export default class Hexagon extends React.Component {
 
-    )
+
+
+
+    render(){
+
+        return(
+            <button className="hexagon">
+                {this.props.value}
+            </button>
+
+        )
+    }
+
 
 }
 
