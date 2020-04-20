@@ -5,6 +5,7 @@ import { api, handleError } from "../../helpers/api";
 import User from "../shared/models/User";
 import { withRouter } from "react-router-dom";
 import { Button } from "../../views/design/Button";
+import Token from "../shared/models/Token";
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -112,8 +113,10 @@ class Login extends React.Component {
 
       const response = await api.put("/login", requestBody);
 
+      const token = new Token(response.data)
+
       // Store the token into the local storage.
-      localStorage.setItem("token", response.data);
+      localStorage.setItem("token", token.token);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       this.props.history.push(`/dashboard`);
