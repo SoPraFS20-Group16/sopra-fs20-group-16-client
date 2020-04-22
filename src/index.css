@@ -13,7 +13,7 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "EB Garamond", serif;
-  background-image: url("views/graphics/CatanBG.png");
+  background-image: url("views/graphics/CatanBG.png") !important;
   overflow-x: hidden;
 }
 
