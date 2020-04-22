@@ -8,7 +8,7 @@ export default class GamesList extends React.Component {
   constructor() {
     super();
     this.state = {
-      games: null
+      games: []
     };
   }
 
@@ -25,13 +25,14 @@ export default class GamesList extends React.Component {
       // Ask the server the games by passing the token in the header
       const response = await api.get("/games", {headers:{"token":tokenStr}});
 
-/*      // Convert response
-      const responseObj = JSON.parse(response.data);*/
+      // Data printing for testing
+      // console.log('response data: ' + response.data[0].gameId);
+      // console.log('response data: ' + response.data[0].url);
 
       // Set the games into the state
-
       this.state.games = response.data;
-      console.log('games returned: ' + this.state.games);
+      console.log('state: ' + this.state.games[0].gameId);
+      console.log('state: ' + this.state.games[0].url);
 
     } catch (error) {
       alert(`Something went wrong while fetching the existing matches.\n${handleError(error)}`);
@@ -44,8 +45,7 @@ export default class GamesList extends React.Component {
     this.getGames()
 
     if (this.state.games !== null) {
-      //return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
-      return console.log(this.state.games);
+      return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
     }
 
     else {
