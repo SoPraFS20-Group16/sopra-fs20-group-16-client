@@ -23,7 +23,7 @@ export default class GamesList extends React.Component {
       const tokenStr = localStorage.getItem('token');
 
       // Ask the server the games by passing the token in the header
-      const response = await api.get("/games", {headers:{Token:tokenStr}});
+      const response = await api.get("/games", {headers:{"token":tokenStr}});
 
 /*      // Convert response
       const responseObj = JSON.parse(response.data);*/
