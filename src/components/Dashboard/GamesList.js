@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import GameCard from "./GameCard";
 import {api, handleError} from "../../helpers/api";
 
@@ -9,6 +9,7 @@ export default class GamesList extends React.Component {
     this.state = {
       games: []
     };
+    this.getGames();
   }
 
   /**
@@ -24,14 +25,16 @@ export default class GamesList extends React.Component {
       // Ask the server the games by passing the token in the header
       const response = await api.get("/games", {headers:{"token":tokenStr}});
 
-      // Data printing for testing
-      // console.log('response data: ' + response.data[0].gameId);
-      // console.log('response data: ' + response.data[0].url);
+      // testing
+      console.log('response data: ' + response.data[0]);
+      //console.log('response data url: ' + response.data[0].url);
 
       // Set the games into the state
       this.state.games = response.data;
-      console.log('state: ' + this.state.games[0].gameId);
-      console.log('state: ' + this.state.games[0].url);
+
+      // testing
+      console.log('state at getGames(): ' + this.state.games[0]);
+      console.log('state at getGames(): ' + this.state.games[0].url);
 
     } catch (error) {
       alert(`Something went wrong while fetching the existing matches.\n${handleError(error)}`);
@@ -40,15 +43,17 @@ export default class GamesList extends React.Component {
 
   // Use GameCard object to render existing games
   renderGameCards = () => {
-    return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
+    console.log('state.games: ' + this.state.games);
+    //return this.state.games.map(game => GameCard(game));
+    //return GameCard(this.state.games[0]);
+    return this.state.games.map(game => <GameCard {...game} />);
   };
 
   // Decide whether to map games if present, or return a message
   displayGames() {
 
-    this.getGames()
-
-    if (this.state.games !== []) {
+    // console.log('games: ' + games[0]);
+    if (this.state.games !== undefined && this.state.games !== []) {
       return this.renderGameCards();
     }
 

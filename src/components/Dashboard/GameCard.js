@@ -1,9 +1,12 @@
 import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Button } from "react-bootstrap";
 export default function GameCard(props) {
   return (
     <Card className="my-2">
-      <Card.Body>
+      <Card.Body
+        onClick={() => {
+          this.props.history.push(`/lobby`);
+        }}>
         <Row>
           <Col>
             <h4>Game ID: {props.gameId}</h4>

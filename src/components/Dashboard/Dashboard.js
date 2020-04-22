@@ -201,7 +201,7 @@ export default class Dashboard extends Component {
               </Button>
             </Col>
             <Col md={6}>
-              <GamesList/>
+              <GamesList />
             </Col>
           </Row>
         </Form>
