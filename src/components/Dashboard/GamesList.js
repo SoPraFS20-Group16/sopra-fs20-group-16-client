@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import GameCard from "./GameCard";
 import {api, handleError} from "../../helpers/api";
-import GameStruct from "../shared/models/GameStruct";
 
 export default class GamesList extends React.Component {
 
@@ -39,13 +38,18 @@ export default class GamesList extends React.Component {
     }
   }
 
+  // Use GameCard object to render existing games
+  renderGameCards = () => {
+    return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
+  };
+
   // Decide whether to map games if present, or return a message
   displayGames() {
 
     this.getGames()
 
-    if (this.state.games !== null) {
-      return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
+    if (this.state.games !== []) {
+      return this.renderGameCards();
     }
 
     else {
