@@ -1,21 +1,32 @@
 import React from 'react';
+import {withRouter} from "react-router-dom";
 
-export default class Hexagon extends React.Component {
+class Hexagon extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            coords: Array(6),
+            tileType: null,
+            number: null,
+        }
+    }
 
 
 
 
     render(){
-
         return(
-            <button className="hexagon">
-                {this.props.value}
-            </button>
+            <div>
+                {this.state.coords}
+            </div>
+            )
 
-        )
     }
 
 
 }
 
+
+export default withRouter(Hexagon);
 

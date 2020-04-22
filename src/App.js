@@ -4,6 +4,7 @@ import AppRouter from "./components/shared/routers/AppRouter";
 import {ReactLogo} from "./views/ReactLogo";
 import Game from "./components/game/Game";
 import { Row } from 'react-bootstrap';
+import Hexagon from "./components/board/Hexagon";
 
 
 
@@ -19,6 +20,7 @@ class App extends Component {
           <Header height={"100"} />
           <AppRouter />
           <Game />
+          <Hexagon />
       </div>
 
     );

@@ -1,54 +1,4 @@
-.hexagon {
-    position: relative;
-    width: 100px;
-    height: 57.74px;
-    background-color: #64C7CC;
-    margin: 15.87px 0;
-    border-left: solid 5px #333333;
-    border-right: solid 5px #333333;
-}
 
-.hexagon:before,
-.hexagon:after {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    width: 70.71px;
-    height: 70.71px;
-    -webkit-transform: scaleY(0.5774) rotate(-45deg);
-    -ms-transform: scaleY(0.5774) rotate(-45deg);
-    transform: scaleY(0.5774) rotate(-45deg);
-    background-color: inherit;
-    left: 9.6447px;
-}
-
-.hexagon:before {
-    top: -35.3553px;
-    border-top: solid 7.0711px #333333;
-    border-right: solid 7.0711px #333333;
-}
-
-.hexagon:after {
-    bottom: -35.3553px;
-    border-bottom: solid 7.0711px #333333;
-    border-left: solid 7.0711px #333333;
-}
-
-
-
-.hexagon:focus{
-    outline: none;
-}
-
-
-
-
-.hexagon-row:after{
-    clear: both;
-    content:"";
-
-
-}
 
 
 .game{
@@ -65,4 +15,10 @@
 
 canvas{
     border: 1px solid black;
+    position: absolute;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
