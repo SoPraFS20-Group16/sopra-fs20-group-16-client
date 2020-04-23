@@ -5,7 +5,7 @@ import {
   Form,
   FormControl,
   InputGroup,
-  Button
+  Button, FormLabel
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -14,71 +14,98 @@ import avatarUrl from "../../views/graphics/avatar.jpg";
 import GameCard from "./GameCard";
 import { Link } from "react-router-dom";
 import GamesList from "./GamesList";
+import {api, handleError} from "../../helpers/api";
+import styled from "styled-components";
 
-const defaultFormState = {
-  title: "",
-  players: "",
-  bots: "",
-  boardSize: "",
-  otherOptions: "",
-  createdBy: "Generic User"
-};
+
+const InputField = styled.input`
+  &::placeholder {
+    color: black;
+  }
+  height: 35px;
+  padding-left: 15px;
+  margin-left: -4px;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background: gold;
+  color: black;
+`;
 
 export default class Dashboard extends Component {
-  state = {
-    ...defaultFormState,
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      withBots: false
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
 
-    games: []
-  };
 
-  renderGameCards = () => {
-    return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
-  };
+  handleBotsChange(event) {
+    const target = event.target;
+    const value = target.name === 'withBots' ? target.checked : target.value;
+    const name = target.name;
 
-  handleStartGame = () => {};
-  handlePlayersChange = e => {
-    const { value } = e.target;
     this.setState({
-      players: parseInt(value)
+      [name]: value
     });
-  };
-  handleBotsChange = e => {
-    const { value } = e.target;
-    this.setState({
-      bots: parseInt(value)
-    });
-  };
-  handleBoardSizeChange = e => {
-    const { value } = e.target;
-    this.setState({
-      boardSize: parseInt(value)
-    });
-  };
-  handleOtherOptionsChange = e => {
-    const { value } = e.target;
-    this.setState({
-      otherOptions: value
-    });
-  };
+    console.log("State change: " + this.state.name)
+  }
 
-  handleStartGame = () => {
-    const title = "Game " + this.state.games.length + 1;
-    const { players, bots, boardSize, otherOptions } = this.state;
-    const createdBy = "Generic User";
+  handleInputChange(key, value){
+    this.setState({[key]: value});
+    console.log("State change: " + this.state.key)
+  }
+
+
+/*  handleStartGame = () => {
+    // const title = "Game " + this.state.games.length + 1;
+    const {title, bots} = this.state;
+    // const createdBy = "Generic User";
 
     const newGame = {
       title,
-      players,
-      bots,
-      boardSize,
-      createdBy,
-      otherOptions
+      bots
     };
     this.setState({
       ...defaultFormState,
-      games: this.state.games.concat(newGame)
+      // games: this.state.games.concat(newGame) (moved to GamesList)
     });
-  };
+  };*/
+
+
+  /**
+   * HTTP POST request is sent to /games in the backend by passing the new game and
+   * the user's token. If the request is successful, the game was saved by the server.
+   */
+  async sendCreatedGame() {
+    try {
+
+      // Get the token from the localStorage
+      const tokenStr = localStorage.getItem('token');
+
+      console.log('State before sending game: ' + this.state.name + ', ' + this.state.withBots)
+
+      // Get the game for the request's body
+      const requestBody = JSON.stringify({
+        name: this.state.name,
+        withBots: this.state.withBots.toString()
+      })
+      console.log('JSON: ' + requestBody)
+
+
+      // Send the newly created game to the server
+      await api.post("/games", requestBody,{headers:{"Token":tokenStr}});
+
+
+    } catch (error) {
+      alert(`Something went wrong while sending the crated game to the server.\n${handleError(error)}`);
+    }
+  }
+
+
   render() {
     return (
       <>
@@ -91,11 +118,12 @@ export default class Dashboard extends Component {
         <Form
           onSubmit={e => {
             e.preventDefault();
-            this.handleStartGame();
+            this.sendCreatedGame(); //TODO: add then() and redirect to lobby
           }}
         >
           <Row>
             <Col md={{ span: 5, offset: 1 }} style={{ padding: "35px" }}>
+
               <Form.Group>
                 <Form.Label
                   style={{
@@ -103,106 +131,56 @@ export default class Dashboard extends Component {
                     fontWeight: "600"
                   }}
                 >
-                  Number of Players
+                  Create a New Game
                 </Form.Label>
-                <Form.Control
-                  style={{ cursor: "pointer" }}
-                  as="select"
-                  value={this.state.players}
-                  onChange={this.handlePlayersChange}
-                  required
-                >
-                  <option disabled value="">
-                    Choose Option
-                  </option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </Form.Control>
+                <Row>
+                  <InputField
+                    type="text"
+                    placeholder="Enter match name..."
+                    required
+                    onChange={e =>{
+                      this.handleInputChange('name', e.target.value);
+                    }}
+                  />
+                </Row>
+
+                <Form.Check
+                  name={'withBots'}
+                  label={"Enable bots"}
+                  type='checkbox'
+                  checked={this.state.withBots}
+                  onChange={e =>{
+                    this.handleInputChange('withBots', e.target.checked);}}
+                />
+
               </Form.Group>
-              <Form.Group>
-                <Form.Label
+
+              <Row>
+                <Button type="submit" className="mx-auto d-block"
                   style={{
-                    fontSize: "20px",
-                    fontWeight: "600"
-                  }}
-                >
-                  Number of Bots
-                </Form.Label>
-                <Form.Control
-                  as="select"
-                  value={this.state.bots}
-                  onChange={this.handleBotsChange}
-                  required
-                  style={{ cursor: "pointer" }}
-                >
-                  <option disabled value="">
-                    Choose Option
-                  </option>
-                  <option>0</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group>
-                <Form.Label
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "600"
-                  }}
-                >
-                  Board Size
-                </Form.Label>
-                <Form.Control
-                  as="select"
-                  value={this.state.boardSize}
-                  onChange={this.handleBoardSizeChange}
-                  style={{ cursor: "pointer" }}
-                  required
-                >
-                  <option disabled value="">
-                    Choose Option
-                  </option>
-                  <option>0</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group>
-                <Form.Label
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "600"
-                  }}
-                >
-                  Other Options
-                </Form.Label>
-                <Form.Control
-                  as="select"
-                  value={this.state.otherOptions}
-                  onChange={this.handleOtherOptionsChange}
-                  style={{ cursor: "pointer" }}
-                  required
-                >
-                  <option disabled value="">
-                    Choose Option
-                  </option>
-                  <option>0</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </Form.Control>
-              </Form.Group>
-              <Button type="submit" className="mx-auto d-block">
-                Start Game
-              </Button>
+                    backgroundColor:"gold",
+                    color:"black",
+                    border:"black",
+                    position:"absolute",
+                    left:"30px"
+                  }}>
+                  Start Game
+                </Button>
+              </Row>
+
             </Col>
-            <Col md={6}>
+
+            <Col md={6} style={{paddingRight: "40px"}}>
+              <Form.Label
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "600",
+                }}>
+                Join an Existing Match
+              </Form.Label>
               <GamesList />
             </Col>
+
           </Row>
         </Form>
       </>

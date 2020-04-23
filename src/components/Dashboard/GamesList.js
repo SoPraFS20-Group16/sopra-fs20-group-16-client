@@ -30,7 +30,7 @@ export default class GamesList extends React.Component {
       //console.log('response data url: ' + response.data[0].url);
 
       // Set the games into the state
-      this.setState(response.data);
+      this.setState({games: response.data});
 
       // testing
       console.log('state at getGames(): ' + this.state.games[0]);
@@ -43,10 +43,8 @@ export default class GamesList extends React.Component {
 
   // Use GameCard object to render existing games
   renderGameCards = () => {
-    console.log('state.games: ' + this.state.games);
-    //return this.state.games.map(game => GameCard(game));
-    //return GameCard(this.state.games[0]);
-    return this.state.games.map(game => <GameCard {...game} />);
+    console.log("Games urls: " + this.state.games.map((game) => game.url))
+    return this.state.games.map((game, key) => <GameCard key={key} {...game} />);
   };
 
   // Decide whether to map games if present, or return a message
