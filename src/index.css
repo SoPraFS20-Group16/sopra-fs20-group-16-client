@@ -3,8 +3,7 @@
 /**
 This file contains the general and shared style of your application.
  */
-body,
-html {
+body, html {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -12,7 +11,7 @@ html {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond", serif !important;
   background-image: url("views/graphics/CatanBG.png");
   overflow-x: hidden;
 }
@@ -34,4 +33,12 @@ button {
 * {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+.circle-crop {
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
 }

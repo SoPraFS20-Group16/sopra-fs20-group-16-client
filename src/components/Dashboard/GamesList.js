@@ -30,11 +30,11 @@ export default class GamesList extends React.Component {
       //console.log('response data url: ' + response.data[0].url);
 
       // Set the games into the state
-      this.state.games = response.data;
+      this.setState(response.data);
 
       // testing
       console.log('state at getGames(): ' + this.state.games[0]);
-      console.log('state at getGames(): ' + this.state.games[0].url);
+      //console.log('state at getGames(): ' + this.state.games[0].url);
 
     } catch (error) {
       alert(`Something went wrong while fetching the existing matches.\n${handleError(error)}`);

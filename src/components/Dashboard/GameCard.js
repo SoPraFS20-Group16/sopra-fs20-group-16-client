@@ -5,21 +5,21 @@ export default function GameCard(props) {
     <Card className="my-2">
       <Card.Body
         onClick={() => {
-          this.props.history.push(`/lobby`);
+          this.props.history.push(`${props.url}`);
         }}>
         <Row>
           <Col>
-            <h4>Game ID: {props.gameId}</h4>
+            <h4>Game: {props.name}</h4>
           </Col>
           {/*<Col className="text-right">Created by: {props.createdBy}</Col>*/}
         </Row>
         <Row>
-          {/*<Col>*/}
-          {/*  <p>Players: {props.players}/4</p>*/}
-          {/*</Col>*/}
-          {/*<Col className="text-right">*/}
-          {/*  Bots enabled: {props.bots === 0 ? "NO" : props.bots}*/}
-          {/*</Col>*/}
+          <Col>
+            <p>Players: {props.joinedPlayers}/{props.maxPlayers}</p>
+          </Col>
+          <Col className="text-right">
+            Bots enabled: {props.bots}
+          </Col>
         </Row>
       </Card.Body>
     </Card>
