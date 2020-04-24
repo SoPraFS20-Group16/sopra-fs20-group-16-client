@@ -23,7 +23,7 @@ export default function GameCard(props) {
         </Row>
         <Row>
           <Col>
-            Players: {props.joinedPlayers.toString()}/4
+            <p>Players: {props.joinedPlayers.toString()}/4</p>
             <p>min.{props.minPlayers.toString()} to start</p>
           </Col>
           <Col className="text-right" style={{maxWidth:"130px"}}>

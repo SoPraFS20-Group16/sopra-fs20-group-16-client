@@ -13,7 +13,7 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "EB Garamond", serif !important;
-  background-image: url("views/graphics/CatanBG.png") !important;
+  background-image: url("views/graphics/CatanBG.png");
   overflow-x: hidden;
 }
 
@@ -34,4 +34,12 @@ button {
 * {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+.circle-crop {
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
 }

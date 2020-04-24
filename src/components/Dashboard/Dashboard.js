@@ -131,7 +131,7 @@ export default class Dashboard extends Component {
                     fontWeight: "600"
                   }}
                 >
-                  Create a New Game
+                  <p>Create a New Game</p>
                 </Form.Label>
                 <Row>
                   <InputField
@@ -144,14 +144,19 @@ export default class Dashboard extends Component {
                   />
                 </Row>
 
-                <Form.Check
+                <Row style={{padding:"5px"}}>
+                  <input
                   name={'withBots'}
-                  label={"Enable bots"}
+                  style={{position:"relative",bottom:"6px", paddingRight:"20px"}}
+                  //label={"Enable bots"}
                   type='checkbox'
                   checked={this.state.withBots}
                   onChange={e =>{
                     this.handleInputChange('withBots', e.target.checked);}}
                 />
+                  <p style={{paddingLeft:"10px"}}>Enable bots</p>
+                </Row>
+
 
               </Form.Group>
 
@@ -162,7 +167,7 @@ export default class Dashboard extends Component {
                     color:"black",
                     border:"black",
                     position:"absolute",
-                    left:"30px"
+                    left:"75px",
                   }}>
                   Start Game
                 </Button>
@@ -176,7 +181,7 @@ export default class Dashboard extends Component {
                   fontSize: "20px",
                   fontWeight: "600",
                 }}>
-                Join an Existing Match
+                <p>Join an Existing Match</p>
               </Form.Label>
               <GamesList />
             </Col>
