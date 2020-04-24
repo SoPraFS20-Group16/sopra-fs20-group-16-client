@@ -7,7 +7,7 @@ export default function Hex(props) {
 
 
     return(
-      <div style={{position: "absolute", left: props.left, top: props.top}}>
+      <div style={{position: "absolute", left: props.x, top: props.y}}>
           <Hexagon
             side={50}
             stroke="black"

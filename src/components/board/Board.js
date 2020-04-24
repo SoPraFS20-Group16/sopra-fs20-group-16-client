@@ -1,31 +1,13 @@
 import React, {HTMLAttributes as state} from 'react';
 import {withRouter} from 'react-router-dom';
-
-import Hexagon from "react-svg-hexagon";
 import Hex from "./Hex";
 
-class Board extends React.Component {
+export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       color: "red",
       streetColor: "yellow",
-
-      /*
-      hexCoords: [
-          {03: {200,600}},
-          {01: "100x200"}
-      ],
-
-      cityCoords : {
-          {}
-      },
-
-      streetCords : {
-          {}
-      }
-
-       */
     }
   }
 
@@ -35,292 +17,77 @@ class Board extends React.Component {
     this.setState({[key]: value});
   }
 
+
+  // Transforms the normal/server coordinates to pixel coordinates
+  coordTrans(props) {
+    const x = props.x;
+    const y = props.y;
+    const r = props.radius;
+
+    const xNew = x * Math.sqrt(Math.pow(r, 2) - Math.pow((r/2),2));
+    let yNew;
+
+    if(y % 2 === 0) {
+      yNew = y * ((r + r/2)/2);
+    }
+    else {
+      yNew = (y - 1) * ((r + r/2)/2) + r/2
+    }
+
+    return (
+      {
+        x: xNew,
+        y: yNew
+      }
+    )
+
+  }
+
+  createBoard(){
+
+    const hexes = [];
+
+    for(let left = 2; left <= 6; left += 2) {
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} />);
+    }
+
+    for(let left = 1; left <= 7; left += 2) {
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} />);
+    }
+
+    for(let left = 0; left <= 9; left += 2) {
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} />);
+    }
+
+    for(let left = 1; left <= 7; left += 2) {
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} />);
+    }
+
+    for(let left = 2; left <= 6; left += 2) {
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} />);
+    }
+
+    return hexes
+  }
+
+
   render() {
     return (
-      <div className="Board">
-        <div
-          style={{
-            width: 500,
-            height: 500,
-            backgroundColor: "blue",
-            position: "relative"
-          }}
-        >
-
-
-
-          <Hex left={100} top={50}/>
-
-
-          <div style={{position: "absolute", left: 200, top: 50}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 300, top: 50}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-
-
-          <div style={{position: "absolute", left: 50, top: 125}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 150, top: 125}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 250, top: 125}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 350, top: 125}}>
-            <Hexagon
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-              render={({ClipPath, Polygon, Content, Svg}) => {
-                return (
-                  <Svg>
-                    <ClipPath/>
-                    <Polygon/>
-                    <Content>
-                      <img
-                        style={{height: 100}}
-                        /* The background image of the Hexagon can be adjusted with the img tag */
-                        src="https://avatars3.githubusercontent.com/u/22457755?v=4"
-                        alt=""
-                      />
-                    </Content>
-                  </Svg>
-                );
-              }}
-            />
-          </div>
-
-
-
-
-
-
-          <div style={{position: "absolute", left: 0, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 100, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 200, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 300, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 400, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 50, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 150, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 250, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 350, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 100, top: 350}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 200, top: 350}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 300, top: 350}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-
-
-          {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
+      <html className={'game-bg'}>
+        <div className="Board">
           <div
             style={{
-              width: 500,
-              height: 500,
-              position: "absolute",
-              /* The zIndex allows to adjust what is in the foreground and background */
-              zIndex: 0
+              width: 433.0127,
+              height: 800,
+              position: "relative"
             }}
           >
-            {/* This one below is a city placeholder */}
-            <div
-              style={{
-                position: "absolute",
-                top: 225,
-                left: 80,
-                fontSize: "0.5em",
-                width: "20px",
-                height: "20px",
-                border: "2px solid black",
-                borderRadius: "10px",
-                backgroundColor: this.state.color
-              }
-              }
-              onClick={() => alert("placeholder for city clicked")}
-              onMouseEnter={() => this.handleInputChange('color', 'yellow')}
-              onMouseLeave={() => this.handleInputChange('color', 'red')}
-            />
-            {/* This one below is a street placeholder */}
-            <div
-              style={{
-                position: "absolute",
-                top: 215,
-                left: 95,
-                transform: "rotate(150deg)",
-                fontSize: "0.5em",
-                width: "40px",
-                height: "10px",
-                border: "2px solid black",
-                borderRadius: "10px",
-                backgroundColor: this.state.streetColor
-              }}
-              onClick={() => alert("placeholder for street clicked")}
-              onMouseEnter={() => this.handleInputChange('streetColor', 'yellow')}
-              onMouseLeave={() => this.handleInputChange('streetColor', 'pink')}
-            />
+
+            {this.createBoard()}
           </div>
         </div>
-      </div>
-
+      </html>
     );
   }
 }
 
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
-export default withRouter(Board);

@@ -12,10 +12,7 @@ import Home from "../../home/Home";
 // import Profile from "../../profile/Profile";
 import Dashboard from "../../Dashboard/Dashboard";
 import Profile from "../../Profile/Profile";
-
-import {BoardGuard} from "../routeProtectors/BoardGuard";
 import Board from "../../board/Board";
-import Hex from "../../board/Hex";
 
 /**
  * Main router of your application.
@@ -74,7 +71,7 @@ class AppRouter extends React.Component {
                 </LoginGuard>
               )}
             />
-<<<<<<<<< Temporary merge branch 1
+
             <Route
               path="/home"
               exact
