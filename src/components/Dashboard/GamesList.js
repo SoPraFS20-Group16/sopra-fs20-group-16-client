@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import GameCard from "./GameCard";
 import {api, handleError} from "../../helpers/api";
-import GameStruct from "../shared/models/GameStruct";
 
 export default class GamesList extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      games: null
+      games: []
     };
+    this.getGames();
   }
 
   /**
@@ -25,27 +25,34 @@ export default class GamesList extends React.Component {
       // Ask the server the games by passing the token in the header
       const response = await api.get("/games", {headers:{"token":tokenStr}});
 
-/*      // Convert response
-      const responseObj = JSON.parse(response.data);*/
+      // testing
+      console.log('response data: ' + response.data[0]);
+      //console.log('response data url: ' + response.data[0].url);
 
       // Set the games into the state
+      this.setState({games: response.data});
 
-      this.state.games = response.data;
-      console.log('games returned: ' + this.state.games);
+      // testing
+      console.log('state at getGames(): ' + this.state.games[0]);
+      //console.log('state at getGames(): ' + this.state.games[0].url);
 
     } catch (error) {
       alert(`Something went wrong while fetching the existing matches.\n${handleError(error)}`);
     }
   }
 
+  // Use GameCard object to render existing games
+  renderGameCards = () => {
+    console.log("Games urls: " + this.state.games.map((game) => game.url))
+    return this.state.games.map((game, key) => <GameCard key={key} {...game} />);
+  };
+
   // Decide whether to map games if present, or return a message
   displayGames() {
 
-    this.getGames()
-
-    if (this.state.games !== null) {
-      //return this.state.games.map((game, i) => <GameCard key={i} {...game} />);
-      return console.log(this.state.games);
+    // console.log('games: ' + games[0]);
+    if (this.state.games !== undefined && this.state.games !== []) {
+      return this.renderGameCards();
     }
 
     else {
