@@ -22,7 +22,7 @@ export default function Hex(props) {
                     <img
                       style={{height: 100}}
                       /* The background image of the Hexagon can be adjusted with the img tag */
-                      src="https://img.favpng.com/25/12/24/clip-art-portable-network-graphics-image-palm-trees-graphic-design-png-favpng-MP57wk8JFHK61c8Ty8BX01pnG.jpg"
+                      src={props.img}
                       alt=""
                     />
                   </Content>
