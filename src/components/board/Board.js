@@ -2,6 +2,7 @@ import React, {HTMLAttributes as state} from 'react';
 import {withRouter} from 'react-router-dom';
 
 import Hexagon from "react-svg-hexagon";
+import Hex from "./Hex";
 
 class Board extends React.Component {
   constructor(props) {
@@ -46,15 +47,11 @@ class Board extends React.Component {
           }}
         >
 
-          <div style={{position: "absolute", left: 100, top: 50}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
+
+
+          <Hex left={100} top={50}/>
+
+
           <div style={{position: "absolute", left: 200, top: 50}}>
             <Hexagon
               fill="green"
@@ -74,8 +71,6 @@ class Board extends React.Component {
               radius={5}
             />
           </div>
-
-
 
 
 
@@ -270,13 +265,6 @@ class Board extends React.Component {
 
 
 
-
-
-
-
-
-
-
           {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
           <div
             style={{
@@ -324,8 +312,6 @@ class Board extends React.Component {
               onMouseLeave={() => this.handleInputChange('streetColor', 'pink')}
             />
           </div>
-
-
         </div>
       </div>
 
