@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import './style.css';
 
 class Home extends React.Component {
@@ -37,7 +37,9 @@ class Home extends React.Component {
                     <img src={require('./send.svg')} height={'20px'} width="20px"/>
                 </div>
                 <div className="buttons">
-                    <p className="button1"><a href="#">Logout</a></p>
+                    <Link to="/dashboard">
+                        <p className="button1"><a href="#">Logout</a></p>
+                    </Link>
                     <p className="button2">
 
                     </p>

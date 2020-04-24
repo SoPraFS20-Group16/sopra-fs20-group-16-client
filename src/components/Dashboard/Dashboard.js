@@ -161,16 +161,18 @@ export default class Dashboard extends Component {
               </Form.Group>
 
               <Row>
-                <Button type="submit" className="mx-auto d-block"
-                  style={{
-                    backgroundColor:"gold",
-                    color:"black",
-                    border:"black",
-                    position:"absolute",
-                    left:"75px",
-                  }}>
-                  Start Game
-                </Button>
+                <Link to="/dashboard">
+                  <Button type="submit" className="mx-auto d-block"
+                    style={{
+                      backgroundColor:"gold",
+                      color:"black",
+                      border:"black",
+                      position:"absolute",
+                      left:"75px",
+                    }}>
+                    Start Game
+                  </Button>
+                </Link>
               </Row>
 
             </Col>
