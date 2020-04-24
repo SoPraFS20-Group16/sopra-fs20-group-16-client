@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
-    "classnames": "latest",
-    "prop-types": "latest",
     "react": "^16.12.0",
-    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.1",
-    "react-svg-hexagon": "^1.0.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "bootstrap": "^4.4.1",
+    "react-bootstrap": "^1.0.0"
   },
   "scripts": {
     "dev": "react-scripts start",
@@ -30,8 +31,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "react-hexgrid": "^1.0.3"
-  }
+  ]
 }

@@ -4,14 +4,14 @@ import { GameGuard } from "../routeProtectors/GameGuard";
 import GameRouter from "./GameRouter";
 import { LoginGuard } from "../routeProtectors/LoginGuard";
 import Login from "../../login/Login";
-import {StartPageGuard} from "../routeProtectors/StartPageGuard";
+import { StartPageGuard } from "../routeProtectors/StartPageGuard";
 import StartPage from "../../startPage/StartPage";
-import {RegisterGuard} from "../routeProtectors/RegisterGuard";
+import { RegisterGuard } from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
-
-import {BoardGuard} from "../routeProtectors/BoardGuard";
-import Board from "../../board/Board";
-import Hex from "../../board/Hex";
+import Home from "../../home/Home";
+// import Profile from "../../profile/Profile";
+import Dashboard from "../../Dashboard/Dashboard";
+import Profile from "../../Profile/Profile";
 
 /**
  * Main router of your application.
@@ -46,6 +46,22 @@ class AppRouter extends React.Component {
               )}
             />
             <Route
+              path="/dashboard"
+              render={() => (
+                <GameGuard>
+                  <Dashboard />
+                </GameGuard>
+              )}
+            />
+            <Route
+              path="/profile"
+              render={() => (
+                <GameGuard>
+                  <Profile />
+                </GameGuard>
+              )}
+            />
+            <Route
               path="/login"
               exact
               render={() => (
@@ -54,39 +70,23 @@ class AppRouter extends React.Component {
                 </LoginGuard>
               )}
             />
-              <Route
-                  path="/register"
-                  exact
-                  render={() => (
-                      <RegisterGuard>
-                          <Register />
-                      </RegisterGuard>
-                  )}
-              />
-
-              <Route
-                  path="/board"
-                  exact
-                  render={() => (
-                      <BoardGuard>
-                          <Board />
-                      </BoardGuard>
-                  )}
-              />
-
-              <Route
-                  path="/board"
-                  exact
-                  render={() => (
-                      <BoardGuard>
-                          <Hex />
-                      </BoardGuard>
-                  )}
-              />
-
-
+            <Route
+              path="/home"
+              exact
+              render={() => (
+                <Home />
+              )}
+            />
+            <Route
+              path="/register"
+              exact
+              render={() => (
+                <RegisterGuard>
+                  <Register />
+                </RegisterGuard>
+              )}
+            />
             <Route path="/" exact render={() => <Redirect to={"/game"} />} />
-
           </div>
         </Switch>
       </BrowserRouter>
@@ -94,6 +94,6 @@ class AppRouter extends React.Component {
   }
 }
 /*
-* Don't forget to export your component!
+ * Don't forget to export your component!
  */
 export default AppRouter;

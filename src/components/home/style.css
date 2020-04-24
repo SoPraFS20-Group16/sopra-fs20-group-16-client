@@ -1,0 +1,143 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 2px;
+}
+
+.body1 {
+    background-image: url('../../views/graphics/home_background.jpg') !important;
+    background-size: cover;
+    padding-bottom: 20%;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.left,
+.right {
+    margin: 50px;
+}
+
+.left {
+    /* padding: 5px; */
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid blue;
+    background-image: url('./map.jpg');
+    background-size: cover;
+    height: 500px;
+    padding: 50px;
+    padding-top: 20px;
+    
+}
+
+.left img {
+    width: 100%;
+    height: auto;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+}
+
+.up,
+.down {
+    margin: 15px 0px;
+}
+
+.box1,
+.box2,
+.box3,
+.box4 {
+    padding: 10px;
+    /* text-align: center; */
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid rgb(0, 0, 0);
+    text-align: center;
+    margin: 5px;
+}
+
+.box1 {
+    padding-bottom: 150px;
+    background-color: rgba(153, 153, 153, 0.418);
+}
+
+.box1 h1 {
+    text-align: center;
+    margin: 10px
+}
+
+.box1 p {
+    text-align: start;
+}
+
+.box2 {
+    background-color: rgba(153, 153, 153, 0.418);
+    /* text-align: start; */
+    justify-content: space-between;
+    display: flex;
+
+}
+
+.box4 {
+    justify-content: space-between;
+    display: flex;
+
+}
+
+.box3 {
+    background-color: rgba(153, 153, 153, 0.418);
+}
+
+.box4 {
+    background-color: rgba(18, 211, 50, 0.712);
+    text-align: start;
+}
+
+.buttons p a {
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons .button1 {
+    background-color: rgba(153, 153, 153);
+    border-radius: 30px 30px;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    padding: 10px 0;
+    box-shadow: black 0px 0px 10px;
+    margin: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button2,
+.button3 {
+    background-color: rgba(153, 153, 153);
+    border-radius: 100px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    box-shadow: black 0px 0px 10px;
+    margin: 5px;
+    cursor: pointer;
+}
