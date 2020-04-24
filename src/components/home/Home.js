@@ -37,9 +37,9 @@ class Home extends React.Component {
                     <img src={require('./send.svg')} height={'20px'} width="20px"/>
                 </div>
                 <div className="buttons">
-                    <Link to="/dashboard">
-                        <p className="button1"><a href="#">Logout</a></p>
-                    </Link>
+
+                    <p className="button1"><a href="#">Logout</a></p>
+
                     <p className="button2">
 
                     </p>
