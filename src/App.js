@@ -10,7 +10,8 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Board />
+
+            <AppRouter/>
             </div>
         );
     }
