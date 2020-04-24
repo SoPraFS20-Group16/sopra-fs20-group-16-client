@@ -11,7 +11,7 @@ import Register from "../../register/Register";
 
 import {BoardGuard} from "../routeProtectors/BoardGuard";
 import Board from "../../board/Board";
-import Hexagon from "../../board/Hexagon"
+import Hex from "../../board/Hex";
 
 /**
  * Main router of your application.
@@ -79,7 +79,7 @@ class AppRouter extends React.Component {
                   exact
                   render={() => (
                       <BoardGuard>
-                          <Hexagon />
+                          <Hex />
                       </BoardGuard>
                   )}
               />
