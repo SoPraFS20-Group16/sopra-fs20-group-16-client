@@ -11,7 +11,7 @@ import Register from "../../register/Register";
 import Home from "../../home/Home";
 // import Profile from "../../profile/Profile";
 import Dashboard from "../../Dashboard/Dashboard";
-import Profile from "../../profile/Profile";
+import Profile from "../../Profile/Profile";
 import Board from "../../board/Board";
 
 /**

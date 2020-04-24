@@ -2,9 +2,8 @@ import React, {HTMLAttributes as state} from 'react';
 import {withRouter} from 'react-router-dom';
 
 import Hexagon from "react-svg-hexagon";
-import Hex from "./Hex";
 
-class Board extends React.Component {
+export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,12 +46,7 @@ class Board extends React.Component {
           }}
         >
 
-
-
-          <Hex left={100} top={50}/>
-
-
-          <div style={{position: "absolute", left: 200, top: 50}}>
+          <div style={{position: "absolute", right: 0}}>
             <Hexagon
               fill="green"
               side={50}
@@ -61,8 +55,7 @@ class Board extends React.Component {
               radius={5}
             />
           </div>
-
-          <div style={{position: "absolute", left: 300, top: 50}}>
+          <div style={{position: "absolute", right: 90}}>
             <Hexagon
               fill="green"
               side={50}
@@ -71,11 +64,7 @@ class Board extends React.Component {
               radius={5}
             />
           </div>
-
-
-
-
-          <div style={{position: "absolute", left: 50, top: 125}}>
+          <div style={{position: "absolute", right: 180}}>
             <Hexagon
               fill="green"
               side={50}
@@ -84,9 +73,7 @@ class Board extends React.Component {
               radius={5}
             />
           </div>
-
-
-          <div style={{position: "absolute", left: 150, top: 125}}>
+          <div style={{position: "absolute", right: 135, top: 80}}>
             <Hexagon
               fill="green"
               side={50}
@@ -95,19 +82,7 @@ class Board extends React.Component {
               radius={5}
             />
           </div>
-
-          <div style={{position: "absolute", left: 250, top: 125}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 350, top: 125}}>
+          <div style={{position: "absolute", right: 45, top: 80}}>
             <Hexagon
               side={50}
               stroke="black"
@@ -132,139 +107,6 @@ class Board extends React.Component {
             />
           </div>
 
-
-
-
-
-
-          <div style={{position: "absolute", left: 0, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 100, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 200, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 300, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 400, top: 200, margin:0, padding:0}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 50, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 150, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 250, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 350, top: 275}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-          <div style={{position: "absolute", left: 100, top: 350}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 200, top: 350}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-          <div style={{position: "absolute", left: 300, top: 350}}>
-            <Hexagon
-              fill="green"
-              side={50}
-              stroke="black"
-              strokeWidth={1}
-              radius={5}
-            />
-          </div>
-
-
-
-
           {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
           <div
             style={{
@@ -279,8 +121,8 @@ class Board extends React.Component {
             <div
               style={{
                 position: "absolute",
-                top: 225,
-                left: 80,
+                top: 65,
+                right: 75,
                 fontSize: "0.5em",
                 width: "20px",
                 height: "20px",
@@ -297,8 +139,8 @@ class Board extends React.Component {
             <div
               style={{
                 position: "absolute",
-                top: 215,
-                left: 95,
+                top: 80,
+                right: 85,
                 transform: "rotate(150deg)",
                 fontSize: "0.5em",
                 width: "40px",
@@ -312,6 +154,8 @@ class Board extends React.Component {
               onMouseLeave={() => this.handleInputChange('streetColor', 'pink')}
             />
           </div>
+
+
         </div>
       </div>
 
@@ -323,4 +167,4 @@ class Board extends React.Component {
  * You can get access to the history object's properties via the withRouter.
  * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
  */
-export default withRouter(Board);
+// export default withRouter(Board);

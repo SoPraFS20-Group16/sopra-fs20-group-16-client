@@ -6,13 +6,13 @@ import Board from "./components/board/Board";
 import AppRouter from "./components/shared/routers/AppRouter";
 
 class App extends Component {
-    render() {
-        return (
-            <div className="App">
-            <AppRouter/>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="App">
+        <AppRouter />
+      </div>
+    );
+  }
 }
 
 
