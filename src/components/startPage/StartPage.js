@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BaseContainer } from '../../helpers/layout';
-import { api, handleError } from '../../helpers/api';
-import User from '../shared/models/User';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
 
@@ -15,47 +13,6 @@ const FormContainer = styled.div`
   min-height: 300px;
   justify-content: center;
 `;
-
-const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 60%;
-  height: 375px;
-  font-size: 16px;
-  font-weight: 300;
-  padding-left: 37px;
-  padding-right: 37px;
-  border-radius: 5px;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-`;
-
-const InputField = styled.input`
-  &::placeholder {
-    color: rgba(255, 255, 255, 1.0);
-  }
-  height: 35px;
-  padding-left: 15px;
-  margin-left: -4px;
-  border: none;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-`;
-
-const Label = styled.label`
-  color: white;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-`;
-
-const Label2 = styled.label`
-  color: white;
-  margin-bottom: 10px;
-  text-transform: titlecase;
-`;
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -72,7 +29,7 @@ height: 265px;
 left: 53px;
 top: 308px;
 
-/* font-family: Goudy Bookletter 1911; */
+font-family: inherit;
 font-style: serif;
 font-weight: 1000;
 font-size: 100px;

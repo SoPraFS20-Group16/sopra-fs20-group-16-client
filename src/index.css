@@ -3,17 +3,18 @@
 /**
 This file contains the general and shared style of your application.
  */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  position: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: "EB Garamond", serif;
-  background-image: url("views/graphics/CatanBG.png");
+  font-family: "EB Garamond", serif !important;
+  background-image: url("views/graphics/CatanBG.png") !important;
+  overflow-x: hidden;
 }
 
 input,
