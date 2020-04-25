@@ -6,12 +6,10 @@ import {
   Container,
   Row,
   Col,
-  Form,
-  FormControl,
-  InputGroup,
-  Button, FormLabel
+  Button
 } from "react-bootstrap";
 import Board from "../board/Board";
+import ResourcesList from "./ResourcesList";
 
 
 /*export const GButton = styled(Button)`
@@ -60,15 +58,19 @@ class Game extends React.Component {
         }}>
           <Row>
             <Col>
+              <Row>
+                <Button style={{
+                  backgroundColor: "gold",
+                  color: "black",
+                  borderColor: "black"
+                }}>
+                  Logout
+                </Button>
+              </Row>
 
-              <Button style={{
-                backgroundColor: "gold",
-                color: "black",
-                border: "black"
-              }}>
-                Logout
-              </Button>
-
+              <Row>
+                <ResourcesList />
+              </Row>
             </Col>
 
             <Col>
