@@ -1,6 +1,8 @@
 import React, {HTMLAttributes as state} from 'react';
 import {withRouter} from 'react-router-dom';
 import Hex from "./Hex";
+import Street from "./Street";
+import Settlement from "./Settlement";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -8,6 +10,8 @@ export default class Board extends React.Component {
     this.state = {
       color: "red",
       streetColor: "yellow",
+
+      number: "",
 
       /*
       hexCoords: [
@@ -86,7 +90,7 @@ export default class Board extends React.Component {
   randomNumber(){
     const randomNumberArray = [];
 
-    const number2 = "https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png"
+    const number2 = "https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png";
     const number3 = "https://cdn.clipart.email/b8bf34688e293e83ed672c52849ac4b6_numbers-in-circles-transparent-png-clipart-free-download-ywd_512-512.png";
     const number4 = "https://cdn.clipart.email/e59d16bf4dd0247fd88b6cedce0310c7_number-4-icon-transparent-png-clipart-free-download-ywd_1600-1600.png";
     const number5 = "https://cdn.clipart.email/01d598c665c53d3fbb1a6cf05359162d_transparent-5-icon-picture-1501683-transparent-5-icon_1600-1600.png";
@@ -140,55 +144,87 @@ export default class Board extends React.Component {
         y: yNew
       }
     )
+  }
+
+
+  getNumber(link){
+    const imgList = ["https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png",
+      "https://cdn.clipart.email/b8bf34688e293e83ed672c52849ac4b6_numbers-in-circles-transparent-png-clipart-free-download-ywd_512-512.png",
+      "https://cdn.clipart.email/e59d16bf4dd0247fd88b6cedce0310c7_number-4-icon-transparent-png-clipart-free-download-ywd_1600-1600.png",
+      "https://cdn.clipart.email/01d598c665c53d3fbb1a6cf05359162d_transparent-5-icon-picture-1501683-transparent-5-icon_1600-1600.png",
+      "https://cdn.clipart.email/a140fa003c08d30ebf7d90d5c84af5ea_photo-6-png-picpng_512-512.png",
+      "https://cdn.clipart.email/af28259f9ecad0face218a06c1f2326c_perfect-circle-png-picture-518383-perfect-circle-png_1600-1600.png",
+      "https://cdn.clipart.email/08aab226fd16612aa7036ec03026b7c3_file8numbereightincirclepng-wikimedia-commons_500-500.png",
+      "https://cdn.clipart.email/eb787b6a1a137a061639a44b692059ff_numbers-in-circles-transparent-png-clipart-free-download-ywd_1600-1600.png",
+      "https://www.freeiconspng.com/uploads/number-10-9.png",
+      "https://img.pngio.com/file11numberelevenincirclepng-wikimedia-commons-the-number-11-png-500_500.png",
+      "https://cdn.clipart.email/943b8eba8365c2a25871ad98558678ed_free-pictures-of-the-number-12-download-free-clip-art-free-clip-_500-500.png"]
+
+    for (let i=2; i<=12; i++){
+      if (link === imgList[i]){
+        return i;
+      }
+    }
 
   }
+
+  /*
+  createInvisibleStreet(){
+
+  }
+  */
+
+
+
+
 
   createBoard(){
 
     const hexes = [];
 
     const images = this.randomImage();
-    const number = this.randomNumber();
+    const numberImg = this.randomNumber();
     let i=-1;
     let j=-1;
 
     for(let left = 2; left <= 6; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} number = {number[j]} />);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
     }
+    console.log(hexes[2].props.number);
 
     for(let left = 1; left <= 7; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} img = {images[i]} number = {number[j]}/>);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} img = {images[i]} numberImg = {numberImg[j]}  number ={this.getNumber(numberImg[j])} />);
     }
 
     for(let left = 0; left <= 2; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} number = {number[j]}/>);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
     }
 
-    hexes.push(<Hex {...this.coordTrans({x: 4, y : 4, radius: 50})} img = "https://purepng.com/public/uploads/large/desert-9hl.png" number = "https://www.kindpng.com/picc/b/133/1338575.png"/>)
+    hexes.push(<Hex {...this.coordTrans({x: 4, y : 4, radius: 50})} img = "https://purepng.com/public/uploads/large/desert-9hl.png" numberImg = "https://www.kindpng.com/picc/b/133/1338575.png"/>)
 
     for(let left = 6; left <= 8; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} number = {number[j]}/>);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
     }
 
 
     for(let left = 1; left <= 7; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} img = {images[i]} number = {number[j]}/>);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
     }
 
     for(let left = 2; left <= 6; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} img = {images[i]} number = {number[j]}/>);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
     }
 
     return hexes;
@@ -208,6 +244,68 @@ export default class Board extends React.Component {
           >
 
             {this.createBoard()}
+
+
+            {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
+            <div
+              style={{
+                width: 500,
+                height: 500,
+                position: "absolute",
+                /* The zIndex allows to adjust what is in the foreground and background */
+                zIndex: 0
+              }}
+            >
+
+              <Street {...this.coordTrans({x: 2, y : 1, radius: 50})} rotation = "rotate(90deg)"/>
+              <Street {...this.coordTrans({x: 4, y : 1, radius: 50})} rotation = "rotate(90deg)"/>
+              <Street {...this.coordTrans({x: 6, y : 1, radius: 50})} rotation = "rotate(90deg)"/>
+              <Street {...this.coordTrans({x: 8, y : 1, radius: 50})} rotation = "rotate(90deg)"/>
+
+
+              <Street {...this.coordTrans({x: 2, y : 1, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 4, y : 1, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 6, y : 1, radius: 50})} rotation = "rotate(330deg)"/>
+
+              <Street {...this.coordTrans({x: 4, y : 1, radius: 50})} rotation = "rotate(210deg)"/>
+              <Street {...this.coordTrans({x: 6, y : 1, radius: 50})} rotation = "rotate(210deg)"/>
+              <Street {...this.coordTrans({x: 8, y : 1, radius: 50})} rotation = "rotate(210deg)"/>
+
+
+              <Street {...this.coordTrans({x: 1, y : 3, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 3, y : 3, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 5, y : 3, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 7, y : 3, radius: 50})} rotation = "rotate(330deg)"/>
+
+
+              <Street {...this.coordTrans({x: 3, y : 3, radius: 50})} rotation = "rotate(210deg)"/>
+              <Street {...this.coordTrans({x: 5, y : 3, radius: 50})} rotation = "rotate(210deg)"/>
+              <Street {...this.coordTrans({x: 7, y : 3, radius: 50})} rotation = "rotate(210deg)"/>
+              <Street {...this.coordTrans({x: 9, y : 3, radius: 50})} rotation = "rotate(210deg)"/>
+
+
+
+              <Street {...this.coordTrans({x: 0, y : 5, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 2, y : 5, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 4, y : 5, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 6, y : 5, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 8, y : 5, radius: 50})} rotation = "rotate(330deg)"/>
+
+              <Street {...this.coordTrans({x: 1, y : 7, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 3, y : 7, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 5, y : 7, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 7, y : 7, radius: 50})} rotation = "rotate(330deg)"/>
+
+              <Street {...this.coordTrans({x: 2, y : 9, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 4, y : 9, radius: 50})} rotation = "rotate(330deg)"/>
+              <Street {...this.coordTrans({x: 6, y : 9, radius: 50})} rotation = "rotate(330deg)"/>
+
+
+              <Settlement {...this.coordTrans({x: 6, y : 2 , radius: 50})}/>
+
+
+            </div>
+
           </div>
         </div>
       </html>
