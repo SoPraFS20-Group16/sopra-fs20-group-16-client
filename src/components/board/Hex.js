@@ -1,53 +1,74 @@
+
 import React from 'react';
 
 import Hexagon from "react-svg-hexagon";
 
-export default function Hex(props) {
+export default class Hex extends React.Component{
+
+  constructor(props) {
+    super();
+
+    this.state ={
+    }
+  }
 
 
-  return (
-    <div style={{position: "absolute", left: props.x, top: props.y}}>
-      <Hexagon
-        side={50}
-        stroke="black"
-        strokeWidth={1}
-        radius={5}
-        render={({ClipPath, Polygon, Content, Svg}) => {
-          return (
-            <Svg>
-              <ClipPath/>
-              <Polygon/>
-              <Content>
-                <img
-                  style={{height: 100}}
-                  /* The background image of the Hexagon can be adjusted with the img tag */
-                  src={props.img}
-                  alt=""
-                />
+    render() {
+      return (
 
 
-                <img
-                  style={{
-                    height: 50,
-                    position: 'absolute',
-                    width: 50,
-                    backgroundColor: 'transparent',
-                    textAlign: 'center',
-                    border: null
-                  }}
-                  /* The background image of the Hexagon can be adjusted with the img tag */
-                  src={props.number}
-                  alt=""
-                />
+        <div style={{position: "absolute", left: this.props.x, top: this.props.y}}>
+
+          <Hexagon
+            {...this.props.number}
+
+            side={50}
+            stroke="black"
+            strokeWidth={1}
+            radius={5}
 
 
-              </Content>
-            </Svg>
-          );
-        }}
 
-      />
-    </div>
-  )
+            render={({ClipPath, Polygon, Content, Svg}) => {
+              return (
+                <Svg>
+                  <ClipPath/>
+                  <Polygon/>
+                  <Content>
+                    <img
+                      style={{height: 100}}
+                      /* The background image of the Hexagon can be adjusted with the img tag */
+                      src={this.props.img}
+                      alt=""
+
+
+                    />
+
+
+                    <img
+                      style={{
+                        height: 39,
+                        position: 'absolute',
+                        width: 30,
+                        backgroundColor: 'transparent',
+                        textAlign: 'center',
+                        border: null,
+                        borderRadius: 30
+                      }}
+                      /* The background image of the Hexagon can be adjusted with the img tag */
+                      src={this.props.numberImg}
+                      alt=""
+                    />
+
+
+                  </Content>
+                </Svg>
+              );
+            }}
+
+          />
+        </div>
+      )
+    }
 
 }
