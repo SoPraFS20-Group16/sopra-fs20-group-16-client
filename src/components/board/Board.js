@@ -1,8 +1,5 @@
 import React, {HTMLAttributes as state} from 'react';
 import {withRouter} from 'react-router-dom';
-
-import Hexagon from "react-svg-hexagon";
-import HexCoordTrans from "./HexCoordTrans";
 import Hex from "./Hex";
 
 export default class Board extends React.Component {
@@ -41,7 +38,6 @@ export default class Board extends React.Component {
     //return [left* (Math.sqrt(Math.pow(side,2)- Math.pow(side/2,2))), top*(side+(side/2))]
 
   }
-
 
 
   shuffle(array) {
@@ -93,81 +89,91 @@ export default class Board extends React.Component {
   }
 
 
-  createBoard(){
+  // Transforms the normal/server coordinates to pixel coordinates
+  coordTrans(props) {
+    const x = props.x;
+    const y = props.y;
+    const r = props.radius;
 
-    const tiles = [];
+    const xNew = x * Math.sqrt(Math.pow(r, 2) - Math.pow((r/2),2));
+    let yNew;
 
-    const images = this.randomImage();
-
-    console.log(images);
-
-    let i=-1;
-
-    for(let left=2; left <=6; left+=2){
-      i=i+1;
-      tiles.push(<Hex {...HexCoordTrans({left:left,top:0})} img={images[i]}/>)
-      //tiles.push(<Hex  side = {60} left={this.hexCoordTrans(left,0, 60)[0]} top={this.hexCoordTrans(left,0, 60)[1]}/>)
+    if(y % 2 === 0) {
+      yNew = y * ((r + r/2)/2);
+    }
+    else {
+      yNew = (y - 1) * ((r + r/2)/2) + r/2
     }
 
-    for(let left=1; left <=7; left+=2){
-      i=i+1;
-      tiles.push(<Hex {...HexCoordTrans({left:left,top:2})} img={images[i]}/>)
-    }
-    for(let left=0; left <=2; left+=2){
-      i=i+1;
-      tiles.push(<Hex {...HexCoordTrans({left:left,top:4})} img = {images[i]}/>)
-    }
-
-    tiles.push(<Hex {...HexCoordTrans({left:4,top:4})} img = "https://purepng.com/public/uploads/large/desert-9hl.png"/>)
-
-    for(let left=6; left <=8; left+=2){
-      i=i+1;
-      tiles.push(<Hex {...HexCoordTrans({left:left,top:4})} img = {images[i]}/>)
-    }
-
-    for(let left=1; left <=7; left+=2){
-      i=i+1;
-      tiles.push(<Hex {...HexCoordTrans({left:left,top:6})} img={images[i]}/>)
-    }
-    for(let left=2; left <=6; left+=2){
-      i=i+1;
-(      tiles.push(<Hex {...HexCoordTrans({left:left,top:8})} img={images[i]}/>)
-)    }
-
-
-
-    return tiles;
+    return (
+      {
+        x: xNew,
+        y: yNew
+      }
+    )
 
   }
 
+  createBoard(){
 
+    const hexes = [];
+
+    const images = this.randomImage();
+    let i=-1;
+
+    for(let left = 2; left <= 6; left += 2) {
+      i=i+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} />);
+    }
+
+    for(let left = 1; left <= 7; left += 2) {
+      i=i+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} img = {images[i]} />);
+    }
+
+    for(let left = 0; left <= 2; left += 2) {
+      i=i+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]}/>);
+    }
+
+    hexes.push(<Hex {...this.coordTrans({x: 4, y : 4, radius: 50})} img = "https://purepng.com/public/uploads/large/desert-9hl.png"/>)
+
+    for(let left = 6; left <= 8; left += 2) {
+      i=i+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]}/>);
+    }
+
+
+    for(let left = 1; left <= 7; left += 2) {
+      i=i+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} img = {images[i]}/>);
+    }
+
+    for(let left = 2; left <= 6; left += 2) {
+      i=i+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} img = {images[i]}/>);
+    }
+
+    return hexes;
+  }
 
 
   render() {
     return (
-      <div className="Board">
-        <div
-          style={{
-            width: 433.0127,
-            height: 400,
-            backgroundColor: "pink",
-            position: "absolute",
+      <html className={'game-bg'}>
+        <div className="Board">
+          <div
+            style={{
+              width: 433.0127,
+              height: 800,
+              position: "relative"
+            }}
+          >
 
-            right: 250,
-            top: 250
-          }}
-        >
-          {this.createBoard()}
-
+            {this.createBoard()}
+          </div>
         </div>
-      </div>
-
+      </html>
     );
   }
 }
-
-/**
- * You can get access to the history object's properties via the withRouter.
- * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
- */
-// export default withRouter(Board);
