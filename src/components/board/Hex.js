@@ -47,9 +47,9 @@ export default class Hex extends React.Component{
 
                     <img
                       style={{
-                        height: 39,
+                        height: 40,
                         position: 'absolute',
-                        width: 30,
+                        width: 40,
                         backgroundColor: 'transparent',
                         textAlign: 'center',
                         border: null,
