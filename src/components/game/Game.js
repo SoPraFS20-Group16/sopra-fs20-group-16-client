@@ -14,6 +14,13 @@ import {
 import Board from "../board/Board";
 
 
+export const GButton = styled(Button)`
+  backgroundColor: gold;
+  color: black;
+  border: black;
+`;
+
+
 class Game extends React.Component {
   constructor() {
     super();
@@ -54,9 +61,9 @@ class Game extends React.Component {
           <Row>
             <Col>
 
-              <Button>
+              <GButton>
                 Logout
-              </Button>
+              </GButton>
 
             </Col>
 

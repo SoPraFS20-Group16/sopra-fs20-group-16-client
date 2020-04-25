@@ -3,15 +3,10 @@ import {
   Row,
   Col,
   Form,
-  FormControl,
-  InputGroup,
-  Button, FormLabel
+  Button
 } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import AvatarCircle from "../avatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
-import GameCard from "./GameCard";
 import { Link } from "react-router-dom";
 import GamesList from "./GamesList";
 import {api, handleError} from "../../helpers/api";
