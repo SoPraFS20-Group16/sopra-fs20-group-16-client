@@ -9,21 +9,6 @@ export default class Board extends React.Component {
       color: "red",
       streetColor: "yellow",
 
-      /*
-      hexCoords: [
-          {03: {200,600}},
-          {01: "100x200"}
-      ],
-
-      cityCoords : {
-          {}
-      },
-
-      streetCords : {
-          {}
-      }
-
-       */
     }
   }
 
@@ -31,12 +16,6 @@ export default class Board extends React.Component {
     // Example: if the key is username, this statement is the equivalent to the following one:
     // this.setState({'username': value});
     this.setState({[key]: value});
-  }
-
-  hexCoordTrans(left, top){
-    return [left*43.30127, ]
-    //return [left* (Math.sqrt(Math.pow(side,2)- Math.pow(side/2,2))), top*(side+(side/2))]
-
   }
 
 
