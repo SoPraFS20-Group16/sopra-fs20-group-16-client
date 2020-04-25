@@ -25,6 +25,17 @@ export default function Hex(props) {
                       src={props.img}
                       alt=""
                     />
+
+
+                    <img
+                      style={{height: 39 ,  position: 'absolute',  width: 30, backgroundColor:'transparent', textAlign : 'center', border : null}}
+                      /* The background image of the Hexagon can be adjusted with the img tag */
+                      src={props.number}
+                      alt=""
+                    />
+
+
+
                   </Content>
                 </Svg>
               );

@@ -59,20 +59,14 @@ export default class Board extends React.Component {
   }
 
   randomImage(){
-    const images = ["http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin5.png",
-      "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin3.png",
-      "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin4.png",
-      "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin6.png",
-      "https://purepng.com/public/uploads/large/purepng.com-mountainmountainlarge-landformmountain-peakvolcanic-mountainfold-mountainblock-mountain-1411527067889ftubz.png"
-    ];
 
     const randomImagesArray=[];
 
-    const wood = images[0];
-    const grain = images[1];
-    const brick = images[2];
-    const sheep = images[3];
-    const mountain = images[4];
+    const wood = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin5.png";
+    const grain = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin3.png";
+    const brick = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin4.png";
+    const sheep = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin6.png";
+    const mountain = "https://purepng.com/public/uploads/large/purepng.com-mountainmountainlarge-landformmountain-peakvolcanic-mountainfold-mountainblock-mountain-1411527067889ftubz.png";
 
     for(let i=0 ;i<=3; i++){
       randomImagesArray.push(wood);
@@ -87,6 +81,41 @@ export default class Board extends React.Component {
     return this.shuffle(randomImagesArray);
 
   }
+
+
+  randomNumber(){
+    const randomNumberArray = [];
+
+    const number2 = "https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png"
+    const number3 = "https://cdn.clipart.email/b8bf34688e293e83ed672c52849ac4b6_numbers-in-circles-transparent-png-clipart-free-download-ywd_512-512.png";
+    const number4 = "https://cdn.clipart.email/e59d16bf4dd0247fd88b6cedce0310c7_number-4-icon-transparent-png-clipart-free-download-ywd_1600-1600.png";
+    const number5 = "https://cdn.clipart.email/01d598c665c53d3fbb1a6cf05359162d_transparent-5-icon-picture-1501683-transparent-5-icon_1600-1600.png";
+    const number6 = "https://cdn.clipart.email/a140fa003c08d30ebf7d90d5c84af5ea_photo-6-png-picpng_512-512.png";
+    const number7 = "https://cdn.clipart.email/af28259f9ecad0face218a06c1f2326c_perfect-circle-png-picture-518383-perfect-circle-png_1600-1600.png";
+    const number8 ="https://cdn.clipart.email/08aab226fd16612aa7036ec03026b7c3_file8numbereightincirclepng-wikimedia-commons_500-500.png";
+    const number9 ="https://cdn.clipart.email/eb787b6a1a137a061639a44b692059ff_numbers-in-circles-transparent-png-clipart-free-download-ywd_1600-1600.png";
+    const number10 = "https://www.freeiconspng.com/uploads/number-10-9.png";
+    const number11 ="https://img.pngio.com/file11numberelevenincirclepng-wikimedia-commons-the-number-11-png-500_500.png";
+    const number12 = "https://cdn.clipart.email/943b8eba8365c2a25871ad98558678ed_free-pictures-of-the-number-12-download-free-clip-art-free-clip-_500-500.png";
+
+    randomNumberArray.push(number2);
+    randomNumberArray.push(number12);
+
+    for (let i=0; i<=1; i++){
+      randomNumberArray.push(number3);
+      randomNumberArray.push(number4);
+      randomNumberArray.push(number5);
+      randomNumberArray.push(number6);
+      randomNumberArray.push(number7);
+      randomNumberArray.push(number8);
+      randomNumberArray.push(number9);
+      randomNumberArray.push(number10);
+      randomNumberArray.push(number11);
+    }
+
+    return this.shuffle(randomNumberArray);
+  }
+
 
 
   // Transforms the normal/server coordinates to pixel coordinates
@@ -119,39 +148,47 @@ export default class Board extends React.Component {
     const hexes = [];
 
     const images = this.randomImage();
+    const number = this.randomNumber();
     let i=-1;
+    let j=-1;
 
     for(let left = 2; left <= 6; left += 2) {
       i=i+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} />);
+      j=j+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} number = {number[j]} />);
     }
 
     for(let left = 1; left <= 7; left += 2) {
       i=i+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} img = {images[i]} />);
+      j=j+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} img = {images[i]} number = {number[j]}/>);
     }
 
     for(let left = 0; left <= 2; left += 2) {
       i=i+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]}/>);
+      j=j+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} number = {number[j]}/>);
     }
 
-    hexes.push(<Hex {...this.coordTrans({x: 4, y : 4, radius: 50})} img = "https://purepng.com/public/uploads/large/desert-9hl.png"/>)
+    hexes.push(<Hex {...this.coordTrans({x: 4, y : 4, radius: 50})} img = "https://purepng.com/public/uploads/large/desert-9hl.png" number = "https://www.kindpng.com/picc/b/133/1338575.png"/>)
 
     for(let left = 6; left <= 8; left += 2) {
       i=i+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]}/>);
+      j=j+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} number = {number[j]}/>);
     }
 
 
     for(let left = 1; left <= 7; left += 2) {
       i=i+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} img = {images[i]}/>);
+      j=j+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} img = {images[i]} number = {number[j]}/>);
     }
 
     for(let left = 2; left <= 6; left += 2) {
       i=i+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} img = {images[i]}/>);
+      j=j+1;
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} img = {images[i]} number = {number[j]}/>);
     }
 
     return hexes;
