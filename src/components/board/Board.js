@@ -1,7 +1,6 @@
-import React, {HTMLAttributes as state} from 'react';
-import {withRouter} from 'react-router-dom';
+import React from 'react';
 import Hex from "./Hex";
-import Street from "./Street";
+import Road from "./Road";
 import Settlement from "./Settlement";
 
 export default class Board extends React.Component {
@@ -10,8 +9,10 @@ export default class Board extends React.Component {
     this.state = {
       color: "red",
       streetColor: "yellow",
-
+      radius: 50,
+      randomResPics: []
     }
+    this.createBoard()
   }
 
   handleInputChange(key, value) {
@@ -43,23 +44,23 @@ export default class Board extends React.Component {
 
     const randomImagesArray = [];
 
-    const wood = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin5.png";
+    const lumber = "views/graphics/lumber.png";
     const grain = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin3.png";
     const brick = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin4.png";
     const sheep = "http://www.centives.net/S/wp-content/uploads/2011/10/101211_0644_Resourcesin6.png";
-    const mountain = "https://purepng.com/public/uploads/large/purepng.com-mountainmountainlarge-landformmountain-peakvolcanic-mountainfold-mountainblock-mountain-1411527067889ftubz.png";
+    const ore = "https://purepng.com/public/uploads/large/purepng.com-mountainmountainlarge-landformmountain-peakvolcanic-mountainfold-mountainblock-ore-1411527067889ftubz.png";
 
     for (let i = 0; i <= 3; i++) {
-      randomImagesArray.push(wood);
+      randomImagesArray.push(lumber);
       randomImagesArray.push(sheep);
       randomImagesArray.push(grain);
     }
     for (let i = 0; i <= 2; i++) {
-      randomImagesArray.push(mountain);
+      randomImagesArray.push(ore);
       randomImagesArray.push(brick);
     }
 
-    return this.shuffle(randomImagesArray);
+    this.setState({randomResPics: randomImagesArray})
 
   }
 
@@ -102,7 +103,7 @@ export default class Board extends React.Component {
   coordTrans(props) {
     const x = props.x;
     const y = props.y;
-    const r = props.radius;
+    const r = this.state.radius;
 
     const xNew = x * Math.sqrt(Math.pow(r, 2) - Math.pow((r / 2), 2));
     let yNew;
@@ -117,6 +118,19 @@ export default class Board extends React.Component {
       {
         x: xNew,
         y: yNew
+      }
+    )
+  }
+
+  // Calculates geometric median between 2 pairs of coordinates (x,y), (x2,y2)
+  coordsMedian(props) {
+    const midX = (props.x + props.x2)/2;
+    const midY = (props.y + props.y2)/2;
+
+    return (
+      {
+        midX: midX,
+        midY: midY
       }
     )
   }
@@ -140,97 +154,87 @@ export default class Board extends React.Component {
         return i;
       }
     }
-}
+  }
 
+  // Create and set invisible clickable roads on every hexagon's edge
+  createInvisibleRoad() {
+    const roadArray = [];
+    let coords1;
+    let coords2;
+    let coordsMid;
+    let k, j;
 
-  createInvisibleStreet() {
-    const streetArray = [];
+    // Vertical streets
+    for (k = 0; k <= 10; k += 1) {
+      for (j = 1; j <= 9; j += 2){
+        // Use coordTrans to transform normal coordinates to pixels
+        coords1 = this.coordTrans({x: k, y: j});
+        coords2 = this.coordTrans({x: k, y: j+1});
+        // Calculate the median point between the two pairs of coordinates to position the road
+        coordsMid = this.coordsMedian({x: coords1.x, y: coords1.y, x2: coords2.x, y2: coords2.y});
 
-    //FIRST ROW
-    for (let i = 2; i <= 8; i += 2) {
-      //vertical streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 1, radius: 50})} rotation="rotate(90deg)"/>);
+        if(j === 5 && (k === 0 || k === 10)) {
+          roadArray.push(<Road {...coordsMid} rotation="rotate(90deg)"/>);
+        }
 
-      //right inclined streets
-      if (i<=6){
-        streetArray.push(<Street {...this.coordTrans({x: i, y: 1, radius: 50})} rotation="rotate(330deg)"/>);
-      }
+        if((j===3 || j === 7) && (k % 2 !== 0)){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(90deg)"/>);
+        }
 
-      //left inclined streets
-      if (i>=4 && i<=8){
-        streetArray.push(<Street {...this.coordTrans({x: i, y: 1, radius: 50})} rotation="rotate(210deg)"/>);
-      }
-    }
-
-    //SECOND ROW
-    for (let i=1; i<=9; i+=2){
-      //vertical streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 3, radius: 50})} rotation="rotate(90deg)"/>);
-
-      //right inclined streets
-      if(i<=7){
-        streetArray.push(<Street {...this.coordTrans({x: i, y: 3, radius: 50})} rotation="rotate(330deg)"/>);
-      }
-
-      //left inclines streets
-      if (i>=3){
-        streetArray.push(<Street {...this.coordTrans({x: i, y: 3, radius: 50})} rotation="rotate(210deg)"/>);
+        if((j===1 || j===5 || j===9) && (k===2 || k===4 || k===6 || k===8)){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(90deg)"/>);
+        }
       }
     }
 
-    //THIRD ROW
-    for (let i=0; i<=10; i+=2){
-      //vertical streets
-      //TODO: show the first street -> now it doesn't because it goes out of the canvas
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 5, radius: 50})} rotation="rotate(90deg)"/>);
+    for(j = 1; j <= 11; j += 2){
+      for(k = 0; k <= 9; k += 1){
+        coords1 = this.coordTrans({x: k, y: j});
+        coords2 = this.coordTrans({x: k+1, y: j-1});
+        coordsMid = this.coordsMedian({x: coords1.x, y: coords1.y, x2: coords2.x, y2: coords2.y});
 
-      //right inclined streets
-      if (i<=8){
-        streetArray.push(<Street {...this.coordTrans({x: i, y: 5, radius: 50})} rotation="rotate(330deg)"/>);
+        if(k !== 0 && k !== 8 && k % 2 === 0 && (j === 1 || j === 5 || j === 9)){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
+        }
+
+        if((j === 3 || j === 7 || j === 11) && (k === 3 || k === 5 || k === 7)){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
+        }
+
+        if(((j === 3 || j === 7) && k === 1) || (j === 5 || j === 9) && k === 8){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
+        }
+
+        if(j === 5 && k === 0 || j === 7 && k === 9){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
+        }
       }
+    }
 
-      //left inclined streets
-      if (i>=2){
-        streetArray.push(<Street {...this.coordTrans({x: i, y: 5, radius: 50})} rotation="rotate(210deg)"/>);
+    for(j = 1; j <= 11; j += 2) {
+      for (k = 1; k <= 10; k += 1) {
+        coords1 = this.coordTrans({x: k, y: j});
+        coords2 = this.coordTrans({x: k - 1, y: j - 1});
+        coordsMid = this.coordsMedian({x: coords1.x, y: coords1.y, x2: coords2.x, y2: coords2.y});
+
+        if(k !== 2 && k !== 10 && k % 2 === 0 && (j === 1 || j === 5 || j === 9)){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
+        }
+
+        if((j === 3 || j === 7 || j === 11) && (k === 3 || k === 5 || k === 7)){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
+        }
+
+        if(((j === 3 || j === 7) && k === 9) || (j === 5 || j === 9) && k === 2){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
+        }
+
+        if(j === 7 && k === 1 || j === 5 && k === 10){
+          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
+        }
       }
     }
-
-    //FOURTH ROW
-    for (let i=1; i<=9; i+=2){
-
-      //vertical streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 7, radius: 50})} rotation="rotate(90deg)"/>);
-
-      //right inclined streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 7, radius: 50})} rotation="rotate(330deg)"/>);
-
-      //left inclined streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 7, radius: 50})} rotation="rotate(210deg)"/>);
-    }
-
-    //FIFTH ROW
-    for (let i=2; i<=8;i+=2){
-      //vertical streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 9, radius: 50})} rotation="rotate(90deg)"/>);
-
-      //right inclined streets
-
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 9, radius: 50})} rotation="rotate(330deg)"/>);
-
-      //left inclined streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 9, radius: 50})} rotation="rotate(210deg)"/>);
-    }
-
-    //SIXTH AND LAST ROW
-    for(let i=3; i<=7; i+=2){
-      //right inclined streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 11, radius: 50})} rotation="rotate(330deg)"/>);
-
-      //left inclined streets
-      streetArray.push(<Street {...this.coordTrans({x: i, y: 11, radius: 50})} rotation="rotate(210deg)"/>);
-    }
-
-    return streetArray;
+        return roadArray;
   }
 
 
@@ -279,18 +283,11 @@ export default class Board extends React.Component {
   }
 
 
-
-
-
-
-
-
-
   createBoard(){
 
     const hexes = [];
 
-    const images = this.randomImage();
+    const images = this.state.randomResPics;
     const numberImg = this.randomNumber();
     let i=-1;
     let j=-1;
@@ -300,7 +297,6 @@ export default class Board extends React.Component {
       j=j+1;
       hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
     }
-    console.log(hexes[2].props.number);
 
     for(let left = 1; left <= 7; left += 2) {
       i=i+1;
@@ -353,7 +349,6 @@ export default class Board extends React.Component {
 
             {this.createBoard()}
 
-
             {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
             <div
               style={{
@@ -366,7 +361,7 @@ export default class Board extends React.Component {
             >
 
 
-              {this.createInvisibleStreet()}
+              {this.createInvisibleRoad()}
               {this.createInvisibleSettlement()}
 
 

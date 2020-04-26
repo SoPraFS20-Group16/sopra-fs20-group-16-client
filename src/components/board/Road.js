@@ -1,15 +1,16 @@
 import React from "react";
-export default function Street(props){
+export default function Road(props){
+
   const [streetColor, setStreetColor] = React.useState("transparent");
   return(
+
     <div
       style={{
         position: "absolute",
-        top: props.y,
-        left: props.x,
-        /*serve ad assicurarsi che gira a partire dalla punta e non dal mezzo*/
-        transformOrigin: "0% 0%",
+        top: props.midY - 5,
+        left: props.midX - 20,
         transform: props.rotation,
+        //transform: "translate(-50%, -50%)",
         fontSize: "0.5em",
         width: "40px",
         height: "10px",
@@ -17,7 +18,7 @@ export default function Street(props){
         borderRadius: "10px",
         backgroundColor: streetColor
       }}
-      onMouseEnter={() => setStreetColor("green")}
+      onMouseEnter={() => setStreetColor("cyan")}
       onMouseLeave={() => setStreetColor("transparent")}
       onClick={() => setStreetColor("blue")}
     />
