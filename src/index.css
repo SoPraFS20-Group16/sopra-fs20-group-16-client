@@ -17,6 +17,13 @@ html {
   overflow-x: hidden;
 }
 
+/* set background image per page */
+.game-bg {
+  background: url('views/graphics/sea.gif') repeat;
+  background-size: 30px;
+ ;
+}
+
 input,
 textarea,
 select,
