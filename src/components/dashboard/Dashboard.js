@@ -87,7 +87,7 @@ export default class Dashboard extends Component {
       const requestBody = JSON.stringify({
         name: this.state.name,
         withBots: this.state.withBots.toString()
-      })
+      });
       console.log('JSON: ' + requestBody)
 
 
