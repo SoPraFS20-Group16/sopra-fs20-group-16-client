@@ -29,7 +29,7 @@ export default class FactBox extends Component {
         this.setState({
           quote: randomQuote['quote'],
           author: randomQuote['author']
-        })
+        });
       })
   }
 
@@ -45,7 +45,7 @@ export default class FactBox extends Component {
         <h5 className='title'>Random Quote</h5>
 
         <div>
-            <div style={{width: '100%'}}>
+            <div style={{width: '100%', whiteSpace:'pre-wrap'}}>
               <p>{quote}</p>
             </div>
             <div>

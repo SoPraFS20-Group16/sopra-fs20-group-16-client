@@ -59,6 +59,10 @@ class Game extends React.Component {
       this.setState({possibleMoves: possibleMoves});
 
 
+      console.log(this.state.tiles);
+
+
+
     } catch (error) {
       alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
@@ -111,7 +115,7 @@ class Game extends React.Component {
               </Row>
 
               <Row style = {{textAlign: 'left', backgroundColor: 'white', border: '2px solid black'}}>
-                <ResourcesList numLumber = {5} numBrick = {2} numOre = {5} numGrain={3} numWool={10}/>
+                <ResourcesList numLumber = {5} numBrick = {2} numOre = {5} numGrain={3} numWool={10} numKnight={1} numMonopoly={0} numVictory={1}/>
 
               </Row>
 

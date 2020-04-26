@@ -5,6 +5,9 @@ import Grain from '../../views/graphics/grain.png'
 import Wool from '../../views/graphics/wool.png'
 import Brick from '../../views/graphics/brick.png'
 import Ore from '../../views/graphics/ore.png'
+import Knight from '../../views/graphics/knight.png'
+import Monopoly from '../../views/graphics/monopoly.png'
+import Victory from '../../views/graphics/victory.png'
 
 import {
   Container,
@@ -45,6 +48,23 @@ export default function ResourceList(props){
             <img style={{height: 25}} src={Ore} alt=""/> :
             {props.numOre}
           </h3>
+
+          <h3>Knight {"  "}
+            <img style={{height: 25}} src={Knight} alt=""/> :
+            {props.numKnight}
+          </h3>
+
+          <h3>Monopoly {"  "}
+          <img style={{height: 25}} src={Monopoly} alt=""/> :
+          {props.numMonopoly}
+        </h3>
+
+          <h3>Victory{"  "}
+            <img style={{height: 25}} src={Victory} alt=""/> :
+            {props.numVictory}
+          </h3>
+
+
         </Col>
       </Row>
     </Container>
