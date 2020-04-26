@@ -1,6 +1,6 @@
 import React from "react";
 export default function Street(props){
-  const [streetColor, setStreetColor] = React.useState("pink");
+  const [streetColor, setStreetColor] = React.useState("transparent");
   return(
     <div
       style={{
@@ -9,17 +9,17 @@ export default function Street(props){
         left: props.x,
         /*serve ad assicurarsi che gira a partire dalla punta e non dal mezzo*/
         transformOrigin: "0% 0%",
-        transform: "translate(-50%, -50%)",
+        transform: props.rotation,
         fontSize: "0.5em",
         width: "40px",
         height: "10px",
-        border: "2px solid black",
+        border: "2px solid transparent",
         borderRadius: "10px",
         backgroundColor: streetColor
       }}
-      onClick={() => alert("placeholder for ship clicked")}
-      onMouseEnter={() => setStreetColor("yellow")}
-      onMouseLeave={() => setStreetColor("pink")}
+      onMouseEnter={() => setStreetColor("green")}
+      onMouseLeave={() => setStreetColor("transparent")}
+      onClick={() => setStreetColor("blue")}
     />
   )
 }
