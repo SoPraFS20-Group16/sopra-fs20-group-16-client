@@ -9,9 +9,9 @@ import StartPage from "../../startPage/StartPage";
 import { RegisterGuard } from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
 import Home from "../../home/Home";
-// import Profile from "../../profile/Profile";
-import Dashboard from "../../Dashboard/Dashboard";
-import Profile from "../../Profile/Profile";
+import Dashboard from "../../dashboard/Dashboard";
+import Profile from "../../profile/Profile";
+import Board from "../../board/Board";
 
 /**
  * Main router of your application.
@@ -84,6 +84,14 @@ class AppRouter extends React.Component {
                 <RegisterGuard>
                   <Register />
                 </RegisterGuard>
+              )}
+            />
+            <Route
+              path="/board"
+              render={() => (
+                <GameGuard>
+                  <Board />
+                </GameGuard>
               )}
             />
             <Route path="/" exact render={() => <Redirect to={"/game"} />} />

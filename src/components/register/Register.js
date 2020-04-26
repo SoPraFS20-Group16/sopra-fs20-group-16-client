@@ -83,7 +83,7 @@ class Register extends React.Component{
             const requestBody = JSON.stringify({
                 username: this.state.username,
                 password: this.state.password,
-            })
+            });
 
             if(this.isNotEmptyOrSpaces(requestBody)){
                 this.props.history.push('/login');

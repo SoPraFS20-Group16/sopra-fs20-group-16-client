@@ -1,56 +1,75 @@
 import React from "react";
 import styled from "styled-components";
-import { BaseContainer } from "../../helpers/layout";
 import { api, handleError } from "../../helpers/api";
-import Player from "../../views/Player";
-import { Spinner } from "../../views/design/Spinner";
-import { Button } from "../../views/design/Button";
 import { withRouter, Link } from "react-router-dom";
+import {
+  Container,
+  Row,
+  Col,
+  Button
+} from "react-bootstrap";
+import Board from "../board/Board";
+import ResourcesList from "./ResourcesList";
+import FactBox from "./FactBox";
+import GameDTO from "../shared/models/GameDTO";
 
-const Container = styled(BaseContainer)`
+
+/*export const GButton = styled(Button)`
+  backgroundColor: gold;
   color: black;
-  text-align: center;
-`;
+  border: black;
+`;*/
 
-const Users = styled.ul`
-  list-style: none;
-  padding-left: 0;
-`;
-
-const PlayerContainer = styled.li`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-const ProfileButton = styled.button`
-  &:hover {
-    transform: translateY(-2px);
-  }
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 20px;
-  text-align: center;
-  color: black;
-  width: 140px;
-  height: 35px;
-  border: 1px solid black;
-  border-radius: 20px;
-  cursor: ${props => (props.disabled ? "default" : "pointer")};
-  opacity: ${props => (props.disabled ? 0.4 : 1)};
-  background: gold;
-  transition: all 0.3s ease;
-  postion: absolute;
-`;
 
 class Game extends React.Component {
   constructor() {
     super();
     this.state = {
       currentUser: {},
-      users: null
+      users: null,
+      points:0,
+      gameId: null,
+      tiles: [],
+      possibleMoves: []
     };
+    //TODO: find a way to have this gameId to call the server
+    this.getGameInfo(this.state.gameId);
   }
+
+
+  async getGameInfo(id) {
+    try {
+
+      // Get the token from the localStorage
+      const tokenStr = localStorage.getItem('token');
+
+      // Ask the server to get game info of the game with specific id by passing the token in the header
+      const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
+
+      const game = new GameDTO(response.data);
+
+      const board = new Board(game.board);
+
+      const tiles = board.tiles;
+
+      const possibleMoves = game.moves;
+
+      this.setState({tiles: tiles});
+
+      this.setState({possibleMoves: possibleMoves});
+
+
+      console.log(this.state.tiles);
+
+
+
+    } catch (error) {
+      alert(`Something went wrong while getting the game information\n${handleError(error)}`);
+    }
+  }
+
+
+
 
   logout() {
     localStorage.removeItem("token");
@@ -60,20 +79,9 @@ class Game extends React.Component {
   async componentDidMount() {
     try {
       const response = await api.get("/users");
-      // delays continuous execution of an async operation for 1 second.
-      // This is just a fake async call, so that the spinner can be displayed
-      // feel free to remove it :)
-      await new Promise(resolve => setTimeout(resolve, 1000));
 
       // Get the returned users and update the state.
       this.setState({ users: response.data });
-
-      // This is just some data for you to see what is available.
-      // Feel free to remove it.
-      console.log("request to:", response.request.responseURL);
-      console.log("status code:", response.status);
-      console.log("status text:", response.statusText);
-      console.log("requested data:", response.data);
 
       // See here to get more data.
       console.log(response);
@@ -86,39 +94,61 @@ class Game extends React.Component {
 
   render() {
     return (
-      <Container>
-        <div style={{ position: "absolute", left: "10%", paddingTop: "20px" }}>
-          <Link to="/profile">
-            <ProfileButton>Profile</ProfileButton>
-          </Link>
-        </div>
-        <h2>Happy Coding! </h2>
-        <p>Get all users from secure end point:</p>
+      <html className={"game-bg"}>
+        <div style={{
+          marginTop:'0px',
+          padding:'20px'
+        }}>
+          <Row>
+            <Col >
+              <Row>
+                <Button style={{
+                  backgroundColor: "gold",
+                  color: "black",
+                  borderColor: "black"}}
+                  onClick={() => {
+                  this.logout();
+                }}
+                >
+                  Logout
+                </Button>
+              </Row>
 
-        {!this.state.users ? (
-          <Spinner />
-        ) : (
-          <div>
-            <Users>
-              {this.state.users.map(user => {
-                return (
-                  <PlayerContainer key={user.id}>
-                    <Player user={user} />
-                  </PlayerContainer>
-                );
-              })}
-            </Users>
-            <Button
-              width="100%"
-              onClick={() => {
-                this.logout();
-              }}
-            >
-              Logout
-            </Button>
-          </div>
-        )}
-      </Container>
+              <Row style = {{textAlign: 'left', backgroundColor: 'white', border: '2px solid black'}}>
+                <ResourcesList numLumber = {5} numBrick = {2} numOre = {5} numGrain={3} numWool={10} numKnight={1} numMonopoly={0} numVictory={1}/>
+
+              </Row>
+
+
+              <Row style = {{backgroundColor: 'white', border: '2px solid black'}}>
+                <h3>Points: {this.state.points}/10</h3>
+              </Row>
+
+              <Row>
+                <FactBox />
+              </Row>
+
+
+
+
+            </Col>
+
+            <Col>
+            </Col>
+            <Col>
+            </Col>
+
+
+            <Col style={{}}>
+              <Board />
+            </Col>
+          </Row>
+
+          <Row>
+
+          </Row>
+        </div>
+      </html>
     );
   }
 }
