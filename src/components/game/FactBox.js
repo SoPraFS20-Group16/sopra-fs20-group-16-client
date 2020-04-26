@@ -18,7 +18,7 @@ export default class FactBox extends Component {
   }
 
   getQuote() {
-    let url = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json'
+    let url = 'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json';
 
     axios.get(url)
       .then(res => {
@@ -45,8 +45,12 @@ export default class FactBox extends Component {
         <h5 className='title'>Random Quote</h5>
 
         <div>
-            <div><p>{quote}</p></div>
-            <div><p>{author}</p></div>
+            <div style={{width: '100%'}}>
+              <p>{quote}</p>
+            </div>
+            <div>
+              <p>{author}</p>
+            </div>
 
           <Button onClick={this.getNewQuote}>
             New Quote

@@ -235,7 +235,7 @@ export default class Board extends React.Component {
 
 
   createInvisibleSettlement(){
-    const settlementArray = []
+    const settlementArray = [];
 
     for (let i=3; i<=7; i+=2){
       //first row
