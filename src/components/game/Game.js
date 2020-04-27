@@ -100,7 +100,7 @@ class Game extends React.Component {
           padding:'20px'
         }}>
           <Row>
-            <Col >
+            <Col xs lg="2">
               <Row>
                 <Button style={{
                   backgroundColor: "gold",
@@ -114,6 +114,15 @@ class Game extends React.Component {
                 </Button>
               </Row>
 
+              <Row>
+                <div style ={{backgroundColor: 'white', border: '2px solid black', borderRadius: 10, height: '100%', width: '100%'}}>
+
+                  <h4>Player XY, your turn!</h4>
+
+                </div>
+
+              </Row>
+
               <Row style = {{textAlign: 'left', backgroundColor: 'white', border: '2px solid black'}}>
                 <ResourcesList numLumber = {5} numBrick = {2} numOre = {5} numGrain={3} numWool={10} numKnight={1} numMonopoly={0} numVictory={1}/>
 
@@ -124,22 +133,20 @@ class Game extends React.Component {
                 <h3>Points: {this.state.points}/10</h3>
               </Row>
 
+
               <Row>
-                <FactBox />
+                <div style ={{border: '2px solid black', backgroundColor: 'white', borderRadius:10, width: '100%', height: '100%'}}>
+                  <h3>Randome Quote</h3>
+                  <h4>Programming is hard</h4>
+                  <h5>- SOPRA client team </h5>
+                </div>
+
               </Row>
 
-
-
-
-            </Col>
-
-            <Col>
-            </Col>
-            <Col>
             </Col>
 
 
-            <Col style={{}}>
+            <Col md = {6} style={{height: '100%', width:'100%'}}>
               <Board />
             </Col>
           </Row>
