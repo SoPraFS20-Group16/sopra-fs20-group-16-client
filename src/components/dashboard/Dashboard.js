@@ -125,7 +125,7 @@ export default class Dashboard extends Component {
                   console.log(data);
                   const { gameId } = data;
                   // TODO: Fill out gameUrl with gameId in proper path structure
-                  const gameUrl = `/games/%d${gameId}`;
+                  const gameUrl = `games/%d${gameId}`;
                   this.props.history.push(gameUrl);
                 });
               }}
