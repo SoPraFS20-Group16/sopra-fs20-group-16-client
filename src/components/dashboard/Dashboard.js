@@ -7,7 +7,7 @@ import {
 } from "react-bootstrap";
 import AvatarCircle from "../avatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import GamesList from "./GamesList";
 import {api, handleError} from "../../helpers/api";
 import styled from "styled-components";
@@ -28,7 +28,7 @@ const InputField = styled.input`
   color: black;
 `;
 
-export default class Dashboard extends Component {
+ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -121,12 +121,6 @@ export default class Dashboard extends Component {
               onSubmit={e => {
                 e.preventDefault();
                 this.sendCreatedGame().then(data => {
-                  console.log('Data');
-                  console.log(data);
-                  const { gameId } = data;
-                  // TODO: Fill out gameUrl with gameId in proper path structure
-                  const gameUrl = `games/%d${gameId}`;
-                  this.props.history.push(gameUrl);
                 });
               }}
           >
@@ -203,3 +197,4 @@ export default class Dashboard extends Component {
     );
   }
 }
+export default withRouter(Dashboard)

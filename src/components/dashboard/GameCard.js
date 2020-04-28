@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
-export default function GameCard(props) {
+export default function GameCard({game,history}) {
   return (
     <Card className="my-2" style={{
       maxWidth:"500px",
@@ -13,21 +13,21 @@ export default function GameCard(props) {
           paddingRight: "30px",
         }}
         onClick={() => {
-          this.props.history.push(props.url.toString()); // TODO: fix routing to lobby
+          history.push(`/games/${game.gameId}`);
         }}>
         <Row>
           <Col>
-            <h4>{props.name}</h4>
+            <h4>{game&&game.name}</h4>
           </Col>
           {/*<Col className="text-right">Created by: {props.createdBy}</Col>*/}
         </Row>
         <Row>
           <Col>
-            <p>Players: {props.joinedPlayers.toString()}/4</p>
-            <p>min.{props.minPlayers.toString()} to start</p>
+            <p>Players: {game&&game.joinedPlayers.toString()}/4</p>
+            <p>min.{game&&game.minPlayers.toString()} to start</p>
           </Col>
           <Col className="text-right" style={{maxWidth:"130px"}}>
-            Bots: {props.withBots ? "enabled" : "disabled"}
+            Bots: {game&&game.withBots ? "enabled" : "disabled"}
           </Col>
         </Row>
       </Card.Body>

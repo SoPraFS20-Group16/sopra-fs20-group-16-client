@@ -34,7 +34,7 @@ class Home extends React.Component {
                 </div>
                 <div className="box4">
                     <p>Let's start this game </p>
-                    <img src={require('./send.svg')} height={'20px'} width="20px"/>
+                    <img onClick={()=>{this.props.history.push("/game")}} src={require('./send.svg')} height={'20px'} width="20px"/>
                 </div>
                 <div className="buttons">
                     <Link to="/login">
