@@ -1,17 +1,11 @@
-import React, { Component } from "react";
-import {
-  Row,
-  Col,
-  Form,
-  Button
-} from "react-bootstrap";
+import React, {Component} from "react";
+import {Button, Col, Form, Row} from "react-bootstrap";
 import AvatarCircle from "../avatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import GamesList from "./GamesList";
 import {api, handleError} from "../../helpers/api";
 import styled from "styled-components";
-import axios from 'axios';
 
 
 const InputField = styled.input`
@@ -94,13 +88,18 @@ export default class Dashboard extends Component {
 
       // Send the newly created game to the server
       let res = await api.post("/games", requestBody,{headers:{"Token":tokenStr}});
-      console.log(res);
+      console.log("Response: " + res);
+      console.log("Response headers: " + JSON.stringify(res.headers));
+
+      const headers = res.headers;
+
       if (res.status === 201) {
         console.log('201 status from game creation');
       } else {
         console.log('Non-201 status from game creation');
       }
-      return res.data;
+
+      return res;
 
     } catch (error) {
       alert(`Something went wrong while sending the crated game to the server.\n${handleError(error)}`);
@@ -120,13 +119,10 @@ export default class Dashboard extends Component {
           <Form
               onSubmit={e => {
                 e.preventDefault();
-                this.sendCreatedGame().then(data => {
-                  console.log('Data');
-                  console.log(data);
-                  const { gameId } = data;
-                  // TODO: Fill out gameUrl with gameId in proper path structure
-                  const gameUrl = `games/%d${gameId}`;
-                  this.props.history.push(gameUrl);
+                this.sendCreatedGame().then(response => {
+                  const gameURL = "/game" + response.headers.location
+                  console.log("Composed game URL: " + gameURL);
+                  this.props.history.push(gameURL);
                 });
               }}
           >
@@ -176,7 +172,7 @@ export default class Dashboard extends Component {
                         style={{
                           backgroundColor:"gold",
                           color:"black",
-                          border:"black",
+                          borderColor:"black",
                           position:"absolute",
                           left:"75px",
                         }}>

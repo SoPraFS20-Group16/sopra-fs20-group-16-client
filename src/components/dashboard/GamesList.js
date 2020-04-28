@@ -26,14 +26,14 @@ export default class GamesList extends React.Component {
       const response = await api.get("/games", {headers:{"token":tokenStr}});
 
       // testing
-      console.log('response data: ' + response.data[0]);
+      console.log('response data: ' + JSON.stringify(response.data[0]));
       //console.log('response data url: ' + response.data[0].url);
 
       // Set the games into the state
       this.setState({games: response.data});
 
       // testing
-      console.log('state at getGames(): ' + this.state.games[0]);
+      console.log('state at getGames(): ' + JSON.stringify(this.state.games[0]));
       //console.log('state at getGames(): ' + this.state.games[0].url);
 
     } catch (error) {
