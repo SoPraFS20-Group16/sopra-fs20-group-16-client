@@ -119,14 +119,14 @@ class Dashboard extends Component {
 
       // testing
       console.log("response data: " + response.data[0]);
-      //console.log('response data url: ' + response.data[0].url);
+      console.log('response data url: ' + response.data[0].url);
 
       // Set the games into the state
       this.setState({ games: response && response.data });
 
       // testing
-      // console.log('state at getGames(): ' + this.state.games[0]);
-      //console.log('state at getGames(): ' + this.state.games[0].url);
+      console.log('state at getGames(): ' + this.state.games[0]);
+      console.log('state at getGames(): ' + this.state.games[0].url);
     } catch (error) {
       this.getGames();
       alert(
@@ -151,12 +151,7 @@ class Dashboard extends Component {
             e.preventDefault();
             this.sendCreatedGame().then((data) => {
               this.getGames();
-              // console.log('Data');
-              // console.log(data);
-              // const { gameId } = data;
-              // // TODO: Fill out gameUrl with gameId in proper path structure
-              // const gameUrl = `/games/%d${gameId}`;
-              // this.props.history.push(gameUrl);
+
             });
           }}
         >
