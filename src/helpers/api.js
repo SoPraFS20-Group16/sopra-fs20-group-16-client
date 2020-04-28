@@ -16,10 +16,10 @@ export const handleError = error => {
     if (response.data.status) {
       info += `\nstatus code: ${response.data.status}`;
       info += `\nerror: ${response.data.error}`;
-      info += `\nerror message: ${response.data.message}`;
+      info += `\nerror message: ${response.data.error}`;
     } else {
       info += `\nstatus code: ${response.status}`;
-      info += `\nerror message:\n${response.data}`;
+      info += `\nerror message:\n${JSON.stringify(response.data["errorMessage"])}`;
     }
 
     console.log('The request was made and answered but was unsuccessful.', error.response);
