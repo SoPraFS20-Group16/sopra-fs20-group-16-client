@@ -13,7 +13,7 @@ export default function GameCard({game,history}) {
           paddingRight: "30px",
         }}
         onClick={() => {
-          history.push(`/games/${game.gameId}`);
+          history.push(`/games/${game.gameId}`); // TODO: fix routing to lobby
         }}>
         <Row>
           <Col>
