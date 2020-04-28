@@ -51,7 +51,7 @@ class GamesList extends React.Component {
   // Decide whether to map games if present, or return a message
   displayGames() {
 
-    console.log('games: ' + games[0]);
+    //console.log('games: ' + games[0]);
     if (this.state.games !== undefined && this.state.games !== []) {
       return this.renderGameCards();
     }
