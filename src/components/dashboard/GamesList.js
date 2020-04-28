@@ -26,15 +26,13 @@ export default class GamesList extends React.Component {
       const response = await api.get("/games", {headers:{"token":tokenStr}});
 
       // testing
-      console.log('response data: ' + JSON.stringify(response.data[0]));
-      //console.log('response data url: ' + response.data[0].url);
+      console.log('response data: ' + JSON.stringify(response.data));
 
       // Set the games into the state
       this.setState({games: response.data});
 
       // testing
-      console.log('state at getGames(): ' + JSON.stringify(this.state.games[0]));
-      //console.log('state at getGames(): ' + this.state.games[0].url);
+      console.log('state at getGames(): ' + JSON.stringify(this.state.games));
 
     } catch (error) {
       alert(`Something went wrong while fetching the existing matches.\n${handleError(error)}`);
@@ -47,11 +45,11 @@ export default class GamesList extends React.Component {
     return this.state.games.map((game, key) => <GameCard key={key} {...game} />);
   };
 
-  // Decide whether to map games if present, or return a message
+  // Decide whether to map games if present, or return a message to create a new game
   displayGames() {
 
     // console.log('games: ' + games[0]);
-    if (this.state.games !== undefined && this.state.games !== []) {
+    if (this.state.games.length !== 0) {
       return this.renderGameCards();
     }
 
