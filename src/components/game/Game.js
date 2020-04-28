@@ -30,7 +30,8 @@ class Game extends React.Component {
       points:0,
       gameId: null,
       tiles: [],
-      possibleMoves: []
+      possibleMoves: [],
+      players: [],
     };
     //TODO: find a way to have this gameId to call the server
     this.getGameInfo(this.state.gameId);
@@ -54,13 +55,15 @@ class Game extends React.Component {
 
       const possibleMoves = game.moves;
 
+      const players = game.players;
+
       this.setState({tiles: tiles});
 
       this.setState({possibleMoves: possibleMoves});
 
+      this.setState({players: players});
 
       console.log(this.state.tiles);
-
 
 
     } catch (error) {

@@ -1,5 +1,5 @@
 /**
- * User model
+ * Token model
  */
 class Token {
     constructor(data = {}) {
