@@ -83,21 +83,20 @@ export default class Dashboard extends Component {
         name: this.state.name,
         withBots: this.state.withBots.toString()
       });
-      console.log('JSON: ' + requestBody)
+      console.log('JSON: ' + requestBody);
 
 
       // Send the newly created game to the server
       let res = await api.post("/games", requestBody,{headers:{"Token":tokenStr}});
-      console.log("Response: " + res);
-      console.log("Response headers: " + JSON.stringify(res.headers));
-
-      const headers = res.headers;
+      console.log(JSON.stringify(res));
 
       if (res.status === 201) {
         console.log('201 status from game creation');
       } else {
         console.log('Non-201 status from game creation');
       }
+
+      localStorage.setItem("gameID", res.headers.location.split("/")[2]);
 
       return res;
 
@@ -120,9 +119,9 @@ export default class Dashboard extends Component {
               onSubmit={e => {
                 e.preventDefault();
                 this.sendCreatedGame().then(response => {
-                  const gameURL = "/game" + response.headers.location
+                  const gameURL = "/game/" + localStorage.getItem("gameID");
                   console.log("Composed game URL: " + gameURL);
-                  this.props.history.push(gameURL);
+                  //this.props.history.push(gameURL); TODO: create a routing path
                 });
               }}
           >

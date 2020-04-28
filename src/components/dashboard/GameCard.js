@@ -24,7 +24,9 @@ export default function GameCard(props) {
         <Row>
           <Col>
             <p>Players: {props.joinedPlayers.toString()}/4</p>
-            <p>min.{props.minPlayers.toString()} to start</p>
+            <p style={{
+              fontStyle: 'italic'
+            }}>min. {props.minPlayers.toString()} players to begin</p>
           </Col>
           <Col className="text-right" style={{maxWidth:"130px"}}>
             Bots: {props.withBots ? "enabled" : "disabled"}
