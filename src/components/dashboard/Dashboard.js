@@ -89,18 +89,22 @@ export default class Dashboard extends Component {
         name: this.state.name,
         withBots: this.state.withBots.toString()
       });
-      console.log('JSON: ' + requestBody)
+      console.log('JSON: ' + requestBody);
 
 
       // Send the newly created game to the server
       let res = await api.post("/games", requestBody,{headers:{"Token":tokenStr}});
-      console.log(res);
+      console.log(JSON.stringify(res));
+
       if (res.status === 201) {
         console.log('201 status from game creation');
       } else {
         console.log('Non-201 status from game creation');
       }
-      return res.data;
+
+      localStorage.setItem("gameID", res.headers.location.split("/")[2]);
+
+      return res.headers.location;
 
     } catch (error) {
       alert(`Something went wrong while sending the crated game to the server.\n${handleError(error)}`);
@@ -125,7 +129,7 @@ export default class Dashboard extends Component {
                   console.log(data);
                   const { gameId } = data;
                   // TODO: Fill out gameUrl with gameId in proper path structure
-                  const gameUrl = `games/%d${gameId}`;
+                  const gameUrl = `games/${gameId}`;
                   this.props.history.push(gameUrl);
                 });
               }}
