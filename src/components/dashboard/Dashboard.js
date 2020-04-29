@@ -150,17 +150,14 @@ class Dashboard extends Component {
       <>
         <div style={{ margin: "40px" }}>
           <Link to="/profile">
-            <AvatarCircle avatarUrl={avatarUrl} size={100} className="my-3" />
+            <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />
           </Link>
         </div>
 
-        <div style={{ margin: "100px" }}>
+        <div style={{ padding: "40px"}}>
           <Button  size={100} onClick={() => this.logout()}>Logout</Button>
         </div>
-
-
-
-
+        
         <Form
           onSubmit={(e) => {
             e.preventDefault();
