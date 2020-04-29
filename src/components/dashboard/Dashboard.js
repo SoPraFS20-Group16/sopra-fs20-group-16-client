@@ -6,7 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 import GamesList from "./GamesList";
 import { api, handleError } from "../../helpers/api";
 import styled from "styled-components";
-import axios from "axios";
+
 
 const InputField = styled.input`
   &::placeholder {

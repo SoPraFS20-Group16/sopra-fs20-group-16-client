@@ -4,11 +4,6 @@ import './style.css';
 
 class Home extends React.Component {
 
-    logout() {
-        localStorage.removeItem("token");
-        this.props.history.push("/login");
-    }
-
 
   render() {
     return <div className="body1"><div className="center">
