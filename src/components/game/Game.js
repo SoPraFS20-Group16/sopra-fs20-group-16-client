@@ -69,7 +69,7 @@ class Game extends React.Component {
 
 
     } catch (error) {
-      alert(`Something went wrong while getting the game information\n${handleError(error)}`);
+      // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
   }
 
