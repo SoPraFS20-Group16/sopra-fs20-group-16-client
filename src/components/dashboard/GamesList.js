@@ -1,11 +1,12 @@
 import React from "react";
 import GameCard from "./GameCard";
 import {api, handleError} from "../../helpers/api";
+import { withRouter } from "react-router-dom";
 
-export default class GamesList extends React.Component {
+class GamesList extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       games: []
     };
@@ -42,7 +43,7 @@ export default class GamesList extends React.Component {
   // Use GameCard object to render existing games
   renderGameCards = () => {
     console.log("Games urls: " + this.state.games.map((game) => game.url))
-    return this.state.games.map((game, key) => <GameCard key={key} {...game} />);
+    return this.state.games.map((game, key) => <GameCard key={key} history={this.props.history} game={game} />);
   };
 
   // Decide whether to map games if present, or return a message to create a new game
@@ -61,9 +62,11 @@ export default class GamesList extends React.Component {
   render() {
     return (
       <div>
-        {this.displayGames()}
+        {this.displayGames(this.props)}
       </div>
     );
   }
 
 }
+
+export default withRouter(GamesList)
