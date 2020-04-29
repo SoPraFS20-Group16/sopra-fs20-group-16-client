@@ -1,6 +1,8 @@
 import React from "react";
+import { api } from "../../helpers/api";
 import { Card, Row, Col, Button } from "react-bootstrap";
 export default function GameCard({game,history}) {
+
   return (
     <Card className="my-2" style={{
       maxWidth:"500px",
@@ -12,7 +14,11 @@ export default function GameCard({game,history}) {
         style={{
           paddingRight: "30px",
         }}
-        onClick={() => {
+        onClick={async () => {
+          const token = localStorage.getItem("token")
+          await api.post(`/games/${game.gameId}/players`, null, {
+            headers: { token }
+          })
           history.push(`/games/${game.gameId}`); // TODO: fix routing to lobby
         }}>
         <Row>
