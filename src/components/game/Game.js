@@ -29,11 +29,11 @@ class Game extends React.Component {
       users: null,
       points:0,
       gameId: null,
-      tiles: [],
+      board: [],
       possibleMoves: [],
       players: [],
     };
-    //TODO: find a way to have this gameId to call the server
+
     this.getGameInfo(localStorage.getItem("gameID"));
   }
 
@@ -51,7 +51,6 @@ class Game extends React.Component {
 
       const board = new Board(game.board);
 
-      const tiles = board.tiles;
 
       const possibleMoves = game.moves;
 
@@ -59,18 +58,41 @@ class Game extends React.Component {
 
       this.setState({gameId: id});
 
-      this.setState({tiles: tiles});
 
       this.setState({possibleMoves: possibleMoves});
 
       this.setState({players: players});
 
+      this.setState({board: board.props.tiles});
+
+      localStorage.setItem("board", this.state.board);
+
       console.log(this.state.gameId);
+      console.log("players" + JSON.stringify(game.players));
+
+      console.log("possible moves -> " + JSON.stringify(game.moves));
+      console.log("board -->" + JSON.stringify(board.props.tiles));
+      console.log("board State -->" + JSON.stringify(this.state.board))
 
 
     } catch (error) {
       // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
+  }
+
+  /*
+  async makeMove(){
+
+    const tokenStr = localStorage.getItem("token");
+
+    await api.put("/games/"+this.state.gameId, move, {headers:{"Token":tokenStr}});
+
+  }
+
+   */
+
+  highlightPossibleMoves(){
+
   }
 
 
@@ -89,7 +111,7 @@ class Game extends React.Component {
       this.setState({ users: response.data });
 
       // See here to get more data.
-      console.log(response);
+      console.log(JSON.stringify(response));
     } catch (error) {
       alert(
         `Something went wrong while fetching the users: \n${handleError(error)}`
@@ -149,7 +171,7 @@ class Game extends React.Component {
 
               <Row>
                 <div style ={{border: '2px solid black', backgroundColor: 'white', borderRadius:10, width: '100%', height: '100%'}}>
-                  <h3>Randome Quote</h3>
+                  <h3>Random Quote</h3>
                   <h4>Programming is hard</h4>
                   <h5>- SOPRA client team </h5>
                 </div>
