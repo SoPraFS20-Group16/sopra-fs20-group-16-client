@@ -3,6 +3,17 @@ import React from 'react';
 import Hexagon from "react-svg-hexagon";
 
 export default function Hex(props) {
+  /*
+  const images={
+    HILL: "sdergt",
+
+  };
+
+  const numbers = {
+
+  };
+
+   */
 
   return (
 

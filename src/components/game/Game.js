@@ -63,16 +63,15 @@ class Game extends React.Component {
 
       this.setState({players: players});
 
-      this.setState({board: board.props.tiles});
+      this.setState({board: board});
 
-      localStorage.setItem("board", this.state.board);
 
       console.log(this.state.gameId);
       console.log("players" + JSON.stringify(game.players));
 
       console.log("possible moves -> " + JSON.stringify(game.moves));
-      console.log("board -->" + JSON.stringify(board.props.tiles));
-      console.log("board State -->" + JSON.stringify(this.state.board))
+      //console.log("board -->" + JSON.stringify(board.props.tiles));
+      //console.log("board State -->" + JSON.stringify(this.state.board))
 
 
     } catch (error) {
@@ -182,7 +181,7 @@ class Game extends React.Component {
 
 
             <Col md = {6} style={{height: '100%', width:'100%'}}>
-              <Board />
+              <Board board = {this.state.board}/>
             </Col>
           </Row>
 

@@ -2,6 +2,8 @@ import React from 'react';
 import Hex from "./Hex";
 import Road from "./Road";
 import Settlement from "./Settlement";
+import {api} from "../../helpers/api";
+import GameDTO from "../shared/models/GameDTO";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -12,7 +14,6 @@ export default class Board extends React.Component {
       radius: 50,
       randomResPics: []
     }
-    this.createBoard()
   }
 
   handleInputChange(key, value) {
@@ -20,6 +21,7 @@ export default class Board extends React.Component {
     // this.setState({'username': value});
     this.setState({[key]: value});
   }
+
 
 
   shuffle(array) {
@@ -285,9 +287,25 @@ export default class Board extends React.Component {
 
   createBoard(){
 
-    const hexes = [];
+    console.log("board from createBoard -->" + JSON.stringify(this.props.board.props.tiles));
 
+
+    //const top = this.props.board[0].coordinates[0].y;
+    //const left = this.props.board[0].coordinates[1].x;
+
+
+    //const number = JSON.stringify(this.props.board[0].number);
+
+    //console.log("number from game -->" + JSON.stringify(number));
+
+    const hexes = [];
     const images = this.state.randomResPics;
+    /*
+    const images = {
+      HILL: "",
+
+    };
+    */
     const numberImg = this.randomNumber();
     let i=-1;
     let j=-1;
@@ -295,7 +313,7 @@ export default class Board extends React.Component {
     for(let left = 2; left <= 6; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} />);
     }
 
     for(let left = 1; left <= 7; left += 2) {
@@ -346,6 +364,7 @@ export default class Board extends React.Component {
               position: "relative"
             }}
           >
+
 
             {this.createBoard()}
 
