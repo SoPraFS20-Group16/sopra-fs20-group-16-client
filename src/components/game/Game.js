@@ -22,8 +22,8 @@ import GameDTO from "../shared/models/GameDTO";
 
 
 class Game extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       currentUser: {},
       users: null,
@@ -33,8 +33,11 @@ class Game extends React.Component {
       possibleMoves: [],
       players: [],
     };
-    //TODO: find a way to have this gameId to call the server
-    this.getGameInfo(localStorage.getItem("gameID"));
+    this.getGameInfo = this.getGameInfo.bind(this);
+
+  }
+  componentDidMount() {
+    this.getGameInfo(this.props.match.params.id);
   }
 
 
@@ -45,7 +48,7 @@ class Game extends React.Component {
       const tokenStr = localStorage.getItem('token');
 
       // Ask the server to get game info of the game with specific id by passing the token in the header
-      const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
+      const response = await api.get("/games/"+id);
 
       const game = new GameDTO(response.data);
 
