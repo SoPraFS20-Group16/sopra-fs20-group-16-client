@@ -6,23 +6,6 @@ export const api = axios.create({
   headers: { 'Content-Type': 'application/json' }
 });
 
-api.interceptors.request.use(function (config) {
-  // Do something before request is sent
-  const token  =  localStorage.getItem("token");
-  if (token) {
-    config.headers.Token = token;
-  }
-
-  return config;
-}, function (error) {
-  // Do something with request error
-  return Promise.reject(error);
-});
-
-
-
-
-
 export const handleError = error => {
   const response = error.response;
 
