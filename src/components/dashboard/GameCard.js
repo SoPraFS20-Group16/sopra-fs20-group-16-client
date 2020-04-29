@@ -16,7 +16,9 @@ export default function GameCard({game,history}) {
         }}
         onClick={async () => {
           const token = localStorage.getItem("token")
-          await api.post(`/games/${game.gameId}/players`)
+          await api.post(`/games/${game.gameId}/players`, null, {
+            headers: { token }
+          })
           history.push(`/games/${game.gameId}`); // TODO: fix routing to lobby
         }}>
         <Row>

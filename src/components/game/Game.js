@@ -17,8 +17,8 @@ import Feed from "./Feed";
 
 
 class Game extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       currentUser: {},
       users: null,
@@ -28,11 +28,8 @@ class Game extends React.Component {
       possibleMoves: [],
       players: [],
     };
-    this.getGameInfo = this.getGameInfo.bind(this);
-
-  }
-  componentDidMount() {
-    this.getGameInfo(this.props.match.params.id);
+    //TODO: find a way to have this gameId to call the server
+    this.getGameInfo(localStorage.getItem("gameID"));
   }
 
 
@@ -43,7 +40,7 @@ class Game extends React.Component {
       const tokenStr = localStorage.getItem('token');
 
       // Ask the server to get game info of the game with specific id by passing the token in the header
-      const response = await api.get("/games/"+id);
+      const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
 
       const game = new GameDTO(response.data);
 

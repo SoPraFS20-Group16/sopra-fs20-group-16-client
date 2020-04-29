@@ -1,45 +1,15 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
-import { api } from "../../helpers/api";
 import './style.css';
 
 class Home extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {};
-        this.startGamehandler = this.startGamehandler.bind(this);
-        this.interval = null;
-    }
 
     logout() {
         localStorage.removeItem("token");
         this.props.history.push("/login");
     }
 
-    componentDidMount() {
-        this.interval = setInterval(() => {
-            api.get("/games/"+ this.props.match.params.id ).then((res) => {
-                this.setState(res.data);
-                if(res.data && res.data.started) {
-                    this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
-                }
-            })
-        }, 1000);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
-
-    startGamehandler () {
-        api.post(`/games/${this.props.match.params.id}/start`, true ).then((res) => {
-            this.props.history.push("/game/"+this.props.match.params.id+"/dashboard")
-        })
-    }
-
-    render() {
-
+  render() {
     return <div className="body1"><div className="center">
         <div className="left">
             <h1 className="heading">
@@ -66,11 +36,11 @@ class Home extends React.Component {
             </div>
             <div className="down">
                 <div className="box3">
-                    {this.state && this.state.players && this.state.players.map((player, index) => <p key={index}>{player.username}</p>)}
+                    <p>players 3/4</p>
                 </div>
                 <div className="box4">
                     <p>Let's start this game </p>
-                    <img onClick={this.startGamehandler} src={require('./send.svg')} height={'20px'} width="20px"/>
+                    <img onClick={()=>{this.props.history.push("/game")}} src={require('./send.svg')} height={'20px'} width="20px"/>
                 </div>
                 <div className="buttons">
                         <p className="button1">

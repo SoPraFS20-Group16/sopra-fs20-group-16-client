@@ -94,7 +94,9 @@ class Dashboard extends Component {
       console.log("JSON: " + requestBody);
 
       // Send the newly created game to the server
-      let res = await api.post("/games", requestBody);
+      let res = await api.post("/games", requestBody, {
+        headers: { Token: tokenStr },
+      });
       console.log(res);
       if (res.status === 201) {
         this.props.history.push(`/games/${res.data}`); // TODO: fix routing to lobby
@@ -115,9 +117,13 @@ class Dashboard extends Component {
 
   async getGames() {
     try {
+      // Get the token from the localStorage
+      const tokenStr = localStorage.getItem("token");
 
       // Ask the server the games by passing the token in the header
-      const response = await api.get("/games");
+      const response = await api.get("/games", {
+        headers: { token: tokenStr },
+      });
 
       // testing
       //console.log("response data: " + response.data[0]);
@@ -151,7 +157,7 @@ class Dashboard extends Component {
         <div style={{ padding: "40px"}}>
           <Button  size={100} onClick={() => this.logout()}>Logout</Button>
         </div>
-
+        
         <Form
           onSubmit={(e) => {
             e.preventDefault();
