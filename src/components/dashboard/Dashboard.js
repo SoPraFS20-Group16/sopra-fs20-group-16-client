@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import AvatarCircle from "../avatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
-import {Link, withRouter} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import GamesList from "./GamesList";
 import { api, handleError } from "../../helpers/api";
 import styled from "styled-components";
-
 
 const InputField = styled.input`
   &::placeholder {
@@ -21,6 +20,15 @@ const InputField = styled.input`
   background: gold;
   color: black;
 `;
+
+const GoldButt = styled.button`
+    padding: 17px;
+    background-color: gold;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+`
 
 class Dashboard extends Component {
 
@@ -91,12 +99,12 @@ class Dashboard extends Component {
         name: this.state.name,
         withBots: this.state.withBots.toString(),
       });
-      console.log('JSON: ' + requestBody);
-
+      console.log("JSON: " + requestBody);
 
       // Send the newly created game to the server
-      let res = await api.post("/games", requestBody,{headers:{"Token":tokenStr}});
-      console.log(JSON.stringify(res));
+
+      let res = await api.post("/games", requestBody);
+      console.log(res);
 
       if (res.status === 201) {
         this.props.history.push(`/games/${res.data}`); // TODO: fix routing to lobby
@@ -109,7 +117,6 @@ class Dashboard extends Component {
       localStorage.setItem("gameID", res.headers.location.split("/")[2]);
 
       return res.headers.location;
-
     } catch (error) {
       if (error.message === "Request failed with status code 403") {
         alert(
@@ -121,13 +128,9 @@ class Dashboard extends Component {
 
   async getGames() {
     try {
-      // Get the token from the localStorage
-      const tokenStr = localStorage.getItem("token");
 
       // Ask the server the games by passing the token in the header
-      const response = await api.get("/games", {
-        headers: { token: tokenStr },
-      });
+      const response = await api.get("/games");
 
       // testing
       //console.log("response data: " + response.data[0]);
@@ -152,16 +155,13 @@ class Dashboard extends Component {
   render() {
     return (
       <>
-        <div style={{ margin: "40px" }}>
+        <div style={{ margin: "40px", display:"flex"}}>
           <Link to="/profile">
             <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />
           </Link>
+          <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
         </div>
-
-        <div style={{ padding: "40px"}}>
-          <Button  size={100} onClick={() => this.logout()}>Logout</Button>
-        </div>
-
+        
         <Form
           onSubmit={(e) => {
             e.preventDefault();

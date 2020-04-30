@@ -24,7 +24,7 @@ class GamesList extends React.Component {
       const tokenStr = localStorage.getItem('token');
 
       // Ask the server the games by passing the token in the header
-      const response = await api.get("/games", {headers:{"token":tokenStr}});
+      const response = await api.get("/games");
 
       // testing
       console.log('response data: ' + JSON.stringify(response.data));

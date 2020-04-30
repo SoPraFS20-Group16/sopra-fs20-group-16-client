@@ -1,6 +1,6 @@
 import React from "react";
 import { api } from "../../helpers/api";
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 export default function GameCard({game,history}) {
 
   return (
@@ -16,9 +16,7 @@ export default function GameCard({game,history}) {
         }}
         onClick={async () => {
           const token = localStorage.getItem("token")
-          await api.post(`/games/${game.gameId}/players`, null, {
-            headers: { token }
-          })
+          await api.post(`/games/${game.gameId}/players`)
           history.push(`/games/${game.gameId}`); // TODO: fix routing to lobby
         }}>
         <Row>
