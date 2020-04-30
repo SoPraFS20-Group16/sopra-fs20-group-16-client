@@ -1,24 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import './style.css'
 import { api, handleError } from "../../helpers/api";
 import { withRouter, Link } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Button
-} from "react-bootstrap";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
-import FactBox from "./FactBox";
+// import FactBox from "./FactBox";
 import GameDTO from "../shared/models/GameDTO";
-
-
-/*export const GButton = styled(Button)`
-  backgroundColor: gold;
-  color: black;
-  border: black;
-`;*/
+import Feed from "./Feed";
 
 
 class Game extends React.Component {
@@ -72,7 +60,7 @@ class Game extends React.Component {
 
 
     } catch (error) {
-      // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
+      alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
   }
 
@@ -82,85 +70,77 @@ class Game extends React.Component {
     this.props.history.push("/login");
   }
 
+  async componentDidMount() {
+    try {
+      const response = await api.get("/users");
+
+      // Get the returned users and update the state.
+      this.setState({ users: response.data });
+
+      // See here to get more data.
+      console.log(JSON.stringify(response));
+    } catch (error) {
+      alert(
+        `Something went wrong while fetching the users: \n${handleError(error)}`
+      );
+    }
+  }
 
   render() {
     return (
       <html className={"game-bg"}>
-        <div style={{
-          marginTop:'0px',
-          padding:'20px'
-        }}>
-          <Row>
-            <Button style={{
-              backgroundColor: "gold",
-              color: "black",
-              borderColor: "black",
-              margin: "20px"
+        <div>
+          <button className={'button1'}
+            onClick={() => {
+              this.logout();
             }}
-              onClick={() => {
-                this.logout();
-              }}
-            >
-              Logout
-            </Button>
-          </Row>
+          >
+            Logout
+          </button>
 
-          <Container>
-            <Row>
-              <Col style={{
-                background: "url('/views/graphics/background_messagelog.png')",
-                border: '1px solid black'
-              }}>
+          <div className={'container1'}>
+            <div className={'containerGameInfos'}>
 
-
-                <Row>
-                  <div>
-
-                    <h4>Player XY, your turn!</h4>
-
-                  </div>
-                </Row>
-
-                <Row>
-                  <ResourcesList
-                    numLumber = {5}
-                    numBrick = {2}
-                    numOre = {5}
-                    numGrain={3}
-                    numWool={10}
-                    numKnight={1}
-                    numMonopoly={0}
-                    numVictory={1}/>
-
-                </Row>
+              <div className={'innerBox'}>
+                <ResourcesList
+                  numLumber = {5}
+                  numBrick = {2}
+                  numOre = {5}
+                  numGrain={3}
+                  numWool={9}
+                  numKnight={1}
+                  numMonopoly={0}
+                  numVictory={1}/>
+              </div>
 
 
-                <Row style = {{backgroundColor: 'white', border: '2px solid black'}}>
-                  <h3>Points: {this.state.points}/10</h3>
-                </Row>
+              <div className={'innerBox'}>
+                <h4>Points: {this.state.points}/10</h4>
+              </div>
 
 
-                <Row>
-                  <div style ={{border: '2px solid black', backgroundColor: 'white', borderRadius:10, width: '100%', height: '100%'}}>
-                    <h3>Randome Quote</h3>
-                    <h4>Programming is hard</h4>
-                    <h5>- SOPRA client team </h5>
-                  </div>
+              <div className={'feedBox'}>
+                <h4>
+                  Feed
+                </h4>
+                <h4>° ° ° °</h4>
+                <Feed />
+              </div>
 
-                </Row>
+            </div>
 
-              </Col>
+            <div className={'containerBoard'}>
+              <Board />
 
-              <Col>
-                <div style={{
-                  paddingLeft:'50px'
-                }}>
-                  <Board />
-                </div>
+              <div className={'chatBox'}>
+                <h4>Chat</h4>
+                <p>TheLegend27: Yo wassup</p>
+                <p>TheLegend27: gl hf</p>
+              </div>
+            </div>
 
-              </Col>
-            </Row>
-          </Container>
+
+          </div>
         </div>
       </html>
     );

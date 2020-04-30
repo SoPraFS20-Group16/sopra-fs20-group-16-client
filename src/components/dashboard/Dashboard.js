@@ -7,7 +7,6 @@ import GamesList from "./GamesList";
 import { api, handleError } from "../../helpers/api";
 import styled from "styled-components";
 
-
 const InputField = styled.input`
   &::placeholder {
     color: black;
@@ -21,6 +20,15 @@ const InputField = styled.input`
   background: gold;
   color: black;
 `;
+
+const GoldButt = styled.button`
+    padding: 17px;
+    background-color: gold;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+`
 
 class Dashboard extends Component {
 
@@ -94,8 +102,10 @@ class Dashboard extends Component {
       console.log("JSON: " + requestBody);
 
       // Send the newly created game to the server
+
       let res = await api.post("/games", requestBody);
       console.log(res);
+
       if (res.status === 201) {
         this.props.history.push(`/games/${res.data}`); // TODO: fix routing to lobby
         //window.location.reload();
@@ -103,7 +113,10 @@ class Dashboard extends Component {
       } else {
         console.log("Non-201 status from game creation");
       }
-      return res.data;
+
+      localStorage.setItem("gameID", res.headers.location.split("/")[2]);
+
+      return res.headers.location;
     } catch (error) {
       if (error.message === "Request failed with status code 403") {
         alert(
@@ -142,15 +155,18 @@ class Dashboard extends Component {
   render() {
     return (
       <>
-        <div style={{ margin: "40px" }}>
+        <div style={{ margin: "40px", display:"flex"}}>
           <Link to="/profile">
             <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />
           </Link>
+          <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
         </div>
+
 
         <div style={{ padding: "40px"}}>
           <Button  size={100} onClick={() => this.logout()}>Logout</Button>
         </div>
+
 
         <Form
           onSubmit={(e) => {
