@@ -5,8 +5,14 @@ import { withRouter, Link } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 // import FactBox from "./FactBox";
-import GameDTO from "../shared/models/GameDTO";
 import Feed from "./Feed";
+
+
+/*export const GButton = styled(Button)`
+  backgroundColor: gold;
+  color: black;
+  border: black;
+`;*/
 
 
 class Game extends React.Component {
@@ -18,14 +24,16 @@ class Game extends React.Component {
       points:0,
       gameId: null,
       tiles: [],
-      possibleMoves: [],
+      moves: [],
       players: [],
 
       currPlResources: null,
       currPlDevCards: null,
     };
-    //TODO: find a way to have this gameId to call the server
-    this.getGameInfo(localStorage.getItem("gameID"));
+  }
+
+  componentDidMount() {
+    this.getGameInfo(localStorage.getItem('gameID'));
   }
 
 
@@ -38,25 +46,22 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
 
-      console.log("Complete response from server in game:\n" + JSON.stringify(response.data));
+      this.setState({
+        tiles: response.data.board.tiles,
+        roads: response.data.board.roads,
+        gameId: response.data.gameId,
+        settlements: response.data.board.settlements,
+        cities: response.data.board.cities,
+        moves: response.data.moves,
+        players: response.data.players,
+      });
 
-      const game = new GameDTO(response.data);
-
-      const board = new Board(game.board);
-
-      const tiles = board.tiles;
-
-      const possibleMoves = game.moves;
-
-      const players = game.players;
-
-      this.setState({gameId: id});
-
-      this.setState({tiles: tiles});
-
-      this.setState({possibleMoves: possibleMoves});
-
-      this.setState({players: players});
+      console.log("gameID -->" + JSON.stringify(this.state.gameId));
+      console.log("tiles -->" + JSON.stringify(this.state.tiles));
+      console.log("roads -->" + JSON.stringify(this.state.roads));
+      console.log("settlements -->" + JSON.stringify(this.state.settlements));
+      console.log("cities -->" + JSON.stringify(this.state.cities));
+      console.log("moves -->" + JSON.stringify(this.state.moves));
 
       // Set current player resources and development cards to state
       let i = 0;
@@ -76,41 +81,22 @@ class Game extends React.Component {
     }
   }
 
-  async getPlayerResources() {
-    let i = 0;
-    while(this.state.players[i] === undefined && i < 4){i++;}
-    console.log("player resources: " + JSON.stringify(this.state.players[i]));
-    // return this.state.players[i].resources;
+  /*
+  async makeMove(){
+
+    const tokenStr = localStorage.getItem("token");
+
+    await api.put("/games/"+this.state.gameId, move, {headers:{"Token":tokenStr}});
+
   }
 
-  getPlayerDevCards() {
-    let i = 0;
-    // while(this.state.players[i].developmentCards === null){i++;}
-
-    // return this.state.players[i].developmentCards;
-  }
-
+   */
 
   logout() {
     localStorage.removeItem("token");
     this.props.history.push("/login");
   }
 
-  async componentDidMount() {
-    try {
-      const response = await api.get("/users");
-
-      // Get the returned users and update the state.
-      this.setState({ users: response.data });
-
-      // See here to get more data.
-      // console.log(JSON.stringify(response));
-    } catch (error) {
-      alert(
-        `Something went wrong while fetching the users: \n${handleError(error)}`
-      );
-    }
-  }
 
   render() {
     return (
@@ -152,7 +138,7 @@ class Game extends React.Component {
             </div>
 
             <div className={'containerBoard'}>
-              <Board />
+              <Board tiles={this.state.tiles}/>
 
               <div className={'chatBox'}>
                 <h4>Chat</h4>

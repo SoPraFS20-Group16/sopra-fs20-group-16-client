@@ -7,6 +7,7 @@ import GamesList from "./GamesList";
 import { api, handleError } from "../../helpers/api";
 import styled from "styled-components";
 
+
 const InputField = styled.input`
   &::placeholder {
     color: black;
@@ -102,10 +103,7 @@ class Dashboard extends Component {
       console.log("JSON: " + requestBody);
 
       // Send the newly created game to the server
-      let res = await api.post("/games", requestBody, {
-        headers: { Token: tokenStr },
-      });
-
+      let res = await api.post("/games", requestBody,{headers:{"Token":tokenStr}});
       console.log(JSON.stringify(res));
 
       if (res.status === 201) {

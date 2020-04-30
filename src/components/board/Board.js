@@ -2,6 +2,7 @@ import React from 'react';
 import Hex from "./Hex";
 import Road from "./Road";
 import Settlement from "./Settlement";
+import {api} from "../../helpers/api";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -12,7 +13,6 @@ export default class Board extends React.Component {
       radius: 50,
       randomResPics: []
     }
-    this.createBoard()
   }
 
   handleInputChange(key, value) {
@@ -20,6 +20,7 @@ export default class Board extends React.Component {
     // this.setState({'username': value});
     this.setState({[key]: value});
   }
+
 
 
   shuffle(array) {
@@ -68,7 +69,7 @@ export default class Board extends React.Component {
   randomNumber() {
     const randomNumberArray = [];
 
-    const number2 = "https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png"
+    const number2 = "https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png";
     const number3 = "https://cdn.clipart.email/b8bf34688e293e83ed672c52849ac4b6_numbers-in-circles-transparent-png-clipart-free-download-ywd_512-512.png";
     const number4 = "https://cdn.clipart.email/e59d16bf4dd0247fd88b6cedce0310c7_number-4-icon-transparent-png-clipart-free-download-ywd_1600-1600.png";
     const number5 = "https://cdn.clipart.email/01d598c665c53d3fbb1a6cf05359162d_transparent-5-icon-picture-1501683-transparent-5-icon_1600-1600.png";
@@ -284,54 +285,18 @@ export default class Board extends React.Component {
 
 
   createBoard(){
+    const info =[];
 
-    const hexes = [];
+    for(let i=0; i<=18; i++){
+      const top = this.props.tiles[i].coordinates[0].y;
+      const left = this.props.tiles[i].coordinates[1].x;
+      const number = this.props.tiles[i].tileNumber;
+      const tileType = this.props.tiles[i].tileType;
 
-    const images = this.state.randomResPics;
-    const numberImg = this.randomNumber();
-    let i=-1;
-    let j=-1;
-
-    for(let left = 2; left <= 6; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
+      info.push({y: top, x: left, number: number, tileType: tileType});
     }
 
-    for(let left = 1; left <= 7; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} img = {images[i]} numberImg = {numberImg[j]}  number ={this.getNumber(numberImg[j])} />);
-    }
-
-    for(let left = 0; left <= 2; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-    hexes.push(<Hex {...this.coordTrans({x: 4, y : 4, radius: 50})} img = "https://purepng.com/public/uploads/large/desert-9hl.png" numberImg = "https://www.kindpng.com/picc/b/133/1338575.png"/>)
-
-    for(let left = 6; left <= 8; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-
-    for(let left = 1; left <= 7; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-    for(let left = 2; left <= 6; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-    return hexes;
+    return info;
   }
 
 
@@ -348,9 +313,11 @@ export default class Board extends React.Component {
             }}
           >
 
-            {this.createBoard()}
 
-            {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
+            {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
+              (tile) => <Hex {...this.coordTrans({x: tile.x, y : tile.y, radius: this.state.radius})} number={tile.number} tileType={tile.tileType}/>)}
+
+            {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
             <div
               style={{
                 width: 453,
