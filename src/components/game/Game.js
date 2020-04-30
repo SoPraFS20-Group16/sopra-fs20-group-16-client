@@ -53,6 +53,7 @@ class Game extends React.Component {
         settlements: response.data.board.settlements,
         cities: response.data.board.cities,
         moves: response.data.moves,
+
       });
 
       console.log("gameID -->" + JSON.stringify(this.state.gameId));
