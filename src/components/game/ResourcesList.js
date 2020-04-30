@@ -15,37 +15,37 @@ export default function ResourceList(props){
     <div className={'resourceDiv'}>
       <div className={'resourceItem'}>
         <p>{"  "}
-          <img style={{height: imgSize}} src={Lumber} alt=""/> : {props.numLumber}
+          <img style={{height: imgSize}} src={Lumber} alt=""/> : {props.resources.LUMBER}
         </p>
 
         <p> {"  "}
-          <img style={{height: imgSize}} src={Grain} alt=""/> : {props.numGrain}
+          <img style={{height: imgSize}} src={Grain} alt=""/> : {props.resources.GRAIN}
         </p>
 
         <p> {"  "}
-          <img style={{height: imgSize}} src={Wool} alt=""/> : {props.numWool}
+          <img style={{height: imgSize}} src={Wool} alt=""/> : {props.resources.WOOL}
         </p>
 
         <p> {"  "}
-          <img style={{height: imgSize}} src={Brick} alt=""/> : {props.numBrick}
+          <img style={{height: imgSize}} src={Brick} alt=""/> : {props.resources.BRICK}
         </p>
 
         <p> {"  "}
-          <img style={{height: imgSize}} src={Ore} alt=""/> : {props.numOre}
+          <img style={{height: imgSize}} src={Ore} alt=""/> : {props.resources.ORE}
         </p>
       </div>
 
       <div className={'resourceItem'}>
         <p> {"  "}
-          <img style={{height: imgSize}} src={Knight} alt=""/> : {props.numKnight}
+          <img style={{height: imgSize}} src={Knight} alt=""/> : {props.devCards.KNIGHT}
         </p>
 
         <p> {"  "}
-          <img style={{height: imgSize}} src={Monopoly} alt=""/> : {props.numMonopoly}
+          <img style={{height: imgSize}} src={Monopoly} alt=""/> : {props.devCards.MONOPOLYPROGRESS}
         </p>
 
         <p>{"  "}
-          <img style={{height: imgSize}} src={Victory} alt=""/> : {props.numVictory}
+          <img style={{height: imgSize}} src={Victory} alt=""/> : {props.devCards.VICTORYPOINT}
         </p>
       </div>
 

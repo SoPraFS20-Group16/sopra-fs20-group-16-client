@@ -20,6 +20,8 @@ class Game extends React.Component {
       tiles: [],
       possibleMoves: [],
       players: [],
+
+      currPlResources: null,
     };
     //TODO: find a way to have this gameId to call the server
     this.getGameInfo(localStorage.getItem("gameID"));
@@ -35,6 +37,8 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
 
+      console.log("Complete response from server in game:\n" + JSON.stringify(response.data));
+
       const game = new GameDTO(response.data);
 
       const board = new Board(game.board);
@@ -45,6 +49,10 @@ class Game extends React.Component {
 
       const players = game.players;
 
+      let i = 0;
+      while(game.players[i].resources !== null && i < 4){i++}
+      console.log("player resources: " + JSON.stringify(game.players[i]));
+
       this.setState({gameId: id});
 
       this.setState({tiles: tiles});
@@ -53,12 +61,26 @@ class Game extends React.Component {
 
       this.setState({players: players});
 
-      console.log(this.state.gameId);
+      console.log("gameID: " + this.state.gameId);
 
 
     } catch (error) {
       alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
+  }
+
+  async getPlayerResources() {
+    let i = 0;
+    while(this.state.players[i] === undefined && i < 4){i++;}
+    console.log("player resources: " + JSON.stringify(this.state.players[i]));
+    // return this.state.players[i].resources;
+  }
+
+  getPlayerDevCards() {
+    let i = 0;
+    // while(this.state.players[i].developmentCards === null){i++;}
+
+    // return this.state.players[i].developmentCards;
   }
 
 
@@ -75,7 +97,7 @@ class Game extends React.Component {
       this.setState({ users: response.data });
 
       // See here to get more data.
-      console.log(JSON.stringify(response));
+      // console.log(JSON.stringify(response));
     } catch (error) {
       alert(
         `Something went wrong while fetching the users: \n${handleError(error)}`
@@ -98,17 +120,12 @@ class Game extends React.Component {
           <div className={'container1'}>
             <div className={'containerGameInfos'}>
 
-              <div className={'innerBox'}>
+{/*              <div className={'innerBox'}>
                 <ResourcesList
-                  numLumber = {5}
-                  numBrick = {2}
-                  numOre = {5}
-                  numGrain={3}
-                  numWool={9}
-                  numKnight={1}
-                  numMonopoly={0}
-                  numVictory={1}/>
-              </div>
+                  resources = {this.getPlayerResources()}
+                  devCards = {this.getPlayerDevCards()}
+                  />
+              </div>*/}
 
 
               <div className={'innerBox'}>
