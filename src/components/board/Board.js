@@ -359,9 +359,10 @@ export default class Board extends React.Component {
         <div className="Board">
           <div
             style={{
-              width: 433.0127,
-              height: 800,
-              position: "relative"
+              width: 453,
+              height: 420,
+              position: "relative",
+              justifyContent: 'centre'
             }}
           >
 
@@ -371,19 +372,15 @@ export default class Board extends React.Component {
             {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
             <div
               style={{
-                width: 500,
-                height: 500,
+                width: 453,
+                height: 420,
                 position: "absolute",
                 /* The zIndex allows to adjust what is in the foreground and background */
                 zIndex: 0
               }}
             >
-
-
               {this.createInvisibleRoad()}
               {this.createInvisibleSettlement()}
-
-
             </div>
 
           </div>

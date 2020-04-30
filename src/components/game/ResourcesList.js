@@ -9,64 +9,46 @@ import Knight from '../../views/graphics/knight.png'
 import Monopoly from '../../views/graphics/monopoly.png'
 import Victory from '../../views/graphics/victory.png'
 
-import {
-  Container,
-  Row,
-  Col,
-  Button
-} from "react-bootstrap";
-
 export default function ResourceList(props){
+  const imgSize = 50;
   return (
-    <Container style={{
-      paddingTop: "20px"
-    }}>
-      <Row>
-        <Col>
-          <h3>Lumber {"  "}
-            <img style={{height: 25}} src={Lumber} alt=""/> :
-            {props.numLumber}
-          </h3>
+    <div className={'resourceDiv'}>
+      <div className={'resourceItem'}>
+        <p>{"  "}
+          <img style={{height: imgSize}} src={Lumber} alt=""/> : {props.numLumber}
+        </p>
 
+        <p> {"  "}
+          <img style={{height: imgSize}} src={Grain} alt=""/> : {props.numGrain}
+        </p>
 
-          <h3>Grain {"  "}
-            <img style={{height: 25}} src={Grain} alt=""/> :
-            {props.numGrain}
-          </h3>
+        <p> {"  "}
+          <img style={{height: imgSize}} src={Wool} alt=""/> : {props.numWool}
+        </p>
 
-          <h3>Wool {"  "}
-            <img style={{height: 25}} src={Wool} alt=""/> :
+        <p> {"  "}
+          <img style={{height: imgSize}} src={Brick} alt=""/> : {props.numBrick}
+        </p>
 
-            {props.numWool}
-          </h3>
+        <p> {"  "}
+          <img style={{height: imgSize}} src={Ore} alt=""/> : {props.numOre}
+        </p>
+      </div>
 
-          <h3>Brick {"  "}
-            <img style={{height: 25}} src={Brick} alt=""/> :
-            {props.numBrick}
-          </h3>
-          <h3>Ore {"  "}
-            <img style={{height: 25}} src={Ore} alt=""/> :
-            {props.numOre}
-          </h3>
+      <div className={'resourceItem'}>
+        <p> {"  "}
+          <img style={{height: imgSize}} src={Knight} alt=""/> : {props.numKnight}
+        </p>
 
-          <h3>Knight {"  "}
-            <img style={{height: 25}} src={Knight} alt=""/> :
-            {props.numKnight}
-          </h3>
+        <p> {"  "}
+          <img style={{height: imgSize}} src={Monopoly} alt=""/> : {props.numMonopoly}
+        </p>
 
-          <h3>Monopoly {"  "}
-          <img style={{height: 25}} src={Monopoly} alt=""/> :
-          {props.numMonopoly}
-        </h3>
+        <p>{"  "}
+          <img style={{height: imgSize}} src={Victory} alt=""/> : {props.numVictory}
+        </p>
+      </div>
 
-          <h3>Victory{"  "}
-            <img style={{height: 25}} src={Victory} alt=""/> :
-            {props.numVictory}
-          </h3>
-
-
-        </Col>
-      </Row>
-    </Container>
+    </div>
   );
 }

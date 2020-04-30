@@ -1,17 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import './style.css'
 import { api, handleError } from "../../helpers/api";
 import { withRouter, Link } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Button
-} from "react-bootstrap";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 import FactBox from "./FactBox";
 import GameDTO from "../shared/models/GameDTO";
+import Feed from "./Feed";
 
 
 /*export const GButton = styled(Button)`
@@ -95,8 +90,6 @@ class Game extends React.Component {
   }
 
 
-
-
   logout() {
     localStorage.removeItem("token");
     this.props.history.push("/login");
@@ -121,73 +114,58 @@ class Game extends React.Component {
   render() {
     return (
       <html className={"game-bg"}>
-        <div style={{
-          marginTop:'0px',
-          padding:'20px'
-        }}>
-          <Row>
-            <Col xs lg="2">
-              <Row>
-                <Button style={{
-                  backgroundColor: "gold",
-                  color: "black",
-                  borderColor: "black"}}
-                  onClick={() => {
-                  this.logout();
-                }}
-                >
-                  Logout
-                </Button>
-              </Row>
+        <div>
+          <button className={'button1'}
+            onClick={() => {
+              this.logout();
+            }}
+          >
+            Logout
+          </button>
 
-              <Row>
-                <div style ={{backgroundColor: 'white', border: '2px solid black', borderRadius: 10, height: '100%', width: '100%'}}>
+          <div className={'container1'}>
+            <div className={'containerGameInfos'}>
 
-                  <h4>Player XY, your turn!</h4>
-
-                </div>
-
-              </Row>
-
-              <Row style = {{textAlign: 'left', backgroundColor: 'white', border: '2px solid black'}}>
+              <div className={'innerBox'}>
                 <ResourcesList
                   numLumber = {5}
                   numBrick = {2}
                   numOre = {5}
                   numGrain={3}
-                  numWool={10}
+                  numWool={9}
                   numKnight={1}
                   numMonopoly={0}
                   numVictory={1}/>
-
-              </Row>
-
-
-              <Row style = {{backgroundColor: 'white', border: '2px solid black'}}>
-                <h3>Points: {this.state.points}/10</h3>
-              </Row>
+              </div>
 
 
-              <Row>
-                <div style ={{border: '2px solid black', backgroundColor: 'white', borderRadius:10, width: '100%', height: '100%'}}>
-                  <h3>Random Quote</h3>
-                  <h4>Programming is hard</h4>
-                  <h5>- SOPRA client team </h5>
-                </div>
-
-              </Row>
-
-            </Col>
+              <div className={'innerBox'}>
+                <h4>Points: {this.state.points}/10</h4>
+              </div>
 
 
-            <Col md = {6} style={{height: '100%', width:'100%'}}>
-              <Board board = {this.state.board}/>
-            </Col>
-          </Row>
+              <div className={'innerBox'}>
+                <h4>
+                  Feed
+                </h4>
+                <h4>° ° ° °</h4>
+                <Feed />
+              </div>
 
-          <Row>
+            </div>
 
-          </Row>
+            <div className={'containerBoard'}>
+              <Board />
+
+              <div className={'chatBox'}>
+                <h4>Chat</h4>
+                <p>TheLegend27: Yo wassup</p>
+                <p>TheLegend27: gl hf</p>
+              </div>
+            </div>
+
+
+          </div>
         </div>
       </html>
     );
