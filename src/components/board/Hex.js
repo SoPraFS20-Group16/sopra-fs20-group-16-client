@@ -1,8 +1,23 @@
 import React from 'react';
-
 import Hexagon from "react-svg-hexagon";
+import styled from "styled-components";
+
+const BiomePic = styled.div`
+height: 100;
+background-color: beige;
+`
 
 export default function Hex(props) {
+
+  const tilesPics = {
+    FIELD: '../../views/graphics/biomes/wheatHex.gif',
+    FOREST: '../../views/graphics/biomes/woodHex.gif',
+    MOUNTAIN: '../../views/graphics/biomes/oreHex.gif',
+    DESERT: '../../views/graphics/biomes/desertHex.gif',
+    PASTURE: '../../views/graphics/biomes/sheepHex.gif',
+    HILL: '../../views/graphics/biomes/clayHex.gif',
+  }
+
   return (
 
     <div style={{position: "absolute", left: props.x, top: props.y}}>
@@ -21,13 +36,12 @@ export default function Hex(props) {
               <ClipPath/>
               <Polygon/>
               <Content>
-                <img
-                  style={{height: 100}}
-                  /* The background image of the Hexagon can be adjusted with the img tag */
-                  src={props.img}
-                  alt=""
-
-
+                <div
+                  style={{
+                    height: '100',
+                    //backgroundImage: `url(${tilesPics[props.type]}) !important`
+                    backgroundImage: "url('../../views/graphics/biomes/wheatHex.gif') !important",
+                  }}
                 />
 
                 <img

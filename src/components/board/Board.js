@@ -205,9 +205,11 @@ export default class Board extends React.Component {
       const top = this.props.tiles[i].coordinates[0].y;
       const left = this.props.tiles[i].coordinates[1].x;
       const number = this.props.tiles[i].tileNumber;
-      const tileType = this.props.tiles[i].tileType;
+      const type = this.props.tiles[i].type;
 
-      info.push({y: top, x: left, number: number, tileType: tileType});
+      // console.log("createBoard: " + top + ' ' + left + ' ' + number + ' ' + type)
+
+      info.push({y: top, x: left, number: number, tileType: type});
     }
 
     return info;
@@ -227,12 +229,11 @@ export default class Board extends React.Component {
             }}
           >
 
-
             {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
               (tile) => <Hex
                 {...this.coordTrans({x: tile.x, y : tile.y, radius: this.state.radius})}
                 number={tile.number}
-                tileType={tile.tileType}
+                type={tile.tileType}
                 numberImg={this.state.numberImgList[tile.number-2]}
 
               />)}

@@ -90,61 +90,59 @@ class Game extends React.Component {
 
   render() {
     return (
-      <html className={"game-bg"}>
-        <div>
-          <button className={'button1'}
-            onClick={() => {
-              this.logout();
-            }}
-          >
-            Logout
-          </button>
+      <div>
+        <button className={'button1'}
+          onClick={() => {
+            this.logout();
+          }}
+        >
+          Logout
+        </button>
 
-          <div className={'container1'}>
-            <div className={'containerGameInfos'}>
+        <div className={'container1'}>
+          <div className={'containerGameInfos'}>
 
-              <div className={'innerBox'}>
-                <ResourcesList
-                  numLumber = {5}
-                  numBrick = {2}
-                  numOre = {5}
-                  numGrain={3}
-                  numWool={9}
-                  numKnight={1}
-                  numMonopoly={0}
-                  numVictory={1}/>
-              </div>
-
-
-              <div className={'innerBox'}>
-                <h4>Points: {this.state.points}/10</h4>
-              </div>
-
-
-              <div className={'innerBox'}>
-                <h4>
-                  Feed
-                </h4>
-                <h4>° ° ° °</h4>
-                <Feed />
-              </div>
-
+            <div className={'innerBox'}>
+              <ResourcesList
+                numLumber = {5}
+                numBrick = {2}
+                numOre = {5}
+                numGrain={3}
+                numWool={9}
+                numKnight={1}
+                numMonopoly={0}
+                numVictory={1}/>
             </div>
 
-            <div className={'containerBoard'}>
-              <Board tiles={this.state.tiles}/>
 
-              <div className={'chatBox'}>
-                <h4>Chat</h4>
-                <p>TheLegend27: Yo wassup</p>
-                <p>TheLegend27: gl hf</p>
-              </div>
+            <div className={'innerBox'}>
+              <h4>Points: {this.state.points}/10</h4>
             </div>
 
+
+            <div className={'innerBox'}>
+              <h4>
+                Feed
+              </h4>
+              <h4>° ° ° °</h4>
+              <Feed />
+            </div>
 
           </div>
+
+          <div className={'containerBoard'}>
+            <Board tiles={this.state.tiles}/>
+
+            <div className={'chatBox'}>
+              <h4>Chat</h4>
+              <p>TheLegend27: Yo wassup</p>
+              <p>TheLegend27: gl hf</p>
+            </div>
+          </div>
+
+
         </div>
-      </html>
+      </div>
     );
   }
 }

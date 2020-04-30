@@ -14,7 +14,7 @@ class GameRouter extends React.Component {
      * "this.props.base" is "/app" because as been passed as a prop in the parent of GameRouter, i.e., App.js
      */
     return (
-      <Container>
+      <Container className={'game-bg'}>
         <Route
           exact
           path={`${this.props.base}/:id/dashboard`}
