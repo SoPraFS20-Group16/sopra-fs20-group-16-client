@@ -20,6 +20,9 @@ class Game extends React.Component {
       tiles: [],
       possibleMoves: [],
       players: [],
+
+      currPlResources: null,
+      currPlDevCards: null,
     };
     this.getGameInfo = this.getGameInfo.bind(this);
 
@@ -38,25 +41,29 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
 
-      const game = new GameDTO(response.data);
+      console.log("Game data from server: \n" + JSON.stringify(response.data))
 
-      const board = new Board(game.board);
+      this.setState({
+        tiles: response.data.board.tiles,
+        roads: response.data.board.roads,
+        gameId: response.data.gameId,
+        settlements: response.data.board.settlements,
+        cities: response.data.board.cities,
+        moves: response.data.moves,
+        players: response.data.players,
+      });
 
-      const tiles = board.tiles;
 
-      const possibleMoves = game.moves;
+      // Set current player resources and development cards to state
+      let i = 0;
+      while(response.data.players[i].resources === null && i < 4){i++}
 
-      const players = game.players;
-
-      this.setState({gameId: id});
-
-      this.setState({tiles: tiles});
-
-      this.setState({possibleMoves: possibleMoves});
-
-      this.setState({players: players});
-
-      console.log(this.state.gameId);
+      this.setState({
+        currPlResources:response.data.players[i].resources,
+        currPlDevCards:response.data.players[i].developmentCards,
+      })
+      console.log("currPlResources: " + JSON.stringify(this.state.currPlResources));
+      console.log("currPlDevCards: " + JSON.stringify(this.state.currPlDevCards));
 
 
     } catch (error) {
@@ -70,21 +77,6 @@ class Game extends React.Component {
     this.props.history.push("/login");
   }
 
-  async componentDidMount() {
-    try {
-      const response = await api.get("/users");
-
-      // Get the returned users and update the state.
-      this.setState({ users: response.data });
-
-      // See here to get more data.
-      console.log(JSON.stringify(response));
-    } catch (error) {
-      alert(
-        `Something went wrong while fetching the users: \n${handleError(error)}`
-      );
-    }
-  }
 
   render() {
     return (
@@ -100,17 +92,14 @@ class Game extends React.Component {
         <div className={'container1'}>
           <div className={'containerGameInfos'}>
 
-            <div className={'innerBox'}>
-              <ResourcesList
-                numLumber = {5}
-                numBrick = {2}
-                numOre = {5}
-                numGrain={3}
-                numWool={9}
-                numKnight={1}
-                numMonopoly={0}
-                numVictory={1}/>
-            </div>
+              <div className={'innerBox'}>
+                {console.log("player resources in state at render: " + this.state.currPlResources)}
+                {this.state.currPlResources && this.state.currPlResources &&
+                <ResourcesList
+                  resources = {this.state.currPlResources}
+                  devCards = {this.state.currPlDevCards}
+                />}
+              </div>
 
 
             <div className={'innerBox'}>
@@ -128,8 +117,8 @@ class Game extends React.Component {
 
           </div>
 
-          <div className={'containerBoard'}>
-            <Board />
+            <div className={'containerBoard'}>
+              <Board tiles={this.state.tiles}/>
 
             <div className={'chatBox'}>
               <h4>Chat</h4>
