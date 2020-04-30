@@ -5,7 +5,6 @@ import { withRouter, Link } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 // import FactBox from "./FactBox";
-import GameDTO from "../shared/models/GameDTO";
 import Feed from "./Feed";
 
 
