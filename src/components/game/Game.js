@@ -22,6 +22,7 @@ class Game extends React.Component {
       players: [],
 
       currPlResources: null,
+      currPlDevCards: null,
     };
     //TODO: find a way to have this gameId to call the server
     this.getGameInfo(localStorage.getItem("gameID"));
@@ -49,10 +50,6 @@ class Game extends React.Component {
 
       const players = game.players;
 
-      let i = 0;
-      while(game.players[i].resources !== null && i < 4){i++}
-      console.log("player resources: " + JSON.stringify(game.players[i]));
-
       this.setState({gameId: id});
 
       this.setState({tiles: tiles});
@@ -60,6 +57,16 @@ class Game extends React.Component {
       this.setState({possibleMoves: possibleMoves});
 
       this.setState({players: players});
+
+      // Set current player resources and development cards to state
+      let i = 0;
+      while(game.players[i].resources === null && i < 4){i++}
+
+      console.log("player resources: " + JSON.stringify(game.players[i].resources));
+      this.setState({currPlResources:game.players[i].resources})
+
+      console.log("player dev cards: " + JSON.stringify(game.players[i].developmentCards));
+      this.setState({currPlDevCards:game.players[i].developmentCards})
 
       console.log("gameID: " + this.state.gameId);
 
@@ -120,12 +127,13 @@ class Game extends React.Component {
           <div className={'container1'}>
             <div className={'containerGameInfos'}>
 
-{/*              <div className={'innerBox'}>
+              <div className={'innerBox'}>
+                {console.log("player resources in state at render: " + this.state.currPlResources)}
                 <ResourcesList
-                  resources = {this.getPlayerResources()}
-                  devCards = {this.getPlayerDevCards()}
+                  resources = {this.state.currPlResources}
+                  devCards = {this.state.currPlDevCards}
                   />
-              </div>*/}
+              </div>
 
 
               <div className={'innerBox'}>
