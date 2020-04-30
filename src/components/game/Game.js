@@ -65,16 +65,16 @@ class Game extends React.Component {
 
       // Set current player resources and development cards to state
       let i = 0;
-      while(game.players[i].resources === null && i < 4){i++}
+      while(response.data.players[i].resources === null && i < 4){i++}
 
-      console.log("player resources: " + JSON.stringify(game.players[i].resources));
-      this.setState({currPlResources:game.players[i].resources})
-
-      console.log("player dev cards: " + JSON.stringify(game.players[i].developmentCards));
-      this.setState({currPlDevCards:game.players[i].developmentCards})
+      this.setState({
+        currPlResources:response.data.players[i].resources,
+        currPlDevCards:response.data.players[i].developmentCards,
+      })
+      console.log("currPlResources: " + JSON.stringify(this.state.currPlResources));
+      console.log("currPlDevCards: " + JSON.stringify(this.state.currPlDevCards));
 
       console.log("gameID: " + this.state.gameId);
-
 
     } catch (error) {
       alert(`Something went wrong while getting the game information\n${handleError(error)}`);
@@ -115,10 +115,11 @@ class Game extends React.Component {
 
               <div className={'innerBox'}>
                 {console.log("player resources in state at render: " + this.state.currPlResources)}
+                {this.state.currPlResources && this.state.currPlResources &&
                 <ResourcesList
                   resources = {this.state.currPlResources}
                   devCards = {this.state.currPlDevCards}
-                  />
+                />}
               </div>
 
 

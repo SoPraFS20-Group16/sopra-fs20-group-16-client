@@ -8,6 +8,8 @@ import Ore from '../../views/graphics/ore.png'
 import Knight from '../../views/graphics/knight.png'
 import Monopoly from '../../views/graphics/monopoly.png'
 import Victory from '../../views/graphics/victory.png'
+import Plenty from '../../views/graphics/plenty.png'
+import Road from '../../views/graphics/road.png'
 
 export default function ResourceList(props){
   const imgSize = 50;
@@ -36,6 +38,11 @@ export default function ResourceList(props){
       </div>
 
       <div className={'resourceItem'}>
+
+        <p>{"  "}
+          <img style={{height: imgSize}} src={Victory} alt=""/> : {props.devCards.VICTORYPOINT}
+        </p>
+
         <p> {"  "}
           <img style={{height: imgSize}} src={Knight} alt=""/> : {props.devCards.KNIGHT}
         </p>
@@ -45,7 +52,11 @@ export default function ResourceList(props){
         </p>
 
         <p>{"  "}
-          <img style={{height: imgSize}} src={Victory} alt=""/> : {props.devCards.VICTORYPOINT}
+          <img style={{height: imgSize}} src={Road} alt=""/> : {props.devCards.ROADPROGRESS}
+        </p>
+
+        <p>{"  "}
+          <img style={{height: imgSize}} src={Plenty} alt=""/> : {props.devCards.PLENTYPROGRESS}
         </p>
       </div>
 
