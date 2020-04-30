@@ -9,18 +9,27 @@ export default function Hex(props) {
 
   };
 
+
+
   const numbers = {
+    2: "../../views/graphics/numbers/2.png",
+    3: "img2",
+    4: "",
+    5: "",
+    6: "",
+
 
   };
 
    */
+
+
 
   return (
 
     <div style={{position: "absolute", left: props.x, top: props.y}}>
 
       <Hexagon
-        {...props.number}
 
         side={50}
         stroke="black"
@@ -55,7 +64,10 @@ export default function Hex(props) {
                     borderRadius: 30
                   }}
                   /* The background image of the Hexagon can be adjusted with the img tag */
-                  src={props.numberImg}
+                  /*
+                  src={images.props.number}
+
+                   */
                   alt=""
                 />
 

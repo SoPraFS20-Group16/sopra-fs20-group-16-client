@@ -285,62 +285,18 @@ export default class Board extends React.Component {
 
 
   createBoard(){
+    const info =[];
 
-    //console.log("tiles from createBoard -->" + JSON.stringify(this.props.tiles));
+    for(let i=0; i<=18; i++){
+      const top = this.props.tiles[i].coordinates[0].y;
+      const left = this.props.tiles[i].coordinates[1].x;
+      const number = this.props.tiles[i].tileNumber;
+      const tileType = this.props.tiles[i].tileType;
 
-
-    const hexes = [];
-    const images = this.state.randomResPics;
-    /*
-    const images = {
-      HILL: "",
-
-    };
-    */
-    const numberImg = this.randomNumber();
-    let i=-1;
-    let j=-1;
-
-    for(let left = 2; left <= 6; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number = {this.getNumber(numberImg[j])} />);
+      info.push({y: top, x: left, number: number, tileType: tileType});
     }
 
-    for(let left = 1; left <= 7; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 2, radius: 50})} img = {images[i]} numberImg = {numberImg[j]}  number ={this.getNumber(numberImg[j])} />);
-    }
-
-    for(let left = 0; left <= 2; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-    hexes.push(<Hex {...this.coordTrans({x: 4, y : 4, radius: 50})} img = "https://purepng.com/public/uploads/large/desert-9hl.png" numberImg = "https://www.kindpng.com/picc/b/133/1338575.png"/>)
-
-    for(let left = 6; left <= 8; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 4, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-
-    for(let left = 1; left <= 7; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 6, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-    for(let left = 2; left <= 6; left += 2) {
-      i=i+1;
-      j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 8, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number ={this.getNumber(numberImg[j])}/>);
-    }
-
-    return hexes;
+    return info;
   }
 
 
@@ -358,9 +314,10 @@ export default class Board extends React.Component {
           >
 
 
-            {this.createBoard()}
+            {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
+              (tile) => <Hex {...this.coordTrans({x: tile.x, y : tile.y, radius: this.state.radius})} number={tile.number} tileType={tile.tileType}/>)}
 
-            {/* The following <div> below is reponsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
+            {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
             <div
               style={{
                 width: 453,

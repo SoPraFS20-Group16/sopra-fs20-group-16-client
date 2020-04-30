@@ -30,8 +30,10 @@ class Game extends React.Component {
       cities: []
 
     };
+  }
 
-    this.getGameInfo(localStorage.getItem("gameID"));
+  componentDidMount() {
+    this.getGameInfo(localStorage.getItem('gameID'));
   }
 
 
@@ -44,12 +46,14 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
 
-      this.setState({gameId: response.data.gameId});
-      this.setState({tiles: response.data.board.tiles});
-      this.setState({roads: response.data.board.roads});
-      this.setState({settlements: response.data.board.settlements});
-      this.setState({cities: response.data.board.cities});
-      this.setState({moves: response.data.moves});
+      this.setState({
+        tiles: response.data.board.tiles,
+        roads: response.data.board.roads,
+        gameId: response.data.gameId,
+        settlements: response.data.board.settlements,
+        cities: response.data.board.cities,
+        moves: response.data.moves,
+      });
 
       console.log("gameID -->" + JSON.stringify(this.state.gameId));
       console.log("tiles -->" + JSON.stringify(this.state.tiles));
