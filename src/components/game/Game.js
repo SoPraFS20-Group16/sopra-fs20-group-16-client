@@ -4,16 +4,9 @@ import { api, handleError } from "../../helpers/api";
 import { withRouter, Link } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
-import FactBox from "./FactBox";
+// import FactBox from "./FactBox";
 import GameDTO from "../shared/models/GameDTO";
 import Feed from "./Feed";
-
-
-/*export const GButton = styled(Button)`
-  backgroundColor: gold;
-  color: black;
-  border: black;
-`;*/
 
 
 class Game extends React.Component {
@@ -64,7 +57,7 @@ class Game extends React.Component {
 
 
     } catch (error) {
-      // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
+      alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
   }
 
@@ -108,7 +101,7 @@ class Game extends React.Component {
               </div>
 
 
-              <div className={'innerBox'}>
+              <div className={'feedBox'}>
                 <h4>
                   Feed
                 </h4>

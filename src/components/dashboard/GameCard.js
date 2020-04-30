@@ -1,6 +1,6 @@
 import React from "react";
 import { api } from "../../helpers/api";
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { Card, Row, Col } from "react-bootstrap";
 export default function GameCard({game,history}) {
 
   return (
