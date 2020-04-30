@@ -22,6 +22,13 @@ const InputField = styled.input`
 `;
 
 class Dashboard extends Component {
+
+  logout() {
+    localStorage.removeItem("token");
+    this.props.history.push("/login");
+  }
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -91,7 +98,8 @@ class Dashboard extends Component {
       });
       console.log(res);
       if (res.status === 201) {
-        window.location.reload();
+        this.props.history.push(`/games/${res.data}`); // TODO: fix routing to lobby
+        //window.location.reload();
         console.log("201 status from game creation");
       } else {
         console.log("Non-201 status from game creation");
@@ -117,15 +125,15 @@ class Dashboard extends Component {
       });
 
       // testing
-      console.log("response data: " + response.data[0]);
-      console.log('response data url: ' + response.data[0].url);
+      //console.log("response data: " + response.data[0]);
+      //console.log('response data url: ' + response.data[0].url);
 
       // Set the games into the state
       this.setState({ games: response && response.data });
 
       // testing
-      console.log('state at getGames(): ' + this.state.games[0]);
-      console.log('state at getGames(): ' + this.state.games[0].url);
+      //console.log('state at getGames(): ' + this.state.games[0]);
+      //console.log('state at getGames(): ' + this.state.games[0].url);
     } catch (error) {
       this.getGames();
       alert(
@@ -141,8 +149,12 @@ class Dashboard extends Component {
       <>
         <div style={{ margin: "40px" }}>
           <Link to="/profile">
-            <AvatarCircle avatarUrl={avatarUrl} size={100} className="my-3" />
+            <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />
           </Link>
+        </div>
+
+        <div style={{ padding: "40px"}}>
+          <Button  size={100} onClick={() => this.logout()}>Logout</Button>
         </div>
 
         <Form

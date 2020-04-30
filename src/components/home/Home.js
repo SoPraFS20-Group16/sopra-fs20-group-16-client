@@ -9,7 +9,6 @@ class Home extends React.Component {
         this.props.history.push("/login");
     }
 
-
   render() {
     return <div className="body1"><div className="center">
         <div className="left">
@@ -44,10 +43,8 @@ class Home extends React.Component {
                     <img onClick={()=>{this.props.history.push("/game")}} src={require('./send.svg')} height={'20px'} width="20px"/>
                 </div>
                 <div className="buttons">
-                    <Link to="/login">
                         <p className="button1">
-                            <a href="#">Logout</a></p>
-                    </Link>
+                            <a href="#" onClick={() => this.logout()}>Logout</a></p>
                     <p className="button2">
 
                     </p>
