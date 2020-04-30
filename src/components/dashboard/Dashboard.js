@@ -21,6 +21,15 @@ const InputField = styled.input`
   color: black;
 `;
 
+const GoldButt = styled.button`
+    padding: 17px;
+    background-color: gold;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+`
+
 class Dashboard extends Component {
 
   logout() {
@@ -147,14 +156,11 @@ class Dashboard extends Component {
   render() {
     return (
       <>
-        <div style={{ margin: "40px" }}>
+        <div style={{ margin: "40px", display:"flex"}}>
           <Link to="/profile">
             <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />
           </Link>
-        </div>
-
-        <div style={{ padding: "40px"}}>
-          <Button  size={100} onClick={() => this.logout()}>Logout</Button>
+          <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
         </div>
 
         <Form
