@@ -3,7 +3,6 @@ import Hex from "./Hex";
 import Road from "./Road";
 import Settlement from "./Settlement";
 import {api} from "../../helpers/api";
-import GameDTO from "../shared/models/GameDTO";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -70,7 +69,7 @@ export default class Board extends React.Component {
   randomNumber() {
     const randomNumberArray = [];
 
-    const number2 = "https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png"
+    const number2 = "https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png";
     const number3 = "https://cdn.clipart.email/b8bf34688e293e83ed672c52849ac4b6_numbers-in-circles-transparent-png-clipart-free-download-ywd_512-512.png";
     const number4 = "https://cdn.clipart.email/e59d16bf4dd0247fd88b6cedce0310c7_number-4-icon-transparent-png-clipart-free-download-ywd_1600-1600.png";
     const number5 = "https://cdn.clipart.email/01d598c665c53d3fbb1a6cf05359162d_transparent-5-icon-picture-1501683-transparent-5-icon_1600-1600.png";
@@ -287,16 +286,8 @@ export default class Board extends React.Component {
 
   createBoard(){
 
-    console.log("board from createBoard -->" + JSON.stringify(this.props.board.props.tiles));
+    //console.log("tiles from createBoard -->" + JSON.stringify(this.props.tiles));
 
-
-    //const top = this.props.board[0].coordinates[0].y;
-    //const left = this.props.board[0].coordinates[1].x;
-
-
-    //const number = JSON.stringify(this.props.board[0].number);
-
-    //console.log("number from game -->" + JSON.stringify(number));
 
     const hexes = [];
     const images = this.state.randomResPics;
@@ -313,7 +304,7 @@ export default class Board extends React.Component {
     for(let left = 2; left <= 6; left += 2) {
       i=i+1;
       j=j+1;
-      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} />);
+      hexes.push(<Hex {...this.coordTrans({x: left, y : 0, radius: 50})} img = {images[i]} numberImg = {numberImg[j]} number = {this.getNumber(numberImg[j])} />);
     }
 
     for(let left = 1; left <= 7; left += 2) {

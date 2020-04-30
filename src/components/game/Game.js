@@ -5,7 +5,6 @@ import { withRouter, Link } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 import FactBox from "./FactBox";
-import GameDTO from "../shared/models/GameDTO";
 import Feed from "./Feed";
 
 
@@ -21,12 +20,15 @@ class Game extends React.Component {
     super();
     this.state = {
       currentUser: {},
-      users: null,
       points:0,
       gameId: null,
-      board: [],
-      possibleMoves: [],
+      tiles: [],
+      moves: [],
       players: [],
+      roads: [],
+      settlements: [],
+      cities: []
+
     };
 
     this.getGameInfo(localStorage.getItem("gameID"));
@@ -42,31 +44,21 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
 
-      const game = new GameDTO(response.data);
+      this.setState({gameId: response.data.gameId});
+      this.setState({tiles: response.data.board.tiles});
+      this.setState({roads: response.data.board.roads});
+      this.setState({settlements: response.data.board.settlements});
+      this.setState({cities: response.data.board.cities});
+      this.setState({moves: response.data.moves});
 
-      const board = new Board(game.board);
-
-
-      const possibleMoves = game.moves;
-
-      const players = game.players;
-
-      this.setState({gameId: id});
-
-
-      this.setState({possibleMoves: possibleMoves});
-
-      this.setState({players: players});
-
-      this.setState({board: board});
+      console.log("gameID -->" + JSON.stringify(this.state.gameId));
+      console.log("tiles -->" + JSON.stringify(this.state.tiles));
+      console.log("roads -->" + JSON.stringify(this.state.roads));
+      console.log("settlements -->" + JSON.stringify(this.state.settlements));
+      console.log("cities -->" + JSON.stringify(this.state.cities));
+      console.log("moves -->" + JSON.stringify(this.state.moves));
 
 
-      console.log(this.state.gameId);
-      console.log("players" + JSON.stringify(game.players));
-
-      console.log("possible moves -> " + JSON.stringify(game.moves));
-      //console.log("board -->" + JSON.stringify(board.props.tiles));
-      //console.log("board State -->" + JSON.stringify(this.state.board))
 
 
     } catch (error) {
@@ -85,31 +77,11 @@ class Game extends React.Component {
 
    */
 
-  highlightPossibleMoves(){
-
-  }
-
-
   logout() {
     localStorage.removeItem("token");
     this.props.history.push("/login");
   }
 
-  async componentDidMount() {
-    try {
-      const response = await api.get("/users");
-
-      // Get the returned users and update the state.
-      this.setState({ users: response.data });
-
-      // See here to get more data.
-      console.log(JSON.stringify(response));
-    } catch (error) {
-      alert(
-        `Something went wrong while fetching the users: \n${handleError(error)}`
-      );
-    }
-  }
 
   render() {
     return (
@@ -155,7 +127,7 @@ class Game extends React.Component {
             </div>
 
             <div className={'containerBoard'}>
-              <Board />
+              <Board tiles={this.state.tiles}/>
 
               <div className={'chatBox'}>
                 <h4>Chat</h4>
