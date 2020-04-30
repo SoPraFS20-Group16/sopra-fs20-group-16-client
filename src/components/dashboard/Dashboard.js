@@ -105,7 +105,9 @@ class Dashboard extends Component {
       let res = await api.post("/games", requestBody, {
         headers: { Token: tokenStr },
       });
-      console.log(res);
+
+      console.log(JSON.stringify(res));
+
       if (res.status === 201) {
         this.props.history.push(`/games/${res.data}`); // TODO: fix routing to lobby
         //window.location.reload();
@@ -113,7 +115,10 @@ class Dashboard extends Component {
       } else {
         console.log("Non-201 status from game creation");
       }
-      return res.data;
+
+      localStorage.setItem("gameID", res.headers.location.split("/")[2]);
+
+      return res.headers.location;
     } catch (error) {
       if (error.message === "Request failed with status code 403") {
         alert(

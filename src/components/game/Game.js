@@ -67,6 +67,21 @@ class Game extends React.Component {
     this.props.history.push("/login");
   }
 
+  async componentDidMount() {
+    try {
+      const response = await api.get("/users");
+
+      // Get the returned users and update the state.
+      this.setState({ users: response.data });
+
+      // See here to get more data.
+      console.log(JSON.stringify(response));
+    } catch (error) {
+      alert(
+        `Something went wrong while fetching the users: \n${handleError(error)}`
+      );
+    }
+  }
 
   render() {
     return (
