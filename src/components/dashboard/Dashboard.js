@@ -161,13 +161,7 @@ class Dashboard extends Component {
           </Link>
           <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
         </div>
-
-
-        <div style={{ padding: "40px"}}>
-          <Button  size={100} onClick={() => this.logout()}>Logout</Button>
-        </div>
-
-
+        
         <Form
           onSubmit={(e) => {
             e.preventDefault();
