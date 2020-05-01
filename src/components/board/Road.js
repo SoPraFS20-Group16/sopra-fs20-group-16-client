@@ -1,5 +1,10 @@
 import React from "react";
+import {api} from "../../helpers/api";
 export default function Road(props){
+
+  const requestBody = JSON.stringify({
+    moveId: props.moveId
+  });
 
   const [streetColor, setStreetColor] = React.useState("transparent");
   return(
@@ -18,7 +23,6 @@ export default function Road(props){
         borderRadius: "10px",
         backgroundColor: props.color
       }}
-      onClick={() => setStreetColor("blue")}
-    />
+      onClick={async () => await api.put("/games/" + this.props.match.params.id, requestBody)} />
   )
 }

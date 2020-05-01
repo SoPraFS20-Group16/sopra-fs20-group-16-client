@@ -81,12 +81,16 @@ export default class Board extends React.Component {
       midY:null,
       color:'blue',
       rotation: "rotate(0deg)",
+      moveId: null,
     }
 
     let transCoords1, transCoords2, midCoords;
 
     this.props.moves.map((move) => {
-      if(move.building.buildingType === "ROAD") {
+      if(move.building !== undefined && move.building.buildingType === "ROAD") {
+
+        // Set moveId
+        roadInfo.moveId = move.moveId;
 
         // Transform road's coordinates to pixels
         transCoords1 = this.coordTrans({
@@ -125,7 +129,65 @@ export default class Board extends React.Component {
         roadArray.push(roadInfo);
       }
     })
+    return roadArray;
+  }
 
+  makeBuiltRoads() {
+    const roadArray = [];
+
+    let roadInfo = {
+      midX:null,
+      midY:null,
+      color:'blue',
+      rotation: "rotate(0deg)",
+      moveId: null,
+    }
+
+    let transCoords1, transCoords2, midCoords;
+
+    this.props.roads.map((move) => {
+      if(move.building.buildingType === "ROAD") {
+
+        // Set moveId
+        roadInfo.moveId = move.moveId;
+
+        // Transform road's coordinates to pixels
+        transCoords1 = this.coordTrans({
+          x:move.building.coordinates[0].x,
+          y:move.building.coordinates[0].y
+        });
+        transCoords2 = this.coordTrans({
+          x:move.building.coordinates[1].x,
+          y:move.building.coordinates[1].y
+        });
+
+        // Calculate the median point between the two coordinates in pixels
+        midCoords = this.coordsMedian({
+          x:transCoords1.x,
+          y:transCoords1.y,
+          x2:transCoords2.x,
+          y2:transCoords2.y,
+        });
+
+        roadInfo.midX = midCoords.midX;
+        roadInfo.midY = midCoords.midY;
+
+        // Calculate needed rotation based on coordinates
+        if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90)"}
+        else {
+          if(transCoords1.y > transCoords2.y){
+            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30)"}
+            else {roadInfo.rotation = "rotate(30)"}
+          }
+          else if(transCoords1.y < transCoords2.y){
+            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30)"}
+            else {roadInfo.rotation = "rotate(-30)"}
+          }
+        }
+
+        roadArray.push(roadInfo);
+      }
+    })
     return roadArray;
   }
 
