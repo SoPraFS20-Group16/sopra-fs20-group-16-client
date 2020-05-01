@@ -32,9 +32,9 @@ class Home extends React.Component {
         }, 1000);
     } */
 
+
     componentDidMount() {
         console.log(this.props, "coming from props")
-
         api.get("/games/"+ this.props.match.params.id ).then((res) => {
             this.setState({
                 moves: res.data.moves[0].moveId
@@ -42,6 +42,7 @@ class Home extends React.Component {
             if(res.data && res.data.started) {
                 this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
             }
+
         })
     }
 
@@ -49,15 +50,15 @@ class Home extends React.Component {
         clearInterval(this.interval);
     }
 
-    startGamehandler () {
+    async startGamehandler () {
         const token  =  localStorage.getItem("token");
         console.log(token)
         console.log( this.state.moves)
+        console.log(this.props.match.params.id)
 
 
         const requestBody = JSON.stringify(this.state.moves)
-        console.log(requestBody)
-        api.put("/games/" + this.props.match.params.id, requestBody).then(
+        await api.put("/games/" + this.props.match.params.id, requestBody).then(
             this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
         )
 
