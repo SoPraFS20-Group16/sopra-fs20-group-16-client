@@ -7,7 +7,12 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state  = {
+            moves: '',
+            players: [],
+            id: '',
+            gameState: false
+        };
         this.startGamehandler = this.startGamehandler.bind(this);
         this.interval = null;
     }
@@ -17,12 +22,7 @@ class Home extends React.Component {
         this.props.history.push("/login");
     }
 
-    state = {
-       moves: '',
-       players: [],
-       id: '',
-       gameState: false
-    };
+
 
     /* componentDidMount() {
         this.interval = setInterval(() => {
@@ -44,7 +44,7 @@ class Home extends React.Component {
                 console.log(res.data.moves.length, "what is your plan")
                 if (res.data.moves.length == 0) {
                     this.setState({
-                        moves: +0
+                        moves:''
 
                     })
                     if(res.data && res.data.started) {
@@ -78,9 +78,7 @@ class Home extends React.Component {
         console.log(this.props.match.params.id)
 
 
-        const requestBody = JSON.stringify({
-            moveId: this.state.moves
-        });
+        const requestBody = JSON.stringify(this.state.moves);
         console.log(requestBody, "what is the requestbody?")
         await api.put("/games/" + this.props.match.params.id, requestBody).then(
             //this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
