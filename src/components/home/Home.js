@@ -147,6 +147,7 @@ class Home extends React.Component {
 
         </div>
         </div>
+    </div>
     }
 }
 
