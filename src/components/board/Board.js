@@ -71,84 +71,61 @@ export default class Board extends React.Component {
   }
 
 
-  // Create and set invisible clickable roads on every hexagon's edge
-  createInvisibleRoad() {
+/*  Map built roads and roads that are possible to build and make parameters for
+  their creation*/
+  makeBuildableRoads() {
     const roadArray = [];
-    let coords1;
-    let coords2;
-    let coordsMid;
-    let k, j;
 
-    // Vertical streets
-    for (k = 0; k <= 10; k += 1) {
-      for (j = 1; j <= 9; j += 2){
-        // Use coordTrans to transform normal coordinates to pixels
-        coords1 = this.coordTrans({x: k, y: j});
-        coords2 = this.coordTrans({x: k, y: j+1});
-        // Calculate the median point between the two pairs of coordinates to position the road
-        coordsMid = this.coordsMedian({x: coords1.x, y: coords1.y, x2: coords2.x, y2: coords2.y});
-
-        if(j === 5 && (k === 0 || k === 10)) {
-          roadArray.push(<Road {...coordsMid} rotation="rotate(90deg)"/>);
-        }
-
-        if((j===3 || j === 7) && (k % 2 !== 0)){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(90deg)"/>);
-        }
-
-        if((j===1 || j===5 || j===9) && (k===2 || k===4 || k===6 || k===8)){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(90deg)"/>);
-        }
-      }
+    let roadInfo = {
+      midX:null,
+      midY:null,
+      color:'blue',
+      rotation: "rotate(0deg)",
     }
 
-    for(j = 1; j <= 11; j += 2){
-      for(k = 0; k <= 9; k += 1){
-        coords1 = this.coordTrans({x: k, y: j});
-        coords2 = this.coordTrans({x: k+1, y: j-1});
-        coordsMid = this.coordsMedian({x: coords1.x, y: coords1.y, x2: coords2.x, y2: coords2.y});
+    let transCoords1, transCoords2, midCoords;
 
-        if(k !== 0 && k !== 8 && k % 2 === 0 && (j === 1 || j === 5 || j === 9)){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
+    this.props.moves.map((move) => {
+      if(move.building.buildingType === "ROAD") {
+
+        // Transform road's coordinates to pixels
+        transCoords1 = this.coordTrans({
+          x:move.building.coordinates[0].x,
+          y:move.building.coordinates[0].y
+        });
+        transCoords2 = this.coordTrans({
+          x:move.building.coordinates[1].x,
+          y:move.building.coordinates[1].y
+        });
+
+        // Calculate the median point between the two coordinates in pixels
+        midCoords = this.coordsMedian({
+          x:transCoords1.x,
+          y:transCoords1.y,
+          x2:transCoords2.x,
+          y2:transCoords2.y,
+        });
+
+        roadInfo.midX = midCoords.midX;
+        roadInfo.midY = midCoords.midY;
+
+        // Calculate needed rotation based on coordinates
+        if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90)"}
+        else {
+          if(transCoords1.y > transCoords2.y){
+            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30)"}
+            else {roadInfo.rotation = "rotate(30)"}
+          }
+          else if(transCoords1.y < transCoords2.y){
+            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30)"}
+            else {roadInfo.rotation = "rotate(-30)"}
+          }
         }
 
-        if((j === 3 || j === 7 || j === 11) && (k === 3 || k === 5 || k === 7)){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
-        }
-
-        if(((j === 3 || j === 7) && k === 1) || (j === 5 || j === 9) && k === 8){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
-        }
-
-        if(j === 5 && k === 0 || j === 7 && k === 9){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(150deg)"/>);
-        }
+        roadArray.push(roadInfo);
       }
-    }
+    })
 
-    for(j = 1; j <= 11; j += 2) {
-      for (k = 1; k <= 10; k += 1) {
-        coords1 = this.coordTrans({x: k, y: j});
-        coords2 = this.coordTrans({x: k - 1, y: j - 1});
-        coordsMid = this.coordsMedian({x: coords1.x, y: coords1.y, x2: coords2.x, y2: coords2.y});
-
-        if(k !== 2 && k !== 10 && k % 2 === 0 && (j === 1 || j === 5 || j === 9)){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
-        }
-
-        if((j === 3 || j === 7 || j === 11) && (k === 3 || k === 5 || k === 7)){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
-        }
-
-        if(((j === 3 || j === 7) && k === 9) || (j === 5 || j === 9) && k === 2){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
-        }
-
-        if(j === 7 && k === 1 || j === 5 && k === 10){
-          roadArray.push(<Road {...coordsMid} rotation="rotate(30deg)"/>);
-        }
-      }
-    }
     return roadArray;
   }
 
@@ -248,59 +225,63 @@ export default class Board extends React.Component {
 
   render() {
     return (
-      <html className={'game-bg'}>
-      <div className="Board">
-        <div
-          style={{
-            width: 453,
-            height: 420,
-            position: "relative",
-            marginLeft: "25px",
-            marginTop: "25px",
-            justifyContent: 'centre',
-            alignItems: 'centre',
-          }}
-        >
-
-          {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
-            (tile) => <Hex
-              {...this.coordTrans({x: tile.x, y : tile.y, radius: this.state.radius})}
-              number={tile.number}
-              type={tile.tileType}
-
-            />)}
-
-          {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
+      <div className={'game-bg'}>
+        <div className="Board">
           <div
             style={{
               width: 453,
               height: 420,
-              position: "absolute",
-              /* The zIndex allows to adjust what is in the foreground and background */
-              zIndex: 0
+              position: "relative",
+              marginLeft: "25px",
+              marginTop: "25px",
+              justifyContent: 'centre',
+              alignItems: 'centre',
             }}
           >
-            {/*{this.createInvisibleRoad()}
+
+            {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
+              (tile) => <Hex
+                {...this.coordTrans({x: tile.x, y : tile.y})}
+                number={tile.number}
+                type={tile.tileType}
+
+            />)}
+
+            {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
+            <div
+              style={{
+                width: 453,
+                height: 420,
+                position: "absolute",
+                /* The zIndex allows to adjust what is in the foreground and background */
+                zIndex: 0
+              }}
+            >
+              {this.props.moves && this.props.moves.length !== 0 && this.makeBuildableRoads().map(
+                (road) => <Road {...road} />
+              ) }
+
+              {/*{this.createInvisibleRoad()}
             {this.createInvisibleSettlement()}*/}
 
-            {this.props.moves && this.props.moves.length !==0 && this.getMoves().map(
-              (move) => <Settlement
-                y = {move.moveY}
-                x = {move.moveX}
-                moveId = {move.moveID}
-              />)}
+              {this.props.moves && this.props.moves.length !==0 && this.getMoves().map(
+                (move) => <Settlement
+                  y = {move.moveY}
+                  x = {move.moveX}
+                  moveId = {move.moveID}
+                />)}
 
-            {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
-              (settlement) => <Settlement
-                y = {settlement.setY}
-                x = {settlement.setX}
-              />)}
+              {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
+                (settlement) => <Settlement
+                  y = {settlement.setY}
+                  x = {settlement.setX}
+                />)}
+
+            </div>
 
           </div>
-
         </div>
       </div>
-      </html>
     );
   }
 }

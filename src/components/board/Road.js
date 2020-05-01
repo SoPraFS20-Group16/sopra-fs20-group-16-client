@@ -16,7 +16,7 @@ export default function Road(props){
         height: "10px",
         border: "2px solid transparent",
         borderRadius: "10px",
-        backgroundColor: streetColor
+        backgroundColor: props.color
       }}
       onClick={() => setStreetColor("blue")}
     />

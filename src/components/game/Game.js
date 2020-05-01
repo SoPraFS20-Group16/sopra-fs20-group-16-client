@@ -17,11 +17,11 @@ class Game extends React.Component {
       points:0,
       gameId: null,
       tiles: [],
-      possibleMoves: [],
+      roads:[],
+      settlements:[],
+      cities:[],
+      moves: [],
       players: [],
-      cities: [],
-      settlements: [],
-      roads: [],
 
       currPlResources: null,
       currPlDevCards: null,
@@ -84,9 +84,9 @@ class Game extends React.Component {
     return (
       <div className={"game-bg"}>
         <button className={'button1'}
-                onClick={() => {
-                  this.logout();
-                }}
+          onClick={() => {
+            this.logout();
+          }}
         >
           Logout
         </button>
@@ -94,14 +94,14 @@ class Game extends React.Component {
         <div className={'container1'}>
           <div className={'containerGameInfos'}>
 
-            <div className={'innerBox'}>
-              {console.log("player resources in state at render: " + this.state.currPlResources)}
-              {this.state.currPlResources && this.state.currPlResources &&
-              <ResourcesList
-                resources = {this.state.currPlResources}
-                devCards = {this.state.currPlDevCards}
-              />}
-            </div>
+              <div className={'innerBox'}>
+                {console.log("player resources in state at render: " + this.state.currPlResources)}
+                {this.state.currPlResources && this.state.currPlResources &&
+                <ResourcesList
+                  resources = {this.state.currPlResources}
+                  devCards = {this.state.currPlDevCards}
+                />}
+              </div>
 
 
             <div className={'innerBox'}>
@@ -123,8 +123,10 @@ class Game extends React.Component {
             <Board
               tiles={this.state.tiles}
               moves={this.state.moves}
+              roads={this.state.roads}
               settlements={this.state.settlements}
-              players = {this.state.players}
+              cities={this.state.cities}
+              players={this.state.players}
             />
 
             <div className={'chatBox'}>
