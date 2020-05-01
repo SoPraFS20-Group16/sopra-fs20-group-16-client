@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import AvatarCircle from "../avatarCircle/AvatarCircle";
+import AvatarCircle from "../AvatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
 import { Link, withRouter } from "react-router-dom";
 import GamesList from "./GamesList";
