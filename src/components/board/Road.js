@@ -23,6 +23,6 @@ export default function Road(props){
         borderRadius: "10px",
         backgroundColor: props.color
       }}
-      onClick={async () => await api.put("/games/" + this.props.match.params.id, requestBody)} />
+      onClick={props.isBuilt ? '' : async () => await api.put("/games/" + this.props.match.params.id, requestBody)} />
   )
 }

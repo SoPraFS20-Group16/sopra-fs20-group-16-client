@@ -71,17 +71,18 @@ export default class Board extends React.Component {
   }
 
 
-/*  Map built roads and roads that are possible to build and make parameters for
+  /*  Map built roads and roads that are possible to build and make parameters for
   their creation*/
-  makeBuildableRoads() {
+  renderBuildableRoads() {
     const roadArray = [];
 
     let roadInfo = {
       midX:null,
       midY:null,
-      color:'blue',
+      color:'blue', //TODO make color user-dependent
       rotation: "rotate(0deg)",
       moveId: null,
+      isBuilt: false,
     }
 
     let transCoords1, transCoords2, midCoords;
@@ -132,108 +133,60 @@ export default class Board extends React.Component {
     return roadArray;
   }
 
-  makeBuiltRoads() {
+  // Render roads that have already been built
+  renderBuiltRoads() {
     const roadArray = [];
 
     let roadInfo = {
       midX:null,
       midY:null,
-      color:'blue',
+      color:'black', //TODO make color user-dependent
       rotation: "rotate(0deg)",
-      moveId: null,
+      isBuilt: true,
     }
 
     let transCoords1, transCoords2, midCoords;
 
-    this.props.roads.map((move) => {
-      if(move.building.buildingType === "ROAD") {
+    this.props.roads.map((road) => {
 
-        // Set moveId
-        roadInfo.moveId = move.moveId;
+      // Transform road's coordinates to pixels
+      transCoords1 = this.coordTrans({
+        x:road.building.coordinates[0].x,
+        y:road.building.coordinates[0].y
+      });
+      transCoords2 = this.coordTrans({
+        x:road.building.coordinates[1].x,
+        y:road.building.coordinates[1].y
+      });
 
-        // Transform road's coordinates to pixels
-        transCoords1 = this.coordTrans({
-          x:move.building.coordinates[0].x,
-          y:move.building.coordinates[0].y
-        });
-        transCoords2 = this.coordTrans({
-          x:move.building.coordinates[1].x,
-          y:move.building.coordinates[1].y
-        });
+      // Calculate the median point between the two coordinates in pixels
+      midCoords = this.coordsMedian({
+        x:transCoords1.x,
+        y:transCoords1.y,
+        x2:transCoords2.x,
+        y2:transCoords2.y,
+      });
 
-        // Calculate the median point between the two coordinates in pixels
-        midCoords = this.coordsMedian({
-          x:transCoords1.x,
-          y:transCoords1.y,
-          x2:transCoords2.x,
-          y2:transCoords2.y,
-        });
+      roadInfo.midX = midCoords.midX;
+      roadInfo.midY = midCoords.midY;
 
-        roadInfo.midX = midCoords.midX;
-        roadInfo.midY = midCoords.midY;
-
-        // Calculate needed rotation based on coordinates
-        if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90)"}
-        else {
-          if(transCoords1.y > transCoords2.y){
-            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30)"}
-            else {roadInfo.rotation = "rotate(30)"}
-          }
-          else if(transCoords1.y < transCoords2.y){
-            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30)"}
-            else {roadInfo.rotation = "rotate(-30)"}
-          }
+      // Calculate needed rotation based on coordinates
+      if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90)"}
+      else {
+        if(transCoords1.y > transCoords2.y){
+          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30)"}
+          else {roadInfo.rotation = "rotate(30)"}
         }
-
-        roadArray.push(roadInfo);
+        else if(transCoords1.y < transCoords2.y){
+          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30)"}
+          else {roadInfo.rotation = "rotate(-30)"}
+        }
       }
+
+      roadArray.push(roadInfo);
+
     })
     return roadArray;
-  }
-
-
-  createInvisibleSettlement(){
-    const settlementArray = [];
-
-    for (let i=3; i<=7; i+=2){
-      //first row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 0 , radius: 50})}/>);
-      //last row (twelfth)
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 11 , radius: 50})}/>);
-    }
-
-    for (let i=2; i<=8; i+=2){
-      //second row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 1 , radius: 50})}/>);
-      //third row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 2 , radius: 50})}/>);
-      //tenth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 9 , radius: 50})}/>);
-      //eleventh row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 10 , radius: 50})}/>);
-
-    }
-
-    for (let i=1; i<=9; i+=2){
-      //fourth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 3 , radius: 50})}/>);
-      //fifth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 4 , radius: 50})}/>);
-
-      //eighth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 7 , radius: 50})}/>);
-      //ninth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 8 , radius: 50})}/>);
-    }
-
-    for (let i=0; i<=10; i+=2){
-      //sixth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 5 , radius: 50})}/>);
-      //seventh row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 6 , radius: 50})}/>);
-    }
-
-    return settlementArray;
   }
 
   getSettlements(){
@@ -319,12 +272,14 @@ export default class Board extends React.Component {
                 zIndex: 0
               }}
             >
-              {this.props.moves && this.props.moves.length !== 0 && this.makeBuildableRoads().map(
+
+              {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
                 (road) => <Road {...road} />
               ) }
 
-              {/*{this.createInvisibleRoad()}
-            {this.createInvisibleSettlement()}*/}
+              {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
+                (road) => <Road {...road} />
+              )}
 
               {this.props.moves && this.props.moves.length !==0 && this.getMoves().map(
                 (move) => <Settlement
