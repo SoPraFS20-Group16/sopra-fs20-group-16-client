@@ -67,7 +67,6 @@ class Dashboard extends Component {
       // const title = "Game " + this.state.games.length + 1;
       const {title, bots} = this.state;
       // const createdBy = "Generic User";
-
       const newGame = {
         title,
         bots
@@ -89,9 +88,9 @@ class Dashboard extends Component {
 
       console.log(
         "State before sending game: " +
-          this.state.name +
-          ", " +
-          this.state.withBots
+        this.state.name +
+        ", " +
+        this.state.withBots
       );
 
       // Get the game for the request's body
@@ -161,7 +160,7 @@ class Dashboard extends Component {
           </Link>
           <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
         </div>
-        
+
         <Form
           onSubmit={(e) => {
             e.preventDefault();

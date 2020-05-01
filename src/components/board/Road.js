@@ -18,8 +18,6 @@ export default function Road(props){
         borderRadius: "10px",
         backgroundColor: streetColor
       }}
-      onMouseEnter={() => setStreetColor("cyan")}
-      onMouseLeave={() => setStreetColor("transparent")}
       onClick={() => setStreetColor("blue")}
     />
   )

@@ -11,6 +11,8 @@ export default class Board extends React.Component {
       color: "red",
       streetColor: "yellow",
       radius: 50,
+      colors: ["blue", "red", "green", "yellow"],
+      playerColors: []
     }
   }
 
@@ -20,6 +22,16 @@ export default class Board extends React.Component {
     this.setState({[key]: value});
   }
 
+  componentDidMount() {
+    let lst = [];
+    const colors = ["blue", "red", "green", "yellow"];
+
+    const players = this.props.players;
+
+    players.map((player, key) => lst.push({player: colors[key]}));
+
+    this.setState({playerColors: lst});
+  }
 
 
   // Transforms the normal/server coordinates to pixel coordinates
@@ -137,7 +149,7 @@ export default class Board extends React.Component {
         }
       }
     }
-        return roadArray;
+    return roadArray;
   }
 
 
@@ -185,6 +197,36 @@ export default class Board extends React.Component {
     return settlementArray;
   }
 
+  getSettlements(){
+    const info = [];
+    const settlements = this.props.settlements;
+
+
+    for (let i=0; i<= settlements.length; i++){
+      const top = settlements[i].y;
+      const left = settlements[i].x;
+      info.push({y: top, x:left})
+    }
+    return info;
+
+  }
+
+
+  getMoves(){
+    const info = [];
+
+    const moves = this.props.moves;
+    const coordinates = this.props.moves.building.coordinates;
+
+    for (let i=0; i<= moves.length; i++){
+      const top = coordinates[i].y;
+      const left = coordinates[i].x;
+      info.push({y: top, x: left })
+
+    }
+    return info;
+  }
+
 
   createBoard(){
     const info =[];
@@ -207,43 +249,43 @@ export default class Board extends React.Component {
   render() {
     return (
       <html className={'game-bg'}>
-        <div className="Board">
+      <div className="Board">
+        <div
+          style={{
+            width: 453,
+            height: 420,
+            position: "relative",
+            marginLeft: "25px",
+            marginTop: "25px",
+            justifyContent: 'centre',
+            alignItems: 'centre',
+          }}
+        >
+
+          {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
+            (tile) => <Hex
+              {...this.coordTrans({x: tile.x, y : tile.y, radius: this.state.radius})}
+              number={tile.number}
+              type={tile.tileType}
+
+            />)}
+
+          {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
           <div
             style={{
               width: 453,
               height: 420,
-              position: "relative",
-              marginLeft: "25px",
-              marginTop: "25px",
-              justifyContent: 'centre',
-              alignItems: 'centre',
+              position: "absolute",
+              /* The zIndex allows to adjust what is in the foreground and background */
+              zIndex: 0
             }}
           >
-
-            {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
-              (tile) => <Hex
-                {...this.coordTrans({x: tile.x, y : tile.y, radius: this.state.radius})}
-                number={tile.number}
-                type={tile.tileType}
-
-              />)}
-
-            {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
-            <div
-              style={{
-                width: 453,
-                height: 420,
-                position: "absolute",
-                /* The zIndex allows to adjust what is in the foreground and background */
-                zIndex: 0
-              }}
-            >
-              {this.createInvisibleRoad()}
-              {this.createInvisibleSettlement()}
-            </div>
-
+            {this.createInvisibleRoad()}
+            {this.createInvisibleSettlement()}
           </div>
+
         </div>
+      </div>
       </html>
     );
   }

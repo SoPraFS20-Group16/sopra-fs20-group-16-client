@@ -57,7 +57,7 @@ class GamesList extends React.Component {
     else {
       return 'No matches open yet! Create one on the left to begin.'
     }
-}
+  }
 
   render() {
     return (

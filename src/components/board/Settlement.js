@@ -15,8 +15,6 @@ export default function Settlement(props){
         borderRadius: "10px",
         backgroundColor: color
       }}
-      onMouseEnter={() => setColor("cyan")}
-      onMouseLeave={() => setColor("transparent")}
       onClick={() => setColor("red")}
     />
   )

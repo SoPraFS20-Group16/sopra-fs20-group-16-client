@@ -8,16 +8,9 @@ import ResourcesList from "./ResourcesList";
 import Feed from "./Feed";
 
 
-/*export const GButton = styled(Button)`
-  backgroundColor: gold;
-  color: black;
-  border: black;
-`;*/
-
-
 class Game extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       currentUser: {},
       users: null,
@@ -26,6 +19,9 @@ class Game extends React.Component {
       tiles: [],
       possibleMoves: [],
       players: [],
+      cities: [],
+      settlements: [],
+      roads: [],
 
       currPlResources: null,
       currPlDevCards: null,
@@ -45,7 +41,7 @@ class Game extends React.Component {
       const tokenStr = localStorage.getItem('token');
 
       // Ask the server to get game info of the game with specific id by passing the token in the header
-      const response = await api.get("/games/"+id, {headers:{"token":tokenStr}});
+      const response = await api.get("/games/"+id);
 
       console.log("Game data from server: \n" + JSON.stringify(response.data))
 
@@ -88,9 +84,9 @@ class Game extends React.Component {
     return (
       <div className={"game-bg"}>
         <button className={'button1'}
-          onClick={() => {
-            this.logout();
-          }}
+                onClick={() => {
+                  this.logout();
+                }}
         >
           Logout
         </button>
@@ -98,14 +94,14 @@ class Game extends React.Component {
         <div className={'container1'}>
           <div className={'containerGameInfos'}>
 
-              <div className={'innerBox'}>
-                {console.log("player resources in state at render: " + this.state.currPlResources)}
-                {this.state.currPlResources && this.state.currPlResources &&
-                <ResourcesList
-                  resources = {this.state.currPlResources}
-                  devCards = {this.state.currPlDevCards}
-                />}
-              </div>
+            <div className={'innerBox'}>
+              {console.log("player resources in state at render: " + this.state.currPlResources)}
+              {this.state.currPlResources && this.state.currPlResources &&
+              <ResourcesList
+                resources = {this.state.currPlResources}
+                devCards = {this.state.currPlDevCards}
+              />}
+            </div>
 
 
             <div className={'innerBox'}>
@@ -123,8 +119,13 @@ class Game extends React.Component {
 
           </div>
 
-            <div className={'containerBoard'}>
-              <Board tiles={this.state.tiles}/>
+          <div className={'containerBoard'}>
+            <Board
+              tiles={this.state.tiles}
+              moves={this.state.moves}
+              settlements={this.state.settlements}
+              players = {this.state.players}
+            />
 
             <div className={'chatBox'}>
               <h4>Chat</h4>
@@ -133,10 +134,6 @@ class Game extends React.Component {
             </div>
           </div>
 
-          </div>
-
-          <div className={'containerBoard'}>
-            <Board tiles={this.state.tiles}/>
 
         </div>
       </div>
