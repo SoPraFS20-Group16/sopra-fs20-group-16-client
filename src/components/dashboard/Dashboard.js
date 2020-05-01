@@ -106,16 +106,16 @@ class Dashboard extends Component {
       console.log(res);
 
       if (res.status === 201) {
-        this.props.history.push(`/games/${res.data}`); // TODO: fix routing to lobby
+        this.props.history.push(`/games/${res.data.gameId}`); // TODO: fix routing to lobby
         //window.location.reload();
         console.log("201 status from game creation");
       } else {
         console.log("Non-201 status from game creation");
       }
 
-      localStorage.setItem("gameID", res.headers.location.split("/")[2]);
+      //localStorage.setItem("gameID", res.headers.location.split("/")[2]);
 
-      return res.headers.location;
+      return res.data.gameId;
     } catch (error) {
       if (error.message === "Request failed with status code 403") {
         alert(

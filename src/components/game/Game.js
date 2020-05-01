@@ -17,7 +17,7 @@ class Game extends React.Component {
       points:0,
       gameId: null,
       tiles: [],
-      possibleMoves: [],
+      moves: [],
       players: [],
       cities: [],
       settlements: [],
