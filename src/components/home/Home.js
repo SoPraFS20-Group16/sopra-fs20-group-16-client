@@ -7,7 +7,12 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
-        //this.state = {};
+        this.state  = {
+            moves: '',
+            players: [],
+            id: '',
+            gameState: false
+        };
         this.startGamehandler = this.startGamehandler.bind(this);
         this.interval = null;
     }
@@ -17,9 +22,7 @@ class Home extends React.Component {
         this.props.history.push("/login");
     }
 
-    state = {
-       moves: ''
-    }
+
 
     /* componentDidMount() {
         this.interval = setInterval(() => {
@@ -32,32 +35,53 @@ class Home extends React.Component {
         }, 1000);
     } */
 
-    componentDidMount() {
-        console.log(this.props, "coming from props")
 
-        api.get("/games/"+ this.props.match.params.id ).then((res) => {
-            this.setState({
-                moves: res.data.moves[0].moveId
+    componentDidMount() {
+
+            api.get("/games/"+ this.props.match.params.id ).then((res) => {
+                this.state.id = JSON.stringify(res.data.gameId);
+                this.gameState = res.data.started;
+                console.log(res.data.moves.length, "what is your plan");
+                if (res.data.moves.length === 0) {
+                    this.setState({
+                        moves:''
+
+                    });
+                    // if(res.data && res.data.started) {
+                    //     this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
+                    //}
+                }
+                else if (res.data.players.length > 1) {
+                    this.setState({
+                            moves: res.data.moves[0].moveId,
+                            players: res.data.players
+
+                        });
+                        // if(res.data && res.data.started) {
+                        //     this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
+                        // }
+                }
+                console.log(this.state, "show the state")
             })
-            if(res.data && res.data.started) {
-                this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
-            }
-        })
+        console.log(this.props.match, "coming from props")
+
     }
 
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
-    startGamehandler () {
+    async startGamehandler () {
         const token  =  localStorage.getItem("token");
         console.log(token)
-        console.log( this.state.moves)
+        console.log(this.state.moves, "moveid checker?")
 
 
-        const requestBody = JSON.stringify(this.state.moves)
-        console.log(requestBody)
-        api.put("/games/" + this.props.match.params.id, requestBody).then(
+        const requestBody = {
+            "moveId": this.state.moves
+        }
+        console.log(requestBody, "what is the requestbody?")
+        await api.put("/games/" + this.props.match.params.id, requestBody).then(
             this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
         )
 
@@ -80,7 +104,7 @@ class Home extends React.Component {
 }
 
     render() {
-      console.log(this.state, "checking for mvoes")
+
     return <div className="body1"><div className="center">
         <div className="left">
             <h1 className="heading">
