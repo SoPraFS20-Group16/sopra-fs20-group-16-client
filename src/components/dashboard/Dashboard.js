@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import AvatarCircle from "../avatarCircle/AvatarCircle";
+import AvatarCircle from "../AvatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
 import { Link, withRouter } from "react-router-dom";
 import GamesList from "./GamesList";
@@ -106,6 +106,7 @@ class Dashboard extends Component {
       console.log(res);
 
       if (res.status === 201) {
+        console.log(res.data, "checking res data")
         this.props.history.push(`/games/${res.data.gameId}`); // TODO: fix routing to lobby
         //window.location.reload();
         console.log("201 status from game creation");
