@@ -1,21 +1,22 @@
 import React from 'react';
 import Hexagon from "react-svg-hexagon";
-import styled from "styled-components";
-
-const BiomePic = styled.div`
-height: 100;
-background-color: beige;
-`
+import woodHex from '../../views/graphics/biomes/woodHex.gif'
+import clayHex from '../../views/graphics/biomes/clayHex.gif'
+import wheatHex from '../../views/graphics/biomes/wheatHex.gif'
+import oreHex from '../../views/graphics/biomes/oreHex.gif'
+import desertHex from '../../views/graphics/biomes/desertHex.gif'
+import sheepHex from '../../views/graphics/biomes/sheepHex.gif'
+// import outlaw from '../../views/graphics/outlaw.png'
 
 export default function Hex(props) {
 
   const tilesPics = {
-    FIELD: '../../views/graphics/biomes/wheatHex.gif',
-    FOREST: '../../views/graphics/biomes/woodHex.gif',
-    MOUNTAIN: '../../views/graphics/biomes/oreHex.gif',
-    DESERT: '../../views/graphics/biomes/desertHex.gif',
-    PASTURE: '../../views/graphics/biomes/sheepHex.gif',
-    HILL: '../../views/graphics/biomes/clayHex.gif',
+    FIELD: wheatHex,
+    FOREST: woodHex,
+    MOUNTAIN: oreHex,
+    DESERT: desertHex,
+    PASTURE: sheepHex,
+    HILL: clayHex,
   }
 
   return (
@@ -25,8 +26,8 @@ export default function Hex(props) {
       <Hexagon
 
         side={50}
-        stroke="black"
-        strokeWidth={1}
+        stroke="rgb(235,232,160)"
+        strokeWidth={7}
         radius={5}
 
 
@@ -36,29 +37,38 @@ export default function Hex(props) {
               <ClipPath/>
               <Polygon/>
               <Content>
+                <img
+                  src={tilesPics[props.type]}
+                  alt={''}
+                  style={{
+                    width:'93%',
+                    height:'93%',
+                  }}
+                />
+
                 <div
                   style={{
-                    height: '100',
-                    //backgroundImage: `url(${tilesPics[props.type]}) !important`
-                    backgroundImage: "url('../../views/graphics/biomes/wheatHex.gif') !important",
+                    position: "absolute",
+                    bottom: '33%',
+                    height: '30px',
+                    width: '30px',
+                    backgroundColor: 'rgb(235,232,160)',
+                    verticalAlign: 'middle',
+                    border: '2px black',
+                    borderRadius: 30,
                   }}
-                />
-
-                <img
-                  style={{
-                    height: 40,
-                    position: 'absolute',
-                    width: 40,
-                    backgroundColor: 'transparent',
+                >
+                  <div style={{
+                    position:"absolute",
+                    top:"13px",
+                    left:"7px",
                     textAlign: 'center',
-                    border: null,
-                    borderRadius: 30
-                  }}
-                  /* The background image of the Hexagon can be adjusted with the img tag */
-
-                  src={props.numberImg}
-                  alt=""
-                />
+                    fontSize: '25px',
+                    fontWeight: 'bold',
+                  }}>
+                    {props.number === 0 ? '' : props.number}
+                  </div>
+                </div>
 
 
               </Content>

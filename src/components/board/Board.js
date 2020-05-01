@@ -11,18 +11,6 @@ export default class Board extends React.Component {
       color: "red",
       streetColor: "yellow",
       radius: 50,
-      randomResPics: [],
-      numberImgList:  ["https://cdn.clipart.email/f78357664d2afe5d3b1cca9b8b483eec_2-icon-transparent-png-clipart-free-download-ywd_1600-1600.png",
-        "https://cdn.clipart.email/b8bf34688e293e83ed672c52849ac4b6_numbers-in-circles-transparent-png-clipart-free-download-ywd_512-512.png",
-        "https://cdn.clipart.email/e59d16bf4dd0247fd88b6cedce0310c7_number-4-icon-transparent-png-clipart-free-download-ywd_1600-1600.png",
-        "https://cdn.clipart.email/01d598c665c53d3fbb1a6cf05359162d_transparent-5-icon-picture-1501683-transparent-5-icon_1600-1600.png",
-        "https://cdn.clipart.email/a140fa003c08d30ebf7d90d5c84af5ea_photo-6-png-picpng_512-512.png",
-        "https://cdn.clipart.email/af28259f9ecad0face218a06c1f2326c_perfect-circle-png-picture-518383-perfect-circle-png_1600-1600.png",
-        "https://cdn.clipart.email/08aab226fd16612aa7036ec03026b7c3_file8numbereightincirclepng-wikimedia-commons_500-500.png",
-        "https://cdn.clipart.email/eb787b6a1a137a061639a44b692059ff_numbers-in-circles-transparent-png-clipart-free-download-ywd_1600-1600.png",
-        "https://www.freeiconspng.com/uploads/number-10-9.png",
-        "https://img.pngio.com/file11numberelevenincirclepng-wikimedia-commons-the-number-11-png-500_500.png",
-        "https://cdn.clipart.email/943b8eba8365c2a25871ad98558678ed_free-pictures-of-the-number-12-download-free-clip-art-free-clip-_500-500.png"],
     }
   }
 
@@ -225,7 +213,10 @@ export default class Board extends React.Component {
               width: 453,
               height: 420,
               position: "relative",
-              justifyContent: 'centre'
+              marginLeft: "25px",
+              marginTop: "25px",
+              justifyContent: 'centre',
+              alignItems: 'centre',
             }}
           >
 
@@ -234,7 +225,6 @@ export default class Board extends React.Component {
                 {...this.coordTrans({x: tile.x, y : tile.y, radius: this.state.radius})}
                 number={tile.number}
                 type={tile.tileType}
-                numberImg={this.state.numberImgList[tile.number-2]}
 
               />)}
 
