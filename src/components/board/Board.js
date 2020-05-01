@@ -130,49 +130,7 @@ export default class Board extends React.Component {
   }
 
 
-  createInvisibleSettlement(){
-    const settlementArray = [];
 
-    for (let i=3; i<=7; i+=2){
-      //first row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 0 , radius: 50})}/>);
-      //last row (twelfth)
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 11 , radius: 50})}/>);
-    }
-
-    for (let i=2; i<=8; i+=2){
-      //second row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 1 , radius: 50})}/>);
-      //third row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 2 , radius: 50})}/>);
-      //tenth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 9 , radius: 50})}/>);
-      //eleventh row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 10 , radius: 50})}/>);
-
-    }
-
-    for (let i=1; i<=9; i+=2){
-      //fourth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 3 , radius: 50})}/>);
-      //fifth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 4 , radius: 50})}/>);
-
-      //eighth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 7 , radius: 50})}/>);
-      //ninth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 8 , radius: 50})}/>);
-    }
-
-    for (let i=0; i<=10; i+=2){
-      //sixth row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 5 , radius: 50})}/>);
-      //seventh row
-      settlementArray.push(<Settlement {...this.coordTrans({x: i, y : 6 , radius: 50})}/>);
-    }
-
-    return settlementArray;
-  }
 
   getSettlements(){
     let info = [];
@@ -181,26 +139,42 @@ export default class Board extends React.Component {
 
     //const color = this.state.playerColors.map((el) => el.key().userId === userId? el.valueOf(): "");
 
-    settlements.map((settlement) => info.push({setY: settlement.y, setX: settlement.x}));
+    settlements.map((settlement) => {
+
+      let transCoords = this.coordTrans({
+        x:settlement.x,
+        y:settlement.y
+      });
+
+      info.push({setY: transCoords.y, setX: transCoords.x})
+
+
+    });
+
+
 
     return info;
   }
 
-  getMoves(){
+  getSettlementMoves(){
     let info = [];
     const moves = this.props.moves;
     //userId needed to set color
     //const userId = moves[0].userId;
 
     //if move.building exists and the building type is settlement then add the move coordinate to info for each possible move, else do nothing ("")
-    moves.map((move) => move.building?
-      (move.building.buildingType === "SETTLEMENT" ?
-      info.push(
-        {moveY: move.building.coordinates[0].y, moveX: move.building.coordinates[0].x, moveID: move.moveId}
-        )
-      : "")
-      : "");
+    moves.map((move) => {
+      if(move.building && move.building.buildingType === "SETTLEMENT"){
 
+        let transCoords = this.coordTrans({
+          x:move.building.coordinates[0].x,
+          y:move.building.coordinates[0].y
+        });
+
+          info.push({moveY: transCoords.y, moveX: transCoords.x, moveID: move.moveId})
+      }
+
+     });
     return info;
   }
 
@@ -264,17 +238,18 @@ export default class Board extends React.Component {
               {/*{this.createInvisibleRoad()}
             {this.createInvisibleSettlement()}*/}
 
-              {this.props.moves && this.props.moves.length !==0 && this.getMoves().map(
+              {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
                 (move) => <Settlement
                   y = {move.moveY}
                   x = {move.moveX}
-                  moveId = {move.moveID}
+                  isSetBuilt = {false}
                 />)}
 
               {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
                 (settlement) => <Settlement
                   y = {settlement.setY}
                   x = {settlement.setX}
+                  isSetBuilt = {true}
                 />)}
 
             </div>
