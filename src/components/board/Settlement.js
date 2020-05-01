@@ -1,6 +1,12 @@
 import React from "react";
+import { api, handleError } from "../../helpers/api";
 export default function Settlement(props){
-  const [color, setColor] = React.useState("transparent");
+  const [color, setColor] = React.useState("red");
+
+  const requestBody = JSON.stringify({
+    moveId: props.moveId
+  });
+
   return(
     <div
       style={{
@@ -15,7 +21,7 @@ export default function Settlement(props){
         borderRadius: "10px",
         backgroundColor: color
       }}
-      onClick={() => setColor("red")}
+      onClick={async () => await api.put("/games/" + this.props.match.params.id, requestBody)}
     />
   )
 }
