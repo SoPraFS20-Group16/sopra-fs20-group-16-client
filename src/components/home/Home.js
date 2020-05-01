@@ -78,7 +78,9 @@ class Home extends React.Component {
         console.log(this.props.match.params.id)
 
 
-        const requestBody = JSON.stringify(this.state.moves);
+        const requestBody = {
+            "moveId": JSON.stringify(this.state.moves)
+        }
         console.log(requestBody, "what is the requestbody?")
         await api.put("/games/" + this.props.match.params.id, requestBody).then(
             //this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
