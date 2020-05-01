@@ -196,26 +196,42 @@ export default class Board extends React.Component {
 
     //const color = this.state.playerColors.map((el) => el.key().userId === userId? el.valueOf(): "");
 
-    settlements.map((settlement) => info.push({setY: settlement.y, setX: settlement.x}));
+    settlements.map((settlement) => {
+
+      let transCoords = this.coordTrans({
+        x:settlement.x,
+        y:settlement.y
+      });
+
+      info.push({setY: transCoords.y, setX: transCoords.x})
+
+
+    });
+
+
 
     return info;
   }
 
-  getMoves(){
+  getSettlementMoves(){
     let info = [];
     const moves = this.props.moves;
     //userId needed to set color
     //const userId = moves[0].userId;
 
     //if move.building exists and the building type is settlement then add the move coordinate to info for each possible move, else do nothing ("")
-    moves.map((move) => move.building?
-      (move.building.buildingType === "SETTLEMENT" ?
-      info.push(
-        {moveY: move.building.coordinates[0].y, moveX: move.building.coordinates[0].x, moveID: move.moveId}
-        )
-      : "")
-      : "");
+    moves.map((move) => {
+      if(move.building && move.building.buildingType === "SETTLEMENT"){
 
+        let transCoords = this.coordTrans({
+          x:move.building.coordinates[0].x,
+          y:move.building.coordinates[0].y
+        });
+
+          info.push({moveY: transCoords.y, moveX: transCoords.x, moveID: move.moveId})
+      }
+
+     });
     return info;
   }
 
@@ -281,17 +297,18 @@ export default class Board extends React.Component {
                 (road) => <Road {...road} />
               )}
 
-              {this.props.moves && this.props.moves.length !==0 && this.getMoves().map(
+              {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
                 (move) => <Settlement
                   y = {move.moveY}
                   x = {move.moveX}
-                  moveId = {move.moveID}
+                  isSetBuilt = {false}
                 />)}
 
               {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
                 (settlement) => <Settlement
                   y = {settlement.setY}
                   x = {settlement.setX}
+                  isSetBuilt = {true}
                 />)}
 
             </div>

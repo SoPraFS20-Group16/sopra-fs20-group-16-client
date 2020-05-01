@@ -21,7 +21,7 @@ export default function Settlement(props){
         borderRadius: "10px",
         backgroundColor: color
       }}
-      onClick={async () => await api.put("/games/" + this.props.match.params.id, requestBody)}
+      onClick={props.isSetBuilt? '' : async () => await api.put("/games/" + this.props.match.params.id, requestBody)}
     />
   )
 }

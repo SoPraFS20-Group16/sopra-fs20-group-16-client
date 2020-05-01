@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import AvatarCircle from "../AvatarCircle/AvatarCircle";
+import AvatarCircle from "../avatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
 import { Link, withRouter } from "react-router-dom";
 import GamesList from "./GamesList";
@@ -115,9 +115,9 @@ class Dashboard extends Component {
         console.log("Non-201 status from game creation");
       }
 
-      localStorage.setItem("gameID", res.headers.location.split("/")[2]);
+      //localStorage.setItem("gameID", res.headers.location.split("/")[2]);
 
-      return res.headers.location;
+      return res.data.gameId;
     } catch (error) {
       if (error.message === "Request failed with status code 403") {
         alert(
