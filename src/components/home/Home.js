@@ -7,7 +7,7 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        //this.state = {};
         this.startGamehandler = this.startGamehandler.bind(this);
         this.interval = null;
     }
@@ -17,7 +17,11 @@ class Home extends React.Component {
         this.props.history.push("/login");
     }
 
-    componentDidMount() {
+    state = {
+       moves: ''
+    }
+
+    /* componentDidMount() {
         this.interval = setInterval(() => {
             api.get("/games/"+ this.props.match.params.id ).then((res) => {
                 this.setState(res.data);
@@ -26,6 +30,19 @@ class Home extends React.Component {
                 }
             })
         }, 1000);
+    } */
+
+    componentDidMount() {
+        console.log(this.props, "coming from props")
+
+        api.get("/games/"+ this.props.match.params.id ).then((res) => {
+            this.setState({
+                moves: res.data.moves[0].moveId
+            })
+            if(res.data && res.data.started) {
+                this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
+            }
+        })
     }
 
     componentWillUnmount() {
@@ -33,13 +50,37 @@ class Home extends React.Component {
     }
 
     startGamehandler () {
-        api.post(`/games/${this.props.match.params.id}/start`, true ).then((res) => {
-            this.props.history.push("/game/"+this.props.match.params.id+"/dashboard")
-        })
-    }
+        const token  =  localStorage.getItem("token");
+        console.log(token)
+        console.log( this.state.moves)
+
+
+        const requestBody = JSON.stringify(this.state.moves)
+        console.log(requestBody)
+        api.put("/games/" + this.props.match.params.id, requestBody).then(
+            this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
+        )
+
+
+
+       // this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
+   // fetch("http://localhost:3000/games/"+ this.props.match.params.id, {
+   //     method: "PATCH",
+   //     headers:{
+   //         "Content-type": "application/json",
+   //         Authorization: token
+   //     },
+   //     body: JSON.stringify({
+   //         moveId: this.state.moves
+   //     })
+   // } )
+   //     .then(res => res.json())
+   //     .then(res => console.log(res, "coming from put"))
+   //     .catch(err => console.log(err, "sorry cannot do a put request"))
+}
 
     render() {
-
+      console.log(this.state, "checking for mvoes")
     return <div className="body1"><div className="center">
         <div className="left">
             <h1 className="heading">
