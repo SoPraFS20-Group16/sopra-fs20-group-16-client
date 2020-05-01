@@ -10,7 +10,7 @@ import { RegisterGuard } from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
 import Home from "../../home/Home";
 import Dashboard from "../../dashboard/Dashboard";
-import Profile from "../../Profile/Profile";
+import Profile from "../../profile/Profile";
 import Board from "../../board/Board";
 
 /**
