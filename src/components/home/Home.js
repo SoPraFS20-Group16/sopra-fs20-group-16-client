@@ -7,7 +7,7 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
-        //this.state = {};
+        this.state = {};
         this.startGamehandler = this.startGamehandler.bind(this);
         this.interval = null;
     }
@@ -18,8 +18,11 @@ class Home extends React.Component {
     }
 
     state = {
-       moves: ''
-    }
+       moves: '',
+       players: [],
+       id: '',
+       gameState: false
+    };
 
     /* componentDidMount() {
         this.interval = setInterval(() => {
@@ -34,16 +37,34 @@ class Home extends React.Component {
 
 
     componentDidMount() {
-        console.log(this.props, "coming from props")
-        api.get("/games/"+ this.props.match.params.id ).then((res) => {
-            this.setState({
-                moves: res.data.moves[0].moveId
-            })
-            if(res.data && res.data.started) {
-                this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
-            }
 
-        })
+            api.get("/games/"+ this.props.match.params.id ).then((res) => {
+                this.state.id = JSON.stringify(res.data.gameId)
+                this.gameState = res.data.started
+                console.log(res.data.moves.length, "what is your plan")
+                if (res.data.moves.length == 0) {
+                    this.setState({
+                        moves: +0
+
+                    })
+                    if(res.data && res.data.started) {
+                        this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
+                    }
+                }
+                else if (res.data.players.length > 1) {
+                    this.setState({
+                            moves: res.data.moves[0].moveId,
+                            players: res.data.players
+
+                        })
+                        if(res.data && res.data.started) {
+                            this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
+                        }
+                }
+                console.log(this.state, "show the state")
+            })
+        console.log(this.props.match, "coming from props")
+
     }
 
     componentWillUnmount() {
@@ -53,13 +74,16 @@ class Home extends React.Component {
     async startGamehandler () {
         const token  =  localStorage.getItem("token");
         console.log(token)
-        console.log( this.state.moves)
+        console.log(this.state.moves, "moveid checker?")
         console.log(this.props.match.params.id)
 
 
-        const requestBody = JSON.stringify(this.state.moves)
+        const requestBody = JSON.stringify({
+            moveId: this.state.moves
+        });
+        console.log(requestBody, "what is the requestbody?")
         await api.put("/games/" + this.props.match.params.id, requestBody).then(
-            this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
+            //this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
         )
 
 
@@ -81,7 +105,7 @@ class Home extends React.Component {
 }
 
     render() {
-      console.log(this.state, "checking for mvoes")
+
     return <div className="body1"><div className="center">
         <div className="left">
             <h1 className="heading">
