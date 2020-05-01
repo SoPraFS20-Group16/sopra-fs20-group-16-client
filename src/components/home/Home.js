@@ -39,27 +39,27 @@ class Home extends React.Component {
     componentDidMount() {
 
             api.get("/games/"+ this.props.match.params.id ).then((res) => {
-                this.state.id = JSON.stringify(res.data.gameId)
-                this.gameState = res.data.started
-                console.log(res.data.moves.length, "what is your plan")
-                if (res.data.moves.length == 0) {
+                this.state.id = JSON.stringify(res.data.gameId);
+                this.gameState = res.data.started;
+                console.log(res.data.moves.length, "what is your plan");
+                if (res.data.moves.length === 0) {
                     this.setState({
                         moves:''
 
-                    })
-                    if(res.data && res.data.started) {
-                        this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
-                    }
+                    });
+                    // if(res.data && res.data.started) {
+                    //     this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
+                    //}
                 }
                 else if (res.data.players.length > 1) {
                     this.setState({
                             moves: res.data.moves[0].moveId,
                             players: res.data.players
 
-                        })
-                        if(res.data && res.data.started) {
-                            this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
-                        }
+                        });
+                        // if(res.data && res.data.started) {
+                        //     this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
+                        // }
                 }
                 console.log(this.state, "show the state")
             })
@@ -75,15 +75,14 @@ class Home extends React.Component {
         const token  =  localStorage.getItem("token");
         console.log(token)
         console.log(this.state.moves, "moveid checker?")
-        console.log(this.props.match.params.id)
 
 
         const requestBody = {
-            "moveId": JSON.stringify(this.state.moves)
+            "moveId": this.state.moves
         }
         console.log(requestBody, "what is the requestbody?")
         await api.put("/games/" + this.props.match.params.id, requestBody).then(
-            //this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
+            this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
         )
 
 
