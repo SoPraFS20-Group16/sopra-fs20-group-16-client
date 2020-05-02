@@ -31,7 +31,11 @@ class Game extends React.Component {
 
   }
   componentDidMount() {
-    this.getGameInfo(this.props.match.params.id);
+    let interval = setInterval(() => {
+      this.getGameInfo(this.props.match.params.id);
+    }, 2000);
+
+    //this.getGameInfo(this.props.match.params.id);
   }
 
 
@@ -120,6 +124,7 @@ class Game extends React.Component {
 
           <div className={'containerBoard'}>
             <Board
+              gameId = {this.state.gameId}
               tiles={this.state.tiles}
               moves={this.state.moves}
               roads={this.state.roads}
@@ -137,8 +142,11 @@ class Game extends React.Component {
 
           <div>
             {this.state.moves && this.state.moves.length !== 0 ?
-              <ActionBox moves = {this.state.moves}/>
-              : ""}
+              <ActionBox
+                moves = {this.state.moves}
+                gameId = {this.state.gameId}
+              />
+              : <ActionBox moves = "emptyMoves"/>}
           </div>
 
 

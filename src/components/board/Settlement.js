@@ -23,7 +23,7 @@ export default function Settlement(props){
         borderRadius: "10px",
         backgroundColor: color
       }}
-      onClick={props.isSetBuilt ? null : async () => await api.put("/games/" + localStorage.getItem("gameID"), requestBody)}
+      onClick={props.isSetBuilt ? null : async () => await api.put("/games/" + props.gameId, requestBody)}
     />
   )
 }

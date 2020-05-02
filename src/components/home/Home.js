@@ -65,7 +65,7 @@ class Home extends React.Component {
                     <h1><b>~Chat~</b></h1>
                     <p>
                       <b>>> user_2</b> asdf joined the game
-                    
+
                     </p>
                     <p>
                         <b>>> user_1</b> hello there :)
