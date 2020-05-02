@@ -131,7 +131,7 @@ export default class Board extends React.Component {
         roadArray.push(roadInfo);
       }
     })
-    console.log('buildable road info array: ' + JSON.stringify(roadArray));
+    // console.log('buildable road info array: ' + JSON.stringify(roadArray));
     return roadArray;
   }
 
@@ -150,7 +150,8 @@ export default class Board extends React.Component {
         rotation: "rotate(0deg)",
         isBuilt: true,
       }
-      console.log("built road: " + JSON.stringify(road))
+
+      // console.log("built road: " + JSON.stringify(road))
 
       // Transform road's coordinates to pixels
       transCoords1 = this.coordTrans({

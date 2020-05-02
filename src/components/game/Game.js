@@ -47,6 +47,12 @@ class Game extends React.Component {
 
       console.log("Game data from server: \n" + JSON.stringify(response.data, null, 2))
 
+      // find out current player's score
+      let points = 0;
+      response.data.players.map((player) =>
+        response.data.name === player.username ? points = player.points : null)
+
+      // Assign data to state
       this.setState({
         tiles: response.data.board.tiles,
         roads: response.data.board.roads,
@@ -55,6 +61,7 @@ class Game extends React.Component {
         cities: response.data.board.cities,
         moves: response.data.moves,
         players: response.data.players,
+        points: points,
       });
 
 
