@@ -32,7 +32,12 @@ const GoldButt = styled.button`
 
 class Dashboard extends Component {
 
-  logout() {
+  async logout() {
+    await api.put("/logout", null, {
+      headers: {
+        "Token": localStorage.getItem("token")
+      }
+    })
     localStorage.removeItem("token");
     this.props.history.push("/login");
   }
@@ -56,27 +61,13 @@ class Dashboard extends Component {
       [name]: value,
     });
     console.log("State change: " + this.state.name);
-  }
+}
 
   handleInputChange(key, value) {
     this.setState({ [key]: value });
     console.log("State change: " + this.state.key);
   }
 
-  /*  handleStartGame = () => {
-      // const title = "Game " + this.state.games.length + 1;
-      const {title, bots} = this.state;
-      // const createdBy = "Generic User";
-
-      const newGame = {
-        title,
-        bots
-      };
-      this.setState({
-        ...defaultFormState,
-        // games: this.state.games.concat(newGame) (moved to GamesList)
-      });
-    };*/
 
   /**
    * HTTP POST request is sent to /games in the backend by passing the new game and
@@ -129,20 +120,8 @@ class Dashboard extends Component {
 
   async getGames() {
     try {
-
-      // Ask the server the games by passing the token in the header
       const response = await api.get("/games");
-
-      // testing
-      //console.log("response data: " + response.data[0]);
-      //console.log('response data url: ' + response.data[0].url);
-
-      // Set the games into the state
       this.setState({ games: response && response.data });
-
-      // testing
-      //console.log('state at getGames(): ' + this.state.games[0]);
-      //console.log('state at getGames(): ' + this.state.games[0].url);
     } catch (error) {
       this.getGames();
       alert(

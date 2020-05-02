@@ -14,7 +14,12 @@ class Home extends React.Component {
         this.interval = null;
     }
 
-    logout() {
+    async logout() {
+        await api.put("/logout", null, {
+            headers: {
+                "Token": localStorage.getItem("token")
+            }
+        })
         localStorage.removeItem("token");
         this.props.history.push("/login");
     }
@@ -41,7 +46,7 @@ class Home extends React.Component {
             moveId: this.state.gameDetails.moves[0].moveId
         }
         await api.put("/games/" + this.props.match.params.id, requestBody).then(
-          //this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
+            this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
         )
 
 }
@@ -82,19 +87,19 @@ class Home extends React.Component {
                 <div className="buttons">
                         <p className="button1">
                             <a href="#" onClick={() => this.logout()}>Logout</a></p>
-                        <p className="button2">
+                    <p className="button2">
 
-                        </p>
-                        <p className="button3">
+                    </p>
+                    <p className="button3">
 
-                        </p>
-                    </div>
+                    </p>
                 </div>
             </div>
+        </div>
 
-        </div>
-        </div>
-    }
+    </div>
+    </div>
+  }
 }
 
 export default withRouter(Home);
