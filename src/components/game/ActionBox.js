@@ -6,8 +6,6 @@ export default function ActionBox(props) {
 
   return (
     <div className={'actionBox'}>
-      <h4> Action Box</h4>
-
       <div>
         <button className={'actionBoxButton'}
                 disabled={props.moves === "emptyMoves"}
@@ -28,11 +26,17 @@ export default function ActionBox(props) {
                       JSON.stringify({moveId: props.moves[0].moveId})) : ""
                 }
         >
-          Roll Dice
+          Roll dice
         </button>
       </div>
 
-
+      <div>
+        <button className={'actionBoxButton'}
+                disabled= {props.moves === "emptyMoves"}
+        >
+          Dev cards
+        </button>
+      </div>
 
       <div>
         <button className={'actionBoxButton'}
@@ -43,15 +47,7 @@ export default function ActionBox(props) {
                       JSON.stringify({moveId: props.moves[0].moveId})) : ""
                 }
         >
-          Pass
-        </button>
-      </div>
-
-      <div>
-        <button className={'actionBoxButton'}
-                disabled= {props.moves === "emptyMoves"}
-        >
-          Buy development cards
+          Pass turn
         </button>
       </div>
     </div>

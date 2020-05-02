@@ -135,6 +135,7 @@ class Game extends React.Component {
 
             <div className={'chatBox'}>
               <h4>Chat</h4>
+              <h4 style={{position:"relative", left:'3px'}}> ° ° ° ° </h4>
               <p>TheLegend27: Yo wassup</p>
               <p>TheLegend27: gl hf</p>
             </div>
