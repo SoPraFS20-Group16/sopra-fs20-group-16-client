@@ -39,7 +39,7 @@ export default function ActionBox(props) {
                 disabled={props.moves === "emptyMoves"}
                 onClick={
                   props.moves[0].moveName === "FirstPassMove" || props.moves[0].moveName === "PassMove" ?
-                    async () => await api.put("/games/" + localStorage.getItem("gameID"),
+                    async () => await api.put("/games/" + props.gameId,
                       JSON.stringify({moveId: props.moves[0].moveId})) : ""
                 }
         >
