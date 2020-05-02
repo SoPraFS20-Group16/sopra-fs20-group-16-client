@@ -70,6 +70,7 @@ export default class Board extends React.Component {
     )
   }
 
+
   /*  Map built roads and roads that are possible to build and make parameters for
   their creation*/
   renderBuildableRoads() {
@@ -189,9 +190,6 @@ export default class Board extends React.Component {
   }
 
 
-
-
-
   getSettlements(){
     let info = [];
     const settlements = this.props.settlements;
@@ -291,6 +289,7 @@ export default class Board extends React.Component {
                 zIndex: 0
               }}
             >
+
               {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
                 (road) => <Road {...road} />
               ) }
@@ -298,9 +297,6 @@ export default class Board extends React.Component {
               {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
                 (road) => <Road {...road} />
               )}
-
-              {/*{this.createInvisibleRoad()}
-            {this.createInvisibleSettlement()}*/}
 
               {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
                 (move) => <Settlement

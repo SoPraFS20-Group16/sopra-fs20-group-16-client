@@ -1,6 +1,6 @@
 import React from "react";
 import {api} from "../../helpers/api";
-export default function Road(props) {
+export default function Road(props){
 
   const requestBody = JSON.stringify({
     moveId: props.moveId
@@ -23,9 +23,6 @@ export default function Road(props) {
         borderRadius: "10px",
         backgroundColor: props.color
       }}
-      onClick={props.isBuilt ? '' : async () => await api.put("/games/" + localStorage.getItem("gameID"), requestBody)}
-
-    />
-
+      onClick={props.isBuilt ? '' : async () => await api.put("/games/" + this.props.match.params.id, requestBody)} />
   )
 }
