@@ -1,8 +1,8 @@
 import React from 'react';
 import Hex from "./Hex";
 import Road from "./Road";
+import NewRoad from "./NewRoad";
 import Settlement from "./Settlement";
-import {api} from "../../helpers/api";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -74,21 +74,21 @@ export default class Board extends React.Component {
   /*  Map built roads and roads that are possible to build and make parameters for
   their creation*/
   renderBuildableRoads() {
-    const roadArray = [];
-
-    let roadInfo = {
-      midX:null,
-      midY:null,
-      color:'blue', //TODO make color user-dependent
-      rotation: "rotate(0deg)",
-      moveId: null,
-      isBuilt: false,
-    }
+    let roadArray = [];
 
     let transCoords1, transCoords2, midCoords;
 
     this.props.moves.map((move) => {
       if(move.building !== undefined && move.building.buildingType === "ROAD") {
+
+        let roadInfo = {
+          midX:null,
+          midY:null,
+          color:'blue', //TODO make color user-dependent
+          rotation: "rotate(0deg)",
+          moveId: null,
+          isBuilt: false,
+        }
 
         // Set moveId
         roadInfo.moveId = move.moveId;
@@ -130,6 +130,7 @@ export default class Board extends React.Component {
         roadArray.push(roadInfo);
       }
     })
+    console.log('buildable road info array: ' + JSON.stringify(roadArray));
     return roadArray;
   }
 
@@ -137,17 +138,17 @@ export default class Board extends React.Component {
   renderBuiltRoads() {
     const roadArray = [];
 
-    let roadInfo = {
-      midX:null,
-      midY:null,
-      color:'black', //TODO make color user-dependent
-      rotation: "rotate(0deg)",
-      isBuilt: true,
-    }
-
     let transCoords1, transCoords2, midCoords;
 
     this.props.roads.map((road) => {
+
+      let roadInfo = {
+        midX:null,
+        midY:null,
+        color:'black', //TODO make color user-dependent
+        rotation: "rotate(0deg)",
+        isBuilt: true,
+      }
       console.log("built road: " + JSON.stringify(road))
 
       // Transform road's coordinates to pixels
@@ -230,7 +231,7 @@ export default class Board extends React.Component {
           y:move.building.coordinates[0].y
         });
 
-          info.push({y: transCoords.y, x: transCoords.x, idMove: move.moveId, isSetBuilt : false, colorSet: "green"})
+          info.push({y: transCoords.y, x: transCoords.x, moveId: move.moveId, isSetBuilt : false, colorSet: "green"})
       }
 
      });
@@ -273,11 +274,11 @@ export default class Board extends React.Component {
           >
 
             {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
-              (tile) => <Hex
+              (tile, key) => <Hex
                 {...this.coordTrans({x: tile.x, y : tile.y})}
                 number={tile.number}
                 type={tile.tileType}
-
+                key={key}
             />)}
 
             {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
@@ -292,21 +293,23 @@ export default class Board extends React.Component {
             >
 
               {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
-                (road) => <Road {...road} />
+                (road, key) => <NewRoad {...road} key={key} />
               ) }
 
               {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
-                (road) => <Road {...road} />
+                (road, key) => <Road {...road} key={key}/>
               )}
 
               {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
-                (move) => <Settlement
+                (move, key) => <Settlement
                   {...move}
+                  key={key}
                 />)}
 
               {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
-                (settlement) => <Settlement
+                (settlement, key) => <Settlement
                   {...settlement}
+                  key={key}
                 />)}
 
             </div>

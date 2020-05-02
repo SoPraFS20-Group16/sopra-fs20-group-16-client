@@ -1,10 +1,16 @@
 import React from "react";
+import {api} from "../../helpers/api";
 
-export default function Road(props){
+export default function NewRoad(props){
+
+  const requestBody = JSON.stringify({
+    moveId: props.moveId
+  });
+
   // const [streetColor, setStreetColor] = React.useState("transparent");
   return (
 
-    <div
+    <button
       style={{
         position: "absolute",
         top: props.midY - 5,
@@ -17,6 +23,6 @@ export default function Road(props){
         borderRadius: "10px",
         backgroundColor: props.color
       }}
-    />
+      onClick={async () => await api.put("/games/" + localStorage.getItem("gameID"), requestBody)} />
   )
 }

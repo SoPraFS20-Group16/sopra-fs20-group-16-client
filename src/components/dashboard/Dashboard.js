@@ -108,7 +108,7 @@ class Dashboard extends Component {
 
       if (res.status === 201) {
         console.log(res.data, "checking res data")
-        this.props.history.push(`/games/${res.data.gameId}`); // TODO: fix routing to lobby
+        this.props.history.push(`/games/${res.data.gameId}`);
         //window.location.reload();
         console.log("201 status from game creation");
       } else {
