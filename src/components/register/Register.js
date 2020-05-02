@@ -4,6 +4,7 @@ import { BaseContainer } from '../../helpers/layout';
 import { api, handleError } from '../../helpers/api';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
+import Token from "../shared/models/Token";
 
 
 const FormContainer = styled.div`
@@ -85,8 +86,14 @@ class Register extends React.Component{
             });
 
             if(this.isNotEmptyOrSpaces(requestBody)){
-                this.props.history.push('/login');
-                await api.post('/users', requestBody);
+                const response = await api.post("/users", requestBody);
+                const token = new Token(response.data);
+
+                // Store the token into the local storage.
+                localStorage.setItem("token", token.token);
+
+                // Login successfully worked --> navigate to the route /game in the GameRouter
+                this.props.history.push(`/dashboard`);
             }
 
 

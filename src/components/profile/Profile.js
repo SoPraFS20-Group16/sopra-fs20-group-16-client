@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import AvatarCircle from "../avatarCircle/AvatarCircle";
+//import AvatarCircle from "../avatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
 import { Link } from "react-router-dom";
 
@@ -55,9 +55,9 @@ export default class Profile extends Component {
         }}
       >
         <Row className="my-3">
-          <Col>
-            <AvatarCircle avatarUrl={avatarUrl} className="mx-auto" />
-          </Col>
+          {/*<Col>*/}
+          {/*  <AvatarCircle avatarUrl={avatarUrl} className="mx-auto" />*/}
+          {/*</Col>*/}
         </Row>
         <Row>
           <Col md={{ span: 4, offset: 4 }}>
