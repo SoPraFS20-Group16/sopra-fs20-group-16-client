@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Road(props){
-  // const [streetColor, setStreetColor] = React.useState("transparent");
+  // quando const [streetColor, setStreetColor] = React.useState("transparent");
   return (
 
     <div
