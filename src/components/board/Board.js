@@ -88,6 +88,7 @@ export default class Board extends React.Component {
           rotation: "rotate(0deg)",
           moveId: null,
           isBuilt: false,
+          gameId: this.props.gameId
         }
 
         // Set moveId
@@ -231,7 +232,7 @@ export default class Board extends React.Component {
           y:move.building.coordinates[0].y
         });
 
-          info.push({y: transCoords.y, x: transCoords.x, moveId: move.moveId, isSetBuilt : false, colorSet: "green"})
+          info.push({y: transCoords.y, x: transCoords.x, moveId: move.moveId, isSetBuilt : false, colorSet: "green", gameId : this.props.gameId})
       }
 
      });

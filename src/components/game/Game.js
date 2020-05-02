@@ -120,6 +120,7 @@ class Game extends React.Component {
 
           <div className={'containerBoard'}>
             <Board
+              gameId = {this.state.gameId}
               tiles={this.state.tiles}
               moves={this.state.moves}
               roads={this.state.roads}

@@ -23,6 +23,6 @@ export default function NewRoad(props){
         borderRadius: "10px",
         backgroundColor: props.color
       }}
-      onClick={async () => await api.put("/games/" + localStorage.getItem("gameID"), requestBody)} />
+      onClick={async () => await api.put("/games/" + props.gameId, requestBody)} />
   )
 }
