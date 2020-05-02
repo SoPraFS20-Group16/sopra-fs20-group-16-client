@@ -31,7 +31,11 @@ class Game extends React.Component {
 
   }
   componentDidMount() {
-    this.getGameInfo(this.props.match.params.id);
+    let interval = setInterval(() => {
+      this.getGameInfo(this.props.match.params.id);
+    }, 2000);
+
+    //this.getGameInfo(this.props.match.params.id);
   }
 
 
