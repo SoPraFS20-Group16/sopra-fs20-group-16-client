@@ -1,6 +1,14 @@
 import React from "react";
+import { api } from "../../helpers/api";
+
 export default function Settlement(props){
-  const [color, setColor] = React.useState("transparent");
+
+  const [color, setColor] = React.useState(props.colorSet);
+
+  const requestBody = JSON.stringify({
+    moveId: props.moveId
+  });
+
   return(
     <div
       style={{
@@ -15,9 +23,7 @@ export default function Settlement(props){
         borderRadius: "10px",
         backgroundColor: color
       }}
-      onMouseEnter={() => setColor("cyan")}
-      onMouseLeave={() => setColor("transparent")}
-      onClick={() => setColor("red")}
+      onClick={props.isSetBuilt ? null : async () => await api.put("/games/" + localStorage.getItem("gameID"), requestBody)}
     />
   )
 }

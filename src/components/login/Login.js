@@ -54,7 +54,6 @@ const Label = styled.label`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-
   margin-bottom: 20px;
 `;
 

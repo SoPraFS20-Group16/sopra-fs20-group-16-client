@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import AvatarCircle from "../AvatarCircle/AvatarCircle.js";
+import AvatarCircle from "../avatarCircle/AvatarCircle";
 import avatarUrl from "../../views/graphics/avatar.jpg";
 import { Link } from "react-router-dom";
 

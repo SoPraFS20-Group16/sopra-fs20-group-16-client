@@ -106,42 +106,42 @@ class Register extends React.Component{
 
     render() {
         return (
-            <BaseContainer>
-                <FormContainer>
-                    <Form>
-                        <Label><b>Username</b></Label>
-                        <InputField
-                            placeholder="Enter here..."
-                            onChange={e =>{
-                                this.handleInputChange('username', e.target.value);
+          <BaseContainer>
+              <FormContainer>
+                  <Form>
+                      <Label><b>Username</b></Label>
+                      <InputField
+                        placeholder="Enter here..."
+                        onChange={e =>{
+                            this.handleInputChange('username', e.target.value);
+                        }}
+                      />
+                      <Label><b>Password</b></Label>
+                      <InputField type="password"
+                                  placeholder="Enter here..."
+                                  onChange={e =>{
+                                      this.handleInputChange('password', e.target.value);
+                                  }}
+                      />
+
+                      <ButtonContainer>
+                          <Button
+                            disabled = {!this.state.username || !this.state.password}
+                            width="50%"
+                            onClick={() => {
+                                this.register();
                             }}
-                        />
-                        <Label><b>Password</b></Label>
-                        <InputField type="password"
-                            placeholder="Enter here..."
-                            onChange={e =>{
-                                this.handleInputChange('password', e.target.value);
-                            }}
-                        />
+                          >
+                              Register!
 
-                        <ButtonContainer>
-                            <Button
-                                disabled = {!this.state.username || !this.state.password}
-                                width="50%"
-                                onClick={() => {
-                                    this.register();
-                                }}
-                            >
-                                Register!
-
-                            </Button>
-                        </ButtonContainer>
+                          </Button>
+                      </ButtonContainer>
 
 
 
-                    </Form>
-                </FormContainer>
-            </BaseContainer>
+                  </Form>
+              </FormContainer>
+          </BaseContainer>
 
         );
     }

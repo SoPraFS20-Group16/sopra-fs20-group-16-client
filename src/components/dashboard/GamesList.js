@@ -20,9 +20,6 @@ class GamesList extends React.Component {
   async getGames() {
     try {
 
-      // Get the token from the localStorage
-      const tokenStr = localStorage.getItem('token');
-
       // Ask the server the games by passing the token in the header
       const response = await api.get("/games");
 
@@ -57,7 +54,7 @@ class GamesList extends React.Component {
     else {
       return 'No matches open yet! Create one on the left to begin.'
     }
-}
+  }
 
   render() {
     return (

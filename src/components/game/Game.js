@@ -1,11 +1,12 @@
 import React from "react";
 import './style.css'
 import { api, handleError } from "../../helpers/api";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 // import FactBox from "./FactBox";
 import Feed from "./Feed";
+import ActionBox from "./ActionBox";
 
 
 class Game extends React.Component {
@@ -17,7 +18,10 @@ class Game extends React.Component {
       points:0,
       gameId: null,
       tiles: [],
-      possibleMoves: [],
+      roads:[],
+      settlements:[],
+      cities:[],
+      moves: [],
       players: [],
 
       currPlResources: null,
@@ -34,13 +38,10 @@ class Game extends React.Component {
   async getGameInfo(id) {
     try {
 
-      // Get the token from the localStorage
-      const tokenStr = localStorage.getItem('token');
-
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
 
-      console.log("Game data from server: \n" + JSON.stringify(response.data))
+      console.log("Game data from server: \n" + JSON.stringify(response.data, null, 2))
 
       this.setState({
         tiles: response.data.board.tiles,
@@ -61,9 +62,6 @@ class Game extends React.Component {
         currPlResources:response.data.players[i].resources,
         currPlDevCards:response.data.players[i].developmentCards,
       })
-      console.log("currPlResources: " + JSON.stringify(this.state.currPlResources));
-      console.log("currPlDevCards: " + JSON.stringify(this.state.currPlDevCards));
-
 
     } catch (error) {
       alert(`Something went wrong while getting the game information\n${handleError(error)}`);
@@ -73,6 +71,7 @@ class Game extends React.Component {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("gameID")
     this.props.history.push("/login");
   }
 
@@ -92,7 +91,6 @@ class Game extends React.Component {
           <div className={'containerGameInfos'}>
 
               <div className={'innerBox'}>
-                {console.log("player resources in state at render: " + this.state.currPlResources)}
                 {this.state.currPlResources && this.state.currPlResources &&
                 <ResourcesList
                   resources = {this.state.currPlResources}
@@ -116,14 +114,27 @@ class Game extends React.Component {
 
           </div>
 
-            <div className={'containerBoard'}>
-              <Board tiles={this.state.tiles}/>
+          <div className={'containerBoard'}>
+            <Board
+              tiles={this.state.tiles}
+              moves={this.state.moves}
+              roads={this.state.roads}
+              settlements={this.state.settlements}
+              cities={this.state.cities}
+              players={this.state.players}
+            />
 
             <div className={'chatBox'}>
               <h4>Chat</h4>
               <p>TheLegend27: Yo wassup</p>
               <p>TheLegend27: gl hf</p>
             </div>
+          </div>
+
+          <div>
+            {this.state.moves && this.state.moves.length !== 0 ?
+              <ActionBox moves = {this.state.moves}/>
+              : ""}
           </div>
 
 
