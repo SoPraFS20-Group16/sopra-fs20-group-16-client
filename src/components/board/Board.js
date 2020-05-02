@@ -1,6 +1,7 @@
 import React from 'react';
 import Hex from "./Hex";
 import Road from "./Road";
+import NewRoad from "./NewRoad";
 import Settlement from "./Settlement";
 import {api} from "../../helpers/api";
 
@@ -273,11 +274,11 @@ export default class Board extends React.Component {
           >
 
             {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
-              (tile) => <Hex
+              (tile, key) => <Hex
                 {...this.coordTrans({x: tile.x, y : tile.y})}
                 number={tile.number}
                 type={tile.tileType}
-
+                key={key}
             />)}
 
             {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
@@ -292,7 +293,7 @@ export default class Board extends React.Component {
             >
 
               {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
-                (road) => <Road {...road} />
+                (road) => <NewRoad {...road} />
               ) }
 
               {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
