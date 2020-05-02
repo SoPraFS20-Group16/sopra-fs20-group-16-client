@@ -21,8 +21,8 @@ export default function Road(props){
         height: "10px",
         border: "2px solid transparent",
         borderRadius: "10px",
-        backgroundColor: props.color
+        backgroundColor: props.color,
       }}
-      onClick={props.isBuilt ? '' : async () => await api.put("/games/" + this.props.match.params.id, requestBody)} />
+      onClick={props.isBuilt ? '' : async () => await api.put("/games/" + localStorage.getItem("gameID"), requestBody)} />
   )
 }

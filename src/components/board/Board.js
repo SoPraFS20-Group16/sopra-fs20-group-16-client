@@ -115,15 +115,15 @@ export default class Board extends React.Component {
         roadInfo.midY = midCoords.midY;
 
         // Calculate needed rotation based on coordinates
-        if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90)"}
+        if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90deg)"}
         else {
           if(transCoords1.y > transCoords2.y){
-            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30)"}
-            else {roadInfo.rotation = "rotate(30)"}
+            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30deg)"}
+            else {roadInfo.rotation = "rotate(-30deg)"}
           }
           else if(transCoords1.y < transCoords2.y){
-            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30)"}
-            else {roadInfo.rotation = "rotate(-30)"}
+            if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30deg)"}
+            else {roadInfo.rotation = "rotate(30deg)"}
           }
         }
 
@@ -148,15 +148,16 @@ export default class Board extends React.Component {
     let transCoords1, transCoords2, midCoords;
 
     this.props.roads.map((road) => {
+      console.log("built road: " + JSON.stringify(road))
 
       // Transform road's coordinates to pixels
       transCoords1 = this.coordTrans({
-        x:road.building.coordinates[0].x,
-        y:road.building.coordinates[0].y
+        x:road.coordinates[0].x,
+        y:road.coordinates[0].y
       });
       transCoords2 = this.coordTrans({
-        x:road.building.coordinates[1].x,
-        y:road.building.coordinates[1].y
+        x:road.coordinates[1].x,
+        y:road.coordinates[1].y
       });
 
       // Calculate the median point between the two coordinates in pixels
@@ -171,15 +172,15 @@ export default class Board extends React.Component {
       roadInfo.midY = midCoords.midY;
 
       // Calculate needed rotation based on coordinates
-      if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90)"}
+      if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90deg)"}
       else {
         if(transCoords1.y > transCoords2.y){
-          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30)"}
-          else {roadInfo.rotation = "rotate(30)"}
+          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30deg)"}
+          else {roadInfo.rotation = "rotate(-30deg)"}
         }
         else if(transCoords1.y < transCoords2.y){
-          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30)"}
-          else {roadInfo.rotation = "rotate(-30)"}
+          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30deg)"}
+          else {roadInfo.rotation = "rotate(30deg)"}
         }
       }
 
