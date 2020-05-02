@@ -114,7 +114,7 @@ class Dashboard extends Component {
         console.log("Non-201 status from game creation");
       }
 
-      //localStorage.setItem("gameID", res.headers.location.split("/")[2]);
+      localStorage.setItem("gameID", res.headers.location.split("/")[2]);
 
       return res.data.gameId;
     } catch (error) {

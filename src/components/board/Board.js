@@ -140,14 +140,16 @@ export default class Board extends React.Component {
     //const color = this.state.playerColors.map((el) => el.key().userId === userId? el.valueOf(): "");
 
     settlements.map((settlement) => {
+      if(settlements){
 
-      let transCoords = this.coordTrans({
-        x:settlement.x,
-        y:settlement.y
-      });
+        let transCoords = this.coordTrans({
+          x:settlement.coordinates.x,
+          y:settlement.coordinates.y
+        });
 
-      info.push({setY: transCoords.y, setX: transCoords.x})
+        info.push({y: transCoords.y, x: transCoords.x, isSetBuilt : true, colorSet: "orange"})
 
+      }
 
     });
 
@@ -171,7 +173,7 @@ export default class Board extends React.Component {
           y:move.building.coordinates[0].y
         });
 
-          info.push({moveY: transCoords.y, moveX: transCoords.x, moveID: move.moveId})
+          info.push({y: transCoords.y, x: transCoords.x, idMove: move.moveId, isSetBuilt : false, colorSet: "green"})
       }
 
      });
@@ -240,16 +242,12 @@ export default class Board extends React.Component {
 
               {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
                 (move) => <Settlement
-                  y = {move.moveY}
-                  x = {move.moveX}
-                  isSetBuilt = {false}
+                  {...move}
                 />)}
 
               {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
                 (settlement) => <Settlement
-                  y = {settlement.setY}
-                  x = {settlement.setX}
-                  isSetBuilt = {true}
+                  {...settlement}
                 />)}
 
             </div>
