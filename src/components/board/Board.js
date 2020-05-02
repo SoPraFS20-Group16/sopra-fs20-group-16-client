@@ -143,8 +143,8 @@ export default class Board extends React.Component {
       if(settlements){
 
         let transCoords = this.coordTrans({
-          x:settlement.coordinates.x,
-          y:settlement.coordinates.y
+          x:settlement.coordinates[0].x,
+          y:settlement.coordinates[0].y
         });
 
         info.push({y: transCoords.y, x: transCoords.x, isSetBuilt : true, colorSet: "orange"})
@@ -152,8 +152,6 @@ export default class Board extends React.Component {
       }
 
     });
-
-
 
     return info;
   }
