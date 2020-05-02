@@ -40,7 +40,7 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
 
-      console.log("Game data from server: \n" + JSON.stringify(response.data))
+      console.log("Game data from server: \n" + JSON.stringify(response.data, null, 2))
 
       this.setState({
         tiles: response.data.board.tiles,
