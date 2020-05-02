@@ -6,6 +6,7 @@ import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 // import FactBox from "./FactBox";
 import Feed from "./Feed";
+import ActionBox from "./ActionBox";
 
 
 class Game extends React.Component {
@@ -70,6 +71,7 @@ class Game extends React.Component {
 
   logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("gameID")
     this.props.history.push("/login");
   }
 
@@ -127,6 +129,12 @@ class Game extends React.Component {
               <p>TheLegend27: Yo wassup</p>
               <p>TheLegend27: gl hf</p>
             </div>
+          </div>
+
+          <div>
+            {this.state.moves && this.state.moves.length !== 0 ?
+              <ActionBox moves = {this.state.moves}/>
+              : ""}
           </div>
 
 
