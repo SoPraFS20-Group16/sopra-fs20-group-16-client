@@ -70,23 +70,27 @@ export default class Board extends React.Component {
     )
   }
 
-
-/*  Map built roads and roads that are possible to build and make parameters for
+  /*  Map built roads and roads that are possible to build and make parameters for
   their creation*/
-  makeBuildableRoads() {
+  renderBuildableRoads() {
     const roadArray = [];
 
     let roadInfo = {
       midX:null,
       midY:null,
-      color:'blue',
+      color:'blue', //TODO make color user-dependent
       rotation: "rotate(0deg)",
+      moveId: null,
+      isBuilt: false,
     }
 
     let transCoords1, transCoords2, midCoords;
 
     this.props.moves.map((move) => {
-      if(move.building.buildingType === "ROAD") {
+      if(move.building !== undefined && move.building.buildingType === "ROAD") {
+
+        // Set moveId
+        roadInfo.moveId = move.moveId;
 
         // Transform road's coordinates to pixels
         transCoords1 = this.coordTrans({
@@ -125,9 +129,65 @@ export default class Board extends React.Component {
         roadArray.push(roadInfo);
       }
     })
-
     return roadArray;
   }
+
+  // Render roads that have already been built
+  renderBuiltRoads() {
+    const roadArray = [];
+
+    let roadInfo = {
+      midX:null,
+      midY:null,
+      color:'black', //TODO make color user-dependent
+      rotation: "rotate(0deg)",
+      isBuilt: true,
+    }
+
+    let transCoords1, transCoords2, midCoords;
+
+    this.props.roads.map((road) => {
+
+      // Transform road's coordinates to pixels
+      transCoords1 = this.coordTrans({
+        x:road.building.coordinates[0].x,
+        y:road.building.coordinates[0].y
+      });
+      transCoords2 = this.coordTrans({
+        x:road.building.coordinates[1].x,
+        y:road.building.coordinates[1].y
+      });
+
+      // Calculate the median point between the two coordinates in pixels
+      midCoords = this.coordsMedian({
+        x:transCoords1.x,
+        y:transCoords1.y,
+        x2:transCoords2.x,
+        y2:transCoords2.y,
+      });
+
+      roadInfo.midX = midCoords.midX;
+      roadInfo.midY = midCoords.midY;
+
+      // Calculate needed rotation based on coordinates
+      if(transCoords1.x === transCoords2.x){roadInfo.rotation = "rotate(90)"}
+      else {
+        if(transCoords1.y > transCoords2.y){
+          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(-30)"}
+          else {roadInfo.rotation = "rotate(30)"}
+        }
+        else if(transCoords1.y < transCoords2.y){
+          if(transCoords1.x > transCoords2.x){roadInfo.rotation = "rotate(30)"}
+          else {roadInfo.rotation = "rotate(-30)"}
+        }
+      }
+
+      roadArray.push(roadInfo);
+
+    })
+    return roadArray;
+  }
+
 
 
 
@@ -231,9 +291,13 @@ export default class Board extends React.Component {
                 zIndex: 0
               }}
             >
-              {this.props.moves && this.props.moves.length !== 0 && this.makeBuildableRoads().map(
+              {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
                 (road) => <Road {...road} />
               ) }
+
+              {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
+                (road) => <Road {...road} />
+              )}
 
               {/*{this.createInvisibleRoad()}
             {this.createInvisibleSettlement()}*/}
