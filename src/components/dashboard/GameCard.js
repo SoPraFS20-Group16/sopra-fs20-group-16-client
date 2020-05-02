@@ -15,7 +15,6 @@ export default function GameCard({game,history}) {
           paddingRight: "30px",
         }}
         onClick={async () => {
-          const token = localStorage.getItem("token")
           await api.post(`/games/${game.gameId}/players`)
           history.push(`/games/${game.gameId}`); // TODO: fix routing to lobby
         }}>

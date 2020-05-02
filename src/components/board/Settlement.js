@@ -1,7 +1,7 @@
 import React from "react";
-import { api, handleError } from "../../helpers/api";
+import { api } from "../../helpers/api";
 export default function Settlement(props){
-  const [color, setColor] = React.useState(props.colorSet);
+  const color = React.useState(props.colorSet);
 
   const requestBody = JSON.stringify({
     moveId: props.idMove

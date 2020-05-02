@@ -7,7 +7,7 @@ export default function NewRoad(props){
     moveId: props.moveId
   });
 
-  const [streetColor, setStreetColor] = React.useState("transparent");
+  // const [streetColor, setStreetColor] = React.useState("transparent");
   return (
 
     <button

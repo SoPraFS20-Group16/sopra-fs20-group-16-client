@@ -1,13 +1,7 @@
 import React from "react";
-import {api} from "../../helpers/api";
 
 export default function Road(props){
-
-  const requestBody = JSON.stringify({
-    moveId: props.moveId
-  });
-
-  const [streetColor, setStreetColor] = React.useState("transparent");
+  // const [streetColor, setStreetColor] = React.useState("transparent");
   return (
 
     <div

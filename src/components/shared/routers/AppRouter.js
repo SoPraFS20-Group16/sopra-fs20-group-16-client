@@ -23,9 +23,7 @@ import Board from "../../board/Board";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 class AppRouter extends React.Component {
-  constructor(props){
-    super(props)
-  }
+
   render() {
     return (
       <BrowserRouter>

@@ -3,7 +3,6 @@ import Hex from "./Hex";
 import Road from "./Road";
 import NewRoad from "./NewRoad";
 import Settlement from "./Settlement";
-import {api} from "../../helpers/api";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -129,6 +128,7 @@ export default class Board extends React.Component {
         }
 
         roadArray.push(roadInfo);
+        return null;
       }
     })
     return roadArray;
