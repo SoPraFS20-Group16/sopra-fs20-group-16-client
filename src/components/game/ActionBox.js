@@ -7,7 +7,6 @@ import NewCity from "../board/NewCity";
 
 
 export default function ActionBox(props) {
-  const moves = props.moves;
 
   return (
     <div className={'actionBox'}>
@@ -15,14 +14,7 @@ export default function ActionBox(props) {
         <button className={'actionBoxButton'}
                 disabled={props.moves === "emptyMoves"}
 
-                onClick={
-                  moves.map((move)=> move.moveName === "BuildMove"&& move.building?
-                    ""
-                    /*(move.building.buildingType === "ROAD"? <NewRoad />: "")*/
-                    :""
-                  )
-
-                }
+                /*onClick={}*/
         >
           Build
         </button>
