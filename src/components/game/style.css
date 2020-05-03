@@ -105,16 +105,34 @@
     justify-content: space-evenly;
 }
 
+.skinnyBox {
+    flex-basis: 5%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 auto;
+}
+
 
 .actionBox {
     flex-basis: 5%;
     display: flex;
     flex-direction: column;
-    height: 24%;
     align-items: center;
     justify-content: space-evenly;
-    margin: 0 auto;
     padding: 7px 7px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: beige;
+    background-size: cover;
+}
+
+.diceBox {
+    display:flex;
+    justify-content: space-evenly;
+    margin: 5px 0;
+    padding: 5px 5px;
     border: 1px solid black;
     border-radius: 10px;
     background-color: beige;

@@ -4,9 +4,9 @@ import { api, handleError } from "../../helpers/api";
 import { withRouter } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
-// import FactBox from "./FactBox";
 import BuildingCosts from "./BuildingCosts";
 import ActionBox from "./ActionBox";
+import Dice from "./Dice";
 
 let opponentHasLeft = false;
 
@@ -25,7 +25,7 @@ class Game extends React.Component {
       moves: [],
       players: [],
       isBuilding: false,
-
+      lastDice: null,
       playerColors: {},
       currPlResources: null,
       currPlDevCards: null,
@@ -40,7 +40,7 @@ class Game extends React.Component {
   componentDidMount()
     {
       let interval = setInterval(() => {
-        console.log(opponentHasLeft, "oppponent?")
+        console.log(opponentHasLeft, "opponent?")
         if (opponentHasLeft) {
           clearInterval(interval)
           this.props.history.push('/dashboard');
@@ -83,8 +83,8 @@ class Game extends React.Component {
         moves: response.data.moves,
         players: response.data.players,
         points: points,
-        playerColors: this.assignColors(response.data.players)
-
+        playerColors: this.assignColors(response.data.players),
+        diceRoll: response.data.lastDiceRoll,
       });
 
 
@@ -176,15 +176,10 @@ class Game extends React.Component {
               handler2 = {this.handler2}
             />
 
-            <div className={'chatBox'}>
-              <h4>Chat</h4>
-              <h4 style={{position:"relative", left:'3px'}}> ° ° ° ° </h4>
-              <p>TheLegend27: Yo wassup</p>
-              <p>TheLegend27: gl hf</p>
-            </div>
+
           </div>
 
-          <div>
+          <div className={'skinnyBox'}>
             {this.state.moves && this.state.moves.length !== 0 ?
               <ActionBox
                 moves = {this.state.moves}
@@ -192,9 +187,10 @@ class Game extends React.Component {
                 handler = {this.handler}
               />
               : <ActionBox moves = "emptyMoves"/> }
+
+            {this.state.diceRoll !== null && <Dice result={this.state.diceRoll}/>}
+
           </div>
-
-
         </div>
       </div>
     );
