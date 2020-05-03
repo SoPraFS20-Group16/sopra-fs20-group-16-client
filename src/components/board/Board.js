@@ -68,7 +68,7 @@ export default class Board extends React.Component {
         let roadInfo = {
           midX:null,
           midY:null,
-          color:'blue', //TODO make color user-dependent
+          color: this.props.playerColors[move.userId],
           rotation: "rotate(0deg)",
           moveId: null,
           isBuilt: false,
@@ -177,13 +177,10 @@ export default class Board extends React.Component {
     return roadArray;
   }
 
-
+  // Get information needed to render built settlements
   getSettlements(){
     let info = [];
     const settlements = this.props.settlements;
-    //const userId = moves[0].userId;
-
-    //const color = this.state.playerColors.map((el) => el.key().userId === userId? el.valueOf(): "");
 
     settlements.map((settlement) => {
       if(settlements){
@@ -193,20 +190,19 @@ export default class Board extends React.Component {
           y:settlement.coordinates[0].y
         });
 
-        info.push({y: transCoords.y, x: transCoords.x, isSetBuilt : true, colorSet: this.props.playerColors[settlement.userId]})
-
+        info.push({y: transCoords.y,
+          x: transCoords.x,
+          isSetBuilt : true,
+          colorSet: this.props.playerColors[settlement.userId]})
       }
-
     });
-
     return info;
   }
 
+  // Get information needed to render buildable settlements
   getSettlementMoves(){
     let info = [];
     const moves = this.props.moves;
-    //userId needed to set color
-    //const userId = moves[0].userId;
 
     //if move.building exists and the building type is settlement then add the move coordinate to info for each possible move, else do nothing ("")
     moves.map((move) => {
@@ -217,9 +213,15 @@ export default class Board extends React.Component {
           y:move.building.coordinates[0].y
         });
 
-          info.push({y: transCoords.y, x: transCoords.x, moveId: move.moveId, isSetBuilt : false, colorSet: "green", gameId : this.props.gameId})
+        info.push({
+          y: transCoords.y,
+          x: transCoords.x,
+          moveId: move.moveId,
+          isSetBuilt : false,
+          colorSet: this.props.playerColors[move.userId],
+          gameId : this.props.gameId
+        })
       }
-
      });
     return info;
   }
