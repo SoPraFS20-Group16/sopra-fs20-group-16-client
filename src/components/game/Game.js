@@ -173,11 +173,10 @@ class Game extends React.Component {
           <div>
             {this.state.moves && this.state.moves.length !== 0 ?
               <ActionBox
-                setMoves = {(data) => this.setMoves(data)}
                 moves = {this.state.moves}
                 gameId = {this.state.gameId}
               />
-              :null}
+              : <ActionBox moves = "emptyMoves"/> }
           </div>
 
 
