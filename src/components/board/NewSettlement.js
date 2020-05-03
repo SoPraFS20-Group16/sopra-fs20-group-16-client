@@ -22,7 +22,11 @@ export default function NewSettlement(props){
         backgroundColor: props.colorSet,
         opacity: 0.5,
       }}
-      onClick={props.isSetBuilt ? null : async () => await api.put("/games/" + props.gameId, requestBody)}
+      onClick={props.isSetBuilt ?
+        null : async () =>{ await api.put("/games/" + props.gameId, requestBody);
+          localStorage.setItem("isBuilding", "false");
+      }
+      }
     />
   )
 }

@@ -12,7 +12,8 @@ export default class Board extends React.Component {
       color: "red",
       streetColor: "yellow",
       radius: 50,
-    }
+    };
+    localStorage.setItem("isBuilding", "false");
   }
 
 
@@ -280,7 +281,7 @@ export default class Board extends React.Component {
               }}
             >
 
-              {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
+              {localStorage.getItem("isBuilding")==="true"&&this.props.isBuilding && this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
                 (road, key) => <NewRoad {...road} key={key} />
               ) }
 
@@ -288,7 +289,7 @@ export default class Board extends React.Component {
                 (road, key) => <Road {...road} key={key}/>
               )}
 
-              {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
+              {localStorage.getItem("isBuilding")==="true" && this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
                 (move, key) => <NewSettlement
                   {...move}
                   key={key}

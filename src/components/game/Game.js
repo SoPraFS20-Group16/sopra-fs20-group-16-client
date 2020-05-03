@@ -23,6 +23,7 @@ class Game extends React.Component {
       cities:[],
       moves: [],
       players: [],
+      isBuilding: false,
 
       playerColors: {},
       currPlResources: null,
@@ -39,6 +40,10 @@ class Game extends React.Component {
     }, 2000);
 
     //this.getGameInfo(this.props.match.params.id);
+  }
+
+  handler(){
+    this.setState({isBuilding: true})
   }
 
 
@@ -160,6 +165,7 @@ class Game extends React.Component {
               cities={this.state.cities}
               players={this.state.players}
               playerColors={this.state.playerColors}
+              isBuilding = {this.state.isBuilding}
             />
 
             <div className={'chatBox'}>
@@ -175,6 +181,7 @@ class Game extends React.Component {
               <ActionBox
                 moves = {this.state.moves}
                 gameId = {this.state.gameId}
+                handler = {this.handler}
               />
               : <ActionBox moves = "emptyMoves"/> }
           </div>

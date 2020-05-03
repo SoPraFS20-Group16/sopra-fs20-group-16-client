@@ -1,10 +1,6 @@
 import React from "react";
 import { api, handleError } from "../../helpers/api";
 import './style.css';
-import NewSettlement from "../board/NewSettlement";
-import NewRoad from "../board/NewRoad";
-import NewCity from "../board/NewCity";
-
 
 
 const isClassDisabled = (move)=>{
@@ -16,10 +12,11 @@ export default function ActionBox(props) {
   return (
     <div className={'actionBox'}>
       <div>
-        <button className={'actionBoxButton'}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "BuildMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled={props.moves === "emptyMoves"}
-
-                /*onClick={}*/
+                onClick={
+                  localStorage.setItem("isBuilding", "true")
+                }
         >
           Build
         </button>
@@ -39,10 +36,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${(
-            props.moves[0].moveName === "DiceMove" 
-            || props.moves[0].moveName === "PassMove"
-        ) ? "actionBoxButtonGrey" : ''}`}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "DevMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled= {props.moves === "emptyMoves"}
         >
           Dev cards
@@ -50,10 +44,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${(
-            props.moves[0].moveName === "DiceMove"
-            || props.moves[0].moveName === "x"
-        ) ? "actionBoxButtonGrey" : ''}`}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "FirstPassMove" && props.moves[0].moveName !== "PassMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled= {props.moves === "emptyMoves"}
                 onClick={
                   props.moves[0].moveName === "FirstPassMove" || props.moves[0].moveName === "PassMove" ?

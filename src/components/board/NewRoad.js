@@ -24,6 +24,8 @@ export default function NewRoad(props){
         backgroundColor: props.color,
         opacity: 0.5,
       }}
-      onClick={async () => await api.put("/games/" + props.gameId, requestBody)} />
+      onClick={async () => {await api.put("/games/" + props.gameId, requestBody);
+      localStorage.setItem("isBuilding", "false")
+      }} />
   )
 }
