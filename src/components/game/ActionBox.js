@@ -12,7 +12,7 @@ export default function ActionBox(props) {
   return (
     <div className={'actionBox'}>
       <div>
-        <button className={'actionBoxButton'}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "BuildMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled={props.moves === "emptyMoves"}
                 onClick={
                   async () => await api.get("/games/" + props.gameId)
@@ -36,10 +36,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${(
-            props.moves[0].moveName === "DiceMove" 
-            || props.moves[0].moveName === "PassMove"
-        ) ? "actionBoxButtonGrey" : ''}`}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "DevMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled= {props.moves === "emptyMoves"}
         >
           Dev cards
