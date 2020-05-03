@@ -188,7 +188,7 @@ class Game extends React.Component {
               />
               : <ActionBox moves = "emptyMoves"/> }
 
-            {this.state.diceRoll !== null && <Dice result={this.state.diceRoll}/>}
+            {this.state.diceRoll !== 0 && <Dice result={this.state.diceRoll}/>}
 
           </div>
         </div>
