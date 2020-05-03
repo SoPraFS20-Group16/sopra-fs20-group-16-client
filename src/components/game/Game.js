@@ -105,7 +105,6 @@ class Game extends React.Component {
     players.map((pl, key) => {
       playerColors[pl.userId] = colors[key];
     })
-    console.log("player colors" + JSON.stringify(playerColors))
 
     return playerColors;
   }
@@ -127,7 +126,7 @@ class Game extends React.Component {
           <div className={'containerGameInfos'}>
 
               <div className={'innerBox'}>
-                {this.state.currPlResources && this.state.currPlResources &&
+                {this.state.currPlResources && this.state.currPlDevCards &&
                 <ResourcesList
                   resources = {this.state.currPlResources}
                   devCards = {this.state.currPlDevCards}
