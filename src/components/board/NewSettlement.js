@@ -1,6 +1,5 @@
 import React from "react";
 import { api } from "../../helpers/api";
-/* eslint-disable */
 
 export default function NewSettlement(props){
 
