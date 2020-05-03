@@ -2,6 +2,26 @@ import React from "react";
 import {Link, withRouter} from "react-router-dom";
 import { api } from "../../helpers/api";
 import './style.css';
+import styled from "styled-components";
+
+const GoldButt = styled.button`
+    padding: 17px;
+    background-color: gold;
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+`;
+
+
+const GreenButt = styled.button`
+    padding: 17px;
+    background-color: RGB(26, 229, 26);
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+`;
 
 class Home extends React.Component {
 
@@ -52,48 +72,30 @@ class Home extends React.Component {
 }
 
     render() {
-    return <div className="body1"><div className="center">
-        <div className="left">
-            <h1 className="heading">
-                <b>Players around the world</b>
-            </h1>
-        </div>
-        <div className="right">
-            <div className="up">
-                <div className="box1">
-
-                    <h1><b>~Chat~</b></h1>
-                    <p>
-                      <b>>> user_2</b> asdf joined the game
-
-                    </p>
-                    <p>
-                        <b>>> user_1</b> hello there :)
-                    </p>
-                </div>
-                <div className="box2">
-                    <p>Hi there...!</p>
-                    <img src={require('./send.svg')} height={'20px'} width="20px"/>
-                </div>
+    return <div className="body1">
+        <div className="header">
+            <div className={"header_logout"}>
+                <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
             </div>
+            <h1 className={"header_title"}> Welcome to the Settlers of Toucan!</h1>
+
+        </div>
+
+        <div className="center">
+
+        <div className="right">
             <div className="down">
-                <div className="box3">
+
+                <div className="containerGameInfos">
                     {this.state.gameDetails.players && this.state.gameDetails.players.map((player, index) => <p key={index}>{player.username}</p>)}
                 </div>
-                {this.state.gameDetails.moves && this.state.gameDetails.moves.length > 0 && <div className="box4">
-                    <p>Let's start this game </p>
-                    <img onClick={this.startGamehandler} src={require('./send.svg')} height={'20px'} width="20px"/>
+
+                {this.state.gameDetails.moves && this.state.gameDetails.moves.length > 0 && <div className={"start_button"}>
+                    <GreenButt onClick={this.startGamehandler}>Start the Game</GreenButt>
                 </div>}
-                <div className="buttons">
-                        <p className="button1">
-                            <a href="#" onClick={() => this.logout()}>Logout</a></p>
-                    <p className="button2">
 
-                    </p>
-                    <p className="button3">
 
-                    </p>
-                </div>
+
             </div>
         </div>
 

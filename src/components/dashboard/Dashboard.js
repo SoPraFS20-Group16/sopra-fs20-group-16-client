@@ -135,9 +135,9 @@ class Dashboard extends Component {
     return (
       <>
         <div style={{ margin: "40px", display:"flex"}}>
-          <Link to="/profile">
-            <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />
-          </Link>
+          {/*<Link to="/profile">*/}
+          {/*  <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />*/}
+          {/*</Link>*/}
           <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
         </div>
 
