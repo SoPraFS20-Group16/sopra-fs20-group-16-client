@@ -11,23 +11,11 @@ export default class Board extends React.Component {
       color: "red",
       streetColor: "yellow",
       radius: 50,
-      colors: ["blue", "red", "green", "yellow"],
-      playerColors: []
     }
   }
 
 
-  componentDidMount() {
-    let lst = [];
-    const colors = ["blue", "red", "green", "yellow"];
-
-    const players = this.props.players;
-
-    players.map((player, key) => lst.push({player: colors[key]}));
-
-    this.setState({playerColors: lst});
-  }
-
+  componentDidMount() {}
 
   // Transforms the normal/server coordinates to pixel coordinates
   coordTrans(props) {
@@ -141,7 +129,7 @@ export default class Board extends React.Component {
       let roadInfo = {
         midX:null,
         midY:null,
-        color:'black', //TODO make color user-dependent
+        color: this.props.playerColors[road.userId],
         rotation: "rotate(0deg)",
         isBuilt: true,
       };
@@ -204,7 +192,7 @@ export default class Board extends React.Component {
           y:settlement.coordinates[0].y
         });
 
-        info.push({y: transCoords.y, x: transCoords.x, isSetBuilt : true, colorSet: "orange"})
+        info.push({y: transCoords.y, x: transCoords.x, isSetBuilt : true, colorSet: this.props.playerColors[settlement.userId]})
 
       }
 

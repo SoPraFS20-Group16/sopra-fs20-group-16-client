@@ -19,7 +19,7 @@ export default function NewRoad(props){
         fontSize: "0.5em",
         width: "40px",
         height: "10px",
-        border: "2px solid transparent",
+        border: "1.5px solid black",
         borderRadius: "10px",
         backgroundColor: props.color
       }}
