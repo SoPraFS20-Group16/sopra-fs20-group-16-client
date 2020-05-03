@@ -30,6 +30,8 @@ class Game extends React.Component {
       currPlDevCards: null,
     };
     this.getGameInfo = this.getGameInfo.bind(this);
+    this.handler = this.handler.bind(this);
+    this.handler2 = this.handler2.bind(this);
 
   }
 
@@ -44,6 +46,10 @@ class Game extends React.Component {
 
   handler(){
     this.setState({isBuilding: true})
+  }
+
+  handler2(){
+    this.setState({isBuilding: false})
   }
 
 
@@ -109,7 +115,7 @@ class Game extends React.Component {
 
     players.map((pl, key) => {
       playerColors[pl.userId] = colors[key];
-    })
+    });
     console.log("player colors" + JSON.stringify(playerColors))
 
     return playerColors;
@@ -166,6 +172,7 @@ class Game extends React.Component {
               players={this.state.players}
               playerColors={this.state.playerColors}
               isBuilding = {this.state.isBuilding}
+              handler2 = {this.handler2}
             />
 
             <div className={'chatBox'}>

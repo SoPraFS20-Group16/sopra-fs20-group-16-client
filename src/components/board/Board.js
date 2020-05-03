@@ -13,7 +13,6 @@ export default class Board extends React.Component {
       streetColor: "yellow",
       radius: 50,
     };
-    localStorage.setItem("isBuilding", "false");
   }
 
 
@@ -281,18 +280,22 @@ export default class Board extends React.Component {
               }}
             >
 
-              {localStorage.getItem("isBuilding")==="true"&&this.props.isBuilding && this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
-                (road, key) => <NewRoad {...road} key={key} />
-              ) }
+              {this.props.isBuilding && this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
+                (road, key) => <NewRoad
+                  {...road}
+                  key={key}
+                  handler2 = {this.props.handler2}/>
+              )}
 
               {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
                 (road, key) => <Road {...road} key={key}/>
               )}
 
-              {localStorage.getItem("isBuilding")==="true" && this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
+              {this.props.isBuilding && this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
                 (move, key) => <NewSettlement
                   {...move}
                   key={key}
+                  handler2 = {this.props.handler2}
                 />)}
 
               {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(

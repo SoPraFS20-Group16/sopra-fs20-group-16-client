@@ -1,11 +1,18 @@
 import React from "react";
 import { api } from "../../helpers/api";
+/* eslint-disable */
 
 export default function NewSettlement(props){
 
   const requestBody = JSON.stringify({
     moveId: props.moveId
   });
+
+  async function handler(){
+    await api.put("/games/" + props.gameId, requestBody);
+
+    return props.handler2;
+  }
 
   return(
     <button
@@ -22,11 +29,7 @@ export default function NewSettlement(props){
         backgroundColor: props.colorSet,
         opacity: 0.5,
       }}
-      onClick={props.isSetBuilt ?
-        null : async () =>{ await api.put("/games/" + props.gameId, requestBody);
-          localStorage.setItem("isBuilding", "false");
-      }
-      }
+      onClick={handler}
     />
   )
 }
