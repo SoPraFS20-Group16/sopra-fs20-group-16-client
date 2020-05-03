@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 // import FactBox from "./FactBox";
-import Feed from "./Feed";
+import BuildingCosts from "./BuildingCosts";
 import ActionBox from "./ActionBox";
 
 
@@ -138,13 +138,8 @@ class Game extends React.Component {
             </div>
 
 
-            <div className={'feedBox'}>
-              <h4>
-                Feed
-              </h4>
-              <h4>° ° ° °</h4>
-              <Feed />
-            </div>
+            <BuildingCosts />
+
 
           </div>
 
