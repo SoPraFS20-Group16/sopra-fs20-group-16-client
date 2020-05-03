@@ -9,13 +9,26 @@ const isClassDisabled = (move)=>{
 
 export default function ActionBox(props) {
 
+  async function pass() {
+    const moves = props.moves;
+    let passMove;
+
+    moves.map((move) => {
+      if(move.moveName === "FirstPassMove" || move.moveName === "PassMove") {
+        passMove = {moveId: move.moveId}
+      }
+    });
+
+    await api.put("/games/" + props.gameId, JSON.stringify({moveId: passMove.moveId}))
+  }
+
   return (
     <div className={'actionBox'}>
       <div>
         <button className={`actionBoxButton ${props.moves[0].moveName !== "BuildMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled={props.moves === "emptyMoves"}
                 onClick={
-                  async () => await api.get("/games/" + props.gameId)
+                  props.handler
                 }
         >
           Build
@@ -47,9 +60,7 @@ export default function ActionBox(props) {
         <button className={`actionBoxButton ${props.moves[0].moveName !== "FirstPassMove" && props.moves[0].moveName !== "PassMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled= {props.moves === "emptyMoves"}
                 onClick={
-                  props.moves[0].moveName === "FirstPassMove" || props.moves[0].moveName === "PassMove" ?
-                    async () => await api.put("/games/" + props.gameId,
-                      JSON.stringify({moveId: props.moves[0].moveId})) : ""
+                  props.moves !== "emptyMoves"? pass : ""
                 }
         >
           Pass turn
