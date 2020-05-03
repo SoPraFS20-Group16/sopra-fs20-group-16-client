@@ -19,9 +19,10 @@ export default function NewRoad(props){
         fontSize: "0.5em",
         width: "40px",
         height: "10px",
-        border: "1.5px solid black",
+        border: "1.5px dotted black",
         borderRadius: "10px",
-        backgroundColor: props.color
+        backgroundColor: props.color,
+        opacity: 0.5,
       }}
       onClick={async () => await api.put("/games/" + props.gameId, requestBody)} />
   )

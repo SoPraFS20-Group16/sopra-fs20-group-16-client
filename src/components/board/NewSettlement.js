@@ -17,9 +17,10 @@ export default function NewSettlement(props){
         fontSize: "0.5em",
         width: "20px",
         height: "20px",
-        border: "2px solid transparent",
+        border: "1.5px dotted black",
         borderRadius: "10px",
-        backgroundColor: props.colorSet
+        backgroundColor: props.colorSet,
+        opacity: 0.5,
       }}
       onClick={props.isSetBuilt ? null : async () => await api.put("/games/" + props.gameId, requestBody)}
     />
