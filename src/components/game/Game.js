@@ -47,10 +47,12 @@ class Game extends React.Component {
 
       console.log("Game data from server: \n" + JSON.stringify(response.data, null, 2));
 
-      // find out current player's score
+      const players = response.data.players;
       let points = 0;
-      response.data.players.map((player) =>
-        response.data.name === player.username ? points = player.points : null);
+      players.map((player) =>
+        player.points !== 0 ? points = player.points : "");
+
+
 
       // Assign data to state
       this.setState({
@@ -61,7 +63,7 @@ class Game extends React.Component {
         cities: response.data.board.cities,
         moves: response.data.moves,
         players: response.data.players,
-        points: points,
+        points: points
       });
 
 
@@ -72,7 +74,7 @@ class Game extends React.Component {
       this.setState({
         currPlResources:response.data.players[i].resources,
         currPlDevCards:response.data.players[i].developmentCards,
-      })
+      });
 
     } catch (error) {
       alert(`Something went wrong while getting the game information\n${handleError(error)}`);
@@ -90,6 +92,7 @@ class Game extends React.Component {
     localStorage.removeItem("token");
     this.props.history.push("/login");
   }
+
 
 
   render() {
