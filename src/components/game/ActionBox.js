@@ -1,16 +1,27 @@
 import React from "react";
 import { api, handleError } from "../../helpers/api";
 import './style.css';
+import NewSettlement from "../board/NewSettlement";
+import NewRoad from "../board/NewRoad";
+import NewCity from "../board/NewCity";
+
 
 export default function ActionBox(props) {
+  const moves = props.moves;
 
   return (
     <div className={'actionBox'}>
       <div>
         <button className={'actionBoxButton'}
                 disabled={props.moves === "emptyMoves"}
+
                 onClick={
-                  async () => await api.get("/games/" + props.gameId)
+                  moves.map((move)=> move.moveName === "BuildMove"&& move.building?
+                    ""
+                    /*(move.building.buildingType === "ROAD"? <NewRoad />: "")*/
+                    :""
+                  )
+
                 }
         >
           Build
