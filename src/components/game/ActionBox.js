@@ -6,6 +6,11 @@ import NewRoad from "../board/NewRoad";
 import NewCity from "../board/NewCity";
 
 
+
+const isClassDisabled = (move)=>{
+
+}
+
 export default function ActionBox(props) {
 
   return (
@@ -21,7 +26,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={'actionBoxButton'}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "DiceMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled={props.moves === "emptyMoves"}
                 onClick={
                   props.moves[0].moveName === "DiceMove"  ?
@@ -34,7 +39,10 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={'actionBoxButton'}
+        <button className={`actionBoxButton ${(
+            props.moves[0].moveName === "DiceMove" 
+            || props.moves[0].moveName === "PassMove"
+        ) ? "actionBoxButtonGrey" : ''}`}
                 disabled= {props.moves === "emptyMoves"}
         >
           Dev cards
@@ -42,8 +50,11 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={'actionBoxButton'}
-                disabled={props.moves === "emptyMoves"}
+        <button className={`actionBoxButton ${(
+            props.moves[0].moveName === "DiceMove"
+            || props.moves[0].moveName === "x"
+        ) ? "actionBoxButtonGrey" : ''}`}
+                disabled= {props.moves === "emptyMoves"}
                 onClick={
                   props.moves[0].moveName === "FirstPassMove" || props.moves[0].moveName === "PassMove" ?
                     async () => await api.put("/games/" + props.gameId,

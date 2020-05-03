@@ -31,6 +31,8 @@ class Game extends React.Component {
     this.getGameInfo = this.getGameInfo.bind(this);
 
   }
+
+
   componentDidMount() {
     let interval = setInterval(() => {
       this.getGameInfo(this.props.match.params.id);
@@ -46,7 +48,7 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
 
-      console.log("Game data from server: \n" + JSON.stringify(response.data, null, 2));
+      console.log("Game data from server: \n", response.data);
 
       const players = response.data.players;
       let points = 0;
@@ -174,7 +176,7 @@ class Game extends React.Component {
                 moves = {this.state.moves}
                 gameId = {this.state.gameId}
               />
-              : <ActionBox moves = "emptyMoves"/>}
+              : <ActionBox moves = "emptyMoves"/> }
           </div>
 
 
