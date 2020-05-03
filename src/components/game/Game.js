@@ -24,6 +24,7 @@ class Game extends React.Component {
       moves: [],
       players: [],
 
+      playerColors: {},
       currPlResources: null,
       currPlDevCards: null,
     };
@@ -63,7 +64,8 @@ class Game extends React.Component {
         cities: response.data.board.cities,
         moves: response.data.moves,
         players: response.data.players,
-        points: points
+        points: points,
+        playerColors: this.assignColors(response.data.players)
       });
 
 
@@ -91,6 +93,19 @@ class Game extends React.Component {
     localStorage.removeItem("gameID");
     localStorage.removeItem("token");
     this.props.history.push("/login");
+  }
+
+  // Assign colors to players
+  assignColors(players) {
+    const colors = ["cyan", "red", "lightgreen", "yellow"];
+    let playerColors = {};
+
+    players.map((pl, key) => {
+      playerColors[pl.userId] = colors[key];
+    })
+    console.log("player colors" + JSON.stringify(playerColors))
+
+    return playerColors;
   }
 
 
@@ -142,6 +157,7 @@ class Game extends React.Component {
               settlements={this.state.settlements}
               cities={this.state.cities}
               players={this.state.players}
+              playerColors={this.state.playerColors}
             />
 
             <div className={'chatBox'}>
