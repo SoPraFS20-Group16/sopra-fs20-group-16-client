@@ -1,11 +1,22 @@
 import React from "react";
 import {api} from "../../helpers/api";
+/* eslint-disable */
 
 export default function NewRoad(props){
 
   const requestBody = JSON.stringify({
     moveId: props.moveId
   });
+
+  async function handler(){
+    await api.put("/games/" + props.gameId, requestBody);
+
+    return props.handler2;
+  }
+
+
+
+
 
   // const [streetColor, setStreetColor] = React.useState("transparent");
   return (
@@ -24,6 +35,8 @@ export default function NewRoad(props){
         backgroundColor: props.color,
         opacity: 0.5,
       }}
-      onClick={async () => await api.put("/games/" + props.gameId, requestBody)} />
+      onClick={handler}
+
+    />
   )
 }

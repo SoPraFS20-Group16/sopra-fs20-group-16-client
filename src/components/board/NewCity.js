@@ -1,10 +1,14 @@
-import React from "react";
 import { api } from "../../helpers/api";
+import React from "react";
 
-export default function Settlement(props){
+export default function NewCity(props){
+
+  const requestBody = JSON.stringify({
+    moveId: props.moveId
+  });
 
   return(
-    <div
+    <button
       style={{
         position: "absolute",
         top: props.y,
@@ -13,10 +17,10 @@ export default function Settlement(props){
         fontSize: "0.5em",
         width: "20px",
         height: "20px",
-        border: "1.5px solid black",
-        borderRadius: "10px",
+        border: "2px solid transparent",
         backgroundColor: props.colorSet
       }}
+      onClick={props.isBuilt ? null : async () => await api.put("/games/" + props.gameId, requestBody)}
     />
   )
 }
