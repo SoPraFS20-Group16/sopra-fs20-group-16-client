@@ -22,6 +22,14 @@ export default function ActionBox(props) {
     await api.put("/games/" + props.gameId, JSON.stringify({moveId: passMove.moveId}))
   }
 
+  async function rollDice(){
+    if(props.moves[0].moveName === "DiceMove") {
+      await api.put("/games/" + props.gameId, JSON.stringify({moveId: props.moves[0].moveId}))
+    }
+  }
+
+
+
   return (
     <div className={'actionBox'}>
       <div>
@@ -38,10 +46,8 @@ export default function ActionBox(props) {
       <div>
         <button className={`actionBoxButton ${props.moves[0].moveName !== "DiceMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled={props.moves === "emptyMoves"}
-                onClick={
-                  props.moves[0].moveName === "DiceMove"  ?
-                    async () => await api.put("/games/" + props.gameId,
-                      JSON.stringify({moveId: props.moves[0].moveId})) : ""
+                onClick={props.moves !=="emptyMoves"?
+                    rollDice : ""
                 }
         >
           Roll dice
