@@ -3,6 +3,7 @@ import Hex from "./Hex";
 import Road from "./Road";
 import NewRoad from "./NewRoad";
 import Settlement from "./Settlement";
+import NewSettlement from "./NewSettlement";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -298,7 +299,7 @@ export default class Board extends React.Component {
               )}
 
               {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
-                (move, key) => <Settlement
+                (move, key) => <NewSettlement
                   {...move}
                   key={key}
                 />)}
