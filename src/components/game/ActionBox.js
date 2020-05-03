@@ -10,7 +10,7 @@ export default function ActionBox(props) {
         <button className={'actionBoxButton'}
                 disabled={props.moves === "emptyMoves"}
                 onClick={
-                  async () => await api.get("/games/" + localStorage.getItem("gameID"))
+                  async () => await api.get("/games/" + props.gameId)
                 }
         >
           Build
@@ -22,7 +22,7 @@ export default function ActionBox(props) {
                 disabled={props.moves === "emptyMoves"}
                 onClick={
                   props.moves[0].moveName === "DiceMove"  ?
-                    async () => await api.put("/games/" + localStorage.getItem("gameID"),
+                    async () => await api.put("/games/" + props.gameId,
                       JSON.stringify({moveId: props.moves[0].moveId})) : ""
                 }
         >

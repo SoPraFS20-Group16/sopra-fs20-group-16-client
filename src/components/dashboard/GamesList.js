@@ -39,7 +39,7 @@ class GamesList extends React.Component {
 
   // Use GameCard object to render existing games
   renderGameCards = () => {
-    console.log("Games urls: " + this.state.games.map((game) => game.url))
+    console.log("Games urls: " + this.state.games.map((game) => game.url));
     return this.state.games.map((game, key) => <GameCard key={key} history={this.props.history} game={game} />);
   };
 

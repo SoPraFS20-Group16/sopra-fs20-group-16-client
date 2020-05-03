@@ -45,12 +45,12 @@ class Game extends React.Component {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
 
-      console.log("Game data from server: \n" + JSON.stringify(response.data, null, 2))
+      console.log("Game data from server: \n" + JSON.stringify(response.data, null, 2));
 
       // find out current player's score
       let points = 0;
       response.data.players.map((player) =>
-        response.data.name === player.username ? points = player.points : null)
+        response.data.name === player.username ? points = player.points : null);
 
       // Assign data to state
       this.setState({
@@ -85,7 +85,8 @@ class Game extends React.Component {
       headers: {
         "Token": localStorage.getItem("token")
       }
-    })
+    });
+    localStorage.removeItem("gameID");
     localStorage.removeItem("token");
     this.props.history.push("/login");
   }

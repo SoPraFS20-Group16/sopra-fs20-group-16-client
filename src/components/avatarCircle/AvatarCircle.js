@@ -9,6 +9,6 @@ export default function AvatarCircle(props) {
         width: props.size,
         height: props.size
       }}
-    ></div>
+    />
   );
 }

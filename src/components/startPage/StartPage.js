@@ -46,7 +46,7 @@ color: gold;
 
 mix-blend-mode: normal;
 text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-`
+`;
 
 /**
  * Classes in React allow you to have an internal state within the class and to have the React life-cycle for your component.
@@ -70,17 +70,6 @@ class StartPage extends React.Component {
     };
   }
 
-
-  /**
-   *  Every time the user enters something in the input field, the state gets updated.
-   * @param key (the key of the state for identifying the field that needs to be updated)
-   * @param value (the value that gets assigned to the identified state key)
-   */
-  handleInputChange(key, value) {
-    // Example: if the key is username, this statement is the equivalent to the following one:
-    // this.setState({'username': value});
-    this.setState({ [key]: value });
-  }
 
   /**
    * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree).

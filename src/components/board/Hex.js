@@ -17,7 +17,7 @@ export default function Hex(props) {
     DESERT: desertHex,
     PASTURE: sheepHex,
     HILL: clayHex,
-  }
+  };
 
   return (
 

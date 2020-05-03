@@ -16,11 +16,6 @@ export default class Board extends React.Component {
     }
   }
 
-  handleInputChange(key, value) {
-    // Example: if the key is username, this statement is the equivalent to the following one:
-    // this.setState({'username': value});
-    this.setState({[key]: value});
-  }
 
   componentDidMount() {
     let lst = [];
@@ -89,7 +84,7 @@ export default class Board extends React.Component {
           moveId: null,
           isBuilt: false,
           gameId: this.props.gameId
-        }
+        };
 
         // Set moveId
         roadInfo.moveId = move.moveId;
@@ -130,7 +125,7 @@ export default class Board extends React.Component {
 
         roadArray.push(roadInfo);
       }
-    })
+    });
     // console.log('buildable road info array: ' + JSON.stringify(roadArray));
     return roadArray;
   }
@@ -149,7 +144,7 @@ export default class Board extends React.Component {
         color:'black', //TODO make color user-dependent
         rotation: "rotate(0deg)",
         isBuilt: true,
-      }
+      };
 
       // console.log("built road: " + JSON.stringify(road))
 
@@ -189,7 +184,7 @@ export default class Board extends React.Component {
 
       roadArray.push(roadInfo);
 
-    })
+    });
     return roadArray;
   }
 

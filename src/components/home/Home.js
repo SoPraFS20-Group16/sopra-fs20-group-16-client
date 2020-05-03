@@ -19,7 +19,7 @@ class Home extends React.Component {
             headers: {
                 "Token": localStorage.getItem("token")
             }
-        })
+        });
         localStorage.removeItem("token");
         this.props.history.push("/login");
     }
@@ -44,7 +44,7 @@ class Home extends React.Component {
 
         const requestBody = {
             moveId: this.state.gameDetails.moves[0].moveId
-        }
+        };
         await api.put("/games/" + this.props.match.params.id, requestBody).then(
             this.props.history.push("/game/"+ this.props.match.params.id+"/dashboard")
         )

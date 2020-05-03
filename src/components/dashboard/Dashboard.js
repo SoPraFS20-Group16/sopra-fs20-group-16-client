@@ -28,7 +28,7 @@ const GoldButt = styled.button`
     border: 1px solid black;
     border-radius: 10px;
     margin: 20px;
-`
+`;
 
 class Dashboard extends Component {
 
@@ -38,6 +38,7 @@ class Dashboard extends Component {
     //     "Token": localStorage.getItem("token")
     //   }
     // })
+    localStorage.removeItem("gameID");
     localStorage.removeItem("token");
     this.props.history.push("/login");
   }
@@ -75,8 +76,6 @@ class Dashboard extends Component {
    */
   async sendCreatedGame() {
     try {
-      // Get the token from the localStorage
-      const tokenStr = localStorage.getItem("token");
 
       console.log(
         "State before sending game: " +
@@ -98,7 +97,7 @@ class Dashboard extends Component {
       console.log(res);
 
       if (res.status === 201) {
-        console.log(res.data, "checking res data")
+        console.log(res.data, "checking res data");
         this.props.history.push(`/games/${res.data.gameId}`);
         //window.location.reload();
         console.log("201 status from game creation");
