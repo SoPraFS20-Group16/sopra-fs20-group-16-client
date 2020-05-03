@@ -44,11 +44,11 @@ class Game extends React.Component {
         if (opponentHasLeft) {
           clearInterval(interval)
           this.props.history.push('/dashboard');
+          opponentHasLeft = false;
         } else{
           this.getGameInfo(this.props.match.params.id);
         }
       }, 2000);
-    //this.getGameInfo(this.props.match.params.id);
   }
 
   handler(){
@@ -62,7 +62,6 @@ class Game extends React.Component {
 
   async getGameInfo(id) {
     try {
-
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
       console.log("Game data from server: \n", response.data);
