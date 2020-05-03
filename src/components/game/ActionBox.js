@@ -47,10 +47,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${(
-            props.moves[0].moveName === "DiceMove"
-            || props.moves[0].moveName === "x"
-        ) ? "actionBoxButtonGrey" : ''}`}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "FirstPassMove" && props.moves[0].moveName !== "PassMove"  ? "actionBoxButtonGrey" : ''}`}
                 disabled= {props.moves === "emptyMoves"}
                 onClick={
                   props.moves[0].moveName === "FirstPassMove" || props.moves[0].moveName === "PassMove" ?
