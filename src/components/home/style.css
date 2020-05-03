@@ -111,6 +111,7 @@
 .box4 {
     justify-content: space-between;
     display: flex;
+    background-color: rgba(18, 211, 50, 0.712);
 
 }
 
@@ -118,10 +119,6 @@
     background-color: rgba(153, 153, 153, 0.418);
 }
 
-.box4 {
-    background-color: rgba(18, 211, 50, 0.712);
-    text-align: start;
-}
 
 .buttons p a {
     text-decoration: none;
