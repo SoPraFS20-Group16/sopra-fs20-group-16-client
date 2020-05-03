@@ -12,7 +12,7 @@ export default function ActionBox(props) {
   return (
     <div className={'actionBox'}>
       <div>
-        <button className={`actionBoxButton ${props.moves[0].moveName !== "BuildMove"  ? "actionBoxButtonGrey" : ''}`}
+        <button className={`actionBoxButton ${props.moves[0].moveName !== "BuildMove" && props.moves[0].moveName !== "FirstRoadMove" && props.moves[0].moveName !== "FirstSettlementMove"? "actionBoxButtonGrey" : ''}`}
                 disabled={props.moves === "emptyMoves"}
                 onClick={
                   async () => await api.get("/games/" + props.gameId)

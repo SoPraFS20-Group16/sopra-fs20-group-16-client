@@ -8,6 +8,7 @@ import ResourcesList from "./ResourcesList";
 import BuildingCosts from "./BuildingCosts";
 import ActionBox from "./ActionBox";
 
+let opponentHasLeft = false;
 
 class Game extends React.Component {
   constructor(props) {
@@ -33,11 +34,17 @@ class Game extends React.Component {
   }
 
 
-  componentDidMount() {
-    let interval = setInterval(() => {
-      this.getGameInfo(this.props.match.params.id);
-    }, 2000);
-
+  componentDidMount()
+    {
+      let interval = setInterval(() => {
+        console.log(opponentHasLeft, "oppponent?")
+        if (opponentHasLeft) {
+          clearInterval(interval)
+          this.props.history.push('/dashboard');
+        } else{
+          this.getGameInfo(this.props.match.params.id);
+        }
+      }, 2000);
     //this.getGameInfo(this.props.match.params.id);
   }
 
@@ -47,13 +54,11 @@ class Game extends React.Component {
 
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
-
       console.log("Game data from server: \n", response.data);
-
       const players = response.data.players;
       let points = 0;
       players.map((player) =>
-        player.points !== 0 ? points = player.points : "");
+      player.points !== 0 ? points = player.points : "");
 
 
 
@@ -68,6 +73,7 @@ class Game extends React.Component {
         players: response.data.players,
         points: points,
         playerColors: this.assignColors(response.data.players)
+
       });
 
 
@@ -81,6 +87,7 @@ class Game extends React.Component {
       });
 
     } catch (error) {
+      opponentHasLeft = true;
       alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
   }

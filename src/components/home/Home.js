@@ -51,6 +51,8 @@ class Home extends React.Component {
                 if(res.data && res.data.started) {
                     this.props.history.push("/game/"+this.props.match.params.id+"/dashboard");
                 }
+            }).catch(e =>{
+                this.props.history.push("/dashboard");
             })
         }, 1000);
 
