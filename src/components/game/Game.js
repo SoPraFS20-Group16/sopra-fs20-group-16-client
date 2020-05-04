@@ -28,7 +28,7 @@ class Game extends React.Component {
       lastDice: null,
       playerColors: {},
       currPlResources: null,
-      currPlDevCards: null,
+      currPlDevCards: null
     };
     this.getGameInfo = this.getGameInfo.bind(this);
     this.handler = this.handler.bind(this);
@@ -48,7 +48,7 @@ class Game extends React.Component {
         } else{
           this.getGameInfo(this.props.match.params.id);
         }
-      }, 2000);
+      }, 3000);
   }
 
   handler(){
@@ -60,13 +60,11 @@ class Game extends React.Component {
   }
 
 
-
   async getGameInfo(id) {
     try {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
-      console.log("Game data from server: \n", response.data);
-      console.log("object values", Object.entries(response.data.moves));
+      console.log("Game data from server: \n", response.data)
       const players = response.data.players;
       let points = 0;
       players.map((player) =>
