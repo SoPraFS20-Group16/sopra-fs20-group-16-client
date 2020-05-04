@@ -28,12 +28,54 @@ export default function ActionBox(props) {
     }
   }
 
+  const checkPass = () => {
+      var i;
+      let className_ = 'actionBoxButton';
+      for(i=0; i < props.moves.length; i++) {
+          if((props.moves[i].moveName !== "FirstPassMove") && (props.moves[i].moveName !== "PassMove")) {
+              className_ = 'actionBoxButtonGrey';
+          }
+      }
+        return className_;
+    }
 
+    const checkDice = () => {
+        var i;
+        let className_ = 'actionBoxButton';
+        for(i=0; i < props.moves.length; i++) {
+            if((props.moves[i].moveName !== "DiceMove")) {
+                className_ = 'actionBoxButtonGrey';
+            }
+        }
+        return className_;
+    }
+
+    const checkBuild = () => {
+        var i;
+        let className_ = 'actionBoxButton';
+        for(i=0; i < props.moves.length; i++) {
+            if((props.moves[i].moveName !== "FirstSettlementMove") && (props.moves[i].moveName !== "BuildMove")&& (props.moves[i].moveName !== "FirstRoadMove")) {
+                className_ = 'actionBoxButtonGrey';
+            }
+        }
+        return className_;
+    }
+
+    const checkDev = () => {
+        var i;
+        let className_ = 'actionBoxButton';
+        for(i=0; i < props.moves.length; i++) {
+            if((props.moves[i].moveName !== "DevMove")){
+                className_ = 'actionBoxButtonGrey';
+            }
+        }
+        return className_;
+    }
 
   return (
     <div className={'actionBox'}>
       <div>
-        <button className={`actionBoxButton ${props.moves[0].moveName !== "BuildMove" && props.moves[0].moveName !== "FirstRoadMove" && props.moves[0].moveName !== "FirstSettlementMove"? "actionBoxButtonGrey" : ''}`}
+        <button className={checkBuild()}
                 disabled={props.moves === "emptyMoves"}
                 onClick={
                   props.handler
@@ -44,7 +86,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${props.moves[0].moveName !== "DiceMove"  ? "actionBoxButtonGrey" : ''}`}
+        <button className={checkDice()}
                 disabled={props.moves === "emptyMoves"}
                 onClick={props.moves !=="emptyMoves"?
                     rollDice : ""
@@ -55,7 +97,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${props.moves[0].moveName !== "DevMove"  ? "actionBoxButtonGrey" : ''}`}
+        <button className={checkDev()}
                 disabled= {props.moves === "emptyMoves"}
         >
           Dev cards
@@ -63,7 +105,7 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${props.moves[0].moveName !== "FirstPassMove" && props.moves[0].moveName !== "PassMove"  ? "actionBoxButtonGrey" : ''}`}
+        <button className={checkPass()}
                 disabled= {props.moves === "emptyMoves"}
                 onClick={
                   props.moves !== "emptyMoves"? pass : ""

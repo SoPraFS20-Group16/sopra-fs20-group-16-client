@@ -152,5 +152,11 @@
 
 .actionBoxButtonGrey{
     background-color: grey;
+    color: black;
+    width: 100px;
+    padding: 17px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
 }
 
