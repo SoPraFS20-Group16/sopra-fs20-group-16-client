@@ -52,7 +52,7 @@ const InputFieldCheck = styled.input`
   }
   height: 35px;
   padding-left: 20px;
-  margin-left: 230px;
+  margin-left: 350px;
   border: 1px solid black;
   border-radius: 20px;
   margin-bottom: 20px;
