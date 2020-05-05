@@ -46,6 +46,20 @@ const InputField = styled.input`
   color: black;
 `;
 
+const InputFieldCheck = styled.input`
+  &::placeholder {
+    color: black;
+  }
+  height: 35px;
+  padding-left: 20px;
+  margin-left: 230px;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background: gold;
+  color: black;
+`;
+
 const Label = styled.label`
   color: black;
   margin-bottom: 10px;
@@ -69,7 +83,8 @@ class Register extends React.Component{
         super();
         this.state = {
             username: null,
-            password: null
+            password: null,
+            tracking: false
         };
     }
 
@@ -83,7 +98,9 @@ class Register extends React.Component{
             const requestBody = JSON.stringify({
                 username: this.state.username,
                 password: this.state.password,
-            });
+                tracking: this.state.tracking
+            })
+
 
             if(this.isNotEmptyOrSpaces(requestBody)){
                 const response = await api.post("/users", requestBody);
@@ -129,6 +146,15 @@ class Register extends React.Component{
                                   onChange={e =>{
                                       this.handleInputChange('password', e.target.value);
                                   }}
+                      />
+
+                      <label><b>Share location</b></label>
+                      <InputFieldCheck type="checkbox"
+
+                             onChange={() => {
+                                 this.handleInputChange('tracking', true)
+                             }}
+
                       />
 
                       <ButtonContainer>

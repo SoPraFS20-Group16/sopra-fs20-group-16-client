@@ -48,21 +48,21 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       name: "",
-      withBots: false,
+      withBots: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleBotsChange(event) {
-    const target = event.target;
-    const value = target.name === "withBots" ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value,
-    });
-    console.log("State change: " + this.state.name);
-}
+//   handleBotsChange(event) {
+//     const target = event.target;
+//     const value = target.name === "withBots" ? target.checked : target.value;
+//     const name = target.name;
+//
+//     this.setState({
+//       [name]: value,
+//     });
+//     console.log("State change: " + this.state.name);
+// }
 
   handleInputChange(key, value) {
     this.setState({ [key]: value });
@@ -87,7 +87,7 @@ class Dashboard extends Component {
       // Get the game for the request's body
       const requestBody = JSON.stringify({
         name: this.state.name,
-        withBots: this.state.withBots.toString(),
+        withBots: this.state.withBots
       });
       console.log("JSON: " + requestBody);
 
@@ -183,8 +183,8 @@ class Dashboard extends Component {
                     //label={"Enable bots"}
                     type="checkbox"
                     checked={this.state.withBots}
-                    onChange={(e) => {
-                      this.handleInputChange("withBots", e.target.checked);
+                    onChange={() => {
+                      this.handleInputChange('withBots', true);
                     }}
                   />
                   <p style={{ paddingLeft: "10px" }}>Enable bots</p>
