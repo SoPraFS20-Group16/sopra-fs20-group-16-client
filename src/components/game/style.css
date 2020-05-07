@@ -160,3 +160,13 @@
     pointer-events: none;
 }
 
+.offerButton {
+    background-color: gold;
+    color: black;
+    width: 200px;
+    padding: 17px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
+

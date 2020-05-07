@@ -40,16 +40,7 @@ export default function ActionBox(props) {
   return (
     <div className={'actionBox'}>
       <div>
-          <button className={`actionBoxButton ${moveChecker().includes("TradeMove")=== false ? "actionBoxButtonGrey":''}`}
-                disabled={props.moves === "emptyMoves" || moveChecker().includes("TradeMove")=== false}
-                onClick={() =>
-                  <TradeOffering
-                  moves = {props.moves}
-                  />
-                }
-        >
-          Trade
-        </button>
+          <TradeOffering moves = {props.moves} gameId = {props.gameId}/>
       </div>
 
       <div>
