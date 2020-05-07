@@ -1,13 +1,7 @@
 import React from "react";
 import { api, handleError } from "../../helpers/api";
 import './style.css';
-
-
-
-const isClassDisabled = (move)=>{
-
-}
-
+import TradeOffering from "./TradeOffering";
 
 
 export default function ActionBox(props) {
@@ -45,18 +39,18 @@ export default function ActionBox(props) {
 
   return (
     <div className={'actionBox'}>
-      {/*<div>
-          <button className={`actionBoxButton ${moveChecker().includes("FirstSettlementMove")=== false && 
-          moveChecker().includes("FirstRoadMove")=== false && 
-          moveChecker().includes("BuildMove")=== false ? "actionBoxButtonGrey":''}`}
-                disabled={props.moves === "emptyMoves"}
-                onClick={
-                  props.handler
+      <div>
+          <button className={`actionBoxButton ${moveChecker().includes("TradeMove")=== false ? "actionBoxButtonGrey":''}`}
+                disabled={props.moves === "emptyMoves" || moveChecker().includes("TradeMove")=== false}
+                onClick={() =>
+                  <TradeOffering
+                  moves = {props.moves}
+                  />
                 }
         >
-          Build
+          Trade
         </button>
-      </div>*/}
+      </div>
 
       <div>
           <button className={`actionBoxButton ${moveChecker().includes("DiceMove") === false ? "actionBoxButtonGrey":''}`}

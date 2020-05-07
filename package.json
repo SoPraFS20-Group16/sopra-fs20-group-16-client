@@ -8,14 +8,16 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "inline-style-prefixer": "^4.0.2",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.12.0",
+    "react-modal-dialog-react16": "^1.0.9",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.1",
+    "react-svg-hexagon": "^1.0.0",
     "styled-components": "^4.4.1",
-    "yarn": "^1.22.4",
-    "react-svg-hexagon": "^1.0.0"
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "dev": "react-scripts start",
