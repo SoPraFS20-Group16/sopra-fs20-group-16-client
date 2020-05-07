@@ -24,15 +24,12 @@ class Game extends React.Component {
       cities:[],
       moves: [],
       players: [],
-      isBuilding: false,
       lastDice: null,
       playerColors: {},
       currPlResources: null,
       currPlDevCards: null
     };
     this.getGameInfo = this.getGameInfo.bind(this);
-    this.handler = this.handler.bind(this);
-    this.handler2 = this.handler2.bind(this);
 
   }
 
@@ -49,14 +46,6 @@ class Game extends React.Component {
           this.getGameInfo(this.props.match.params.id);
         }
       }, 3000);
-  }
-
-  handler(){
-    this.setState({isBuilding: true})
-  }
-
-  handler2(){
-    this.setState({isBuilding: false})
   }
 
 
@@ -171,8 +160,6 @@ class Game extends React.Component {
               cities={this.state.cities}
               players={this.state.players}
               playerColors={this.state.playerColors}
-              isBuilding = {this.state.isBuilding}
-              handler2 = {this.handler2}
             />
 
 
@@ -183,7 +170,6 @@ class Game extends React.Component {
               <ActionBox
                 moves = {this.state.moves}
                 gameId = {this.state.gameId}
-                handler = {this.handler}
               />
               : <ActionBox moves = "emptyMoves"/> }
 

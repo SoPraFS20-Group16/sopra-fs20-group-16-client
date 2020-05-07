@@ -45,7 +45,7 @@ export default function ActionBox(props) {
 
   return (
     <div className={'actionBox'}>
-      <div>
+      {/*<div>
           <button className={`actionBoxButton ${moveChecker().includes("FirstSettlementMove")=== false && 
           moveChecker().includes("FirstRoadMove")=== false && 
           moveChecker().includes("BuildMove")=== false ? "actionBoxButtonGrey":''}`}
@@ -56,7 +56,7 @@ export default function ActionBox(props) {
         >
           Build
         </button>
-      </div>
+      </div>*/}
 
       <div>
           <button className={`actionBoxButton ${moveChecker().includes("DiceMove") === false ? "actionBoxButtonGrey":''}`}
