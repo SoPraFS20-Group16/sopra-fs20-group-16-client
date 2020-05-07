@@ -10,14 +10,8 @@ export default function NewRoad(props){
   async function handler(){
     await api.put("/games/" + props.gameId, requestBody);
 
-    return props.handler2;
   }
 
-
-
-
-
-  // const [streetColor, setStreetColor] = React.useState("transparent");
   return (
 
     <button

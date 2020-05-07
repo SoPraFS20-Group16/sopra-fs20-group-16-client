@@ -17,8 +17,8 @@ export default function NewCity(props){
         fontSize: "0.5em",
         width: "20px",
         height: "20px",
-        border: "2px solid transparent",
-        backgroundColor: props.colorSet
+        border: "1.5px dotted black",
+        backgroundColor: props.colorSet,
       }}
       onClick={props.isBuilt ? null : async () => await api.put("/games/" + props.gameId, requestBody)}
     />

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Settlement(props){
+export default function City(props){
 
   return(
     <div
@@ -13,9 +13,9 @@ export default function Settlement(props){
         width: "20px",
         height: "20px",
         border: "1.5px solid black",
-        borderRadius: "10px",
         backgroundColor: props.colorSet
       }}
+
     />
   )
 }

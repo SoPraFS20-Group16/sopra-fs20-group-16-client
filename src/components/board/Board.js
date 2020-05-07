@@ -4,6 +4,8 @@ import Road from "./Road";
 import NewRoad from "./NewRoad";
 import Settlement from "./Settlement";
 import NewSettlement from "./NewSettlement";
+import NewCity from "./NewCity";
+import City from "./City";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -226,6 +228,55 @@ export default class Board extends React.Component {
     return info;
   }
 
+  //get information needed to render buildable cities
+  getCityMoves(){
+    let info = [];
+    const moves = this.props.moves;
+
+    //if move.building exists and the building type is settlement then add the move coordinate to info for each possible move, else do nothing ("")
+    moves.map((move) => {
+      if(move.building && move.building.buildingType === "CITY"){
+
+        let transCoords = this.coordTrans({
+          x:move.building.coordinates[0].x,
+          y:move.building.coordinates[0].y
+        });
+
+        info.push({
+          y: transCoords.y,
+          x: transCoords.x,
+          moveId: move.moveId,
+          isSetBuilt : false,
+          colorSet: this.props.playerColors[move.userId],
+          gameId : this.props.gameId
+        })
+      }
+    });
+    return info;
+  }
+
+  // Get information needed to render built cities
+  getCities(){
+    let info = [];
+    const cities = this.props.cities;
+
+    cities.map((city) => {
+      if(city){
+
+        let transCoords = this.coordTrans({
+          x:city.coordinates[0].x,
+          y:city.coordinates[0].y
+        });
+
+        info.push({y: transCoords.y,
+          x: transCoords.x,
+          isSetBuilt : true,
+          colorSet: this.props.playerColors[city.userId]})
+      }
+    });
+    return info;
+  }
+
 
   createBoard(){
     const info =[];
@@ -280,29 +331,32 @@ export default class Board extends React.Component {
               }}
             >
 
-              {this.props.isBuilding && this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
+              {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
                 (road, key) => <NewRoad
                   {...road}
                   key={key}
-                  handler2 = {this.props.handler2}/>
+                />
               )}
 
               {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
                 (road, key) => <Road {...road} key={key}/>
               )}
 
-              {this.props.isBuilding && this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
-                (move, key) => <NewSettlement
-                  {...move}
-                  key={key}
-                  handler2 = {this.props.handler2}
-                />)}
+              {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
+                (move, key) => <NewSettlement {...move} key={key}/>
+                )}
 
               {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
-                (settlement, key) => <Settlement
-                  {...settlement}
-                  key={key}
-                />)}
+                (settlement, key) => <Settlement {...settlement} key={key}/>
+                )}
+
+              {this.props.moves && this.props.moves !== 0 && this.getCityMoves().map(
+                (move, key) =><NewCity {...move} key = {key}/>
+                )}
+
+              {this.props.cities && this.props.cities !== 0 && this.getCities().map(
+                (city, key) => <City {...city} key={key}/>
+              )}
 
             </div>
 
