@@ -7,6 +7,7 @@ import ResourcesList from "./ResourcesList";
 import BuildingCosts from "./BuildingCosts";
 import ActionBox from "./ActionBox";
 import Dice from "./Dice";
+import PlayersList from "./PlayersList";
 
 let opponentHasLeft = false;
 
@@ -172,6 +173,11 @@ class Game extends React.Component {
                 gameId = {this.state.gameId}
               />
               : <ActionBox moves = "emptyMoves"/> }
+
+            {this.state.playerColors !== {} && this.state.players.length !== 0 && <PlayersList
+              colors={this.state.playerColors}
+              players={this.state.players}
+            />}
 
             {this.state.diceRoll !== 0 && <Dice result={this.state.diceRoll}/>}
 
