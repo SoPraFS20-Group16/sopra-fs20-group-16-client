@@ -4,7 +4,7 @@ import './style.css'
 export default function playersList(props) {
 
   return (
-    <div className={'actionBox'}>
+    <div className={'actionBox'} style={{padding:' 7px 13px'}}>
       <div style={{marginBottom:'7px'}}>
         <h5>
           Players
