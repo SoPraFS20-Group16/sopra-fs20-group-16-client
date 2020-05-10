@@ -291,10 +291,10 @@ export default class Board extends React.Component {
       let moveId = null;
 
       // If a seven was rolled, pass the tileID too:
-      if(this.props.moves && this.props.moves.length !== 0 && this.props.moves[i].moveName === "KnightMove"){
-        tileId = this.props.moves[i].tileId;
-        moveId = this.props.moves[i].moveId;
-      }
+      //if(this.props.moves && this.props.moves.length !== 0 && this.props.moves[i].moveName === "KnightMove"){
+      //  tileId = this.props.moves[i].tileId;
+      //  moveId = this.props.moves[i].moveId;
+      //}
 
       info.push({
         x:this.coordTrans({y:top, x:left}).x,
