@@ -180,11 +180,10 @@ class Dashboard extends Component {
                       bottom: "6px",
                       paddingRight: "20px",
                     }}
-                    //label={"Enable bots"}
                     type="checkbox"
                     checked={this.state.withBots}
                     onChange={() => {
-                      this.handleInputChange('withBots', true);
+                      this.handleInputChange('withBots', !this.state.withBots);
                     }}
                   />
                   <p style={{ paddingLeft: "10px" }}>Enable bots</p>

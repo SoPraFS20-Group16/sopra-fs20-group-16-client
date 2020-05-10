@@ -35,19 +35,22 @@ const latlong = [
     { name: "Tokyo", latitude: 35.652832, longitude: 139.839478 }
 ];
 
-const Markers = () => {
+const Markers = ({usersLatLong}) => {
     // const {data} = this.props;
-    return latlong.map(city => (
-        <Marker
-            key={city.name}
-            offsetLeft={-19}
-            offsetTop={-37}
-            longitude={city.longitude}
-            latitude={city.latitude}
-        >
-            <img src={pin} height="42" width="42" />
-        </Marker>
-    ));
+    console.log('aasdsa', usersLatLong)
+    return usersLatLong.map(city => {
+        return city.latitude && city.longitude ?
+            <Marker
+                key={city.countryName ? city.countryName: ''}
+                offsetLeft={-19}
+                offsetTop={-37}
+                longitude={city.longitude ? city.longitude : 0}
+                latitude={city.latitude ? city.latitude: 21}
+            >
+                <img src={pin} height="42" width="42" />
+            </Marker>: <div/>
+
+    });
 };
 
 
@@ -58,6 +61,7 @@ class Home extends React.Component {
         super(props);
         this.state  = {
             gameDetails: {},
+            usersLatLong: [],
             viewport: {
                 width: "100%",
                 height: 450,
@@ -90,6 +94,12 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        api.get('/users').then((res) => {
+            console.log(res, "response logging")
+            this.setState({usersLatLong: res.data.map(({location})=> ({
+      ...location
+                }))})
+        })
         this.interval = setInterval(() => {
             api.get("/games/"+ this.props.match.params.id ).then((res) => {
                 this.setState({ gameDetails: {...res.data}});
@@ -100,6 +110,7 @@ class Home extends React.Component {
                 this.props.history.push("/dashboard");
             })
         }, 1000);
+        console.log(this.props, "show me")
 
     }
 
@@ -119,6 +130,7 @@ class Home extends React.Component {
 }
 
     render() {
+        console.log(this.state.usersLatLong, "users state")
     return <div className="body1">
         <div className="header">
             <div className={"header_logout"}>
@@ -135,7 +147,7 @@ class Home extends React.Component {
                 mapStyle="mapbox://styles/karimabouelnaga2/ck9y14ojn1yfd1iphribr8z9e"
                 onViewportChange={this._onViewportChange}
             >
-                <Markers />
+                <Markers usersLatLong = {this.state.usersLatLong}/>
             </MapGL>
         </div>
 

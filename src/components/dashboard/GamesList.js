@@ -19,18 +19,22 @@ class GamesList extends React.Component {
    */
   async getGames() {
     try {
+      setInterval(async () => {
+        const response = await api.get("/games");
+        this.setState({ games: response && response.data });
+      },5000)
 
       // Ask the server the games by passing the token in the header
-      const response = await api.get("/games");
-
-      // testing
-      console.log('response data: ' + JSON.stringify(response.data));
-
-      // Set the games into the state
-      this.setState({games: response.data});
-
-      // testing
-      console.log('state at getGames(): ' + JSON.stringify(this.state.games));
+      // const response = await api.get("/games");
+      //
+      // // testing
+      // console.log('response data: ' + JSON.stringify(response.data));
+      //
+      // // Set the games into the state
+      // this.setState({games: response.data});
+      //
+      // // testing
+      // console.log('state at getGames(): ' + JSON.stringify(this.state.games));
 
     } catch (error) {
       alert(`Something went wrong while fetching the existing matches.\n${handleError(error)}`);
