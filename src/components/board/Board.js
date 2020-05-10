@@ -6,6 +6,7 @@ import Settlement from "./Settlement";
 import NewSettlement from "./NewSettlement";
 import NewCity from "./NewCity";
 import City from "./City";
+import HexThiefSelector from "./HexThiefSelector";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -286,10 +287,26 @@ export default class Board extends React.Component {
       const left = this.props.tiles[i].coordinates[1].x;
       const number = this.props.tiles[i].tileNumber;
       const type = this.props.tiles[i].type;
+      let tileId = null;
+      let moveId = null;
 
-      // console.log("createBoard: " + top + ' ' + left + ' ' + number + ' ' + type)
+      // If a seven was rolled, pass the tileID too:
+      if(this.props.moves && this.props.moves.length !== 0 && this.props.moves[i].moveName === "KnightMove"){
+        tileId = this.props.moves[i].tileId;
+        moveId = this.props.moves[i].moveId;
+      }
 
-      info.push({y: top, x: left, number: number, tileType: type});
+      info.push({
+        x:this.coordTrans({y:top, x:left}).x,
+        y:this.coordTrans({y:top, x:left}).y,
+        number: number,
+        type: type,
+        moveId: moveId,
+        tileId: tileId,
+        gameId: this.props.gameId,
+        side: this.state.radius,
+      });
+
     }
 
     return info;
@@ -313,12 +330,7 @@ export default class Board extends React.Component {
           >
 
             {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
-              (tile, key) => <Hex
-                {...this.coordTrans({x: tile.x, y : tile.y})}
-                number={tile.number}
-                type={tile.tileType}
-                key={key}
-            />)}
+              (tile, key) => <Hex {...tile} key={key} />)}
 
             {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
             <div
@@ -330,6 +342,11 @@ export default class Board extends React.Component {
                 zIndex: 0
               }}
             >
+
+              {this.props.tiles.length !== 0 && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove" &&
+              this.createBoard().map((tile, key) =>
+                <HexThiefSelector {...tile} key={key} />
+                )}
 
               {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
                 (road, key) => <NewRoad

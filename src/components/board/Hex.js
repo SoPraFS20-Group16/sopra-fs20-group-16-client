@@ -7,6 +7,7 @@ import oreHex from '../../views/graphics/biomes/oreHex.gif'
 import desertHex from '../../views/graphics/biomes/desertHex.gif'
 import sheepHex from '../../views/graphics/biomes/sheepHex.gif'
 import outlaw from '../../views/graphics/outlaw.png'
+import {api} from "../../helpers/api";
 
 export default function Hex(props) {
 
@@ -21,7 +22,9 @@ export default function Hex(props) {
 
   return (
 
-    <div style={{position: "absolute", left: props.x, top: props.y}}>
+    <div
+      style={{position: "absolute", left: props.x, top: props.y}}
+    >
 
       <Hexagon
 
@@ -29,7 +32,6 @@ export default function Hex(props) {
         stroke="rgb(235,232,160)"
         strokeWidth={7}
         radius={5}
-
 
         render={({ClipPath, Polygon, Content, Svg}) => {
           return (
