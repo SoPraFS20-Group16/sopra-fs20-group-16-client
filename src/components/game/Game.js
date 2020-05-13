@@ -209,7 +209,7 @@ class Game extends React.Component {
         >
           {this.state.players.map(p => (
               <div>
-                <p><b> Player: {p.username} <span className="tab"></span> Points:{p.points} </b></p>
+                <p><b> <span>Player: {p.username} </span>  Points:{p.points} </b></p>
               </div>
           ))}
 
@@ -218,7 +218,7 @@ class Game extends React.Component {
                     this.props.history.push('/dashboard');
                   }}
           >
-            Lobby
+            <b>Lobby</b>
           </button>
 
         </Modal>
