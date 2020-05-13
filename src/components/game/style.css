@@ -130,6 +130,16 @@
     background-size: cover;
 }
 
+.playerColor {
+    height:15px;
+    width:15px;
+    border: 0.5px solid black;
+    border-radius:10px;
+    margin-right:7px;
+    position: relative;
+    top: -6px;
+}
+
 .diceBox {
     display:flex;
     justify-content: space-evenly;

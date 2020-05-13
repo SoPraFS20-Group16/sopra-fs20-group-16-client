@@ -10,6 +10,7 @@ import Dice from "./Dice";
 import PlayersList from "./PlayersList";
 import Modal from 'react-modal';
 import Rules from "./Rules";
+import StealMove from "./StealMove";
 
 
 
@@ -151,6 +152,13 @@ class Game extends React.Component {
 
           <Rules/>
 
+          {this.state.moves.length > 0 && this.state.moves[0].moveName === 'StealMove' &&
+          <StealMove
+            moves={this.state.moves}
+            gameId={this.state.gameId}
+            players={this.state.players}
+            colors={this.state.playerColors}
+          />}
 
         </div>
 
