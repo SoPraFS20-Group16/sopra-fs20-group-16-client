@@ -15,16 +15,7 @@ export default function playersList(props) {
         <div style={{
           display:'flex',
         }}>
-          <div style={{
-            height:'15px',
-            width:'15px',
-            backgroundColor: props.colors[player.userId],
-            border: '0.5px solid black',
-            borderRadius:'10px',
-            marginRight:'7px',
-            position: 'relative',
-            top: '-6px'
-          }}/>
+          <div className={'playerColor'} style={{backgroundColor: props.colors[player.userId]}}/>
           <p>{player.username}</p>
         </div>
       )}
