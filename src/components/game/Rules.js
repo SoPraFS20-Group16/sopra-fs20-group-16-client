@@ -26,10 +26,8 @@ export default class Rules extends React.Component{
           className={'rulesButton'}
           onClick={this.onOpenModal}>?</button>
         <Modal open={open} onClose={this.onCloseModal} blockScroll={false} >
-          <h2>Rules</h2>
-          <h3>In order to win:</h3>
-          bla bla bla bla bla {'\n'}
-          bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ertz ertz edfrgthz
+          
+            <RulesContent />
 
         </Modal>
       </div>
