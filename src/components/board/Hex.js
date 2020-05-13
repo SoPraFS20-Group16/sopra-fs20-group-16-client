@@ -75,7 +75,7 @@ export default function Hex(props) {
                         display: "block"
                       }}
                     /> :
-                      <p style={{position:'relative', top:'45%', right:'5%'}}>
+                      <p style={{position:'relative', top:'42%', right:'5%'}}>
                         {props.number}
                       </p>}
                   </div>
