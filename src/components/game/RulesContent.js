@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Rules extends React.Component{
+export default class RulesContent extends React.Component{
 
 render() {
       <h1 id="the-settlers-of-toucan">The Settlers of Toucan</h1>
