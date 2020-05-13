@@ -9,6 +9,7 @@ import ActionBox from "./ActionBox";
 import Dice from "./Dice";
 import PlayersList from "./PlayersList";
 import Modal from 'react-modal';
+import Rules from "./Rules";
 
 
 
@@ -138,13 +139,21 @@ class Game extends React.Component {
     console.log("state", this.state)
     return (
       <div className={"game-bg"}>
-        <button className={'button1'}
-          onClick={() => {
-            this.logout();
-          }}
-        >
-          Logout
-        </button>
+
+        <div style={{display:'flex'}}>
+          <button className={'button1'}
+                  onClick={() => {
+                    this.logout();
+                  }}
+          >
+            Logout
+          </button>
+
+          <Rules/>
+
+
+        </div>
+
 
         <div className={'container1'}>
           <div className={'containerGameInfos'}>
@@ -183,7 +192,10 @@ class Game extends React.Component {
 
           </div>
 
+
+
           <div className={'skinnyBox'}>
+
             {this.state.moves && this.state.moves.length !== 0 ?
               <ActionBox
                 moves = {this.state.moves}
