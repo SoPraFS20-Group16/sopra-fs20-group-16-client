@@ -39,8 +39,8 @@ export default class StealMove extends React.Component{
           <div style={{display:"flex", flexDirection:"column"}}>
             <h4>Choose who you want to rob:</h4>
             {this.props.moves.map((move) =>
-              <button className={'button1'} onClick={this.choosePlayer(move.moveId)}>
-                <div className={'playerColor'} /> {/*style={{backgroundColor: this.props.playerColors[move.victimId]}}/>*/}
+              <button className={'button1'} onClick={this.choosePlayer(move.moveId)} style={{display:"flex"}}>
+                <div className={'playerColor'} style={{backgroundColor: this.props.colors[move.victimId]}}/>
                 {this.state.players[move.victimId]}
               </button>
             )}
