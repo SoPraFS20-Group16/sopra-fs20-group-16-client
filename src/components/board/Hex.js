@@ -6,8 +6,7 @@ import wheatHex from '../../views/graphics/biomes/wheatHex.gif'
 import oreHex from '../../views/graphics/biomes/oreHex.gif'
 import desertHex from '../../views/graphics/biomes/desertHex.gif'
 import sheepHex from '../../views/graphics/biomes/sheepHex.gif'
-import outlaw from '../../views/graphics/outlaw.png'
-import {api} from "../../helpers/api";
+import robber from '../../views/graphics/bandit.png'
 
 export default function Hex(props) {
 
@@ -55,32 +54,30 @@ export default function Hex(props) {
                     height: '30px',
                     width: '30px',
                     backgroundColor: 'rgb(235,232,160)',
-                    verticalAlign: 'middle',
                     border: '2px black',
                     borderRadius: 30,
+                    display:"flex",
+                    alignContent:'center',
+                    justifyContent:'center',
                   }}
                 >
                   <div style={{
-                    position:"absolute",
-                    top:"10px",
-                    left:"6px",
                     textAlign: 'center',
                     fontSize: '25px',
                     fontWeight: 'bold',
                   }}>
-                    {props.number === 0 ? <img
-                      src={outlaw}
+                    {props.isRobber ? <img
+                      src={robber}
                       alt={''}
                       style={{
                         width:'100%',
                         height:'100%',
-                        top: "150",
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
                         display: "block"
-
                       }}
-                    /> : props.number}
+                    /> :
+                      <p style={{position:'relative', top:'45%', right:'5%'}}>
+                        {props.number}
+                      </p>}
                   </div>
                 </div>
 
