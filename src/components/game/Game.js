@@ -30,7 +30,7 @@ class Game extends React.Component {
       cities:[],
       moves: [],
       players: [],
-      lastDice: null,
+      lastDice: 0,
       playerColors: {},
       currPlResources: null,
       currPlDevCards: null,
@@ -84,7 +84,7 @@ class Game extends React.Component {
         players: response.data.players,
         points: points,
         playerColors: this.assignColors(response.data.players),
-        diceRoll: response.data.lastDiceRoll,
+        lastDice: response.data.lastDiceRoll,
       });
 
       if ( response.data.board === undefined) {
@@ -178,7 +178,7 @@ class Game extends React.Component {
           </div>
 
           <div className={'containerBoard'}>
-            {this.state.tiles.length != 0 && <Board
+            {this.state.tiles.length !== 0 && <Board
               gameId = {this.state.gameId}
               tiles={this.state.tiles}
               moves={this.state.moves}
@@ -208,7 +208,7 @@ class Game extends React.Component {
               players={this.state.players}
             />}
 
-            {this.state.diceRoll !== 0 && <Dice result={this.state.diceRoll}/>}
+            {this.state.lastDice > 0 && <Dice result={this.state.lastDice}/>}
 
           </div>
         </div>

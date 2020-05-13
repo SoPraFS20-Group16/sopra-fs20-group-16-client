@@ -287,14 +287,15 @@ export default class Board extends React.Component {
       const left = this.props.tiles[i].coordinates[1].x;
       const number = this.props.tiles[i].tileNumber;
       const type = this.props.tiles[i].type;
+      const isRobber = this.props.tiles[i].robber;
       let tileId = null;
       let moveId = null;
 
       // If a seven was rolled, pass the tileID too:
-      //if(this.props.moves && this.props.moves.length !== 0 && this.props.moves[i].moveName === "KnightMove"){
-      //  tileId = this.props.moves[i].tileId;
-      //  moveId = this.props.moves[i].moveId;
-      //}
+      if(this.props.moves && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove"){
+       tileId = this.props.moves[i].tileId;
+       moveId = this.props.moves[i].moveId;
+      }
 
       info.push({
         x:this.coordTrans({y:top, x:left}).x,
@@ -303,6 +304,7 @@ export default class Board extends React.Component {
         type: type,
         moveId: moveId,
         tileId: tileId,
+        isRobber: isRobber,
         gameId: this.props.gameId,
         side: this.state.radius,
       });
