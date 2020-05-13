@@ -8,6 +8,10 @@ import BuildingCosts from "./BuildingCosts";
 import ActionBox from "./ActionBox";
 import Dice from "./Dice";
 import PlayersList from "./PlayersList";
+import Modal from 'react-modal';
+
+
+
 
 let opponentHasLeft = false;
 
@@ -28,11 +32,17 @@ class Game extends React.Component {
       lastDice: null,
       playerColors: {},
       currPlResources: null,
-      currPlDevCards: null
+      currPlDevCards: null,
+      isModalOpen: false
     };
     this.getGameInfo = this.getGameInfo.bind(this);
+    this.closeModal = this.closeModal.bind(this);
 
   }
+  closeModal () {
+    this.setState({isModalOpen: false})
+  }
+
 
 
   componentDidMount()
@@ -64,17 +74,21 @@ class Game extends React.Component {
 
       // Assign data to state
       this.setState({
-        tiles: response.data.board.tiles,
-        roads: response.data.board.roads,
+        tiles: response.data.board ?  response.data.board.tiles : [],
+        roads: response.data.board ? response.data.board.roads : this.state.roads,
         gameId: response.data.gameId,
-        settlements: response.data.board.settlements,
-        cities: response.data.board.cities,
+        settlements:  response.data.board ?  response.data.board.settlements :this.state.settlements ,
+        cities: response.data.board ? response.data.board.cities: this.state.cities,
         moves: response.data.moves,
         players: response.data.players,
         points: points,
         playerColors: this.assignColors(response.data.players),
         diceRoll: response.data.lastDiceRoll,
       });
+
+      if ( response.data.board === undefined) {
+        this.setState({isModalOpen: true});
+      }
 
 
       // Set current player resources and development cards to state
@@ -87,8 +101,10 @@ class Game extends React.Component {
       });
 
     } catch (error) {
+      console.log('errrorr', this.state.players)
       opponentHasLeft = true;
-      alert(`Something went wrong while getting the game information\n${handleError(error)}`);
+      this.setState({isModalOpen: true})
+      // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
   }
 
@@ -119,6 +135,7 @@ class Game extends React.Component {
 
 
   render() {
+    console.log("state", this.state)
     return (
       <div className={"game-bg"}>
         <button className={'button1'}
@@ -152,7 +169,7 @@ class Game extends React.Component {
           </div>
 
           <div className={'containerBoard'}>
-            <Board
+            {this.state.tiles.length != 0 && <Board
               gameId = {this.state.gameId}
               tiles={this.state.tiles}
               moves={this.state.moves}
@@ -161,7 +178,7 @@ class Game extends React.Component {
               cities={this.state.cities}
               players={this.state.players}
               playerColors={this.state.playerColors}
-            />
+            />}
 
 
           </div>
@@ -183,6 +200,28 @@ class Game extends React.Component {
 
           </div>
         </div>
+        <Modal
+            isOpen={this.state.isModalOpen}
+            onRequestClose={() => this.closeModal()}
+            className={'scoreboard'}
+            contentLabel="Example Modal"
+
+        >
+          {this.state.players.map(p => (
+              <div>
+                <p><b> Player: {p.username} <span className="tab"></span> Points:{p.points} </b></p>
+              </div>
+          ))}
+
+          <button className={'dashboardButton'}
+                  onClick={() => {
+                    this.props.history.push('/dashboard');
+                  }}
+          >
+            Lobby
+          </button>
+
+        </Modal>
       </div>
     );
   }

@@ -22,7 +22,7 @@ class GamesList extends React.Component {
       setInterval(async () => {
         const response = await api.get("/games");
         this.setState({ games: response && response.data });
-      },5000)
+      },2000)
 
       // Ask the server the games by passing the token in the header
       // const response = await api.get("/games");

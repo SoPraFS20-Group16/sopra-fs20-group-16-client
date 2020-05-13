@@ -343,7 +343,7 @@ export default class Board extends React.Component {
               }}
             >
 
-              {this.props.tiles.length !== 0 && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove" &&
+              {this.props.tiles && this.props.tiles.length !== 0 && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove" &&
               this.createBoard().map((tile, key) =>
                 <HexThiefSelector {...tile} key={key} />
                 )}

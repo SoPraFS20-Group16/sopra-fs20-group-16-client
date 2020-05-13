@@ -25,7 +25,7 @@ api.interceptors.request.use(function (config) {
 
 export const handleError = error => {
   const response = error.response;
-
+  console.log("error string", response)
   // catch 4xx and 5xx status codes
   if (response && !!`${response.status}`.match(/^[4|5]\d{2}$/)) {
     let info = `\nrequest to: ${response.request.responseURL}`;
