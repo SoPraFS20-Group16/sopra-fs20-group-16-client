@@ -2,6 +2,7 @@ import React from "react";
 import './style.css';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
+import HexInstructions from "./HexInstructions";
 
 export default class Rules extends React.Component{
   constructor(props) {
@@ -61,6 +62,9 @@ export default class Rules extends React.Component{
                 <p>is the same as with two dice in the real world. So having a settlement next to the two or the twelve are the least </p>
                   <p>effective placements. When the number of a tile is rolled, then every building that is next to that tile will receive the </p>
                     <p>appropriate amount of resources. So if you have multiple buildings next to the same tile you get more resources.</p>
+                    <p>Every different kind of tile gives you back a different type of resource. Below you can have an overview. </p>
+                    <p>The desert tile doesn't give any resources back, it's only the robber's starting point.</p>
+                    <HexInstructions/>
               <h2 id="settlements">Settlements</h2>
               <p>Settlements allow you to collect resources from the tiles that you need to keep on building. They also give you one </p>
               <p>victory point each. The first two settlements can be built wherever you want, but from then on the next buildings need to be</p>
