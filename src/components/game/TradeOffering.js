@@ -42,6 +42,11 @@ export default class TradeOffering extends React.Component{
 
   render(){
     const { open } = this.state;
+    const bg = {
+      modal: {
+        background: "beige"
+      }
+    };
     return(
       <div>
         <button
@@ -52,8 +57,8 @@ export default class TradeOffering extends React.Component{
           Trade
         </button>
 
-        <Modal open={open} onClose={this.onCloseModal} blockScroll={false}>
-          <h2>Offers</h2>
+        <Modal open={open} onClose={this.onCloseModal} blockScroll={false} styles={bg}>
+          <h2 style={{textAlign: "center", fontWeight: 'bold'}}>Offers</h2>
 
           {this.props.moves && this.props.moves !== "emptyMoves" && this.getTradeInfo().map((info) =>
             <Offer {...info} gameId = {this.props.gameId}/>

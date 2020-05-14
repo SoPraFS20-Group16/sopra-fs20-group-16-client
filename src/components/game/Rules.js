@@ -21,12 +21,21 @@ export default class Rules extends React.Component{
 
   render(){
     const { open } = this.state;
+    const bg = {
+      overlay: {
+        background: "green"
+      },
+      modal:{
+        background:"beige"
+      }
+    };
+
     return (
       <div>
         <button
           className={'rulesButton'}
           onClick={this.onOpenModal}>?</button>
-            <Modal open={open} onClose={this.onCloseModal} blockScroll={false} >
+            <Modal open={open} onClose={this.onCloseModal} blockScroll={false} center styles={bg} >
               <h1 style ={{color: "green", textAlign: "center", fontWeight: 'bold'}}>The Settlers of Toucan</h1>
               <h2 id="quick-start" style={{marginBottom: "15px" , marginTop: "50px", fontWeight: 'bold'}}>Quick Start</h2>
               <ul>
