@@ -6,7 +6,7 @@ import HexInstructions from "./HexInstructions";
 
 export default class Rules extends React.Component{
   constructor(props) {
-    super();
+    super(props);
     this.state={
       open: false,
     }
@@ -27,8 +27,6 @@ export default class Rules extends React.Component{
           className={'rulesButton'}
           onClick={this.onOpenModal}>?</button>
             <Modal open={open} onClose={this.onCloseModal} blockScroll={false} >
-
-              {/*TODO: insert in separate file and format newlines correctly so that text does not overlap*/}
               <h1 style ={{color: "green", textAlign: "center", fontWeight: 'bold'}}>The Settlers of Toucan</h1>
               <h2 id="quick-start" style={{marginBottom: "15px" , marginTop: "50px", fontWeight: 'bold'}}>Quick Start</h2>
               <ul>

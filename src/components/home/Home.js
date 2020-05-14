@@ -37,7 +37,7 @@ const latlong = [
 
 const Markers = ({usersLatLong}) => {
     // const {data} = this.props;
-    console.log('aasdsa', usersLatLong)
+    console.log('aasdsa', usersLatLong);
     return usersLatLong.map(city => {
         return city.latitude && city.longitude ?
             <Marker
@@ -47,7 +47,7 @@ const Markers = ({usersLatLong}) => {
                 longitude={city.longitude ? city.longitude : 0}
                 latitude={city.latitude ? city.latitude: 21}
             >
-                <img src={pin} height="42" width="42" />
+                <img src={pin} height="42" width="42" alt=""/>
             </Marker>: <div/>
 
     });
@@ -95,11 +95,11 @@ class Home extends React.Component {
 
     componentDidMount() {
         api.get('/users').then((res) => {
-            console.log(res, "response logging")
+            console.log(res, "response logging");
             this.setState({usersLatLong: res.data.map(({location})=> ({
       ...location
                 }))})
-        })
+        });
         this.interval = setInterval(() => {
             api.get("/games/"+ this.props.match.params.id ).then((res) => {
                 this.setState({ gameDetails: {...res.data}});
@@ -130,7 +130,7 @@ class Home extends React.Component {
 }
 
     render() {
-        console.log(this.state.usersLatLong, "users state")
+        console.log(this.state.usersLatLong, "users state");
     return <div className="body1">
         <div className="header">
             <div className={"header_logout"}>

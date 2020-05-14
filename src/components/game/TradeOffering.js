@@ -1,17 +1,22 @@
 import React from "react";
-import {ModalContainer, ModalDialog} from 'react-modal-dialog-react16';
 import Offer from "./Offer";
+import {Modal} from 'react-responsive-modal';
 
 export default class TradeOffering extends React.Component{
   constructor(props) {
-    super();
+    super(props);
     this.state={
-      isShowingModal: false,
+      open: false,
     }
   }
 
-  handleClick = () => this.setState({isShowingModal: true});
-  handleClose = () => this.setState({isShowingModal: false});
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
 
   getTradeInfo(){
     const info = [];
@@ -35,28 +40,27 @@ export default class TradeOffering extends React.Component{
     return arr
   }
 
-
-
   render(){
+    const { open } = this.state;
     return(
-      <button
-        className ={`actionBoxButton ${this.moveChecker().includes("TradeMove") === false ? "actionBoxButtonGrey":''}`}
-        onClick={this.handleClick}
-        disabled={this.moveChecker().includes("TradeMove") === false}>
-        {
-          this.state.isShowingModal &&
-          <ModalContainer onClose={this.handleClose}>
-            <ModalDialog onClose={this.handleClose} style ={{backgroundColor: 'beige'}}>
-              <h2>Offers</h2>
+      <div>
+        <button
+          className ={`actionBoxButton ${this.moveChecker().includes("TradeMove") === false ? "actionBoxButtonGrey":''}`}
+          onClick={this.onOpenModal}
+          disabled={this.moveChecker().includes("TradeMove") === false}
+        >
+          Trade
+        </button>
 
-              {this.props.moves && this.props.moves !== "emptyMoves" && this.getTradeInfo().map((info) =>
-                <Offer {...info} gameId = {this.props.gameId}/>
-              )}
-            </ModalDialog>
-          </ModalContainer>
-        }
-       Trade
-      </button>
+        <Modal open={open} onClose={this.onCloseModal} blockScroll={false}>
+          <h2>Offers</h2>
+
+          {this.props.moves && this.props.moves !== "emptyMoves" && this.getTradeInfo().map((info) =>
+            <Offer {...info} gameId = {this.props.gameId}/>
+          )}
+
+        </Modal>
+      </div>
 
     );
   }

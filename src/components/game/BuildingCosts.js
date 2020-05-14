@@ -11,7 +11,7 @@ import Wool from '../../views/graphics/wool.png'
 import Brick from '../../views/graphics/brick.png'
 import Ore from '../../views/graphics/ore.png'
 
-export default function buildingCosts(props) {
+export default function buildingCosts() {
   return (
     <div className={'costsBox'}>
       <h4>

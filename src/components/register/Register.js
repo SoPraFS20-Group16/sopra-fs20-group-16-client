@@ -99,7 +99,7 @@ class Register extends React.Component{
                 username: this.state.username,
                 password: this.state.password,
                 tracking: this.state.tracking
-            })
+            });
 
 
             if(this.isNotEmptyOrSpaces(requestBody)){

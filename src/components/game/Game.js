@@ -1,6 +1,6 @@
 import React from "react";
 import './style.css'
-import { api, handleError } from "../../helpers/api";
+import { api} from "../../helpers/api";
 import { withRouter } from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
@@ -46,9 +46,9 @@ class Game extends React.Component {
   componentDidMount()
     {
       let interval = setInterval(() => {
-        console.log(opponentHasLeft, "opponent?")
+        console.log(opponentHasLeft, "opponent?");
         if (opponentHasLeft) {
-          clearInterval(interval)
+          clearInterval(interval);
           this.props.history.push('/dashboard');
           opponentHasLeft = false;
         } else{
@@ -61,7 +61,7 @@ class Game extends React.Component {
     try {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
-      console.log("Game data from server: \n", response.data)
+      console.log("Game data from server: \n", response.data);
       const players = response.data.players;
       let points = 0;
       players.map((player) =>
@@ -97,7 +97,7 @@ class Game extends React.Component {
       });
 
     } catch (error) {
-      console.log('errrorr', this.state.players)
+      console.log('errrorr', this.state.players);
       opponentHasLeft = true;
       this.setState({isModalOpen: true})
       // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
@@ -128,7 +128,7 @@ class Game extends React.Component {
   }
 
   render() {
-    console.log("state", this.state)
+    console.log("state", this.state);
     return (
       <div className={"game-bg"}>
 

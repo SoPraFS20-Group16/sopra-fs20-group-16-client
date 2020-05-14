@@ -1,5 +1,5 @@
 import React from "react";
-import { api, handleError } from "../../helpers/api";
+import { api } from "../../helpers/api";
 import './style.css';
 import TradeOffering from "./TradeOffering";
 

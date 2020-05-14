@@ -10,7 +10,7 @@ export default class StealMove extends React.Component{
     this.state={
       open: true,
       players: {},
-    }
+    };
     props.players.map((pl) => {this.state.players[pl.userId] = pl.username})
   }
 
