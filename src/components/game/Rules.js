@@ -39,28 +39,29 @@ export default class Rules extends React.Component{
               <h1 style ={{color: "green", textAlign: "center", fontWeight: 'bold'}}>The Settlers of Toucan</h1>
               <h2 id="quick-start" style={{marginBottom: "15px" , marginTop: "50px", fontWeight: 'bold'}}>Quick Start</h2>
               <ul>
-                <li><p style={{marginBottom: "20px"}}>Beginning the game is easy. Just build a settlement and a road, then pass it on to the next player.</p>
+                <li style={{marginLeft: "20px"}}><p style={{marginBottom: "20px"}}>Beginning the game is easy. Just build a settlement and a road, then pass it on to the next player.</p>
                 </li>
-                <li><p style={{marginBottom: "20px"}}>Once started, you will collect resources when the dice is rolled and it matches the number of a tile you have a building next to.</p>
+                <li style={{marginLeft: "20px"}}><p>Once started, you will collect resources when the dice is rolled and it matches the number of a tile you have a building next</p>
+                  <p style={{marginBottom: "20px"}}>to.</p>
                 </li>
-                <li><p>Once collected, the resources can be used to build more roads or settlements and also to upgrade a settlement to a city.</p>
+                <li style={{marginLeft: "20px"}}><p>Once collected, the resources can be used to build more roads or settlements and also to upgrade a settlement to a city.</p>
                   <p style={{marginBottom: "20px"}}>Cities get twice the resources settlements do. It is time to go big!</p>
                 </li>
-                <li><p style={{marginBottom: "20px"}}>If you don&#39;t have the correct resources you can always trade. But this is expensive so better build smart.</p>
+                <li style={{marginLeft: "20px"}}><p style={{marginBottom: "20px"}}>If you don&#39;t have the correct resources you can always trade. But this is expensive so better build smart.</p>
                 </li>
-                <li><p>Settlements give you one, cities two points. If you reach ten points first you win the game. This means you are a worthy </p>
+                <li style={{marginLeft: "20px"}}><p>Settlements give you one, cities two points. If you reach ten points first you win the game. This means you are a worthy </p>
                   <p style={{marginBottom: "20px"}}>inhabitant of Toucan!</p>
                 </li>
-                <li><p>The Robber is no one&#39;s friend! When he occupies a tile then it can&#39;t distribute resources. Normally he lives in the desert, but </p>
-                  <p style={{marginBottom: "20px"}}>with a Knight Card, you can chase him to steal from those you don&#39;t like.</p>
+                <li style={{marginLeft: "20px"}}><p>The Robber is no one&#39;s friend! When he occupies a tile then it can&#39;t distribute resources. Normally he lives in the desert, </p>
+                  <p style={{marginBottom: "20px"}}> but with a Knight Card, you can chase him to steal from those you don&#39;t like.</p>
                 </li>
-                <li><p>When you set the robber on a tile, he is kind enough to share with you. This means you can steal one random resource from </p>
-                  <p style={{marginBottom: "20px"}}>one of the players next to the new robber tile. But only if there really is one, obviously!</p>
+                <li style={{marginLeft: "20px"}}><p>When you set the robber on a tile, he is kind enough to share with you. This means you can steal one random resource </p>
+                  <p style={{marginBottom: "20px"}}> from one of the players next to the new robber tile. But only if there really is one, obviously!</p>
                 </li>
-                <li><p>With your resources, you can also buy development cards. They can help you to get ahead. Sometimes there is even a whole</p>
-                  <p style={{marginBottom: "20px"}}>point to be earned.</p>
+                <li style={{marginLeft: "20px"}}><p>With your resources, you can also buy development cards. They can help you to get ahead. Sometimes there is even a</p>
+                  <p style={{marginBottom: "20px"}}>whole point to be earned.</p>
                 </li>
-                <li><p>You can choose when you want to play your development card. But remember, when the game is over they are no user. </p>
+                <li style={{marginLeft: "20px"}}><p>You can choose when you want to play your development card. But remember, when the game is over they are no user. </p>
                   <p style={{marginBottom: "50px"}}>So better be quick! Time to conspire with the thief again maybe?</p>
                 </li>
               </ul>
@@ -103,19 +104,19 @@ export default class Rules extends React.Component{
               <p>But you can not choose which card it will be. You better not have a gambling problem! Once the card is bought, it can </p>
               <p style={{marginBottom: "30px"}}>not be used in the same turn. But it is surely worth the wait!</p>
               <ul>
-                <li><p> <b>The Knight Card</b>: The Thief can be placed on a new tile. If the tile has buildings next to it the player can choose </p>
+                <li style={{marginLeft: "20px"}} ><p> <b>The Knight Card</b>: The Thief can be placed on a new tile. If the tile has buildings next to it the player can choose </p>
                   <p style={{marginBottom: "20px"}}>from which opponent a random resource is stolen. If the opponent has an empty wallet then there is nothing to get.</p>
                 </li>
-                <li><p><b>The Victory Point</b>: The victory point is a card that can do nothing but gives you an extra victory point. This means </p>
+                <li style={{marginLeft: "20px"}}><p><b>The Victory Point</b>: The victory point is a card that can do nothing but gives you an extra victory point. This means </p>
                   <p style={{marginBottom: "20px"}}>you need one less settlement to win the game.</p>
                 </li>
-                <li><p><b>The Monopoly Card</b>: This card gives you the power to collect one type of resources from all the players in the game. </p>
+                <li style={{marginLeft: "20px"}}><p><b>The Monopoly Card</b>: This card gives you the power to collect one type of resources from all the players in the game. </p>
                   <p style={{marginBottom: "20px"}}>So if you suspect that there is a lot of Wood going around it might be time to strike.</p>
                 </li>
-                <li><p><b>The Road Progress</b>: All roads lead to Rome, but in your case, they might lead to new territory. Using this card you can </p>
+                <li style={{marginLeft: "20px"}}><p><b>The Road Progress</b>: All roads lead to Rome, but in your case, they might lead to new territory. Using this card you can </p>
                   <p style={{marginBottom: "20px"}}>build two roads for free.</p>
                 </li>
-                <li><p><b>The Plenty Progress</b>: It was a warm summer and it is time to harvest your reward. With this card, you can choose two </p>
+                <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b>: It was a warm summer and it is time to harvest your reward. With this card, you can choose two </p>
                   <p style={{marginBottom: "50px"}}>resources. Is it time for a settlement already?</p>
                 </li>
               </ul>
