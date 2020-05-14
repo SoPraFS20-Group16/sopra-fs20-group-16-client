@@ -20,8 +20,7 @@ export default function HexInstructions(){
   const resourceSize = 32;
   const arrowSize = 30;
   return(
-    <div>
-      <div style={{border: "2px solid black", borderRadius: "50px" ,textAlign: "center" , width: "24%", backgroundColor: "beige"}}>
+      <div style={{border: "2px solid black", borderRadius: "50px" ,textAlign: "center" , width: "24%", backgroundColor: "beige", display: "inline-block"}}>
       <p>
         <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {woodHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>
@@ -57,7 +56,6 @@ export default function HexInstructions(){
         <img style={{height: resourceSize, marginLeft: "10px"}} src={robber} alt=""/>
       </p>
     </div>
-  </div>
 
 
   )
