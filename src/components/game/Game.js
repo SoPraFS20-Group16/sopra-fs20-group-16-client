@@ -13,8 +13,6 @@ import Rules from "./Rules";
 import StealMove from "./StealMove";
 
 
-
-
 let opponentHasLeft = false;
 
 class Game extends React.Component {
@@ -45,8 +43,6 @@ class Game extends React.Component {
     this.setState({isModalOpen: false})
   }
 
-
-
   componentDidMount()
     {
       let interval = setInterval(() => {
@@ -61,7 +57,6 @@ class Game extends React.Component {
       }, 3000);
   }
 
-
   async getGameInfo(id) {
     try {
       // Ask the server to get game info of the game with specific id by passing the token in the header
@@ -71,7 +66,6 @@ class Game extends React.Component {
       let points = 0;
       players.map((player) =>
       player.points !== 0 ? points = player.points : "");
-
 
 
       // Assign data to state
@@ -110,7 +104,6 @@ class Game extends React.Component {
     }
   }
 
-
   async logout() {
     await api.put("/logout", null, {
       headers: {
@@ -134,8 +127,6 @@ class Game extends React.Component {
     return playerColors;
   }
 
-
-
   render() {
     console.log("state", this.state)
     return (
@@ -152,7 +143,7 @@ class Game extends React.Component {
 
           <Rules/>
 
-          {this.state.moves.length > 0 && this.state.moves[0].moveName === 'StealMove' &&
+          {this.state.moves && this.state.moves.length > 0 && this.state.moves[0].moveName === 'StealMove' &&
           <StealMove
             moves={this.state.moves}
             gameId={this.state.gameId}
@@ -199,8 +190,6 @@ class Game extends React.Component {
 
 
           </div>
-
-
 
           <div className={'skinnyBox'}>
 
