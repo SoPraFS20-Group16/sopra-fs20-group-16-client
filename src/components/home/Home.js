@@ -31,9 +31,7 @@ const GreenButt = styled.button`
 const TOKEN =
     "pk.eyJ1Ijoia2FyaW1hYm91ZWxuYWdhMiIsImEiOiJjazl5MHkwMGEwZ3UzM2dsaXpmc21kMW54In0.IUzrOcWiWDGBpcVKsFCX-g";
 
-const latlong = [
-    { name: "Tokyo", latitude: 35.652832, longitude: 139.839478 }
-];
+
 
 const Markers = ({usersLatLong}) => {
     // const {data} = this.props;
@@ -44,8 +42,8 @@ const Markers = ({usersLatLong}) => {
                 key={city.countryName ? city.countryName: ''}
                 offsetLeft={-19}
                 offsetTop={-37}
-                longitude={city.longitude ? city.longitude : 0}
-                latitude={city.latitude ? city.latitude: 21}
+                longitude={city.longitude ? city.longitude : 8}
+                latitude={city.latitude ? city.latitude: 47}
             >
                 <img src={pin} height="42" width="42" alt=""/>
             </Marker>: <div/>
@@ -65,9 +63,9 @@ class Home extends React.Component {
             viewport: {
                 width: "100%",
                 height: 450,
-                latitude: 20,
-                longitude: 0,
-                zoom: 1
+                latitude: 46.75,
+                longitude: 8.25,
+                zoom: 6.5
             }
         };
         this.startGamehandler = this.startGamehandler.bind(this);
