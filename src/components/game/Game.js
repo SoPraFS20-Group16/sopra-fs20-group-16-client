@@ -33,15 +33,21 @@ class Game extends React.Component {
       playerColors: {},
       currPlResources: null,
       currPlDevCards: null,
-      isModalOpen: false
+      isModalOpenScoreboard: false,
+      isModalOpenWarning: false
     };
     this.getGameInfo = this.getGameInfo.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    this.closeModalWarning = this.closeModalWarning.bind(this);
+    this.closeModalScoreboard = this.closeModalScoreboard.bind(this);
+  }
+  closeModalWarning () {
+    this.setState({isModalOpenWarning: false})
+  }
 
+  closeModalScoreboard () {
+    this.setState({isModalOpenScoreboard: false})
   }
-  closeModal () {
-    this.setState({isModalOpen: false})
-  }
+
 
   componentDidMount()
     {
@@ -83,7 +89,7 @@ class Game extends React.Component {
       });
 
       if ( response.data.board === undefined) {
-        this.setState({isModalOpen: true});
+        this.setState({isModalOpenScoreboard: true});
       }
 
 
@@ -99,7 +105,7 @@ class Game extends React.Component {
     } catch (error) {
       console.log('errrorr', this.state.players);
       opponentHasLeft = true;
-      this.setState({isModalOpen: true})
+      this.setState({isModalOpenScoreboard: true})
       // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
     }
   }
@@ -135,7 +141,7 @@ class Game extends React.Component {
         <div style={{display:'flex'}}>
           <button className={'button1'}
                   onClick={() => {
-                    this.logout();
+                    this.setState({isModalOpenWarning: true})
                   }}
           >
             Logout
@@ -210,27 +216,55 @@ class Game extends React.Component {
           </div>
         </div>
         <Modal
-            isOpen={this.state.isModalOpen}
-            onRequestClose={() => this.closeModal()}
-            className={'scoreboard'}
-            contentLabel="Example Modal"
+          isOpen={this.state.isModalOpenScoreboard}
+          onRequestClose={() => this.closeModalScoreboard()}
+          className={'scoreboard'}
+          contentLabel="Example Modal"
 
+      >
+        {this.state.players.map(p => (
+            <div>
+              <p><b> <span>Player: {p.username} </span>  Points:{p.points} </b></p>
+            </div>
+        ))}
+
+        <button className={'dashboardButton'}
+                onClick={() => {
+                  this.props.history.push('/dashboard');
+                }}
         >
-          {this.state.players.map(p => (
-              <div>
-                <p><b> <span>Player: {p.username} </span>  Points:{p.points} </b></p>
-              </div>
-          ))}
+          <b>Lobby</b>
+        </button>
 
-          <button className={'dashboardButton'}
-                  onClick={() => {
-                    this.props.history.push('/dashboard');
-                  }}
-          >
-            <b>Lobby</b>
-          </button>
+      </Modal>
 
-        </Modal>
+        <Modal
+          isOpen={this.state.isModalOpenWarning}
+          onRequestClose={() => this.closeModalWarning()}
+          className={'warning'}
+          contentLabel="Example Modal"
+      >
+          <p><b>When you leave, the session is over for</b> </p>
+          <p><b>everyone.</b></p>
+
+
+        <button className={'dashboardButtonLogout'}
+                onClick={() => {
+                  this.logout().then(r => this.props.history.push('/startPage'))
+                }}
+        >
+          <b>Logout</b>
+        </button>
+
+        <button className={'dashboardButtonBack'}
+                onClick={() => {
+                  this.setState({isModalOpenWarning: false})
+                }}
+        >
+          <b>Back</b>
+        </button>
+
+      </Modal>
       </div>
     );
   }
