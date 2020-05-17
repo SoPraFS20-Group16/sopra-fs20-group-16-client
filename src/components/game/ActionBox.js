@@ -25,6 +25,19 @@ export default function ActionBox(props) {
     }
   }
 
+  async function buyDevCard(){
+    const moves = props.moves;
+    let purchaseMove;
+
+    moves.map((move) => {
+      if (move.moveName === "PurchaseMove"){
+        purchaseMove = {moveId: move.moveId}
+      }
+    });
+
+    await api.put("/games/" + props.gameId, JSON.stringify({moveId: purchaseMove.moveId}));
+  }
+
 
   function moveChecker() {
       let i = 0;
@@ -55,12 +68,14 @@ export default function ActionBox(props) {
       </div>
 
       <div>
-        <button className={`actionBoxButton ${props.moves[0].moveName !== "DevMove"  ? "actionBoxButtonGrey" : ''}`}
+        <button className={`actionBoxButton ${moveChecker().includes("PurchaseMove") === false  ? "actionBoxButtonGrey" : ''}`}
                 disabled= {props.moves === "emptyMoves"}
+                onClick={props.moves !== "emptyMoves"? buyDevCard : ""}
         >
           Dev cards
         </button>
       </div>
+
 
       <div>
           <button className={`actionBoxButton ${moveChecker().includes("PassMove")=== false && 
