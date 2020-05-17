@@ -19,7 +19,6 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {},
       users: null,
       points:0,
       gameId: null,
@@ -31,6 +30,7 @@ class Game extends React.Component {
       players: [],
       lastDice: 0,
       playerColors: {},
+      currentPlayer: null,
       currPlResources: null,
       currPlDevCards: null,
       isModalOpenScoreboard: false,
@@ -52,7 +52,7 @@ class Game extends React.Component {
   componentDidMount()
     {
       let interval = setInterval(() => {
-        console.log(opponentHasLeft, "opponent?");
+        // console.log(opponentHasLeft, "opponent?");
         if (opponentHasLeft) {
           clearInterval(interval);
           this.props.history.push('/dashboard');
@@ -86,6 +86,7 @@ class Game extends React.Component {
         points: points,
         playerColors: this.assignColors(response.data.players),
         lastDice: response.data.lastDiceRoll,
+        currentPlayer: response.data.currentPlayer
       });
 
       if ( response.data.board === undefined) {
@@ -103,7 +104,7 @@ class Game extends React.Component {
       });
 
     } catch (error) {
-      console.log('errrorr', this.state.players);
+      console.log('error', this.state.players);
       opponentHasLeft = true;
       this.setState({isModalOpenScoreboard: true})
       // alert(`Something went wrong while getting the game information\n${handleError(error)}`);
@@ -209,6 +210,7 @@ class Game extends React.Component {
             {this.state.playerColors !== {} && this.state.players.length !== 0 && <PlayersList
               colors={this.state.playerColors}
               players={this.state.players}
+              currentPlayer={this.state.currentPlayer}
             />}
 
             {this.state.lastDice > 0 && <Dice result={this.state.lastDice}/>}

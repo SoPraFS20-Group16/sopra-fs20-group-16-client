@@ -12,7 +12,7 @@ import Plenty from '../../views/graphics/plenty.png'
 import Road from '../../views/graphics/road.png'
 
 export default function ResourceList(props){
-  const imgSize = 50;
+  const imgSize = 40;
   return (
     <div className={'resourceDiv'}>
       <div className={'resourceItem'}>

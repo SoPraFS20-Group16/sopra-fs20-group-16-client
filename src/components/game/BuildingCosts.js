@@ -13,7 +13,7 @@ import Ore from '../../views/graphics/ore.png'
 
 export default function buildingCosts() {
   return (
-    <div className={'costsBox'}>
+    <div className={'innerBox'}>
       <h4>
         Building costs
       </h4>

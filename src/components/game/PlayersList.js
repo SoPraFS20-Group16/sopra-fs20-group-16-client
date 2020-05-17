@@ -16,7 +16,8 @@ export default function playersList(props) {
           display:'flex',
         }}>
           <div className={'playerColor'} style={{backgroundColor: props.colors[player.userId]}}/>
-          <p>{player.username}</p>
+          {player.username === props.currentPlayer.username ?
+            <p><b>➢ {player.username}</b></p> : <p>{player.username}</p>}
         </div>
       )}
     </div>
