@@ -2,6 +2,11 @@ import React from "react";
 import './style.css';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
+import Knight from '../../views/graphics/knight.png'
+import Monopoly from '../../views/graphics/monopoly.png'
+import Victory from '../../views/graphics/victory.png'
+import Road from '../../views/graphics/road.png'
+import Plenty from '../../views/graphics/plenty.png'
 import HexInstructions from "./HexInstructions";
 
 export default class Rules extends React.Component{
@@ -104,20 +109,22 @@ export default class Rules extends React.Component{
               <p>But you can not choose which card it will be. You better not have a gambling problem! Once the card is bought, it can </p>
               <p style={{marginBottom: "30px"}}>not be used in the same turn. But it is surely worth the wait!</p>
               <ul>
-                <li style={{marginLeft: "20px"}} ><p> <b>The Knight Card</b>: The Thief can be placed on a new tile. If the tile has buildings next to it the player can choose </p>
-                  <p style={{marginBottom: "20px"}}>from which opponent a random resource is stolen. If the opponent has an empty wallet then there is nothing to get.</p>
+                <li style={{marginLeft: "20px"}} ><p> <b>The Knight Card</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'30px'}} src = {Knight} alt = ""/> <t style={{marginLeft:'29px'}}>The Thief can be placed on a new tile. If the tile has buildings next to it the player can</t> </p>
+                  <p style={{marginTop: "-10px", marginLeft: '208px'}}>choose from which opponent a random resource is stolen. If the opponent has an </p>
+                  <p style={{marginLeft:'208px', marginBottom: '30px'}}>empty wallet then there is nothing to get.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Victory Point</b>: The victory point is a card that can do nothing but gives you an extra victory point. This means </p>
-                  <p style={{marginBottom: "20px"}}>you need one less settlement to win the game.</p>
+                <li style={{marginLeft: "20px"}}><p><b>The Victory Point</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'25px'}} src = {Victory} alt = ""/> <t style={{marginLeft:'29px'}}> The victory point is a card that can do nothing but gives you an extra victory point. This </t></p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}>means you need one less settlement to win the game.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Monopoly Card</b>: This card gives you the power to collect one type of resources from all the players in the game. </p>
-                  <p style={{marginBottom: "20px"}}>So if you suspect that there is a lot of Wood going around it might be time to strike.</p>
+                <li style={{marginLeft: "20px"}}><p><b>The Monopoly Card</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'10px'}} src = {Monopoly} alt = ""/> <t style={{marginLeft:'28px'}}>This card gives you the power to collect one type of resources from all the players in the</t></p>
+                  <p style={{marginBottom:'30px', marginLeft:'208px', marginTop: '-10px'}}>game. So if you suspect that there is a lot of Wood going around it might be time to </p>
+                  <p style={{marginBottom: "30px", marginLeft:'208px', marginTop: '-10px'}}>strike.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Road Progress</b>: All roads lead to Rome, but in your case, they might lead to new territory. Using this card you can </p>
-                  <p style={{marginBottom: "20px"}}>build two roads for free.</p>
+                <li style={{marginLeft: "20px"}}><p><b>The Road Progress</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-7px', marginLeft:'22px'}} src = {Road} alt = ""/><t style={{marginLeft:'29px'}}> All roads lead to Rome, but in your case, they might lead to new territory. Using this</t></p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: '-10px'}}>card you can build two roads for free.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b>: It was a warm summer and it is time to harvest your reward. With this card, you can choose two </p>
-                  <p style={{marginBottom: "50px"}}>resources. Is it time for a settlement already?</p>
+                <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'18px'}} src = {Plenty} alt = ""/> <t style={{marginLeft:'23px'}}>It was a warm summer and it is time to harvest your reward. With this card, you can</t> </p>
+                  <p style={{marginBottom: "50px", marginLeft: '208px', marginTop:'-10px'}}>choose two resources. Is it time for a settlement already?</p>
                 </li>
               </ul>
               <h2 id="the-pass-move" style={{marginBottom: "15px", fontWeight: 'bold'}}>The Pass Move</h2>
