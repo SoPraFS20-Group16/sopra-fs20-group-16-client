@@ -2,6 +2,7 @@ import React from "react";
 import { api } from "../../helpers/api";
 import './style.css';
 import TradeOffering from "./TradeOffering";
+import UseDevCards from "./UseDevCards";
 
 
 export default function ActionBox(props) {
@@ -74,6 +75,10 @@ export default function ActionBox(props) {
         >
           Dev cards
         </button>
+      </div>
+
+      <div>
+        <UseDevCards moves ={props.moves} gameId = {props.gameId}/>
       </div>
 
 
