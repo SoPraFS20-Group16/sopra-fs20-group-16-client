@@ -12,52 +12,52 @@ import Plenty from '../../views/graphics/plenty.png'
 import Road from '../../views/graphics/road.png'
 
 export default function ResourceList(props){
-  const imgSize = 50;
+  const imgSize = 40;
   return (
     <div className={'resourceDiv'}>
-      <div className={'resourceItem'}>
-        <p>{"  "}
+      <div className={'resourceCol'}>
+        <div>{"  "}
           <img style={{height: imgSize}} src={Lumber} alt=""/> : {props.resources.LUMBER}
-        </p>
+        </div>
 
-        <p> {"  "}
+        <div> {"  "}
           <img style={{height: imgSize}} src={Grain} alt=""/> : {props.resources.GRAIN}
-        </p>
+        </div>
 
-        <p> {"  "}
+        <div> {"  "}
           <img style={{height: imgSize}} src={Wool} alt=""/> : {props.resources.WOOL}
-        </p>
+        </div>
 
-        <p> {"  "}
+        <div> {"  "}
           <img style={{height: imgSize}} src={Brick} alt=""/> : {props.resources.BRICK}
-        </p>
+        </div>
 
-        <p> {"  "}
+        <div> {"  "}
           <img style={{height: imgSize}} src={Ore} alt=""/> : {props.resources.ORE}
-        </p>
+        </div>
       </div>
 
-      <div className={'resourceItem'}>
+      <div className={'resourceCol'}>
 
-        <p>{"  "}
+        <div>{"  "}
           <img style={{height: imgSize}} src={Victory} alt=""/> : {props.devCards.VICTORYPOINT}
-        </p>
+        </div>
 
-        <p> {"  "}
+        <div> {"  "}
           <img style={{height: imgSize}} src={Knight} alt=""/> : {props.devCards.KNIGHT}
-        </p>
+        </div>
 
-        <p> {"  "}
+        <div> {"  "}
           <img style={{height: imgSize}} src={Monopoly} alt=""/> : {props.devCards.MONOPOLYPROGRESS}
-        </p>
+        </div>
 
-        <p>{"  "}
+        <div>{"  "}
           <img style={{height: imgSize}} src={Road} alt=""/> : {props.devCards.ROADPROGRESS}
-        </p>
+        </div>
 
-        <p>{"  "}
+        <div>{"  "}
           <img style={{height: imgSize}} src={Plenty} alt=""/> : {props.devCards.PLENTYPROGRESS}
-        </p>
+        </div>
       </div>
 
     </div>
