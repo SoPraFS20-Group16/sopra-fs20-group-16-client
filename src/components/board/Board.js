@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css'
 import Hex from "./Hex";
 import Road from "./Road";
 import NewRoad from "./NewRoad";
@@ -317,71 +318,58 @@ export default class Board extends React.Component {
 
   render() {
     return (
-      <div className={'game-bg'}>
-        <div className="Board">
-          <div
-            style={{
-              width: 453,
-              height: 420,
-              position: "relative",
-              marginLeft: "25px",
-              marginTop: "25px",
-              justifyContent: 'centre',
-              alignItems: 'centre',
-            }}
-          >
+      <div className={'board'}>
 
-            {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
-              (tile, key) => <Hex {...tile} key={key} />)}
+        {this.props.tiles && this.props.tiles.length !== 0 && this.createBoard().map(
+          (tile, key) => <Hex {...tile} key={key} />)}
 
-            {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
-            <div
-              style={{
-                width: 453,
-                height: 420,
-                position: "absolute",
-                /* The zIndex allows to adjust what is in the foreground and background */
-                zIndex: 0
-              }}
-            >
+        {/* The following <div> below is responsible for the placeholders which are above the tiles -> this is where your city, street, other elements are placed. */}
+        <div
+          style={{
+            width: 433,
+            height: 400,
+            position: "absolute",
+            /* The zIndex allows to adjust what is in the foreground and background */
+            zIndex: 0
+          }}
+        >
 
-              {this.props.tiles && this.props.tiles.length !== 0 && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove" &&
-              this.createBoard().map((tile, key) =>
-                <HexThiefSelector {...tile} key={key} />
-                )}
+          {this.props.tiles && this.props.tiles.length !== 0 && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove" &&
+          this.createBoard().map((tile, key) =>
+            <HexThiefSelector {...tile} key={key} />
+            )}
 
-              {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
-                (road, key) => <NewRoad
-                  {...road}
-                  key={key}
-                />
-              )}
+          {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
+            (road, key) => <NewRoad
+              {...road}
+              key={key}
+            />
+          )}
 
-              {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
-                (road, key) => <Road {...road} key={key}/>
-              )}
+          {this.props.roads && this.props.roads.length !== 0 && this.renderBuiltRoads().map(
+            (road, key) => <Road {...road} key={key}/>
+          )}
 
-              {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
-                (move, key) => <NewSettlement {...move} key={key}/>
-                )}
+          {this.props.moves && this.props.moves.length !==0 && this.getSettlementMoves().map(
+            (move, key) => <NewSettlement {...move} key={key}/>
+            )}
 
-              {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
-                (settlement, key) => <Settlement {...settlement} key={key}/>
-                )}
+          {this.props.settlements && this.props.settlements !==0 &&this.getSettlements().map(
+            (settlement, key) => <Settlement {...settlement} key={key}/>
+            )}
 
-              {this.props.moves && this.props.moves !== 0 && this.getCityMoves().map(
-                (move, key) =><NewCity {...move} key = {key}/>
-                )}
+          {this.props.moves && this.props.moves !== 0 && this.getCityMoves().map(
+            (move, key) =><NewCity {...move} key = {key}/>
+            )}
 
-              {this.props.cities && this.props.cities !== 0 && this.getCities().map(
-                (city, key) => <City {...city} key={key}/>
-              )}
+          {this.props.cities && this.props.cities !== 0 && this.getCities().map(
+            (city, key) => <City {...city} key={key}/>
+          )}
 
-            </div>
-
-          </div>
         </div>
+
       </div>
+
     );
   }
 }

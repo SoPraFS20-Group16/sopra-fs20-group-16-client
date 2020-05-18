@@ -1,0 +1,9 @@
+
+.board {
+    width: 433px;
+    height: 400px;
+    position: relative;
+    margin: 25px;
+    justify-content: center;
+    align-items: center;
+}
