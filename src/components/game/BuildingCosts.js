@@ -12,11 +12,14 @@ import Brick from '../../views/graphics/brick.png'
 import Ore from '../../views/graphics/ore.png'
 
 export default function buildingCosts() {
+
+  const iconSize = '25px'
+
   return (
     <div className={'innerBox'}>
-      <h4>
+      <div className={'boxTitle'}>
         Building costs
-      </h4>
+      </div>
 
       <div className={'costs1'}>
         <div className={'costs2'}>
@@ -24,7 +27,6 @@ export default function buildingCosts() {
             <img
               src={road}
               alt={''}
-              style={{maxHeight:'25px', maxWidth:'25px'}}
             />
           </div>
 
@@ -32,7 +34,6 @@ export default function buildingCosts() {
             <img
               src={village}
               alt={''}
-              style={{maxHeight:'25px', maxWidth:'25px'}}
             />
           </div>
 
@@ -40,7 +41,6 @@ export default function buildingCosts() {
             <img
               src={castle}
               alt={''}
-              style={{maxHeight:'25px', maxWidth:'25px'}}
             />
           </div>
 
@@ -48,7 +48,6 @@ export default function buildingCosts() {
             <img
               src={cards}
               alt={''}
-              style={{maxHeight:'25px', maxWidth:'25px'}}
             />
           </div>
 
@@ -59,12 +58,12 @@ export default function buildingCosts() {
             <img
               src={Lumber}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 1}}
             />
             <img
               src={Brick}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 0, left: '-40%'}}
             />
           </div>
 
@@ -72,22 +71,22 @@ export default function buildingCosts() {
             <img
               src={Lumber}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 3}}
             />
             <img
               src={Brick}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 2, left: '-40%'}}
             />
             <img
               src={Wool}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 1, left: '-80%'}}
             />
             <img
               src={Grain}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 0, left: '-120%'}}
             />
           </div>
 
@@ -95,27 +94,27 @@ export default function buildingCosts() {
             <img
               src={Grain}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 4}}
             />
             <img
               src={Grain}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 3, left: '-40%'}}
             />
             <img
               src={Ore}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 2, left: '-80%'}}
             />
             <img
               src={Ore}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 1, left: '-120%'}}
             />
             <img
               src={Ore}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 0, left: '-160%'}}
             />
           </div>
 
@@ -123,17 +122,17 @@ export default function buildingCosts() {
             <img
               src={Wool}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 2}}
             />
             <img
               src={Grain}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 1, left: '-40%'}}
             />
             <img
               src={Ore}
               alt={''}
-              style={{maxHeight:'25px'}}
+              style={{zIndex: 0, left: '-80%'}}
             />
           </div>
         </div>

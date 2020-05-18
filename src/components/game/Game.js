@@ -174,7 +174,9 @@ class Game extends React.Component {
 
 
             <div className={'innerBox'}>
-              <h4>Points: {this.state.points}/10</h4>
+              <div className={'boxTitle'}>
+                Points: {this.state.points}/10
+              </div>
             </div>
 
 

@@ -6,7 +6,7 @@
 }
 
 .container1 {
-    height: 900px;
+    height: 688px;
     display: flex;
     margin: 0 5%;
     flex-direction: row;
@@ -15,7 +15,7 @@
 
 
 .containerGameInfos {
-    min-width: 200px;
+    width: 200px;
     display: flex;
     flex-direction: column;
     height: 730px;
@@ -40,9 +40,21 @@
     align-items: center;
 }
 
-.resourceItem {
+.resourceCol {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
     padding: 3px;
     font-size: 22px;
+}
+
+.resourceCol div {
+    padding: 7px 0;
+}
+
+.boxTitle {
+    font-size: 24px;
+    padding: 15px 0;
 }
 
 .containerBoard {
@@ -77,18 +89,27 @@
 
 .costs1 {
     display:flex;
-    width:100%;
-    height: 100%;
-    margin: 2px;
+    margin: 15px 2px 5px;
     justify-content: space-between;
 }
 
 .costs2 {
-    height: 100%;
     padding:1px;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.costs2 div {
+    padding: 5px 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.costs2 div img {
+    position: relative;
+    max-width: 32px;
+    max-height: 32px;
 }
 
 .skinnyBox {
@@ -146,7 +167,7 @@
 }
 
 .actionBoxButtonGrey{
-    background-color: grey;
+    background-color: darkgoldenrod;
     color: black;
     width: 100px;
     padding: 17px;
