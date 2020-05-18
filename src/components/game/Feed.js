@@ -9,7 +9,7 @@ export default function feed(props) {
     'MonopolyMove': 'used a monopoly card',
     'PlentyMove' : 'used a card of plenty (not the valley)',
     'RoadProgressMove': 'used a road progress card',
-    'StealMove': 'stole a card',
+    'StealMove': 'stole a card', // from whom?
     'FirstPassMove': 'passed the turn',
     'FirstRoadMove': 'has built a starting road',
     'FirstSettlementMove': 'has built a starting settlement',
