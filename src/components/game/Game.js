@@ -11,6 +11,8 @@ import PlayersList from "./PlayersList";
 import Modal from 'react-modal';
 import Rules from "./Rules";
 import StealMove from "./StealMove";
+import PlentyMove from "./PlentyMove";
+import MonopolyMove from "./MonopolyMove";
 
 
 let opponentHasLeft = false;
@@ -111,6 +113,30 @@ class Game extends React.Component {
     }
   }
 
+  includePlenty(){
+    let i = 0;
+    let arr = [];
+    while (i < this.state.moves.length) {
+      if (arr.includes(this.state.moves[i].moveName) === false)
+        arr.push(this.state.moves[i].moveName);
+      i++;
+    }
+    return arr.includes("PlentyMove")
+  }
+
+  includeMonopoly(){
+    let i = 0;
+    let arr = [];
+    while (i < this.state.moves.length) {
+      if (arr.includes(this.state.moves[i].moveName) === false)
+        arr.push(this.state.moves[i].moveName);
+      i++;
+    }
+    return arr.includes("MonopolyMove")
+  }
+
+
+
   async logout() {
     await api.put("/logout", null, {
       headers: {
@@ -186,6 +212,7 @@ class Game extends React.Component {
           </div>
 
           <div className={'containerBoard'}>
+
             {this.state.tiles.length !== 0 && <Board
               gameId = {this.state.gameId}
               tiles={this.state.tiles}
@@ -217,8 +244,18 @@ class Game extends React.Component {
 
             {this.state.lastDice > 0 && <Dice result={this.state.lastDice}/>}
 
+            {this.state.moves && this.state.moves.length !== 0 && this.includePlenty() ?
+              <PlentyMove moves={this.state.moves} gameId ={this.state.gameId}/> :""
+            }
+
+            {this.state.moves && this.state.moves.length !== 0 && this.includeMonopoly()?
+              <MonopolyMove moves={this.state.moves} gameId ={this.state.gameId}/> :""
+            }
+
           </div>
         </div>
+
+
         <Modal
           isOpen={this.state.isModalOpenScoreboard}
           onRequestClose={() => this.closeModalScoreboard()}
