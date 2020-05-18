@@ -39,7 +39,7 @@ export default class Rules extends React.Component{
       <div>
         <button
           className={'rulesButton'}
-          onClick={this.onOpenModal}>?</button>
+          onClick={this.onOpenModal}><div style={{position: 'relative', left: '-2.5px'}}>?</div></button>
             <Modal open={open} onClose={this.onCloseModal} blockScroll={false} center styles={bg} >
               <h1 style ={{color: "green", textAlign: "center", fontWeight: 'bold'}}>The Settlers of Toucan</h1>
               <h2 id="quick-start" style={{marginBottom: "15px" , marginTop: "50px", fontWeight: 'bold'}}>Quick Start</h2>

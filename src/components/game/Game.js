@@ -11,8 +11,7 @@ import PlayersList from "./PlayersList";
 import Modal from 'react-modal';
 import Rules from "./Rules";
 import StealMove from "./StealMove";
-import PlentyMove from "./PlentyMove";
-import MonopolyMove from "./MonopolyMove";
+import Feed from "./Feed";
 
 
 let opponentHasLeft = false;
@@ -32,6 +31,7 @@ class Game extends React.Component {
       players: [],
       lastDice: 0,
       playerColors: {},
+      history: null,
       currentPlayer: null,
       currPlResources: null,
       currPlDevCards: null,
@@ -88,7 +88,8 @@ class Game extends React.Component {
         points: points,
         playerColors: this.assignColors(response.data.players),
         lastDice: response.data.lastDiceRoll,
-        currentPlayer: response.data.currentPlayer
+        currentPlayer: response.data.currentPlayer,
+        history: response.data.history.moves
       });
 
       if ( response.data.board === undefined) {
@@ -211,8 +212,7 @@ class Game extends React.Component {
 
           </div>
 
-          <div className={'containerBoard'}>
-
+          <div className={'boardContainer'}>
             {this.state.tiles.length !== 0 && <Board
               gameId = {this.state.gameId}
               tiles={this.state.tiles}
@@ -224,6 +224,7 @@ class Game extends React.Component {
               playerColors={this.state.playerColors}
             />}
 
+            {this.state.history && <Feed history={this.state.history} colors={this.state.playerColors}/>}
 
           </div>
 
