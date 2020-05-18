@@ -64,10 +64,11 @@ export default class UseDevCards extends React.Component{
           <h2 style={{textAlign: "center", fontWeight: 'bold'}}>These are your development cards!</h2>
 
 
-
           {this.props.moves && this.props.moves !== "emptyMoves" && this.getDevMoves().map((info) =>
             <DevCard {...info} gameId = {this.props.gameId} moves = {this.props.moves}/>
           )}
+
+          {this.props.moves && this.props.moves !== "emptyMoves" && this.moveChecker() ? "": <p style ={{textAlign: "center", marginTop: '60px'}}>No development cards left!</p>}
 
         </Modal>
       </div>

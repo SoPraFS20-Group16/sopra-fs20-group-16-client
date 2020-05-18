@@ -29,6 +29,8 @@ export default class TradeOffering extends React.Component{
     return info;
     }
 
+
+
   moveChecker() {
     let i = 0;
     let arr = [];
@@ -37,7 +39,7 @@ export default class TradeOffering extends React.Component{
         arr.push(this.props.moves[i].moveName);
       i++;
     }
-    return arr
+    return arr.includes("TradeMove")
   }
 
   render(){
@@ -50,9 +52,9 @@ export default class TradeOffering extends React.Component{
     return(
       <div>
         <button
-          className ={`actionBoxButton ${this.moveChecker().includes("TradeMove") === false ? "actionBoxButtonGrey":''}`}
+          className ={`actionBoxButton ${this.moveChecker() === false ? "actionBoxButtonGrey":''}`}
           onClick={this.onOpenModal}
-          disabled={this.moveChecker().includes("TradeMove") === false}
+          disabled={this.moveChecker() === false}
         >
           Trade
         </button>
@@ -63,6 +65,8 @@ export default class TradeOffering extends React.Component{
           {this.props.moves && this.props.moves !== "emptyMoves" && this.getTradeInfo().map((info) =>
             <Offer {...info} gameId = {this.props.gameId}/>
           )}
+
+          {this.props.moves && this.props.moves !== "emptyMoves" && this.moveChecker()? "": <p style={{textAlign: "center", marginTop:'40px'}}>No trading moves left!</p>}
 
         </Modal>
       </div>
