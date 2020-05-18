@@ -200,7 +200,7 @@ class Game extends React.Component {
               playerColors={this.state.playerColors}
             />}
 
-            {this.state.history && <Feed history={this.state.history}/>}
+            {this.state.history && <Feed history={this.state.history} colors={this.state.playerColors}/>}
 
           </div>
 

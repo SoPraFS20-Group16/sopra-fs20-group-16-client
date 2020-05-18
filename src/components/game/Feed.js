@@ -27,8 +27,11 @@ export default function feed(props) {
     <div className={'feedContainer'}>
       <ScrollableFeed forceScroll={true} className={'feedBox'}>
         {props.history.map((move, i) =>
-          <div key={i} style={{padding: '8px 0'}}>
-            {move.username} {movesDesc[move.moveName]}.
+          <div key={i} style={{padding: '8px 0 0', display:"flex"}}>
+            <div className={'playerColorSmall'} style={{backgroundColor: props.colors[move.userId]}}/>
+            <div>
+              <b>{move.username} </b> {movesDesc[move.moveName]}
+            </div>
           </div>
           )}
       </ScrollableFeed>
