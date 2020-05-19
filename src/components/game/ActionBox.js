@@ -73,7 +73,7 @@ export default function ActionBox(props) {
                 disabled= {props.moves === "emptyMoves"}
                 onClick={props.moves !== "emptyMoves"? buyDevCard : ""}
         >
-          Buy Dev cards
+          Buy dev cards
         </button>
       </div>
 

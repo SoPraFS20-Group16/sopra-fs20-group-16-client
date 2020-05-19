@@ -57,7 +57,7 @@ export default class UseDevCards extends React.Component{
           className ={`actionBoxButton ${this.moveChecker() === false ? "actionBoxButtonGrey":''}`}
           onClick={this.onOpenModal}
           disabled={this.moveChecker() === false}
-        >Use Dev Cards
+        >Use dev cards
         </button>
 
         <Modal open={open} onClose={this.onCloseModal} blockScroll={false} styles={bg}>

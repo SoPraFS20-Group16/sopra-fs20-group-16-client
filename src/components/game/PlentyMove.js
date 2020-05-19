@@ -14,8 +14,11 @@ export default class PlentyMove extends React.Component{
       firstRes: "",
       secondRes:"",
       count:0,
-      imgSize:40
-    }
+      imgSize:35
+    };
+    this.resetState = this.resetState.bind(this);
+    this.incrementCount = this.incrementCount.bind(this);
+    this.setResources = this.setResources.bind(this);
   }
 
   checkIfBothEmpty(){
@@ -41,7 +44,6 @@ export default class PlentyMove extends React.Component{
       }
     }
 
-
     if (this.state.count ===1){
       if(this.state.firstRes !== "" && this.state.secondRes ==="" && this.state.count ===1){
         this.setState({secondRes: resource})
@@ -57,7 +59,6 @@ export default class PlentyMove extends React.Component{
         });
         return async () => await api.put("/games/" + this.props.gameId, JSON.stringify({moveId: moveId})) && this.resetState();
       }
-
     }
     this.incrementCount();
   }
@@ -68,47 +69,55 @@ export default class PlentyMove extends React.Component{
   render(){
     const {imgSize} = this.state;
     return(
-      <div style={{justifyContent: "center"}}>
-        <h3>Click on 2 resources!</h3>
-        <button
-          style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
-          onClick={this.setResources("LUMBER")}
-          disabled = {this.checkIfBothEmpty() === true}
-        >
-          <img style={{height: imgSize, textAlign: 'center'}} src = {Lumber} alt = ""/>
-        </button>
+      <div className={'plentyAndMonopoly'} style={{justifyContent: "center"}}>
+        <h5> <b>Select 2 resources! </b></h5>
 
-        <button
-          style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
-          onClick={this.setResources("GRAIN")}
-          disabled={this.checkIfBothEmpty() === true}
-        >
-          <img style={{height: imgSize, textAlign:'center'}} src = {Grain} alt = ""/>
-        </button>
+        <div>
+            <button
+              style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
+              onClick={this.setResources("LUMBER")}
+              disabled = {this.checkIfBothEmpty() === true}
+            >
+              <img style={{height: imgSize, textAlign: 'center'}} src = {Lumber} alt = ""/>
+            </button>
 
-        <button
-          style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
-          onClick={this.setResources("BRICK")}
-          disabled={this.checkIfBothEmpty() === true}
-        >
-          <img style={{height: imgSize, textAlign:'center'}} src = {Brick} alt = ""/>
-        </button>
+            <button
+              style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
+              onClick={this.setResources("GRAIN")}
+              disabled={this.checkIfBothEmpty() === true}
+            >
+              <img style={{height: imgSize, textAlign:'center'}} src = {Grain} alt = ""/>
+            </button>
+        </div>
 
-        <button
-          style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
-          onClick={this.setResources("WOOL")}
-          disabled={this.checkIfBothEmpty() === true}
-        >
-          <img style={{height: imgSize, textAlign:'center'}} src = {Wool} alt = ""/>
-        </button>
+        <div>
+          <button
+            style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
+            onClick={this.setResources("BRICK")}
+            disabled={this.checkIfBothEmpty() === true}
+          >
+            <img style={{height: imgSize, textAlign:'center'}} src = {Brick} alt = ""/>
+          </button>
 
-        <button
-          style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
-          onClick={this.setResources("ORE")}
-          disabled={this.checkIfBothEmpty() === true}
-        >
-          <img style={{height: imgSize, textAlign:'center'}} src = {Ore} alt = ""/>
-        </button>
+
+          <button
+            style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
+            onClick={this.setResources("WOOL")}
+            disabled={this.checkIfBothEmpty() === true}
+          >
+            <img style={{height: imgSize, textAlign:'center'}} src = {Wool} alt = ""/>
+          </button>
+        </div>
+
+        <div>
+          <button
+            style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
+            onClick={this.setResources("ORE")}
+            disabled={this.checkIfBothEmpty() === true}
+          >
+            <img style={{height: imgSize, textAlign:'center'}} src = {Ore} alt = ""/>
+          </button>
+        </div>
       </div>
 
     )
