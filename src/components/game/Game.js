@@ -12,6 +12,8 @@ import Modal from 'react-modal';
 import Rules from "./Rules";
 import StealMove from "./StealMove";
 import Feed from "./Feed";
+import PlentyMove from "./PlentyMove";
+import MonopolyMove from "./MonopolyMove";
 
 
 let opponentHasLeft = false;

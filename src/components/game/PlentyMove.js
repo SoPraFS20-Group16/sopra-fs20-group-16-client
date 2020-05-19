@@ -13,39 +13,53 @@ export default class PlentyMove extends React.Component{
     this.state={
       firstRes: "",
       secondRes:"",
+      count:0,
       imgSize:40
     }
   }
 
-
-  checkIf2Selected(){
-    return (this.state.LUMBER +
-      this.state.GRAIN +
-      this.state.BRICK +
-      this.state.WOOL +
-      this.state.WOOL) === 2;
+  checkIfBothEmpty(){
+    return (this.state.firstRes === "" && this.state.secondRes === "");
   }
+
+  resetState(){
+    this.setState({firstRes:"", secondRes : "", count: 0});
+  }
+
+  incrementCount(){
+    this.setState({count: this.state.count + 1})
+  }
+
 
   setResources(resource){
     let moveId;
     const moves = this.props.moves;
 
-    if(this.state.firstRes === ""){
-      this.setState({firstRes: resource})
+    if (this.state.count === 0){
+      if(this.state.firstRes === ""){
+        this.setState({firstRes: resource})
+      }
     }
 
-    if(this.state.firstRes !== "" && this.state.secondRes ===""){
-      this.setState({secondRes: resource})
+
+    if (this.state.count ===1){
+      if(this.state.firstRes !== "" && this.state.secondRes ==="" && this.state.count ===1){
+        this.setState({secondRes: resource})
+      }
     }
 
-    if(this.state.firstRes !== "" && this.state.secondRes !== ""){
-      moves.map((move) =>{
-        if(move.plentyType1 === this.state.firstRes && move.plentyType2 === this.state.secondRes){
-          moveId = move.moveId;
-        }
-      });
-      return async () => await api.put("/games/" + this.props.gameId, JSON.stringify({moveId: moveId}));
+    if(this.state.count === 2){
+      if(this.state.firstRes !== "" && this.state.secondRes !== ""){
+        moves.map((move) =>{
+          if(move.plentyType1 === this.state.firstRes && move.plentyType2 === this.state.secondRes){
+            moveId = move.moveId;
+          }
+        });
+        return async () => await api.put("/games/" + this.props.gameId, JSON.stringify({moveId: moveId})) && this.resetState();
+      }
+
     }
+    this.incrementCount();
   }
 
 
@@ -59,7 +73,7 @@ export default class PlentyMove extends React.Component{
         <button
           style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
           onClick={this.setResources("LUMBER")}
-          disabled = {this.checkIf2Selected()}
+          disabled = {this.checkIfBothEmpty() === true}
         >
           <img style={{height: imgSize, textAlign: 'center'}} src = {Lumber} alt = ""/>
         </button>
@@ -67,7 +81,7 @@ export default class PlentyMove extends React.Component{
         <button
           style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
           onClick={this.setResources("GRAIN")}
-          disabled={this.checkIf2Selected()}
+          disabled={this.checkIfBothEmpty() === true}
         >
           <img style={{height: imgSize, textAlign:'center'}} src = {Grain} alt = ""/>
         </button>
@@ -75,7 +89,7 @@ export default class PlentyMove extends React.Component{
         <button
           style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
           onClick={this.setResources("BRICK")}
-          disabled={this.checkIf2Selected()}
+          disabled={this.checkIfBothEmpty() === true}
         >
           <img style={{height: imgSize, textAlign:'center'}} src = {Brick} alt = ""/>
         </button>
@@ -83,7 +97,7 @@ export default class PlentyMove extends React.Component{
         <button
           style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
           onClick={this.setResources("WOOL")}
-          disabled={this.checkIf2Selected()}
+          disabled={this.checkIfBothEmpty() === true}
         >
           <img style={{height: imgSize, textAlign:'center'}} src = {Wool} alt = ""/>
         </button>
@@ -91,7 +105,7 @@ export default class PlentyMove extends React.Component{
         <button
           style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
           onClick={this.setResources("ORE")}
-          disabled={this.checkIf2Selected()}
+          disabled={this.checkIfBothEmpty() === true}
         >
           <img style={{height: imgSize, textAlign:'center'}} src = {Ore} alt = ""/>
         </button>
