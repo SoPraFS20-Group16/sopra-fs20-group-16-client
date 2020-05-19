@@ -46,6 +46,11 @@ export default class Rules extends React.Component{
               <ul>
                 <li style={{marginLeft: "20px"}}><p style={{marginBottom: "20px"}}>Beginning the game is easy. Just build a settlement and a road, then pass it on to the next player.</p>
                 </li>
+                <li style={{marginLeft: "20px"}}><p style={{marginBottom: "20px"}}>The first two rounds are to set up the game. The buildings and roads are for free, and you will get a resource for every tile</p>
+                  <p style={{marginBottom: "20px"}}> next to your initial settlement.</p>
+                </li>
+                <li style={{marginLeft: "20px"}}><p style={{marginBottom: "20px"}}>The order of play reverts itself after the first round. After the initial setup, a random player gets picked to start.</p>
+                </li>
                 <li style={{marginLeft: "20px"}}><p>Once started, you will collect resources when the dice is rolled and it matches the number of a tile you have a building next</p>
                   <p style={{marginBottom: "20px"}}>to.</p>
                 </li>
@@ -57,16 +62,16 @@ export default class Rules extends React.Component{
                 <li style={{marginLeft: "20px"}}><p>Settlements give you one, cities two points. If you reach ten points first you win the game. This means you are a worthy </p>
                   <p style={{marginBottom: "20px"}}>inhabitant of Toucan!</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>The Robber is no one&#39;s friend! When he occupies a tile then it can&#39;t distribute resources. Normally he lives in the desert, </p>
+                <li style={{marginLeft: "20px"}}><p>The thief is no one&#39;s friend! When he occupies a tile then it can&#39;t distribute resources. Normally he lives in the desert, </p>
                   <p style={{marginBottom: "20px"}}> but with a Knight Card, you can chase him to steal from those you don&#39;t like.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>When you set the robber on a tile, he is kind enough to share with you. This means you can steal one random resource </p>
-                  <p style={{marginBottom: "20px"}}> from one of the players next to the new robber tile. But only if there really is one, obviously!</p>
+                <li style={{marginLeft: "20px"}}><p>When you set the thief on a tile, he is kind enough to share with you. This means you can steal one random resource </p>
+                  <p style={{marginBottom: "20px"}}> from one of the players next to the new thief tile. But only if there really is one, obviously!</p>
                 </li>
                 <li style={{marginLeft: "20px"}}><p>With your resources, you can also buy development cards. They can help you to get ahead. Sometimes there is even a</p>
                   <p style={{marginBottom: "20px"}}>whole point to be earned.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>You can choose when you want to play your development card. But remember, when the game is over they are no user. </p>
+                <li style={{marginLeft: "20px"}}><p>You can choose when you want to play your development card. But remember, when the game is over they are of no use. </p>
                   <p style={{marginBottom: "50px"}}>So better be quick! Time to conspire with the thief again maybe?</p>
                 </li>
               </ul>
@@ -76,16 +81,16 @@ export default class Rules extends React.Component{
                   <p>effective placements. When the number of a tile is rolled, then every building that is next to that tile will receive the </p>
                     <p>appropriate amount of resources. So if you have multiple buildings next to the same tile you get more resources.</p>
                     <p>Every different kind of tile gives you back a different type of resource. Below you can have an overview. </p>
-                    <p>The desert tile doesn't give any resources back, it's only the robber's starting point.</p>
+                    <p>The desert tile doesn't give any resources back, it's only the thief's starting point.</p>
 
-                    <div style={{textAlign: "center", marginBottom:"50px"}}>
+                    <div style={{textAlign: "center", marginBottom:"50px", marginTop: "50px"}}>
                       <HexInstructions/>
                     </div>
 
               <h2 id="settlements" style={{marginBottom: "15px", fontWeight: 'bold'}}>Settlements</h2>
               <p>Settlements allow you to collect resources from the tiles that you need to keep on building. They also give you one </p>
               <p>victory point each. The first two settlements can be built wherever you want, but from then on the next buildings need to be</p>
-              <p style={{marginBottom: "50px"}}>at least two roads away an can only be built on the endpoint of a road.</p>
+              <p style={{marginBottom: "50px"}}>at least two roads away and can only be built on the endpoint of a road.</p>
 
               <h2 id="cities" style={{marginBottom: "15px", fontWeight: 'bold'}}>Cities</h2>
               <p>Cities behave similarly to settlements. The main difference is that they give you twice the resources and twice the </p>
@@ -97,8 +102,8 @@ export default class Rules extends React.Component{
               <p style={{marginBottom: "50px"}}>only be built at the end of a road.</p>
 
               <h2 id="trade" style={{marginBottom: "15px", fontWeight: 'bold'}}>Trade</h2>
-              <p>As soon as you have four resources you can trade with the Tocan National Bank. For the four resources, you will receive </p>
-              <p style={{marginBottom: "50px"}}>one other resource of your choice. This might be useful if you do not have a building next to that resource.</p>
+              <p>As soon as you have four resources of the same type, you can trade with the Toucan National Bank. For the four resources, </p>
+              <p style={{marginBottom: "50px"}}> you will receive one other resource of your choice. This might be useful if you do not have a building next to that resource.</p>
 
               <h2 id="the-thief" style={{marginBottom: "15px", fontWeight: 'bold'}}>The Thief</h2>
               <p>The thief blocks a tile from dispensing resources. He is placed in the desert initially but can be placed on other tiles </p>
@@ -109,15 +114,15 @@ export default class Rules extends React.Component{
               <p>But you can not choose which card it will be. You better not have a gambling problem! Once the card is bought, it can </p>
               <p style={{marginBottom: "30px"}}>not be used in the same turn. But it is surely worth the wait!</p>
               <ul>
-                <li style={{marginLeft: "20px"}} ><p> <b>The Knight Card</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'30px'}} src = {Knight} alt = ""/> <t style={{marginLeft:'29px'}}>The Thief can be placed on a new tile. If the tile has buildings next to it the player can</t> </p>
+                <li style={{marginLeft: "20px"}} ><p> <b>The Knight Card</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'30px'}} src = {Knight} alt = ""/> <t style={{marginLeft:'29px'}}>The Thief can be placed on a new tile. If the tile has buildings next to it, the player can</t> </p>
                   <p style={{marginTop: "-10px", marginLeft: '208px'}}>choose from which opponent a random resource is stolen. If the opponent has an </p>
                   <p style={{marginLeft:'208px', marginBottom: '30px'}}>empty wallet then there is nothing to get.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Victory Point</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'25px'}} src = {Victory} alt = ""/> <t style={{marginLeft:'29px'}}> The victory point is a card that can do nothing but gives you an extra victory point. This </t></p>
-                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}>means you need one less settlement to win the game.</p>
+                <li style={{marginLeft: "20px"}}><p><b>The Victory Point</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'25px'}} src = {Victory} alt = ""/> <t style={{marginLeft:'29px'}}> The victory point is a card that can do nothing but gives you an extra victory point.</t></p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}>This means you need one less settlement to win the game.</p>
                 </li>
                 <li style={{marginLeft: "20px"}}><p><b>The Monopoly Card</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'10px'}} src = {Monopoly} alt = ""/> <t style={{marginLeft:'28px'}}>This card gives you the power to collect one type of resources from all the players in the</t></p>
-                  <p style={{marginBottom:'30px', marginLeft:'208px', marginTop: '-10px'}}>game. So if you suspect that there is a lot of Wood going around it might be time to </p>
+                  <p style={{marginBottom:'30px', marginLeft:'208px', marginTop: '-10px'}}>game. So if you suspect that there is a lot of lumber going around it might be time to </p>
                   <p style={{marginBottom: "30px", marginLeft:'208px', marginTop: '-10px'}}>strike.</p>
                 </li>
                 <li style={{marginLeft: "20px"}}><p><b>The Road Progress</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-7px', marginLeft:'22px'}} src = {Road} alt = ""/><t style={{marginLeft:'29px'}}> All roads lead to Rome, but in your case, they might lead to new territory. Using this</t></p>

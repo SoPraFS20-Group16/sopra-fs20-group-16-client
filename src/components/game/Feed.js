@@ -15,7 +15,7 @@ export default function feed(props) {
     'FirstSettlementMove': 'has built a starting settlement',
     'BuildMove': 'built something', // add what?
     'CardMove': 'used a card',
-    'DiceMove': 'threw the dice', // add result?
+    'DiceMove': 'rolled the dice', // add result?
     'Move': 'has got some tight moves', // ?
     'PassMove': 'passed the turn',
     'PurchaseMove': 'is rich and bought a development card',

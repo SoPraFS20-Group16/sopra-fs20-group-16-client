@@ -14,7 +14,7 @@ export default class DevCard extends React.Component{
 
   devType(){
     if(this.props.devType === "KNIGHT"){
-      return <t>Knight Move</t>
+      return <t>Knight Card</t>
     }
 
     if(this.props.devType === "MONOPOLYPROGRESS"){
@@ -22,12 +22,12 @@ export default class DevCard extends React.Component{
     }
 
     if(this.props.devType === "PLENTYPROGRESS"){
-      return <t>Get 2 Resources for free!</t>
+      return <t>Plenty Progress</t>
     }
 
 
     if(this.props.devType === "ROADPROGRESS"){
-      return <t>Buy 2 Free Streets!</t>
+      return <t>Road Progress</t>
     }
   }
 
