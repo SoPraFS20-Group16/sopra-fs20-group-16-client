@@ -290,12 +290,26 @@
     box-sizing: border-box;
 }
 
-.plentyAndMonopoly{
+.monopoly{
+     flex-basis: 5%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     padding: 7px 7px;
+     margin-bottom: 10px;
+     border: 1px solid black;
+     border-radius: 10px;
+     background-color: beige;
+     background-size: cover;
+     text-align: center;
+ }
+
+.plenty{
     flex-basis: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 7px 7px;
+    padding: 15px 15px;
     margin-bottom: 10px;
     border: 1px solid black;
     border-radius: 10px;

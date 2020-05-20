@@ -23,7 +23,7 @@ export default function MonopolyMove(props){
     }
 
     return(
-      <div className={'plentyAndMonopoly'}>
+      <div className={'monopoly'}>
         <h5> <b>Pick a resource!</b> </h5>
 
         <div>
