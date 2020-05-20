@@ -34,8 +34,6 @@ const TOKEN =
 
 
 const Markers = ({usersLatLong}) => {
-    // const {data} = this.props;
-    console.log('aasdsa', usersLatLong);
     return usersLatLong.map(city => {
         return city.latitude && city.longitude ?
             <Marker
@@ -128,13 +126,13 @@ class Home extends React.Component {
 }
 
     render() {
-        console.log(this.state.usersLatLong, "users state");
+        console.log(this.state.gameDetails.name, "users state");
     return <div className="body1">
         <div className="header">
             <div className={"header_logout"}>
                 <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
             </div>
-            <h1 className={"header_title"}> Welcome to the Settlers of Toucan!</h1>
+            <h1 className={"header_title"}> You are currently in Lobby {this.state.gameDetails.name}</h1>
 
         </div>
 
@@ -148,7 +146,6 @@ class Home extends React.Component {
                 <Markers usersLatLong = {this.state.usersLatLong}/>
             </MapGL>
         </div>
-
                 <div className="containerPlayerInfos">
                     {this.state.gameDetails.players && this.state.gameDetails.players.map((player, index) => <p key={index}>{player.username}</p>)}
                 </div>

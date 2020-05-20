@@ -7,6 +7,7 @@ import { Button } from '../../views/design/Button';
 import Token from "../shared/models/Token";
 
 
+
 const FormContainer = styled.div`
   margin-top: 7em;
   display: flex;
@@ -71,7 +72,6 @@ const ButtonContainer = styled.div`
  
   margin-bottom: 20px;
 `;
-
 
 
 
@@ -148,7 +148,7 @@ class Register extends React.Component{
                                   }}
                       />
 
-                      <label><b>Share location</b></label>
+                      <label><b>Show your location on a shared map</b></label>
                       <InputFieldCheck type="checkbox"
 
                              onChange={() => {
@@ -169,9 +169,10 @@ class Register extends React.Component{
 
                           </Button>
                       </ButtonContainer>
-
-
-
+                      <label>
+                          {" "}
+                          <a href={'/login'} style={{ color: 'black' }}> Already signed up?</a>
+                      </label>
                   </Form>
               </FormContainer>
           </BaseContainer>
