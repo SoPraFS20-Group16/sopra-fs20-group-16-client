@@ -8,6 +8,7 @@ import Victory from '../../views/graphics/victory.png'
 import Road from '../../views/graphics/road.png'
 import Plenty from '../../views/graphics/plenty.png'
 import HexInstructions from "./HexInstructions";
+import PlentyInstructions from "./PlentyInstructions";
 
 export default class Rules extends React.Component{
   constructor(props) {
@@ -134,6 +135,11 @@ export default class Rules extends React.Component{
                   <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}> Is it time for a settlement already?</p>
                 </li>
               </ul>
+
+              <div style={{textAlign: "center", marginBottom:"50px", marginTop: "50px"}}>
+                <PlentyInstructions/>
+              </div>
+
               <h2 id="the-pass-move" style={{marginBottom: "15px", fontWeight: 'bold'}}>The Pass Move</h2>
               <p>When you are finished extending your empire give the others a chance as well! We know you only want more resources </p>
               <p>from their dice rolls, but your secret is save with us!</p>

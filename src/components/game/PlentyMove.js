@@ -1,6 +1,7 @@
 import React from 'react';
-import Lumber from '../../views/graphics/lumber.png'
-import Pitchfork from '../../views/graphics/Pitchfork-232x300.png'
+import Miner from '../../views/graphics/miner.png'
+import Farmer from '../../views/graphics/farmer.png'
+import LumberJack from '../../views/graphics/lumberjack.png'
 import {api} from "../../helpers/api";
 
 export default function PlentyMove(props){
@@ -29,14 +30,14 @@ export default function PlentyMove(props){
                 style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
                 onClick={async () => await api.put("/games/" + props.gameId, JSON.stringify({moveId: selectPlentyType("MINER")}))}
             >
-              <img style={{height: imgSize, textAlign: 'center', marginRight: '10px', border: '1px solid black', borderRadius: '26px'}} src = "https://www.pngrepo.com/png/240392/180/miner.png" alt = ""/>
+              <img style={{height: imgSize, textAlign: 'center', marginRight: '10px', border: '1px solid black', borderRadius: '26px'}} src = {Miner} alt = ""/>
             </button>
 
             <button
                 style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
                 onClick={async () => await api.put("/games/" + props.gameId, JSON.stringify({moveId: selectPlentyType("FARMER")}))}
             >
-              <img style={{height: imgSize, border: '1px solid black', borderRadius: '26px'}} src = "https://www.pngrepo.com/png/240410/180/farmer.png" alt = ""/>
+              <img style={{height: imgSize, border: '1px solid black', borderRadius: '26px'}} src = {Farmer} alt = ""/>
             </button>
           </div>
 
@@ -45,7 +46,7 @@ export default function PlentyMove(props){
                 style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
                 onClick={async () => await api.put("/games/" + props.gameId, JSON.stringify({moveId: selectPlentyType("LUMBERJACK")}))}
             >
-              <img style={{height: imgSize, border: '1px solid black', borderRadius: '26px'}} src = "https://www.pngrepo.com/png/240416/180/lumberjack.png" alt = ""/>
+              <img style={{height: imgSize, border: '1px solid black', borderRadius: '26px'}} src = {LumberJack} alt = ""/>
             </button>
 
           </div>
