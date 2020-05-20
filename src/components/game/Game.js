@@ -38,7 +38,8 @@ class Game extends React.Component {
       currPlResources: null,
       currPlDevCards: null,
       isModalOpenScoreboard: false,
-      isModalOpenWarning: false
+      isModalOpenWarning: false,
+      scoreBoardPlayers: []
     };
     this.getGameInfo = this.getGameInfo.bind(this);
     this.closeModalWarning = this.closeModalWarning.bind(this);
@@ -56,10 +57,8 @@ class Game extends React.Component {
   componentDidMount()
     {
       let interval = setInterval(() => {
-        // console.log(opponentHasLeft, "opponent?");
         if (opponentHasLeft) {
           clearInterval(interval);
-          this.props.history.push('/dashboard');
           opponentHasLeft = false;
         } else{
           this.getGameInfo(this.props.match.params.id);
@@ -68,6 +67,7 @@ class Game extends React.Component {
   }
 
   async getGameInfo(id) {
+
     try {
       // Ask the server to get game info of the game with specific id by passing the token in the header
       const response = await api.get("/games/"+id);
@@ -77,6 +77,14 @@ class Game extends React.Component {
       players.map((player) =>
       player.points !== 0 ? points = player.points : "");
 
+      // check if game is over
+      if (response.data.dtoType === "GameSummaryDTO") {
+        this.setState({
+          scoreBoardPlayers: response.data.players,
+          isModalOpenScoreboard: true,
+        });
+        return;
+      }
 
       // Assign data to state
       this.setState({
@@ -93,11 +101,6 @@ class Game extends React.Component {
         currentPlayer: response.data.currentPlayer,
         history: response.data.history.moves
       });
-
-      if ( response.data.board === undefined) {
-        this.setState({isModalOpenScoreboard: true});
-      }
-
 
       // Set current player resources and development cards to state
       let i = 0;
@@ -137,7 +140,6 @@ class Game extends React.Component {
     }
     return arr.includes("MonopolyMove")
   }
-
 
 
   async logout() {
@@ -264,23 +266,24 @@ class Game extends React.Component {
           onRequestClose={() => this.closeModalScoreboard()}
           className={'scoreboard'}
           contentLabel="Example Modal"
+          shouldCloseOnOverlayClick={false}>
 
-      >
-        {this.state.players.map(p => (
-            <div>
-              <p><b> <span>Player: {p.username} </span>  Points:{p.points} </b></p>
-            </div>
-        ))}
+          <p style={{marginTop: "0px"}}> <b>This Game is over, good luck</b></p>
+          <p style={{marginBottom: "30px"}}> <b>on your next adventure!</b></p>
 
-        <button className={'dashboardButton'}
+            {this.state.scoreBoardPlayers.map(p => (
+                <p> Player: {p.username} / Points: {p.points} </p>
+            ))}
+
+            <button className={'dashboardButton'}
                 onClick={() => {
                   this.props.history.push('/dashboard');
                 }}
-        >
-          <b>Lobby</b>
-        </button>
+            >
+            <b>Lobby</b>
+            </button>
 
-      </Modal>
+        </Modal>
 
         <Modal
           isOpen={this.state.isModalOpenWarning}
