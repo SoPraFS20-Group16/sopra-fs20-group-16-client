@@ -8,6 +8,7 @@ import Victory from '../../views/graphics/victory.png'
 import Road from '../../views/graphics/road.png'
 import Plenty from '../../views/graphics/plenty.png'
 import HexInstructions from "./HexInstructions";
+import PlentyInstructions from "./PlentyInstructions";
 
 export default class Rules extends React.Component{
   constructor(props) {
@@ -128,10 +129,17 @@ export default class Rules extends React.Component{
                 <li style={{marginLeft: "20px"}}><p><b>The Road Progress</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-7px', marginLeft:'22px'}} src = {Road} alt = ""/><t style={{marginLeft:'29px'}}> All roads lead to Rome, but in your case, they might lead to new territory. Using this</t></p>
                   <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: '-10px'}}>card you can build two roads for free.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'18px'}} src = {Plenty} alt = ""/> <t style={{marginLeft:'23px'}}>It was a warm summer and it is time to harvest your reward. With this card, you can</t> </p>
-                  <p style={{marginBottom: "50px", marginLeft: '208px', marginTop:'-10px'}}>choose two resources. Is it time for a settlement already?</p>
+                <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'18px'}} src = {Plenty} alt = ""/> <t style={{marginLeft:'23px'}}>It was a warm summer and it is time to harvest your reward. With this card, you can</t></p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}>choose between three worker types. "Miner" gives you 2x Ore and 2x Brick.</p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}> "Farmer" gives you 2x Grain and 2x Wool. "Lumberjack" gives you 5x Lumber.</p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}> Is it time for a settlement already?</p>
                 </li>
               </ul>
+
+              <div style={{textAlign: "center", marginBottom:"50px", marginTop: "50px"}}>
+                <PlentyInstructions/>
+              </div>
+
               <h2 id="the-pass-move" style={{marginBottom: "15px", fontWeight: 'bold'}}>The Pass Move</h2>
               <p>When you are finished extending your empire give the others a chance as well! We know you only want more resources </p>
               <p>from their dice rolls, but your secret is save with us!</p>
