@@ -16,11 +16,13 @@ import Arrow from '../../views/graphics/icons8-right-arrow-100.png'
 
 
 export default function HexInstructions(){
-  const hexSize = 40;
-  const resourceSize = 32;
+  const hexSize = 60;
+  const resourceSize = 52;
   const arrowSize = 30;
   return(
-      <div style={{border: "2px solid black", borderRadius: "50px" ,textAlign: "center" , width: "24%", backgroundColor: "beige", display: "inline-block"}}>
+      <div style={{border: "2px solid black", borderRadius: "50px" ,textAlign: "center" , padding: '20px 30px', backgroundColor: "beige", display: "inline-block"}}>
+
+        <h3> <b>Resource given from each tile </b></h3>
       <p>
         <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {woodHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>

@@ -7,7 +7,9 @@ export default class UseDevCards extends React.Component{
     super(props);
     this.state={
       open: false,
-    }
+    };
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
   }
 
   onOpenModal = () => {
