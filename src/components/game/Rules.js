@@ -3,7 +3,7 @@ import './rulesStyle.css';
 import 'react-responsive-modal/styles.css';
 import ReactTooltip from "react-tooltip";
 
-import { Modal } from 'react-responsive-modal';
+import {Modal} from 'react-responsive-modal';
 import Knight from '../../views/graphics/knight.png'
 import Monopoly from '../../views/graphics/monopoly.png'
 import Victory from '../../views/graphics/victory.png'
@@ -97,16 +97,16 @@ export default class Rules extends React.Component{
               <h2 className={'titleRules'}>Settlements</h2>
               <p>Settlements allow you to collect resources from the tiles that you need to keep on building. They also give you one </p>
               <p>victory point each. The first two settlements can be built wherever you want, but from then on the next buildings need to be</p>
-              <p style={{marginBottom: "50px"}}>at least two roads away and can only be built on the endpoint of a road.</p>
+              <p> at least two roads away and can only be built on the endpoint of a road. Your empire can manage a maximum of five</p>
+              <p style={{marginBottom: "50px"}}>settlements at a time.</p>
 
               <h2 className={'titleRules'}>Cities</h2>
               <p>Cities behave similarly to settlements. The main difference is that they give you twice the resources and twice the </p>
-              <p style ={{marginBottom: "50px"}}>victory points. A city can only be built by upgrading a settlement.</p>
-
+              <p style ={{marginBottom: "50px"}}>victory points. A city can only be built by upgrading a settlement and you can hold a maximum of four cities.</p>
 
               <h2 className={'titleRules'}>Roads</h2>
               <p>Roads are needed to reach new territory where new settlements can be built on. Roads can not fork, and settlements can </p>
-              <p style={{marginBottom: "50px"}}>only be built at the end of a road.</p>
+              <p style={{marginBottom: "50px"}}>only be built at the end of a road. Up to fifteen roads can be build to connect your buildings.</p>
 
               <h2 className={'titleRules'}>Trade</h2>
               <p>As soon as you have four resources of the same type, you can trade with the Toucan National Bank. For the four resources, </p>
@@ -166,4 +166,3 @@ export default class Rules extends React.Component{
   }
 
 }
-
