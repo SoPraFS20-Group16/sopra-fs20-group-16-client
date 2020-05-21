@@ -1,7 +1,7 @@
 import React from "react";
 import './style.css'
-import { api} from "../../helpers/api";
-import { withRouter } from "react-router-dom";
+import {api} from "../../helpers/api";
+import {withRouter} from "react-router-dom";
 import Board from "../board/Board";
 import ResourcesList from "./ResourcesList";
 import BuildingCosts from "./BuildingCosts";
@@ -269,11 +269,11 @@ class Game extends React.Component {
           shouldCloseOnOverlayClick={false}>
 
           <p style={{paddingLeft: '32px'}}><b>This Game is over, good luck</b></p>
-          <p style={{paddingLeft: '50px'}}> <b>on your next adventure!</b></p>
+          <p style={{paddingLeft: '50px', marginBottom: "20px"}}> <b>on your next adventure!</b></p>
 
             {this.state.scoreBoardPlayers.map(p => (
                 <div>
-                <p><b> <span>Player:{p.username}</span></b>  <b>Points: {p.points}</b></p>
+                <p> <span>Player: <b>{p.username}</b></span>  <b>{p.points}</b> Points</p>
                 </div>
             ))}
 

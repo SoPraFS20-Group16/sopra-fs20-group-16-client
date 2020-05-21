@@ -3,7 +3,7 @@ import './style.css';
 import 'react-responsive-modal/styles.css';
 import ReactTooltip from "react-tooltip";
 
-import { Modal } from 'react-responsive-modal';
+import {Modal} from 'react-responsive-modal';
 import Knight from '../../views/graphics/knight.png'
 import Monopoly from '../../views/graphics/monopoly.png'
 import Victory from '../../views/graphics/victory.png'
@@ -55,8 +55,8 @@ export default class Rules extends React.Component{
                 </li>
                 <li style={{marginLeft: "20px"}}><p style={{marginBottom: "20px"}}>The order of play reverts itself after the first round. After the initial setup, a random player gets picked to start.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>Once started, you will collect resources when the dice is rolled and it matches the number of a tile you have a building next</p>
-                  <p style={{marginBottom: "20px"}}>to.</p>
+                <li style={{marginLeft: "20px"}}><p>Once started, you will collect resources every time the dice gets rolled and it matches the number of a tile</p>
+                  <p style={{marginBottom: "20px"}}> you have a building next to.</p>
                 </li>
                 <li style={{marginLeft: "20px"}}><p>Once collected, the resources can be used to build more roads or settlements and also to upgrade a settlement to a city.</p>
                   <p style={{marginBottom: "20px"}}>Cities get twice the resources settlements do. It is time to go big!</p>
@@ -94,16 +94,16 @@ export default class Rules extends React.Component{
               <h2 id="settlements" style={{marginBottom: "15px", fontWeight: 'bold'}}>Settlements</h2>
               <p>Settlements allow you to collect resources from the tiles that you need to keep on building. They also give you one </p>
               <p>victory point each. The first two settlements can be built wherever you want, but from then on the next buildings need to be</p>
-              <p style={{marginBottom: "50px"}}>at least two roads away and can only be built on the endpoint of a road.</p>
+              <p> at least two roads away and can only be built on the endpoint of a road. Your empire can manage a maximum of five</p>
+              <p style={{marginBottom: "50px"}}>settlements at a time.</p>
 
               <h2 id="cities" style={{marginBottom: "15px", fontWeight: 'bold'}}>Cities</h2>
               <p>Cities behave similarly to settlements. The main difference is that they give you twice the resources and twice the </p>
-              <p style ={{marginBottom: "50px"}}>victory points. A city can only be built by upgrading a settlement.</p>
-
+              <p style ={{marginBottom: "50px"}}>victory points. A city can only be built by upgrading a settlement and you can hold a maximum of four cities.</p>
 
               <h2 id="roads" style={{marginBottom: "15px", fontWeight: 'bold'}}>Roads</h2>
               <p>Roads are needed to reach new territory where new settlements can be built on. Roads can not fork, and settlements can </p>
-              <p style={{marginBottom: "50px"}}>only be built at the end of a road.</p>
+              <p style={{marginBottom: "50px"}}>only be built at the end of a road. Up to fifteen roads can be build to connect your buildings.</p>
 
               <h2 id="trade" style={{marginBottom: "15px", fontWeight: 'bold'}}>Trade</h2>
               <p>As soon as you have four resources of the same type, you can trade with the Toucan National Bank. For the four resources, </p>
@@ -133,8 +133,8 @@ export default class Rules extends React.Component{
                   <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: '-10px'}}>card you can build two roads for free.</p>
                 </li>
                 <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b> <img style={{height: 30,  marginRight: "5px", marginTop: '-10px', marginLeft:'18px'}} src = {Plenty} alt = ""/> <t style={{marginLeft:'23px'}}>It was a warm summer and it is time to harvest your reward. With this card, you can</t></p>
-                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}>choose between three worker types. "Miner" gives you 2x Ore and 2x Brick.</p>
-                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}> "Farmer" gives you 2x Grain and 2x Wool. "Lumberjack" gives you 5x Lumber.</p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}>choose between three worker types. "Miner" gives you two Ore and two Brick.</p>
+                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}> "Farmer" gives you two Grain and two Wool. "Lumberjack" gives you five Lumber.</p>
                   <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}> Is it time for a settlement already?</p>
                 </li>
               </ul>
