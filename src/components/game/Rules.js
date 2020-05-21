@@ -3,7 +3,7 @@ import './rulesStyle.css';
 import 'react-responsive-modal/styles.css';
 import ReactTooltip from "react-tooltip";
 
-import {Modal} from 'react-responsive-modal';
+import { Modal } from 'react-responsive-modal';
 import Knight from '../../views/graphics/knight.png'
 import Monopoly from '../../views/graphics/monopoly.png'
 import Victory from '../../views/graphics/victory.png'
@@ -58,8 +58,8 @@ export default class Rules extends React.Component{
                 <li style={{marginLeft: "20px"}}>
                   <p className={'p'}>The order of play reverts itself after the first round. After the initial setup, a random player gets picked to start.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>Once started, you will collect resources when the dice is rolled and it matches the number of a tile you have a building next</p>
-                  <p className={'p'}>to.</p>
+                <li style={{marginLeft: "20px"}}><p>Once started, you will collect resources every time the dice gets rolled and it matches the number of a tile</p>
+                  <p className={'p'}> you have a building next to.</p>
                 </li>
                 <li style={{marginLeft: "20px"}}><p>Once collected, the resources can be used to build more roads or settlements and also to upgrade a settlement to a city.</p>
                   <p className={'p'}>Cities get twice the resources settlements do. It is time to go big!</p>
@@ -146,9 +146,8 @@ export default class Rules extends React.Component{
                 <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b>
                   <img className={'plentyImage'} src = {Plenty} alt = ""/>
                   <t style={{marginLeft:'23px'}}>It was a warm summer and it is time to harvest your reward. With this card, you can</t></p>
-                  <p className={'plentyParagraph'}>choose between three worker types. "Miner" gives you 2x Ore and 2x Brick.</p>
-                  <p className={'plentyParagraph'}> "Farmer" gives you 2x Grain and 2x Wool. "Lumberjack" gives you 5x Lumber.</p>
-                  <p className={'plentyParagraph'}> Is it time for a settlement already?</p>
+                  <p className={'plentyParagraph'}>choose between three worker types. "Miner" gives you two Ore and two Brick.</p>
+                  <p className={'plentyParagraph'}> "Farmer" gives you two Grain and two Wool. "Lumberjack" gives you five Lumber.</p>
                 </li>
               </ul>
 
