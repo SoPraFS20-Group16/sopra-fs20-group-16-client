@@ -21,6 +21,7 @@
     "react-scripts": "^2.1.8",
     "react-scrollable-feed": "^1.1.2",
     "react-svg-hexagon": "^1.0.0",
+    "react-tooltip": "^4.2.6",
     "styled-components": "^4.4.1",
     "yarn": "^1.22.4"
   },

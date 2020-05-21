@@ -1,6 +1,8 @@
 import React from "react";
 import './style.css';
 import 'react-responsive-modal/styles.css';
+import ReactTooltip from "react-tooltip";
+
 import { Modal } from 'react-responsive-modal';
 import Knight from '../../views/graphics/knight.png'
 import Monopoly from '../../views/graphics/monopoly.png'
@@ -8,7 +10,7 @@ import Victory from '../../views/graphics/victory.png'
 import Road from '../../views/graphics/road.png'
 import Plenty from '../../views/graphics/plenty.png'
 import HexInstructions from "./HexInstructions";
-import PlentyInstructions from "./PlentyInstructions";
+import PlentyInstructions from "./PlentyInstructions"
 
 export default class Rules extends React.Component{
   constructor(props) {
@@ -38,9 +40,10 @@ export default class Rules extends React.Component{
 
     return (
       <div>
+        <ReactTooltip type={'light'} delayShow={'250'}/>
         <button
           className={'rulesButton'}
-          onClick={this.onOpenModal}><div style={{position: 'relative', left: '-2.5px'}}>?</div></button>
+          onClick={this.onOpenModal}><div data-tip={'Show game rules'} style={{position: 'relative', left: '-2.5px'}}>?</div></button>
             <Modal open={open} onClose={this.onCloseModal} blockScroll={false} center styles={bg} >
               <h1 style ={{color: "green", textAlign: "center", fontWeight: 'bold'}}>The Settlers of Toucan</h1>
               <h2 id="quick-start" style={{marginBottom: "15px" , marginTop: "50px", fontWeight: 'bold'}}>Quick Start</h2>

@@ -1,5 +1,7 @@
 import React from "react";
 import './style.css'
+import ReactTooltip from "react-tooltip";
+
 import road from "../../views/graphics/road2.png"
 import village from '../../views/graphics/village2.png'
 import castle from '../../views/graphics/castle.png'
@@ -21,30 +23,32 @@ export default function buildingCosts() {
         Building costs
       </div>
 
+      <ReactTooltip type={'light'} delayShow={'180'}/>
+
       <div className={'costs1'}>
         <div className={'costs2'}>
-          <div>
+          <div data-tip={'Road'}>
             <img
               src={road}
               alt={''}
             />
           </div>
 
-          <div>
+          <div data-tip={'Settlement'}>
             <img
               src={village}
               alt={''}
             />
           </div>
 
-          <div>
+          <div data-tip={'City'}>
             <img
               src={castle}
               alt={''}
             />
           </div>
 
-          <div>
+          <div data-tip={'Development card'}>
             <img
               src={cards}
               alt={''}
