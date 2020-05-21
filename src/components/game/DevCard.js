@@ -1,7 +1,6 @@
 import { api } from "../../helpers/api";
 import React from "react";
-import {Modal} from 'react-responsive-modal';
-import PlentyMove from "./PlentyMove";
+
 
 
 export default class DevCard extends React.Component{

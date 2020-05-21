@@ -24,36 +24,36 @@ export default function HexInstructions(){
 
         <h3> <b>Resource given from each tile </b></h3>
       <p>
-        <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {woodHex} alt = ""/>
+        <img className={'hexInstruction'} style={{height: hexSize}} src = {woodHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>
         <img style={{height: resourceSize, marginLeft: "10px"}} src={Lumber} alt=""/>
       </p>
       <p>
-        <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {clayHex} alt = ""/>
+        <img className={'hexInstruction'} style={{height: hexSize}} src = {clayHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>
         <img style={{height: resourceSize, marginLeft: "10px"}} src={Brick} alt=""/>
       </p>
 
       <p>
-        <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {wheatHex} alt = ""/>
+        <img className={'hexInstruction'} style={{height: hexSize}} src = {wheatHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>
         <img style={{height: resourceSize, marginLeft: "10px"}} src={Grain} alt=""/>
       </p>
 
       <p>
-        <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {oreHex} alt = ""/>
+        <img className={'hexInstruction'} style={{height: hexSize}} src = {oreHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>
         <img style={{height: resourceSize, marginLeft: "10px"}} src={Ore} alt=""/>
       </p>
 
       <p>
-        <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {sheepHex} alt = ""/>
+        <img className={'hexInstruction'} style={{height: hexSize}} src = {sheepHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>
         <img style={{height: resourceSize, marginLeft: "10px"}} src={Wool} alt=""/>
       </p>
 
       <p>
-        <img style={{height: hexSize, transform: "rotate(90deg)", marginRight: "10px"}} src = {desertHex} alt = ""/>
+        <img className={'hexInstruction'} style={{height: hexSize}} src = {desertHex} alt = ""/>
         <img style={{height: arrowSize}} src={Arrow} alt=""/>
         <img style={{height: resourceSize, marginLeft: "10px"}} src={robber} alt=""/>
       </p>

@@ -27,7 +27,7 @@ export default function PlentyInstructions(){
       <p>
         <img style={{height:hexSize, marginLeft: '10px'}} src={Farmer} alt=""/>
         <img style={{height: arrowSize, marginLeft: '5px'}} src={Arrow} alt=""/>
-        <t>Farmer: 2x <img style={{height: resourceSize}} src={Grain} alt=""/> and 2x <img style={{height: resourceSize}} src={Wool} alt=""/></t>
+        <t>Farmer: 2x <img style={{height: resourceSize}} src={Grain} alt=""/> and 2x<img style={{height: resourceSize}} src={Wool} alt=""/></t>
       </p>
 
       <p>
