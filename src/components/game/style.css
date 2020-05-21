@@ -179,7 +179,7 @@
 }
 
 .actionBoxButtonGrey{
-    background-color: darkgoldenrod;
+    background-color: grey;
     color: black;
     width: 128px;
     padding: 14.4px;
@@ -200,18 +200,19 @@
 }
 
 .scoreboard {
-    position: absolute;
+    position: relative;
     width: 300px;
     height: 150px;
     left: 525px;
     top: 100px;
+    justify-content: center;
     background: gold;
     mix-blend-mode: normal;
     border: 2px solid #25282B;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding-top: 45px;
+    padding-top: 20px;
     padding-left: 30px;
 }
 
@@ -219,8 +220,8 @@
     position: absolute;
     width: 150px;
     height: 60px;
-    left: 80px;
-    top: 250px;
+    left: 75px;
+    top: 180px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: gold;
     border-radius: 10px;

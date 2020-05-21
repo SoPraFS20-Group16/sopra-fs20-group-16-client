@@ -22,14 +22,13 @@ export default function GameCard({game,history}) {
           <Col>
             <h4>{game&&game.name}</h4>
           </Col>
-          {/*<Col className="text-right">Created by: {props.createdBy}</Col>*/}
         </Row>
         <Row>
           <Col>
             <p>Players: {game&&game.joinedPlayers.toString()}/4</p>
             <p style={{
               fontStyle: 'italic'
-            }}>min.{game&&game.minPlayers.toString()} to start</p>
+            }}>Click to join</p>
           </Col>
           <Col className="text-right" style={{maxWidth:"130px"}}>
             Bots: {game&&game.withBots ? "enabled" : "disabled"}

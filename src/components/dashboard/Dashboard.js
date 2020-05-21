@@ -135,9 +135,6 @@ class Dashboard extends Component {
     return (
       <>
         <div style={{ margin: "40px", display:"flex"}}>
-          {/*<Link to="/profile">*/}
-          {/*  <AvatarCircle avatarUrl={avatarUrl} size={50} className="my-3" />*/}
-          {/*</Link>*/}
           <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
         </div>
 
@@ -183,7 +180,7 @@ class Dashboard extends Component {
                     type="checkbox"
                     checked={this.state.withBots}
                     onChange={() => {
-                      this.handleInputChange('withBots', !this.state.withBots);
+                      this.setState({withBots: !this.state.withBots});
                     }}
                   />
                   <p style={{ paddingLeft: "10px" }}>Enable bots</p>
@@ -203,7 +200,7 @@ class Dashboard extends Component {
                     left: "75px",
                   }}
                 >
-                  Start Game
+                  Create Lobby
                 </Button>
               </Row>
             </Col>
