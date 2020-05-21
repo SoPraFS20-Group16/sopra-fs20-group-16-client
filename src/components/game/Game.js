@@ -272,7 +272,7 @@ class Game extends React.Component {
           <p style={{marginBottom: "30px"}}> <b>on your next adventure!</b></p>
 
             {this.state.scoreBoardPlayers.map(p => (
-                <p> Player: {p.username} / Points: {p.points} </p>
+              <p> Player: {p.username} <t style={{marginLeft:'100px'}}>Points: {p.points} </t></p>
             ))}
 
             <button className={'dashboardButton'}

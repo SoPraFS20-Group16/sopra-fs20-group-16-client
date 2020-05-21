@@ -28,8 +28,8 @@ export default function Offer(props){
         onClick = {async () => await api.put("/games/" + props.gameId, requestBody)}
       >
 
-        4x <img style ={{maxHeight:'25px', maxWidth:'25px'}} src={images[props.give]} alt = ''/>
-        for 1x <img style ={{maxHeight:'30px', maxWidth:'30px'}} src={images[props.receive]} alt = ''/>
+        <t style={{fontSize:'18px'}}> 4x <img style ={{maxHeight:'30px', maxWidth:'30px', marginLeft:'3px', marginRight: '5px'}} src={images[props.give]} alt = ''/>
+          for  1x <img style ={{maxHeight:'30px', maxWidth:'30px', marginLeft:'3px'}} src={images[props.receive]} alt = ''/></t>
       </button>
     </p>
   )
