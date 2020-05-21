@@ -268,11 +268,13 @@ class Game extends React.Component {
           contentLabel="Example Modal"
           shouldCloseOnOverlayClick={false}>
 
-          <p style={{marginTop: "0px"}}> <b>This Game is over, good luck</b></p>
-          <p style={{marginBottom: "30px"}}> <b>on your next adventure!</b></p>
+          <p style={{paddingLeft: '32px'}}><b>This Game is over, good luck</b></p>
+          <p style={{paddingLeft: '50px'}}> <b>on your next adventure!</b></p>
 
             {this.state.scoreBoardPlayers.map(p => (
-              <p> Player: {p.username} <t style={{marginLeft:'100px'}}>Points: {p.points} </t></p>
+                <div>
+                <p><b> <span>Player:{p.username}</span></b>  <b>Points: {p.points}</b></p>
+                </div>
             ))}
 
             <button className={'dashboardButton'}

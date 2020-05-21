@@ -207,15 +207,14 @@
     left: 525px;
     top: 100px;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     background: gold;
     mix-blend-mode: normal;
     border: 2px solid #25282B;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding-top: 20px;
-
+    padding: 25px
 }
 
 .dashboardButton {
