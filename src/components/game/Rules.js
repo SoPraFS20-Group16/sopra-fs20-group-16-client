@@ -48,37 +48,37 @@ export default class Rules extends React.Component{
               <h1 className={'gameTitle'}>The Settlers of Toucan</h1>
               <h2 className={'quickStartTitle'}>Quick Start</h2>
               <ul>
-                <li style={{marginLeft: "20px"}}>
+                <li className={'li'}>
                   <p className={'p'}>Beginning the game is easy. Just build a settlement and a road, then pass it on to the next player.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}>
+                <li className={'li'}>
                   <p className={'p'}>The first two rounds are to set up the game. The buildings and roads are for free, and you will get a resource for every tile</p>
                   <p className={'paragraph'}> next to your initial settlement.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}>
+                <li className={'li'}>
                   <p className={'p'}>The order of play reverts itself after the first round. After the initial setup, a random player gets picked to start.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>Once started, you will collect resources every time the dice gets rolled and it matches the number of a tile</p>
+                <li className={'li'}><p>Once started, you will collect resources every time the dice gets rolled and it matches the number of a tile</p>
                   <p className={'p'}> you have a building next to.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>Once collected, the resources can be used to build more roads or settlements and also to upgrade a settlement to a city.</p>
+                <li className={'li'}><p>Once collected, the resources can be used to build more roads or settlements and also to upgrade a settlement to a city.</p>
                   <p className={'p'}>Cities get twice the resources settlements do. It is time to go big!</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p style={{marginBottom: "20px"}}>If you don&#39;t have the correct resources you can always trade. But this is expensive so better build smart.</p>
+                <li className={'li'}><p style={{marginBottom: "20px"}}>If you don&#39;t have the correct resources you can always trade. But this is expensive so better build smart.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>Settlements give you one, cities two points. If you reach ten points first you win the game. This means you are a worthy </p>
+                <li className={'li'}><p>Settlements give you one, cities two points. If you reach ten points first you win the game. This means you are a worthy </p>
                   <p className={'p'}>inhabitant of Toucan!</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>The thief is no one&#39;s friend! When he occupies a tile then it can&#39;t distribute resources. Normally he lives in the desert, </p>
+                <li className={'li'}><p>The thief is no one&#39;s friend! When he occupies a tile then it can&#39;t distribute resources. Normally he lives in the desert, </p>
                   <p className={'p'}> but with a Knight Card, you can chase him to steal from those you don&#39;t like.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>When you set the thief on a tile, he is kind enough to share with you. This means you can steal one random resource </p>
+                <li className={'li'}><p>When you set the thief on a tile, he is kind enough to share with you. This means you can steal one random resource </p>
                   <p className={'p'}> from one of the players next to the new thief tile. But only if there really is one, obviously!</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>With your resources, you can also buy development cards. They can help you to get ahead. Sometimes there is even a</p>
+                <li className={'li'}><p>With your resources, you can also buy development cards. They can help you to get ahead. Sometimes there is even a</p>
                   <p className={'p'}>whole point to be earned.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p>You can choose when you want to play your development card. But remember, when the game is over they are of no use. </p>
+                <li className={'li'}><p>You can choose when you want to play your development card. But remember, when the game is over they are of no use. </p>
                   <p className={'p'}>So better be quick! Time to conspire with the thief again maybe?</p>
                 </li>
               </ul>
@@ -121,33 +121,37 @@ export default class Rules extends React.Component{
               <p>But you can not choose which card it will be. You better not have a gambling problem! Once the card is bought, it can </p>
               <p style={{marginBottom: "30px"}}>not be used in the same turn. But it is surely worth the wait!</p>
               <ul>
-                <li style={{marginLeft: "20px"}} >
+                <li className={'li'}>
                   <p> <b>The Knight Card</b>
-                    <img className={'knightImage'} src = {Knight} alt = ""/>
+                  <img className={'knightImage'} src = {Knight} alt = ""/>
                   <t style={{marginLeft:'29px'}}>The Thief can be placed on a new tile. If the tile has buildings next to it, the player can</t> </p>
-                  <p className={'knightParagraph'}>choose from which opponent a random resource is stolen. If the opponent has an </p>
-                  <p className={'knightParagraph'}>empty wallet then there is nothing to get.</p>
+                  <p className={'progressParagraph'}>choose from which opponent a random resource is stolen. If the opponent has an </p>
+                  <p className={'progressParagraph'}>empty wallet then there is nothing to get.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Victory Point</b>
+                <li className={'li'}>
+                  <p><b>The Victory Point</b>
                   <img className={'victoryImage'} src = {Victory} alt = ""/>
                   <t style={{marginLeft:'29px'}}> The victory point is a card that can do nothing but gives you an extra victory point.</t></p>
-                  <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: "-10px", }}>This means you need one less settlement to win the game.</p>
+                  <p className={'progressParagraph'}>This means you need one less settlement to win the game.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Monopoly Card</b>
+                <li className={'li'}>
+                  <p><b>The Monopoly Card</b>
                   <img className={'monopolyImage'} src = {Monopoly} alt = ""/>
                   <t style={{marginLeft:'28px'}}>This card gives you the power to collect one type of resources from all the players in the</t></p>
-                  <p style={{marginBottom:'30px', marginLeft:'208px', marginTop: '-10px'}}>game. So if you suspect that there is a lot of lumber going around it might be time to </p>
-                  <p style={{marginBottom: "30px", marginLeft:'208px', marginTop: '-10px'}}>strike.</p>
+                  <p className={'progressParagraph'}>game. So if you suspect that there is a lot of lumber going around it might be time to </p>
+                  <p className={'progressParagraph'}>strike.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Road Progress</b>
-                  <img className={'roadProgressImage'} src = {Road} alt = ""/><t style={{marginLeft:'29px'}}> All roads lead to Rome, but in your case, they might lead to new territory. Using this</t></p>
+                <li className={'li'}>
+                  <p><b>The Road Progress</b>
+                  <img className={'roadProgressImage'} src = {Road} alt = ""/>
+                  <t style={{marginLeft:'29px'}}> All roads lead to Rome, but in your case, they might lead to new territory. Using this</t></p>
                   <p style={{marginBottom: "30px", marginLeft: '208px', marginTop: '-10px'}}>card you can build two roads for free.</p>
                 </li>
-                <li style={{marginLeft: "20px"}}><p><b>The Plenty Progress</b>
+                <li className={'li'}><p><b>The Plenty Progress</b>
                   <img className={'plentyImage'} src = {Plenty} alt = ""/>
                   <t style={{marginLeft:'23px'}}>It was a warm summer and it is time to harvest your reward. With this card, you can</t></p>
-                  <p className={'plentyParagraph'}>choose between three worker types. "Miner" gives you two Ore and two Brick.</p>
-                  <p className={'plentyParagraph'}> "Farmer" gives you two Grain and two Wool. "Lumberjack" gives you five Lumber.</p>
+                  <p className={'progressParagraph'}>choose between three worker types. "Miner" gives you two Ore and two Brick.</p>
+                  <p className={'progressParagraph'}> "Farmer" gives you two Grain and two Wool. "Lumberjack" gives you five Lumber.</p>
                 </li>
               </ul>
 

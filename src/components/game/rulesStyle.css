@@ -8,6 +8,10 @@
     margin-bottom: 20px;
 }
 
+.li{
+    margin-left: 20px;
+}
+
 .quickStartTitle{
     margin-bottom: 15px;
     margin-top: 50px;
@@ -25,13 +29,9 @@
     font-weight: bold;
 }
 
-.plentyParagraph{
-    margin-bottom: 30px;
-    margin-left: 205px;
-    margin-top: -10px;
-}
 
-.knightParagraph{
+
+.progressParagraph{
     margin-bottom: 30px;
     margin-left: 205px;
     margin-top: -10px
