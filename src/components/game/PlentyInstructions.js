@@ -18,6 +18,7 @@ export default function PlentyInstructions(){
   const resourceSize = 20;
   return(
     <div style={{border: "2px solid black", borderRadius: "50px" ,textAlign: "center" , padding: '20px 30px', backgroundColor: "beige", display: "inline-block"}}>
+      <h3 style={{marginBottom: '20px'}}> <b>Plenty progress cards </b></h3>
       <p>
         <img style={{height: hexSize}} src={Miner} alt=""/>
         <img style={{height: arrowSize, marginLeft: '5px'}} src={Arrow} alt=""/>
