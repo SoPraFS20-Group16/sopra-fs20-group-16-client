@@ -1,9 +1,9 @@
 import React from "react";
 import './style.css'
-import { api} from "../../helpers/api";
-import { withRouter } from "react-router-dom";
+import {api} from "../../helpers/api";
+import {withRouter} from "react-router-dom";
 import Board from "../board/Board";
-import ResourcesList from "./ResourcesList";
+import ResourcesList from "./ResourceList";
 import BuildingCosts from "./BuildingCosts";
 import ActionBox from "./ActionBox";
 import Dice from "./Dice";
@@ -184,7 +184,6 @@ class Game extends React.Component {
     console.log("state", this.state);
     return (
       <div className={"game-bg"}>
-
         <div style={{display:'flex'}}>
           <button className={'button1'}
                   onClick={() => {
@@ -275,11 +274,11 @@ class Game extends React.Component {
           shouldCloseOnOverlayClick={false}>
 
           <p style={{paddingLeft: '32px'}}><b>This Game is over, good luck</b></p>
-          <p style={{paddingLeft: '50px'}}> <b>on your next adventure!</b></p>
+          <p style={{paddingLeft: '50px', marginBottom: "20px"}}> <b>on your next adventure!</b></p>
 
             {this.state.scoreBoardPlayers.map(p => (
                 <div>
-                <p><b> <span>Player:{p.username}</span></b>  <b>Points: {p.points}</b></p>
+                <p> <span>Player: <b>{p.username}</b></span>  <b>{p.points}</b> Points</p>
                 </div>
             ))}
 

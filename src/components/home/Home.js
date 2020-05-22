@@ -1,12 +1,11 @@
 import React from "react";
-import {Link, withRouter} from "react-router-dom";
-import { api } from "../../helpers/api";
+import {withRouter} from "react-router-dom";
+import {api} from "../../helpers/api";
 import './style.css';
 import styled from "styled-components";
-import MapGL, { Marker } from "react-map-gl";
+import MapGL, {Marker} from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import pin from './pin.png';
-
 
 
 const GoldButt = styled.button`
@@ -132,7 +131,7 @@ class Home extends React.Component {
             <div className={"header_logout"}>
                 <GoldButt onClick={() => this.logout()}>Logout</GoldButt>
             </div>
-            <h1 className={"header_title"}> You are currently in Lobby {this.state.gameDetails.name}</h1>
+            <h1 className={"header_title"}> <b>You are currently in Lobby {this.state.gameDetails.name}</b></h1>
 
         </div>
 
@@ -146,6 +145,11 @@ class Home extends React.Component {
                 <Markers usersLatLong = {this.state.usersLatLong}/>
             </MapGL>
         </div>
+
+        <div className='mapTextContainer'>
+            <b>Players all over the world!</b>
+        </div>
+
                 <div className="containerPlayerInfos">
                     {this.state.gameDetails.players && this.state.gameDetails.players.map((player, index) => <p key={index}>{player.username}</p>)}
                 </div>

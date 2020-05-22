@@ -1,0 +1,73 @@
+.gameTitle{
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}
+
+.p{
+    margin-bottom: 20px;
+}
+
+.li{
+    margin-left: 20px;
+}
+
+.quickStartTitle{
+    margin-bottom: 15px;
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+
+.hexInstruction{
+    transform: rotate(90deg);
+    margin-right: 10px;
+}
+
+.titleRules{
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+
+
+.progressParagraph{
+    margin-bottom: 30px;
+    margin-left: 205px;
+    margin-top: -10px
+}
+
+.plentyImage{
+    height: 30px;
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-left: 18px;
+}
+
+.roadProgressImage{
+    height: 30px;
+    margin-right: 5px;
+    margin-top: -7px;
+    margin-left:22px;
+}
+
+.monopolyImage{
+    height: 30px;
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-left:10px;
+}
+
+.knightImage{
+    height: 30px;
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-left:30px;
+}
+
+.victoryImage{
+    height: 30px;
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-left: 25px;
+}

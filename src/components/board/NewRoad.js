@@ -15,18 +15,12 @@ export default function NewRoad(props){
   return (
 
     <button
+      className={'newRoad'}
       style={{
-        position: "absolute",
         top: props.midY - 5,
         left: props.midX - 20,
         transform: props.rotation,
-        fontSize: "0.5em",
-        width: "40px",
-        height: "10px",
-        border: "1.5px dotted black",
-        borderRadius: "10px",
         backgroundColor: props.color,
-        opacity: 0.5,
       }}
       onClick={handler}
 

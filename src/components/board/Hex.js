@@ -47,35 +47,11 @@ export default function Hex(props) {
                   }}
                 />
 
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: '33%',
-                    height: '30px',
-                    width: '30px',
-                    backgroundColor: 'rgb(235,232,160)',
-                    border: '2px black',
-                    borderRadius: 30,
-                    display:"flex",
-                    alignContent:'center',
-                    justifyContent:'center',
-                  }}
-                >
-                  <div style={{
-                    textAlign: 'center',
-                    fontSize: '25px',
-                    fontWeight: 'bold',
-                  }}>
-                    {props.isRobber ? <img
-                      src={robber}
-                      alt={''}
-                      style={{
-                        width:'100%',
-                        height:'100%',
-                        display: "block"
-                      }}
-                    /> :
-                      <p style={{position:'relative', top:'42%', right:'5%'}}>
+                <div className={'hex'}>
+                  <div className={'hexCircle'}>
+                    {props.isRobber ?
+                      <img className={'robberImage'} src={robber} alt={''}/> :
+                      <p className={'number'}>
                         {props.number}
                       </p>}
                   </div>
