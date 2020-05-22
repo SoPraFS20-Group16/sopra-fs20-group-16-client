@@ -8,17 +8,18 @@ export default class UseDevCards extends React.Component{
     this.state={
       open: false,
     };
-    this.onOpenModal = this.onOpenModal.bind(this);
-    this.onCloseModal = this.onCloseModal.bind(this);
+    this.openModalTrade = this.openModalTrade.bind(this);
+    this.closeModalTrade = this.closeModalTrade.bind(this);
   }
 
-  onOpenModal = () => {
-    this.setState({ open: true });
-  };
 
-  onCloseModal = () => {
-    this.setState({ open: false });
-  };
+  openModalTrade(){
+    this.setState({open: true})
+  }
+
+  closeModalTrade(){
+    this.setState({open: false})
+  }
 
   moveChecker() {
     let i = 0;
@@ -57,20 +58,20 @@ export default class UseDevCards extends React.Component{
       <div>
         <button
           className ={`actionBoxButton ${this.moveChecker() === false ? "actionBoxButtonGrey":''}`}
-          onClick={this.onOpenModal}
+          onClick={this.openModalTrade}
           disabled={this.moveChecker() === false}
         >Use dev cards
         </button>
 
-        <Modal open={open} onClose={this.onCloseModal} blockScroll={false} styles={bg}>
+        <Modal open={open} onClose={this.closeModalTrade} blockScroll={false} styles={bg}>
           <h2 style={{textAlign: "center", fontWeight: 'bold'}}>These are your development cards!</h2>
 
 
           {this.props.moves && this.props.moves !== "emptyMoves" && this.getDevMoves().map((info) =>
-            <DevCard {...info} gameId = {this.props.gameId} moves = {this.props.moves}/>
+            <DevCard {...info} gameId = {this.props.gameId} moves = {this.props.moves} open={this.state.open} onClose={this.closeModalTrade}/>
           )}
 
-          {this.props.moves && this.props.moves !== "emptyMoves" && this.moveChecker() ? "": <p style ={{textAlign: "center", marginTop: '60px'}}>No development cards left!</p>}
+          {/*{this.props.moves && this.props.moves !== "emptyMoves" && this.moveChecker() ? "": <p style ={{textAlign: "center", marginTop: '60px'}}>No development cards left!</p>}*/}
 
         </Modal>
       </div>
