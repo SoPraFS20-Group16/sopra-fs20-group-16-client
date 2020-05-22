@@ -19,10 +19,9 @@ html {
 
 /* set background image per page */
 .game-bg {
-  background: url('views/graphics/sea.gif') repeat;
+  background-image: url('views/graphics/sea.gif');
   background-size: 30px;
-  /*height: 2300px;*/
- ;
+  height: 100vh;
 }
 
 input,

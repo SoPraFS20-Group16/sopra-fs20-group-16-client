@@ -192,3 +192,12 @@
     left: 190px;
     top: 100px;
 }
+
+.mapTextContainer {
+    position: absolute;
+    width: 656px;
+    left: 375px;
+    top: 110px;
+    font-size: 30px;
+    color: black;
+}

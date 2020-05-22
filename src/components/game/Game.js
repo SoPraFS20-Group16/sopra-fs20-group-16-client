@@ -169,7 +169,6 @@ class Game extends React.Component {
     console.log("state", this.state);
     return (
       <div className={"game-bg"}>
-
         <div style={{display:'flex'}}>
           <button className={'button1'}
                   onClick={() => {
