@@ -52,7 +52,7 @@ export default class StealMove extends React.Component{
               justifyContent:"flex-start",
             }}>
             <h4>Choose who you want to rob:</h4>
-            {this.props.moves[0].moveName === 'StealMove' && this.props.moves.map((move, i) =>
+            {this.props.moves[0].moveName === 'StealMove' ? this.props.moves.map((move, i) =>
               <button
                   className={'button1'}
                   onClick={(e) => {this.choosePlayer(e, move.moveId)}}
@@ -65,7 +65,12 @@ export default class StealMove extends React.Component{
                 />
                 {this.state.players[move.victimId]}
               </button>
-            )}
+            ) :
+              <div>
+                <p>Looking for someone to rob...</p>
+                {/*setTimeout(() => {this.props.onClose();}, 4500)*/}
+              </div>
+            }
           </div>
         </Modal>
       </div>

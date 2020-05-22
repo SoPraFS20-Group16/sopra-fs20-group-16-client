@@ -9,7 +9,12 @@ export default function HexThiefSelector(props) {
 
   async function handler(){
     await api.put("/games/" + props.gameId, requestBody);
-    props.openModalThief();
+    const response = await api.get("/games/" + props.gameId);
+
+    // Open modal to choose the victim to steal from only if there are StealMoves
+    if(response.data.moves && response.data.moves[0].moveName === 'StealMove') {
+      props.openModalThief()
+    }
   }
 
   return (

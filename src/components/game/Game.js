@@ -181,7 +181,7 @@ class Game extends React.Component {
   }*/
 
   render() {
-    console.log("state", this.state);
+    // console.log("state", this.state);
     return (
       <div className={"game-bg"}>
         <div style={{display:'flex'}}>
