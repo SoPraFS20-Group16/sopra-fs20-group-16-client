@@ -1,5 +1,4 @@
 import React from "react"
-import Hexagon from "react-svg-hexagon"
 import {api} from "../../helpers/api";
 
 export default function HexThiefSelector(props) {
@@ -10,6 +9,7 @@ export default function HexThiefSelector(props) {
 
   async function handler(){
     await api.put("/games/" + props.gameId, requestBody);
+    props.onOpenThief();
   }
 
   return (
@@ -26,8 +26,7 @@ export default function HexThiefSelector(props) {
       borderRadius: 1000,
     }}
     onClick={handler}
-    >
-    </button>
+    />
   )
 }
 

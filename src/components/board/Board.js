@@ -336,7 +336,7 @@ export default class Board extends React.Component {
 
           {this.props.tiles && this.props.tiles.length !== 0 && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove" &&
           this.createBoard().map((tile, key) =>
-            <HexThiefSelector {...tile} key={key} />
+            <HexThiefSelector {...tile} key={key} onOpenThief={this.props.onOpenThief}/>
             )}
 
           {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
