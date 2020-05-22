@@ -3,7 +3,7 @@ import './style.css'
 import {api} from "../../helpers/api";
 import {withRouter} from "react-router-dom";
 import Board from "../board/Board";
-import ResourcesList from "./ResourcesList";
+import ResourcesList from "./ResourceList";
 import BuildingCosts from "./BuildingCosts";
 import ActionBox from "./ActionBox";
 import Dice from "./Dice";
