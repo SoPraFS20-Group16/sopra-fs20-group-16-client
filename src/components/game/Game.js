@@ -55,6 +55,7 @@ class Game extends React.Component {
 
   componentDidMount()
     {
+      document.body.classList.add("backgroundGame");
       let interval = setInterval(() => {
         if (opponentHasLeft) {
           clearInterval(interval);
@@ -63,6 +64,10 @@ class Game extends React.Component {
           this.getGameInfo(this.props.match.params.id);
         }
       }, 3000);
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove("backgroundGame");
   }
 
   async getGameInfo(id) {

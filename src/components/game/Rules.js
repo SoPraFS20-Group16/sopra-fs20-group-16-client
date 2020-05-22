@@ -3,7 +3,7 @@ import './rulesStyle.css';
 import 'react-responsive-modal/styles.css';
 import ReactTooltip from "react-tooltip";
 
-import { Modal } from 'react-responsive-modal';
+import {Modal} from 'react-responsive-modal';
 import Knight from '../../views/graphics/knight.png'
 import Monopoly from '../../views/graphics/monopoly.png'
 import Victory from '../../views/graphics/victory.png'
@@ -119,7 +119,7 @@ export default class Rules extends React.Component{
               <h2 className={'titleRules'}>The Development Cards</h2>
               <p>There are different types of development cards that can give you an advantage. They can be bought using resources.</p>
               <p>But you can not choose which card it will be. You better not have a gambling problem! Once the card is bought, it can </p>
-              <p style={{marginBottom: "30px"}}>not be used in the same turn. But it is surely worth the wait!</p>
+              <p style={{marginBottom: "30px"}}>not be used in the same turn and you can only pass on the move or buy another card. But it is surely worth the wait!</p>
               <ul>
                 <li className={'li'}>
                   <p> <b>The Knight Card</b>
@@ -150,8 +150,8 @@ export default class Rules extends React.Component{
                 <li className={'li'}><p><b>The Plenty Progress</b>
                   <img className={'plentyImage'} src = {Plenty} alt = ""/>
                   <t style={{marginLeft:'23px'}}>It was a warm summer and it is time to harvest your reward. With this card, you can</t></p>
-                  <p className={'progressParagraph'}>choose between three worker types. "Miner" gives you two Ore and two Brick.</p>
-                  <p className={'progressParagraph'}> "Farmer" gives you two Grain and two Wool. "Lumberjack" gives you five Lumber.</p>
+                  <p className={'progressParagraph'}>choose between three worker types. Below, you can have an overview of what they will</p>
+                  <p className={'progressParagraph'}>produce for you, the mighty conqueror of Toucan.</p>
                 </li>
               </ul>
 
