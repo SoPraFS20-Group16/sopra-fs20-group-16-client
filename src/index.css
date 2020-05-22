@@ -17,12 +17,11 @@ html {
   overflow-x: hidden;
 }
 
-/* set background image per page */
-.game-bg {
-  background-image: url('views/graphics/sea.gif');
-  background-size: 30px;
-  height: 100vh;
-}
+ /*set background image per page */
+/*.game-bg {*/
+/*  background-image: url('views/graphics/sea.gif');*/
+/*  background-size: 30px;*/
+/*}*/
 
 input,
 textarea,
