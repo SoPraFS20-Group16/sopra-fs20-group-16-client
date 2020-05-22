@@ -1,10 +1,8 @@
-import React, { Component } from "react";
-import { Row, Col, Form, Button } from "react-bootstrap";
-import AvatarCircle from "../avatarCircle/AvatarCircle";
-import avatarUrl from "../../views/graphics/avatar.jpg";
-import { Link, withRouter } from "react-router-dom";
+import React, {Component} from "react";
+import {Button, Col, Form, Row} from "react-bootstrap";
+import {withRouter} from "react-router-dom";
 import GamesList from "./GamesList";
-import { api, handleError } from "../../helpers/api";
+import {api, handleError} from "../../helpers/api";
 import styled from "styled-components";
 
 const InputField = styled.input`

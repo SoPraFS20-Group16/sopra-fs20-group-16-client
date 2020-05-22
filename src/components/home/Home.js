@@ -1,12 +1,11 @@
 import React from "react";
-import {Link, withRouter} from "react-router-dom";
-import { api } from "../../helpers/api";
+import {withRouter} from "react-router-dom";
+import {api} from "../../helpers/api";
 import './style.css';
 import styled from "styled-components";
-import MapGL, { Marker } from "react-map-gl";
+import MapGL, {Marker} from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import pin from './pin.png';
-
 
 
 const GoldButt = styled.button`
