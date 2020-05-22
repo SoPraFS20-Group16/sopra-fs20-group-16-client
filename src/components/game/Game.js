@@ -39,14 +39,11 @@ class Game extends React.Component {
       currPlDevCards: null,
       isModalOpenScoreboard: false,
       isModalOpenWarning: false,
-      isModalOpenThief: false,
       scoreBoardPlayers: []
     };
     this.getGameInfo = this.getGameInfo.bind(this);
     this.closeModalWarning = this.closeModalWarning.bind(this);
     this.closeModalScoreboard = this.closeModalScoreboard.bind(this);
-    this.openModalThief = this.openModalThief.bind(this);
-    this.closeModalThief = this.closeModalThief.bind(this);
   }
   closeModalWarning () {
     this.setState({isModalOpenWarning: false})
@@ -55,15 +52,6 @@ class Game extends React.Component {
   closeModalScoreboard () {
     this.setState({isModalOpenScoreboard: false})
   }
-
-  openModalThief(){
-    this.setState({isModalOpenThief: true})
-  }
-
-  closeModalThief(){
-    this.setState({isModalOpenThief: false})
-  }
-
 
   componentDidMount()
     {
@@ -245,7 +233,6 @@ class Game extends React.Component {
               cities={this.state.cities}
               players={this.state.players}
               playerColors={this.state.playerColors}
-              onOpenThief={this.openModalThief()}
             />}
 
             {this.state.history && <Feed history={this.state.history} colors={this.state.playerColors}/>}
@@ -279,16 +266,6 @@ class Game extends React.Component {
 
           </div>
         </div>
-
-        {this.state.isModalOpenThief &&
-        <StealMove
-            open={this.state.isModalOpenThief}
-            onClose={this.closeModalThief}
-            moves={this.state.moves}
-            gameId={this.state.gameId}
-            players={this.state.players}
-            colors={this.state.playerColors}
-        />}
 
         <Modal
           isOpen={this.state.isModalOpenScoreboard}

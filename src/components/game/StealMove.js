@@ -13,7 +13,7 @@ export default class StealMove extends React.Component{
     props.players.map((pl) => {this.state.players[pl.userId] = pl.username})
   }
 
-  async choosePlayer(moveId) {
+  async choosePlayer(e, moveId) {
 
     const requestBody = JSON.stringify({
       moveId: moveId,
@@ -33,7 +33,7 @@ export default class StealMove extends React.Component{
             {this.props.moves.map((move) =>
               <button
                   className={'button1'}
-                  onClick={this.choosePlayer(move.moveId)}
+                  onClick={(e) => {this.choosePlayer(e, move.moveId)}}
                   style={{display:"flex"}}
               >
                 <div

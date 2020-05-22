@@ -9,7 +9,7 @@ export default function HexThiefSelector(props) {
 
   async function handler(){
     await api.put("/games/" + props.gameId, requestBody);
-    props.onOpenThief();
+    props.openModalThief();
   }
 
   return (
