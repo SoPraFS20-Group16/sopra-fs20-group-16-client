@@ -75,7 +75,7 @@ map, where all the registered users, who shared their location, are also visible
 Everythings start at the dashboard. The user can decide if he wants to join an active lobby or if he wants to create a new lobby.
 When creating a new lobby, the user also has the option to enable or disable the participation of bots. The dashboard is designed as followed:
 
-![Dashboard](src\views\graphics\Dashboard.jpg)
+![Dashboard](src/views/graphics/Dashboard.jpg)
 
 
 ### Lobby
@@ -85,7 +85,7 @@ the game should start. For the case that the lobby creator enabled bots, he can 
 at least two players in the lobby to start the game. Another key feature in the lobby is the usage of the mentioned map by by [Mapbox](https://www.mapbox.com/). 
 On this map the location of every registered user (online and offline) is shown, as long as the user chose to share the location on the register page.
 
-![Lobby](src\views\graphics\Lobby.jpg)
+![Lobby](src/views/graphics/Lobby.jpg)
 
 
 ### Game
@@ -96,7 +96,7 @@ On the graphic, elements 1-8 will be described in the legend below.
 
 
 
-![Game](src\views\graphics\Game.jpg)
+![Game](src/views/graphics/Game.jpg)
 
 1: This container gives the player overview over the resources and development cards the player holds.
 
@@ -123,7 +123,7 @@ We have decided to use [Modals](https://www.w3schools.com/w3css/w3css_modal.asp)
 Features such as trading or using a certain development card use Modals. When taking such an action, the game board will be set to the background and the Modal will be
 highlighted as followed:
 
-![Trade](src\views\graphics\Trade.jpg)
+![Trade](src/views/graphics/Trade.jpg)
 
 ### Ending a Game
 
