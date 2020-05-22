@@ -96,7 +96,7 @@ On the graphic, elements 1-8 will be described in the legend below.
 
 
 
-![Game](src/views/graphics/Game.jpg)
+![Game](src/views/graphics/Game1.jpg)
 
 1: This container gives the player overview over the resources and development cards the player holds.
 
