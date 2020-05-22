@@ -27,6 +27,7 @@ export default function PlentyMove(props){
 
           <div>
             <button
+                data-tip = {"Miner"}
                 style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
                 onClick={async () => await api.put("/games/" + props.gameId, JSON.stringify({moveId: selectPlentyType("MINER")}))}
             >
@@ -34,6 +35,7 @@ export default function PlentyMove(props){
             </button>
 
             <button
+                data-tip = {"Farmer"}
                 style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
                 onClick={async () => await api.put("/games/" + props.gameId, JSON.stringify({moveId: selectPlentyType("FARMER")}))}
             >
@@ -43,6 +45,7 @@ export default function PlentyMove(props){
 
           <div>
             <button
+                data-tip = {"Lumberjack"}
                 style={{justifyContent: "center", backgroundColor: "transparent", border: "1px solid transparent"}}
                 onClick={async () => await api.put("/games/" + props.gameId, JSON.stringify({moveId: selectPlentyType("LUMBERJACK")}))}
             >
