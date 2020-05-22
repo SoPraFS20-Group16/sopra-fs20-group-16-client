@@ -9,6 +9,7 @@ export default function HexThiefSelector(props) {
 
   async function handler(){
     await api.put("/games/" + props.gameId, requestBody);
+    props.openModalThief();
   }
 
   return (
@@ -25,8 +26,7 @@ export default function HexThiefSelector(props) {
       borderRadius: 1000,
     }}
     onClick={handler}
-    >
-    </button>
+    />
   )
 }
 

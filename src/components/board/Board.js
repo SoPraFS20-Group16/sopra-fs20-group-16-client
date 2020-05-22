@@ -8,6 +8,7 @@ import NewSettlement from "./NewSettlement";
 import NewCity from "./NewCity";
 import City from "./City";
 import HexThiefSelector from "./HexThiefSelector";
+import StealMove from "../game/StealMove";
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -16,9 +17,19 @@ export default class Board extends React.Component {
       color: "red",
       streetColor: "yellow",
       radius: 50,
+      isModalOpenThief: false,
     };
+    this.openModalThief = this.openModalThief.bind(this);
+    this.closeModalThief = this.closeModalThief.bind(this);
   }
 
+  openModalThief(){
+    this.setState({isModalOpenThief: true})
+  }
+
+  closeModalThief(){
+    this.setState({isModalOpenThief: false})
+  }
 
   componentDidMount() {}
 
@@ -336,7 +347,7 @@ export default class Board extends React.Component {
 
           {this.props.tiles && this.props.tiles.length !== 0 && this.props.moves.length !== 0 && this.props.moves[0].moveName === "KnightMove" &&
           this.createBoard().map((tile, key) =>
-            <HexThiefSelector {...tile} key={key} />
+            <HexThiefSelector {...tile} key={key} openModalThief={this.openModalThief}/>
             )}
 
           {this.props.moves && this.props.moves.length !== 0 && this.renderBuildableRoads().map(
@@ -367,6 +378,16 @@ export default class Board extends React.Component {
           )}
 
         </div>
+
+        {this.state.isModalOpenThief &&
+        <StealMove
+          open={this.state.isModalOpenThief}
+          onClose={this.closeModalThief}
+          moves={this.props.moves}
+          gameId={this.props.gameId}
+          players={this.props.players}
+          colors={this.props.playerColors}
+        />}
 
       </div>
 

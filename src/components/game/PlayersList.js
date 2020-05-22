@@ -12,10 +12,8 @@ export default function playersList(props) {
 
 
       <div style={{marginTop:'15px'}}>
-        {props.players.map((player) =>
-          <div style={{
-            display:'flex',
-          }}>
+        {props.players.map((player, i) =>
+          <div style={{display:'flex'}} key={i}>
             <div className={'playerColor'} style={{backgroundColor: props.colors[player.userId]}}/>
             {player.username === props.currentPlayer.username ?
               <p><b>➢ {player.username}</b></p> : <p>{player.username}</p>}

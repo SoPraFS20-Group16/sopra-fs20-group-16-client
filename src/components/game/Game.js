@@ -53,7 +53,6 @@ class Game extends React.Component {
     this.setState({isModalOpenScoreboard: false})
   }
 
-
   componentDidMount()
     {
       document.body.classList.add("backgroundGame");
@@ -170,6 +169,22 @@ class Game extends React.Component {
     return playerColors;
   }
 
+  // Check if modal for stealing resources should be open
+/*  openThiefModal() {
+    if(!this.state.isModalOpenThief &&
+        this.state.moves &&
+        this.state.moves.length > 0 &&
+        this.state.moves[0].moveName === 'StealMove'){
+      this.setState({isModalOpenThief: true})
+    }
+    else if(this.state.isModalOpenThief &&
+        this.state.moves &&
+        this.state.moves.length > 0 &&
+        this.state.moves[0].moveName !== 'StealMove'){
+      this.setState({isModalOpenThief: false})
+    }
+  }*/
+
   render() {
     console.log("state", this.state);
     return (
@@ -184,14 +199,6 @@ class Game extends React.Component {
           </button>
 
           <Rules/>
-
-          {this.state.moves && this.state.moves.length > 0 && this.state.moves[0].moveName === 'StealMove' &&
-          <StealMove
-            moves={this.state.moves}
-            gameId={this.state.gameId}
-            players={this.state.players}
-            colors={this.state.playerColors}
-          />}
 
         </div>
 
@@ -263,7 +270,6 @@ class Game extends React.Component {
 
           </div>
         </div>
-
 
         <Modal
           isOpen={this.state.isModalOpenScoreboard}

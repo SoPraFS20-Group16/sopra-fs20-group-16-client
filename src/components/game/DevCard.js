@@ -30,6 +30,16 @@ export default class DevCard extends React.Component{
     }
   }
 
+  async buyDevCard(e) {
+
+    const requestBody = JSON.stringify({
+      moveId: this.props.moveId,
+    });
+
+    await api.put("/games/" + this.props.gameId, requestBody);
+    this.props.onClose();
+  }
+
 
 
 
@@ -40,7 +50,7 @@ export default class DevCard extends React.Component{
           <button
             className='offerButton'
             style={{marginLeft: '100px'}}
-            onClick={async () => await api.put("/games/" + this.props.gameId, JSON.stringify({moveId: this.props.moveId}))}
+            onClick={(e) => {this.buyDevCard(e)}}
           >
             {this.devType()}
           </button>

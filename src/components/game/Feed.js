@@ -5,15 +5,15 @@ import ScrollableFeed from "react-scrollable-feed";
 export default function feed(props) {
 
   const movesDesc = {
-    'KnightMove': 'moved the thief',
+    'KnightMove': 'has moved the thief',
     'MonopolyMove': 'used a monopoly card',
     'PlentyMove' : 'used a card of plenty (not the valley)',
     'RoadProgressMove': 'used a road progress card',
-    'StealMove': 'stole a card', // from whom?
+    'StealMove': 'stole a resource', // from whom?
     'FirstPassMove': 'passed the turn',
     'FirstRoadMove': 'has built a starting road',
     'FirstSettlementMove': 'has built a starting settlement',
-    'BuildMove': 'built something', // add what?
+    'BuildMove': 'has built something', // add what?
     'CardMove': 'used a card',
     'DiceMove': 'rolled the dice', // add result?
     'Move': 'has got some tight moves', // ?

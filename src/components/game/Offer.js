@@ -20,12 +20,18 @@ export default function Offer(props){
     ORE: Ore
   };
 
+  async function chooseResource(e){
+    await api.put("/games/" + props.gameId, requestBody);
+    props.onClose();
+
+  }
+
 
   return(
     <p>
       <button
         className = 'offerButton'
-        onClick = {async () => await api.put("/games/" + props.gameId, requestBody)}
+        onClick = {(e) => {chooseResource(e)}}
       >
 
         <t style={{fontSize:'18px'}}> 4x <img style ={{maxHeight:'30px', maxWidth:'30px', marginLeft:'3px', marginRight: '5px'}} src={images[props.give]} alt = ''/>

@@ -1,22 +1,29 @@
 import React from "react";
 import Offer from "./Offer";
 import {Modal} from 'react-responsive-modal';
+import DevCard from "./DevCard";
 
 export default class TradeOffering extends React.Component{
   constructor(props) {
     super(props);
     this.state={
       open: false,
-    }
+    };
+
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
   }
 
-  onOpenModal = () => {
-    this.setState({ open: true });
-  };
 
-  onCloseModal = () => {
-    this.setState({ open: false });
-  };
+  onOpenModal(){
+    this.setState({open: true})
+  }
+
+  onCloseModal(){
+    this.setState({open: false})
+  }
+
+
 
   getTradeInfo(){
     const info = [];
@@ -63,10 +70,10 @@ export default class TradeOffering extends React.Component{
           <h2 style={{textAlign: "center", fontWeight: 'bold'}}>Offers</h2>
 
           {this.props.moves && this.props.moves !== "emptyMoves" && this.getTradeInfo().map((info) =>
-            <Offer {...info} gameId = {this.props.gameId}/>
+            <Offer {...info} gameId = {this.props.gameId} open={this.state.open} onClose={this.onCloseModal}/>
           )}
 
-          {this.props.moves && this.props.moves !== "emptyMoves" && this.moveChecker()? "": <p style={{textAlign: "center", marginTop:'40px'}}>No trading moves left!</p>}
+          {/*{this.props.moves && this.props.moves !== "emptyMoves" && this.moveChecker()? "": <p style={{textAlign: "center", marginTop:'40px'}}>No trading moves left!</p>}*/}
 
         </Modal>
       </div>
