@@ -1,5 +1,4 @@
 import React from "react"
-import Hexagon from "react-svg-hexagon"
 import {api} from "../../helpers/api";
 
 export default function HexThiefSelector(props) {

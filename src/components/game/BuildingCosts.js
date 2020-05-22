@@ -15,8 +15,6 @@ import Ore from '../../views/graphics/ore.png'
 
 export default function buildingCosts() {
 
-  const iconSize = '25px'
-
   return (
     <div className={'innerBox'}>
       <div className={'boxTitle'}>
