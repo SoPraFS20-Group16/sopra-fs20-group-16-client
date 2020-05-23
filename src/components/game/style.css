@@ -203,6 +203,7 @@
 
 .scoreboard {
     position: relative;
+    justify-self: center;
     width: fit-content;
     height: 150px;
     left: 525px;

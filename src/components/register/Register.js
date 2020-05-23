@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BaseContainer } from '../../helpers/layout';
-import { api, handleError } from '../../helpers/api';
-import { withRouter } from 'react-router-dom';
-import { Button } from '../../views/design/Button';
+import {BaseContainer} from '../../helpers/layout';
+import {api, handleError} from '../../helpers/api';
+import {withRouter} from 'react-router-dom';
+import {Button} from '../../views/design/Button';
 import Token from "../shared/models/Token";
-
 
 
 const FormContainer = styled.div`
@@ -136,6 +135,7 @@ class Register extends React.Component{
                       <Label><b>Username</b></Label>
                       <InputField
                         placeholder="Enter here..."
+                        maxLength={10}
                         onChange={e =>{
                             this.handleInputChange('username', e.target.value);
                         }}

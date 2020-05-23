@@ -10,7 +10,6 @@ import Dice from "./Dice";
 import PlayersList from "./PlayersList";
 import Modal from 'react-modal';
 import Rules from "./Rules";
-import StealMove from "./StealMove";
 import Feed from "./Feed";
 import PlentyMove from "./PlentyMove";
 import MonopolyMove from "./MonopolyMove";
@@ -63,7 +62,7 @@ class Game extends React.Component {
         } else{
           this.getGameInfo(this.props.match.params.id);
         }
-      }, 3000);
+      }, 1500);
   }
 
   componentWillUnmount() {
