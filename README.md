@@ -121,7 +121,9 @@ Features such as trading or using a certain development cards use Modals. When t
 
 ### Ending a Game
 
-When the game is over, a scoreboard will be shown to all the players. Players can then navigate back to the dashboard to play another fun round of the Settlers of Toucan! ![Score Board](src/views/graphics/ScoreBoard.jpg)
+When the game is over, a scoreboard will be shown to all the players. Players can then navigate back to the dashboard to play another fun round of the Settlers of Toucan!
+
+![Score Board](src/views/graphics/ScoreBoard.JPG)
 
 ## Prerequisites and Installation
 
