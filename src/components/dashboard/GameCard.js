@@ -1,22 +1,23 @@
 import React from "react";
-import { api } from "../../helpers/api";
-import { Card, Row, Col } from "react-bootstrap";
-export default function GameCard({game,history}) {
+import {api} from "../../helpers/api";
+import {Card, Col, Row} from "react-bootstrap";
+
+export default function GameCard({game, history}) {
 
   return (
-    <Card className="my-2" style={{
-      maxWidth:"500px",
-      backgroundColor:"gold",
-      borderColor:"black",
-      cursor:"pointer"
-    }}>
+      <Card className="my-2" style={{
+        maxWidth: "500px",
+        backgroundColor: "gold",
+        borderColor: "black",
+        cursor: "pointer"
+      }}>
       <Card.Body
         style={{
           paddingRight: "30px",
         }}
         onClick={async () => {
           await api.post(`/games/${game.gameId}/players`);
-          history.push(`/games/${game.gameId}`); // TODO: fix routing to lobby
+          history.push(`/games/${game.gameId}`);
         }}>
         <Row>
           <Col>

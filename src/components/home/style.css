@@ -20,20 +20,6 @@
     margin: 50px;
 }
 
-.left {
-    /* padding: 5px; */
-    text-align: center;
-    background-color: white;
-    border-radius: 5px;
-    border: 2px solid blue;
-    background-image: url('./map.jpg');
-    background-size: cover;
-    height: 500px;
-    padding: 50px;
-    padding-top: 20px;
-    
-}
-
 .left img {
     width: 100%;
     height: auto;

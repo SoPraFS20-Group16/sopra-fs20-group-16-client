@@ -1,7 +1,6 @@
 import React from "react";
 import Offer from "./Offer";
 import {Modal} from 'react-responsive-modal';
-import DevCard from "./DevCard";
 
 export default class TradeOffering extends React.Component{
   constructor(props) {

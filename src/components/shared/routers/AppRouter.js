@@ -1,17 +1,15 @@
 import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { GameGuard } from "../routeProtectors/GameGuard";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {GameGuard} from "../routeProtectors/GameGuard";
 import GameRouter from "./GameRouter";
-import { LoginGuard } from "../routeProtectors/LoginGuard";
+import {LoginGuard} from "../routeProtectors/LoginGuard";
 import Login from "../../login/Login";
-import { StartPageGuard } from "../routeProtectors/StartPageGuard";
+import {StartPageGuard} from "../routeProtectors/StartPageGuard";
 import StartPage from "../../startPage/StartPage";
-import { RegisterGuard } from "../routeProtectors/RegisterGuard";
+import {RegisterGuard} from "../routeProtectors/RegisterGuard";
 import Register from "../../register/Register";
 import Home from "../../home/Home";
 import Dashboard from "../../dashboard/Dashboard";
-import Profile from "../../profile/Profile";
-import Board from "../../board/Board";
 
 /**
  * Main router of your application.
@@ -56,14 +54,6 @@ class AppRouter extends React.Component {
               )}
             />
             <Route
-              path="/profile"
-              render={() => (
-                <GameGuard>
-                  <Profile />
-                </GameGuard>
-              )}
-            />
-            <Route
               path="/login"
               exact
               render={() => (
@@ -86,14 +76,6 @@ class AppRouter extends React.Component {
                 <RegisterGuard>
                   <Register />
                 </RegisterGuard>
-              )}
-            />
-            <Route
-              path="/board"
-              render={() => (
-                <GameGuard>
-                  <Board />
-                </GameGuard>
               )}
             />
             <Route path="/" exact render={() => <Redirect to={"/dashboard"} />} />

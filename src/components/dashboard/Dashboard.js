@@ -31,11 +31,11 @@ const GoldButt = styled.button`
 class Dashboard extends Component {
 
   async logout() {
-    // await api.put("/logout", null, {
-    //   headers: {
-    //     "Token": localStorage.getItem("token")
-    //   }
-    // })
+    await api.put("/logout", null, {
+      headers: {
+        "Token": localStorage.getItem("token")
+      }
+    })
     localStorage.removeItem("gameID");
     localStorage.removeItem("token");
     this.props.history.push("/login");
@@ -50,17 +50,6 @@ class Dashboard extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-
-//   handleBotsChange(event) {
-//     const target = event.target;
-//     const value = target.name === "withBots" ? target.checked : target.value;
-//     const name = target.name;
-//
-//     this.setState({
-//       [name]: value,
-//     });
-//     console.log("State change: " + this.state.name);
-// }
 
   handleInputChange(key, value) {
     this.setState({ [key]: value });
@@ -139,9 +128,8 @@ class Dashboard extends Component {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            this.sendCreatedGame().then((data) => {
+            this.sendCreatedGame().then(() => {
               this.getGames();
-
             });
           }}
         >

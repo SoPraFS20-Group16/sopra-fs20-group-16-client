@@ -24,7 +24,6 @@ export default class StealMove extends React.Component{
   }
 
   render(){
-    const { open } = this.state;
     const customStyles = {
       content : {
         top                   : '50%',

@@ -72,11 +72,6 @@ const ButtonContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-
-
-
-
-
 class Register extends React.Component{
     constructor() {
         super();
