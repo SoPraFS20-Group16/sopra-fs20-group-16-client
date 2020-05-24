@@ -168,7 +168,6 @@ class Game extends React.Component {
   }
 
   render() {
-    // console.log("state", this.state);
     return (
       <div className={"game-bg"}>
         <div style={{display:'flex'}}>
@@ -256,56 +255,90 @@ class Game extends React.Component {
         <Modal
           isOpen={this.state.isModalOpenScoreboard}
           onRequestClose={() => this.closeModalScoreboard()}
-          className={'scoreboard'}
           contentLabel="Example Modal"
-          shouldCloseOnOverlayClick={false}>
+          shouldCloseOnOverlayClick={false}
+          style={{
+            content : {
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              marginRight: '-50%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'beige',
+              width: '300px',
+              height: 'fit-content',
+              textAlign: 'center',
+              border: '1px solid black',
+              borderRadius: '10px'
+            },
+            overlay: {zIndex: 10}}}
+        >
 
-          <p style={{paddingLeft: '32px'}}><b>This Game is over, good luck</b></p>
-          <p style={{paddingLeft: '50px', marginBottom: "20px"}}> <b>on your next adventure!</b></p>
+          <div style={{padding: '10px'}}>
+            <p><b>This Game is over, good luck</b></p>
+            <p> <b>on your next adventure!</b></p>
+          </div>
 
-            {this.state.scoreBoardPlayers.map(p => (
-                <div>
-                <p> <span>Player: <b>{p.username}</b></span>  <b>{p.points}</b> Points</p>
-                </div>
-            ))}
+          {this.state.scoreBoardPlayers.map(p => (
+            <div style={{display: 'flex', padding: '15px', justifyContent:'space-between'}}>
+              <div>Player: <b>{p.username}</b></div>
+              <div><b>{p.points}</b> Points</div>
+            </div>
+          ))}
 
-            <button className={'dashboardButton'}
-                onClick={() => {
-                  this.props.history.push('/dashboard');
-                }}
-            >
+          <button className={'dashboardButtonLogout'}
+              onClick={() => {
+                this.props.history.push('/dashboard');
+              }}
+          >
             <b>Lobby</b>
-            </button>
+          </button>
 
         </Modal>
 
         <Modal
           isOpen={this.state.isModalOpenWarning}
           onRequestClose={() => this.closeModalWarning()}
-          className={'warning'}
           contentLabel="Example Modal"
+          style={{
+            content : {
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              marginRight: '-50%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'beige',
+              width: '300px',
+              height: '150px',
+              textAlign: 'center',
+              border: '1px solid black',
+              borderRadius: '10px'
+            },
+            overlay: {zIndex: 10}}}
       >
-          <p><b>When you leave, the session is over for</b> </p>
-          <p><b>everyone.</b></p>
+          <p><b>When you leave, the session </b> </p>
+          <p><b>is over for everyone.</b> </p>
+        <div style={{display: "flex", justifyContent: 'space-around'}}>
+          <button className={'dashboardButtonLogout'}
+                  onClick={() => {
+                    this.logout().then(r => this.props.history.push('/startPage'))
+                  }}
+          >
+            <b>Logout</b>
+          </button>
 
-
-        <button className={'dashboardButtonLogout'}
-                onClick={() => {
-                  this.logout().then(r => this.props.history.push('/startPage'))
-                }}
-        >
-          <b>Logout</b>
-        </button>
-
-        <button className={'dashboardButtonBack'}
-                onClick={() => {
-                  this.setState({isModalOpenWarning: false})
-                }}
-        >
-          <b>Back</b>
-        </button>
-
+          <button className={'dashboardButtonLogout'}
+                  onClick={() => {
+                    this.setState({isModalOpenWarning: false})
+                  }}
+          >
+            <b>Back</b>
+          </button>
+        </div>
       </Modal>
+
       </div>
     );
   }
