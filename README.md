@@ -41,22 +41,17 @@ a number from 2-12 (except for 7) and also represent one of the resources that a
 are designed as building areas for the players. On the vertices the players can build settlements or cities and on the edges
 the players can build roads.
 
-- [Game](src/components/game) The game holds all the logic and actions for the players. The game component allows the players
-to interact with the board and also to get the state of the game by visual means. It sends the turns of the players to the backend
-and also shares the respective response to that turn on the board. The game component also includes necessary components such as the
-action feed which provides information regarding the turns of players, the action box to choose the turns from and also a dice functionality
-which is responsible for the distribution of resources.
-
+- [Game](src/components/game) The game holds all the frontend logic and actions for the players. The game component allows the players
+to interact with the board and also represents the state of the game visually. It sends the turns of the players to the backend and updates the view when the altered game state is fetched. The game component also shows ohter components such as the action feed which provides information regarding the turns of players, the action box to choose moves from and also a dice component where the last dice roll is displayed.
 
 ## Launch & Deployment
 
 To contribute to this project you can clone or fork this repository. If you want to add your changes or improvements
 you can create a pull request. For more information visit the [Github Help Page](https://help.github.com/en/github).
-If you choose to make a pull request, make sure the github actions task **Test Project** passes.
 
 If your pull request is accepted, the project is automatically deployed to heroku. If you want to deploy your own
 version check out this guide on 
-[how to deploy spring boot applications to heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku).
+[how to deploy to heroku using git](https://devcenter.heroku.com/articles/git).
 
 
 ## Illustrations
@@ -66,13 +61,13 @@ After registering or logging in, the users can take actions as desired.
 
 ### Startpage
 
-On the start page, the user can decide if he wants to sign in or create a new account. Notable is, that the user has to decide
-in the register page if he wants to share his location. When enabling this option, the user will be depicted on an interactive
+On the start page, the user can decide if she/he wants to sign in or create a new account. Notable is, that the user has to decide
+in the register page if she/he wants to share her/his location. When enabling this option, the user will be depicted on an interactive
 map, where all the registered users, who shared their location, are also visible.
 
 ### Dashboard
 
-Everythings start at the dashboard. The user can decide if he wants to join an active lobby or if he wants to create a new lobby.
+Everything starts in the dashboard. The user can decide if she/he wants to join an active lobby or if she/he wants to create a new lobby.
 When creating a new lobby, the user also has the option to enable or disable the participation of bots. The dashboard is designed as followed:
 
 ![Dashboard](src/views/graphics/Dashboard.jpg)
@@ -80,8 +75,8 @@ When creating a new lobby, the user also has the option to enable or disable the
 
 ### Lobby
 
-The lobby is the place where all the participants gather. The lobby creator is the host of this lobby, so he can decide when
-the game should start. For the case that the lobby creator enabled bots, he can start the game when alone. When bots are disabled there have to be 
+The lobby is the place where all the participants gather. The lobby creator is the host of this lobby, so she/he can decide when
+the game should start. For the case that the lobby creator enabled bots, she/he can start the game when alone. When bots are disabled there have to be 
 at least two players in the lobby to start the game. Another key feature in the lobby is the usage of the mentioned map by by [Mapbox](https://www.mapbox.com/). 
 On this map the location of every registered user (online and offline) is shown, as long as the user chose to share the location on the register page.
 
@@ -90,45 +85,43 @@ On this map the location of every registered user (online and offline) is shown,
 
 ### Game
 
-The action takes place on the actual game screen. Here the players sees the board, his resources, his available turn and much more. 
+The action takes place on the actual game screen. Here the player sees the board, the resources, the available turns and much more. 
 The core of this screen is obviously the board itself, but there are many other important features and components surrounding the board.
-On the graphic, elements 1-8 will be described in the legend below.
+On the graphic, elements 1-9 will be described in the legend below.
 
 
 
 ![Game](src/views/graphics/Game1.jpg)
 
-1: This container gives the player overview over the resources and development cards the player holds.
+1: This container gives the player an overview of the resources and development cards the player holds.
 
-2: This element gives the player a sense of progression, it shows his/her points.
+2: This element shows the victory points achived, giving the player a sense of progression.
 
 3: This container informs the player on how much roads, settlements, cities and development cards cost.
 
-4: This is the feed. It shows what every player did in his/her respective turn.
+4: This is the feed. It shows what every player did in his/her respective turns.
 
 5: This is the action box. Turns that are available for the player will be highlighted.
 
 6: This container shows which player's turn it is at the moment. It also shows the player's color, which corresponds
-to his roads and settlements which can be seen on the actual board.
+to her/his roads and settlements which can be seen on the actual board.
 
 7: Those are the dices. The dices will always show the last dice roll to all the players.
 
 8: This is a pop-up window which is active, when a player decides to use a development card.
 
-9: This is the help button for the players. If a player is unsure on certain game mechanics or has lost overview over the
-resources, he can visit the help page to get his answers.
+9: This is the help button for the players. If a player is unsure on certain game rules or wants to refresh their memory about
+wich tile distributes which resource, she/he can visit the help page to get an answer. It also features a Qick Start guide for new players that should make it easy for new players to get a sense of what the game is all about.
 
 #### Usage of Modals
 We have decided to use [Modals](https://www.w3schools.com/w3css/w3css_modal.asp) for a lot of the features, in order to keep the board itself as clean as possible. 
-Features such as trading or using a certain development card use Modals. When taking such an action, the game board will be set to the background and the Modal will be
-highlighted as followed:
+Features such as trading or using a certain development cards use Modals. When taking such an action, the game screen will reside in the background and the Modal will be highlighted.
 
 ![Trade](src/views/graphics/Trade.jpg)
 
 ### Ending a Game
 
-When the game is over, a scoreboard will be shown to all the players and can return to the dashboard to play another fun
-round of the Settlers of Toucan!
+When the game is over, a scoreboard will be shown to all the players. Players can then navigate back to the dashboard to play another fun round of the Settlers of Toucan! ![Score Board](src/views/graphics/ScoreBoard.jpg)
 
 ## Prerequisites and Installation
 
@@ -180,7 +173,7 @@ let your creativity run free!
 As our Backend Team would love to see the addition of forming alliances within the game, we would also need the feature of a chat function.
 But not only for possible alliances this would be cool, but also for trading not only with the bank, but also with other players. 
 An expanding empire needs some exports and imports to grow fast. Also, if one player gets too dominant, a whisper function could
-help out with flattening her/his growth curve by "accidentally" crossing his path with a road.
+help out with flattening her/his growth curve by "accidentally" crossing her/his path with a road.
 ### Parametrize Game Variables
 
 As of now, the game variables (such as required points to win, building costs etc.) are set as constants in the backend. But it would not be
