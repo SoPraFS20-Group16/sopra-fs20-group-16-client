@@ -18,7 +18,7 @@ Based on simple concepts, this game does not fail to provide a diverting experie
 
 The frontend was written with ReactJS version 16.12. The respective documentation can be found on the official website
 [ReactJS Documentation](https://reactjs.org/docs/getting-started.html).
-We also used various Javascript packages, which were handled by the Node Package Manager (npm). Again, how to use install
+We also used various Javascript packages, which were handled by the Node Package Manager (npm). Again, how to use and install
 npm and how to use the various packages that are available, visit the [npm documentation](https://docs.npmjs.com/). 
 We also used [Mapbox](https://docs.mapbox.com/help/tutorials/use-mapbox-gl-js-with-react/) as external API, to visualize 
 the players' locations.
@@ -32,8 +32,8 @@ lobby, with which they do not even have to wait for others and can directly star
 
 - [Home](src/components/home/Home.js) This is the place where you can hang out with the other participants. What stands out
 here is the interactive map provided by [Mapbox](https://www.mapbox.com/). On this map, every registered user is shown, as long
-as he accepted the location-sharing option in the registration process. After deeply analysing the map, the lobby creator has
-the option to actually start the game when she/he wants to.
+as she/he accepted the location-sharing option in the registration process. After analysing the map, the lobby creator has
+the option to actually start the game when she/he wants to. This requires the presence of at least two players if bots are disabled.
 
 - [Board](src/components/board) The heart of the frontend is the board. It is the key component, on which the players actually
 play the game and make their turns on. It consists of 19 tiles in the shape of a hexagon. Also, the multiple tiles hold 
