@@ -31,12 +31,14 @@ const GoldButt = styled.button`
 class Dashboard extends Component {
 
   async logout() {
-    await api.put("/logout", null, {
-      headers: {
-        "Token": localStorage.getItem("token")
-      }
-    })
-    localStorage.removeItem("gameID");
+    try {
+      await api.put("/logout", null, {
+        headers: {
+          "Token": localStorage.getItem("token")
+        }
+      })
+    } catch (e) {
+    }
     localStorage.removeItem("token");
     this.props.history.push("/login");
   }

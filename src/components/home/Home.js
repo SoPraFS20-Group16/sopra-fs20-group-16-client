@@ -79,11 +79,14 @@ class Home extends React.Component {
         });
 
     async logout() {
-        await api.put("/logout", null, {
-            headers: {
-                "Token": localStorage.getItem("token")
-            }
-        });
+        try {
+            await api.put("/logout", null, {
+                headers: {
+                    "Token": localStorage.getItem("token")
+                }
+            });
+        } catch (e) {
+        }
         localStorage.removeItem("token");
         this.props.history.push("/login");
     }
