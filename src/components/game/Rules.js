@@ -52,8 +52,9 @@ export default class Rules extends React.Component{
                   <p className={'p'}>Beginning the game is easy. Just build a settlement and a road, then pass it on to the next player.</p>
                 </li>
                 <li className={'li'}>
-                  <p className={'p'}>The first two rounds are to set up the game. The buildings and roads are for free, and you will get a resource for every tile</p>
-                  <p className={'paragraph'}> next to your initial settlement.</p>
+                  <p className={'p'}>The first two rounds are to set up the game. The buildings and roads are for free,
+                    and you will get a resource for every tile</p>
+                  <p className={'p'}> next to your initial settlement.</p>
                 </li>
                 <li className={'li'}>
                   <p className={'p'}>The order of play reverts itself after the first round. After the initial setup, a random player gets picked to start.</p>

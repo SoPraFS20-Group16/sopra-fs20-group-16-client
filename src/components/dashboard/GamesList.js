@@ -1,7 +1,7 @@
 import React from "react";
 import GameCard from "./GameCard";
 import {api, handleError} from "../../helpers/api";
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 class GamesList extends React.Component {
 
@@ -21,8 +21,8 @@ class GamesList extends React.Component {
     try {
       setInterval(async () => {
         const response = await api.get("/games");
-        this.setState({ games: response && response.data });
-      },2000)
+        this.setState({games: response && response.data});
+      }, 1500)
 
 
     } catch (error) {
@@ -33,18 +33,18 @@ class GamesList extends React.Component {
   // Use GameCard object to render existing games
   renderGameCards = () => {
     console.log("Games urls: " + this.state.games.map((game) => game.url));
-    return this.state.games.map((game, key) => <GameCard key={key} history={this.props.history} game={game} />);
+    return this.state.games.map((game, key) =>
+        game.started ? "" :
+            <GameCard key={key} history={this.props.history} game={game}/>);
   };
 
   // Decide whether to map games if present, or return a message to create a new game
   displayGames() {
 
-    // console.log('games: ' + games[0]);
-    if (this.state.games.length !== 0) {
+    if (this.state.games.filter((game) =>
+        !game.started).length !== 0) {
       return this.renderGameCards();
-    }
-
-    else {
+    } else {
       return 'No matches open yet! Create one on the left to begin.'
     }
   }
