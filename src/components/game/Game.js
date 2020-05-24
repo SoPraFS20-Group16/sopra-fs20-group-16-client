@@ -10,7 +10,6 @@ import Dice from "./Dice";
 import PlayersList from "./PlayersList";
 import Modal from 'react-modal';
 import Rules from "./Rules";
-import StealMove from "./StealMove";
 import Feed from "./Feed";
 import PlentyMove from "./PlentyMove";
 import MonopolyMove from "./MonopolyMove";
@@ -145,7 +144,6 @@ class Game extends React.Component {
     return arr.includes("MonopolyMove")
   }
 
-
   async logout() {
     await api.put("/logout", null, {
       headers: {
@@ -168,22 +166,6 @@ class Game extends React.Component {
 
     return playerColors;
   }
-
-  // Check if modal for stealing resources should be open
-/*  openThiefModal() {
-    if(!this.state.isModalOpenThief &&
-        this.state.moves &&
-        this.state.moves.length > 0 &&
-        this.state.moves[0].moveName === 'StealMove'){
-      this.setState({isModalOpenThief: true})
-    }
-    else if(this.state.isModalOpenThief &&
-        this.state.moves &&
-        this.state.moves.length > 0 &&
-        this.state.moves[0].moveName !== 'StealMove'){
-      this.setState({isModalOpenThief: false})
-    }
-  }*/
 
   render() {
     // console.log("state", this.state);
