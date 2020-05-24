@@ -62,7 +62,7 @@ class Game extends React.Component {
         } else{
           this.getGameInfo(this.props.match.params.id);
         }
-      }, 3000);
+      }, 1500);
   }
 
   componentWillUnmount() {

@@ -151,7 +151,8 @@ class Home extends React.Component {
         </div>
 
                 <div className="containerPlayerInfos">
-                    {this.state.gameDetails.players && this.state.gameDetails.players.map((player, index) => <p key={index}>{player.username}</p>)}
+                    {this.state.gameDetails.players && this.state.gameDetails.players.map((player, index) =>
+                        <p key={index} style={{marginBottom: '30px'}}>{player.username}</p>)}
                 </div>
 
                 {this.state.gameDetails.moves && this.state.gameDetails.moves.length > 0 && <div className="start_button">
