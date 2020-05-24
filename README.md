@@ -162,6 +162,7 @@ The game provides the opportunity for a wide range of possible features that cou
 In the following we will explore a few by examples, but those are only recommendations. If you have any addition
 for the game that would improve the overall experience, do not hesitate!
 
+
 ### UI Adjustments
 
 Such a game is almost never fully polished out. While the game already has a neat visual representation, there is always room
@@ -179,6 +180,11 @@ An expanding empire needs some exports and imports to grow fast. So trading with
 
 As of now, the game variables (such as required points to win, building costs etc.) are set as constants in the backend. But it would not be difficult to set those as dynamically. For this case, a more fleshed out "creating lobby" window would be ideal. In this window
 the player would have the option to change the required winning points, the occurrence of certain resources and many more variables which define the way the game is being played.
+
+### Backend Roadmap
+
+Along with the roadmap of the frontend, there are also some ideas and possible features, which the Backend Team added to the backend roadmap.
+For those features, we would also adjust the frontend accordingly to always have a complete, smoothly running product.
 
 ## Authors and acknowledgement
 
