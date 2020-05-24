@@ -157,31 +157,26 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Roadmap
 
 The game provides the opportunity for a wide range of possible features that could be added.
-In the following we will explore a few by example, but those are only recommendations. If you have any addition
+In the following we will explore a few by examples, but those are only recommendations. If you have any addition
 for the game that would improve the overall experience, do not hesitate!
 
 ### UI Adjustments
 
 Such a game is almost never fully polished out. While the game already has a neat visual representation, there is always room
-for improvement. For example the addition of a background theme song would be something which pushes the immersion for the player
-further. Another interesting feature would be to change the theme of the board completely, so that the background would be frosty
+for improvement. For example the addition of a background theme song would be something which pushes the immersion for the player further. Another interesting feature would be to change the theme of the board completely, so that the background would be frosty
 mountains, and the resources the player could collect would be adjusted to that setting. There are almost no limitations for this one, 
 let your creativity run free!
     
-### Chat & Trade with players
+### Chat & Trade with other players
 
 As our Backend Team would love to see the addition of forming alliances within the game, we would also need the feature of a chat function.
 But not only for possible alliances this would be cool, but also for trading not only with the bank, but also with other players. 
-An expanding empire needs some exports and imports to grow fast. Also, if one player gets too dominant, a whisper function could
-help out with flattening her/his growth curve by "accidentally" crossing her/his path with a road.
+An expanding empire needs some exports and imports to grow fast. So trading with other players freely would add an interesting new dimension to the game, but would also clearly increase the need for an interactive chat functionality.
+
 ### Parametrize Game Variables
 
-As of now, the game variables (such as required points to win, building costs etc.) are set as constants in the backend. But it would not be
-a big deal to set those as parameters. For that case, a more fleshed out "creating lobby" window would be ideal. In this window
-the player would have the option to change the required winning points, the occurrence of certain resources and many more variables which define
-the way the game is being played.
-
-
+As of now, the game variables (such as required points to win, building costs etc.) are set as constants in the backend. But it would not be difficult to set those as dynamically. For this case, a more fleshed out "creating lobby" window would be ideal. In this window
+the player would have the option to change the required winning points, the occurrence of certain resources and many more variables which define the way the game is being played.
 
 ## Authors and acknowledgement
 
